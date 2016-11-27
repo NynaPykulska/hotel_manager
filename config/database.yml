@@ -1,0 +1,4 @@
+default: &default
+  adapter: mysql
+  pool: 5
+  timeout: 5000
