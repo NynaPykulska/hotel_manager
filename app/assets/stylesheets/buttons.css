@@ -1,0 +1,58 @@
+
+/* Buttons */
+.btn {
+    border-radius: 0;
+    border: 1px solid;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 13px;
+
+    padding-top: 11px;
+    padding-bottom: 11px;
+    padding-left: 24px;	
+    padding-right: 24px;
+}
+
+.btn-default {
+    background: transparent;
+    border: #e6e6e6 1px solid;
+}
+.btn-default:hover {
+    background: transparent;
+}
+.btn-default.focus {
+    background: transparent;
+}
+
+.btn-primary {
+    background: #03a9f4;
+    border: #03a9f4 1px solid;	
+    color: #fff;
+}
+.btn-primary:hover {
+    background: #0081c8;
+}
+
+.btn-link {
+    color: #03a9f4;
+    border: transparent;
+}
+.btn-link:hover {
+    text-decoration: none;
+}
+
+.btn .icon {
+    display: inline-flex;
+    vertical-align: middle;
+    margin-top: -3px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+.btn-icon {
+    padding: 11px;
+}
+
+.input-group-addon {
+    border-radius: 0;
+    background-color: transparent;
+}

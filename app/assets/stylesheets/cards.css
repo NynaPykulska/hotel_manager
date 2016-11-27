@@ -1,0 +1,100 @@
+/* Card Table */
+/*
+.g-table-card {
+	padding: 16px;	
+	background-color: #fff;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	border-radius: 2px;
+}
+.g-table-card table {
+	width: 100%;	
+}
+.g-table-card td:first-child, td:last-child {
+}
+
+.g-issue-icon-td {
+	width: 60px;
+}
+.g-table-card-header {
+
+}
+.g-table-card h3 {
+	margin-top: 2px;
+	margin-bottom: 0;	
+}
+.g-table-card btn-link {
+	padding: 0;
+	margin: 0;	
+}
+
+
+
+*/
+.g-table-card {
+	width: 100%;
+	border-spacing: 0 8px;
+	border-collapse: separate;	
+}
+
+.g-table-card tbody {
+  display: table-row-group;
+  vertical-align: middle;
+}
+.g-table-card tr {
+	-webkit-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.16);
+	-moz-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.16);
+	box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.16);
+}
+.g-table-card td {
+	padding: 16px;
+	background-color: #fff;
+	margin-bottom: 4px;
+}
+.g-table-card td h4 {
+	margin: 0;
+}
+.g-table-card-icon-td {
+    width: 60px;
+    padding-right: 0 !important;
+}
+
+/* Grid view */
+.g-table-card-grid {
+	border-collapse: collapse;
+	margin-top: 16px;
+}
+.g-table-card-grid .g-issue-icon-mini {
+	margin: 8px;
+}
+
+.g-table-card-grid .g-table-card-header {
+	text-align: center;
+}
+
+.g-table-card-grid tr:nth-child(4) {
+	background-color: red !important;
+}
+.g-table-card-grid .btn-link {
+	padding-right: 0;
+	padding-left: 0;
+}
+
+
+
+.g-report-issue-card {
+	cursor: pointer;
+}
+.g-report-issue-card-description {
+	padding-top: 0 !important
+}
+.g-report-issue-card-selected td {
+	background-color: #fa6b5b;
+}
+.g-report-issue-card-selected td {
+	color: #fff;
+  -webkit-transition: all 0s ease;
+  -moz-transition:    all 0s ease;
+  -ms-transition:     all 0s ease;
+  -o-transition:      all 0s ease;
+}

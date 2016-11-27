@@ -1,0 +1,26 @@
+h3 {
+	font-weight: 400;
+	font-size: 24px;	
+	opacity: 0.82;
+}
+h4 {
+	opacity: 0.82;
+	font-weight: 400;
+}
+
+label {
+	font-size: 11px;
+	color: #000;
+	opacity: 0.32;
+	font-weight: 700;
+	text-transform: uppercase;	
+	width: 100%;
+}
+
+.form-group h4, .form-group label {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+ .form-group label {
+ 	margin-bottom: 8px;
+ }

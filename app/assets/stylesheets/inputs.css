@@ -1,0 +1,35 @@
+.form-control {
+	border-radius: 0;
+    border: #e6e6e6 1px solid;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    height: auto;
+    font-size: 13px;
+    box-shadow: none;
+}
+
+.form-group {
+	margin-bottom: 16px;
+}
+
+.checkbox {
+    position: relative;
+    display: inline-block;
+    margin-top: 11px;
+    margin-bottom: 10px;
+}
+.checkbox label {
+	opacity: 1;
+}
+.checkbox span {
+	font-size: 13px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.checkbox-slider--c input:checked + span:after {
+  background: #03a9f4 !important;
+  border: #03a9f4 !important;
+}
+.checkbox-slider--c input:checked + span:before {
+  background: #03a9f4 !important;
+}

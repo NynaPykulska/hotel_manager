@@ -1,0 +1,17 @@
+.modal {
+	background-color: rgba(0,0,0,0.64);
+}
+.modal-content {
+	border-radius: 2px;
+	box-shadow: none;
+	border: none;
+}
+.modal-dialog {
+	top: 80px;
+}
+.modal-header {
+	border: none;
+}
+.modal-footer {
+	border: none;
+}

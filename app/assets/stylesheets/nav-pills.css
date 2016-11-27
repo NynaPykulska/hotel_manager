@@ -1,0 +1,50 @@
+/* Subnavigation */
+.g-subnavigation {
+    padding-left: 64px;
+    padding-right: 32px;
+	background-color: #fff;
+}
+
+.nav-pills > li > a {
+	text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.32);
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    background: none;
+    color: #03a9f4;
+    font-size: 13px;
+    border-bottom: 3px solid;
+    border-radius: 0;
+}
+.nav > li > a:hover, .nav >li > a:focus {
+    background-color: transparent;
+    color: #03a9f4;
+}
+.badge {
+    font-size: 13px;
+    font-weight: 400;
+    background-color: red;
+    color: #fff;
+    padding: 4px;
+    margin-top: -4px;
+    min-width: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
+	background-color: initial;
+	color: initial;
+}
+
+.g-badge-blue {
+    background-color: #03a9f4 !important;
+    color: #fff !important; 
+}
+.g-badge-red {
+    background-color: #fa6b5b !important;
+    color: #fff !important; 
+}
+.g-badge-green {
+    background-color: #2ecc71 !important;
+    color: #fff !important; 
+}

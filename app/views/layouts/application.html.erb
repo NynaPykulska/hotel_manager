@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HotelManager</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+	  <div class="g-aside">
+		<div class="g-aside-menu-position">
+	        <%= image_tag "day-log.png" %>
+			<!-- <img src="/assets/img/menu/day-log.png"> -->
+			<a href="#" class="btn btn-link">Day Log</a>
+		</div>
+
+		<div class="g-aside-menu-position">
+			<a>	
+	            <%= image_tag "rooms.png" %>  
+				<!-- <img src="rooms.png"> -->
+				<span class="btn btn-link">Rooms Status</span>
+			</a>
+		</div>
+
+		<div class="g-aside-menu-position g-aside-menu-position-active">
+			<a>
+	                <%= image_tag "issues.png" %>
+				<!-- <img src="/assets/img/menu/issues.png"> -->
+				<span class="badge g-badge-red g-badge-on-icon">12</span>
+				<span class="btn btn-link">Issues</span>		
+			</a>			
+		</div>
+
+		<div class="g-aside-menu-position">
+			<a>
+	            <%= image_tag "employees.png" %>
+				<!-- <img src="/assets/img/menu/employees.png"> -->
+				<span class="btn btn-link">Employees</a>		
+			</a>
+		</div>
+
+		<div id="g-aside-expand" class="g-aside-menu-position">
+	        <%= image_tag "expand.png" %>
+			<!-- <img src="/assets/img/menu/expand.png"> -->
+		</div>
+	</div>
+    <%= yield %>
+  </body>
+</html>

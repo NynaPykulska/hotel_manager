@@ -1,0 +1,11 @@
+.modal-header {
+	padding: 32px;
+	padding-bottom: 0;
+}
+.modal-body {
+	padding: 32px;
+}
+.modal-footer {
+	padding: 32px;
+	padding-top: 0;
+}
