@@ -11,33 +11,34 @@
   <body>
 	  <div class="g-aside">
 		<div class="g-aside-menu-position">
-	        <%= image_tag "day-log.png" %>
-			<!-- <img src="/assets/img/menu/day-log.png"> -->
-			<a href="#" class="btn btn-link">Day Log</a>
+			<%= link_to image_tag("day-log.png"), "dayLog", :class => "btn btn-link" %>
 		</div>
 
 		<div class="g-aside-menu-position">
 			<a>	
-	            <%= image_tag "rooms.png" %>  
-				<!-- <img src="rooms.png"> -->
-				<span class="btn btn-link">Rooms Status</span>
+				<%= link_to image_tag("rooms.png"), "roomStatus", :class => "btn btn-link" %>
 			</a>
 		</div>
 
 		<div class="g-aside-menu-position g-aside-menu-position-active">
 			<a>
-	                <%= image_tag "issues.png" %>
+	                <!-- <%= image_tag "issues.png" %> -->
 				<!-- <img src="/assets/img/menu/issues.png"> -->
-				<span class="badge g-badge-red g-badge-on-icon">12</span>
-				<span class="btn btn-link">Issues</span>		
+<!-- 				<span class="badge g-badge-red g-badge-on-icon">12</span>
+				<span class="btn btn-link">Issues</span> -->	
+
+				<%= link_to image_tag("issues.png"), "issues", :class => "btn btn-link" %>
+
 			</a>			
 		</div>
 
 		<div class="g-aside-menu-position">
 			<a>
-	            <%= image_tag "employees.png" %>
+	            <!-- <%= image_tag "employees.png" %> -->
 				<!-- <img src="/assets/img/menu/employees.png"> -->
-				<span class="btn btn-link">Employees</a>		
+				<!-- <span class="btn btn-link">Employees</a>	 -->
+				<%= link_to image_tag("employees.png"), "employees", :class => "btn btn-link" %>
+					
 			</a>
 		</div>
 
