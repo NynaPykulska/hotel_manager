@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+10.times do |i|
+  Memo.create(room_number: i+300, description: "Stupid memo blahblahbalbla", completion_date: DateTime.new(2009,9,1,19))
+end
