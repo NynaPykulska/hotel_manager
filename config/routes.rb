@@ -6,4 +6,15 @@ Rails.application.routes.draw do
 
   root 'manager#issues'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+   get 'memo/list'
+   get 'memo/new'
+   post 'memo/create'
+   patch 'memo/update'
+   get 'memo/list'
+   get 'memo/show'
+   get 'memo/edit'
+   get 'memo/delete'
+   get 'memo/update'
+   get 'memo/show_subjects'
+
 end

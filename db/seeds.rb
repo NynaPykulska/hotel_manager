@@ -7,5 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 10.times do |i|
-  Memo.create(room_number: i+300, description: "Stupid memo blahblahbalbla", completion_date: DateTime.new(2009,9,1,19))
+	Room.create(number: i+300, description: "ROOM DESCRIPTION")
+ 	Memo.create(room_no: i+300, description: "MEMO DESCRIPTION", completion_date: DateTime.new(2009,9,1,19))
 end

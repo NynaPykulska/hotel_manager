@@ -10,15 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161221204111) do
+ActiveRecord::Schema.define(version: 20161225180550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "memos", force: :cascade do |t|
-    t.integer "room_number"
+    t.integer "room_no"
     t.text    "description"
     t.date    "completion_date"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer "number"
+    t.text    "description"
   end
 
 end

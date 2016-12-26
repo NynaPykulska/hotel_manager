@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bocho</title>
+
+</head>
+<body>
+
+<div class="container-fluid g-aside-has-aside">
+
+        <!-- Header with main buttons -->
+    <div class="row g-header">
+        <div class="col-sm-12">
+
+            <div class="pull-left g-navigation-text">
+                <h4>Dziennik</h4>
+            </div>
+
+            <div class="pull-right ">
+
+                <div class="btn-group">
+                    <a href="#" class="btn btn-default btn-icon"> 
+                        <div data-icon="l" class="icon"></div>
+                    </a>
+                </div>
+
+                <div class="btn-group" style="max-width: 140px">
+                    <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' class="form-control" value="dupa" />
+                            <span class="input-group-addon">
+                                <div data-icon="M" class="icon"></div>
+                            </span>
+                    </div>
+                </div>   
+
+                <div class="btn-group">
+                    <a href="#" class="btn btn-default btn-icon"> 
+                        <div data-icon="m" class="icon"></div>
+                    </a>
+                </div>                 
+
+                <div class="btn-group" style="margin-left: 16px">
+                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modal-add-memo">Utwórz Memo</a>                 
+                </div>
+
+            </div>
+
+        </div>
+    </div>    <!-- Sub Navigation Tabs -->
+    <div class="row g-subnavigation g-shadow">
+        <div class="col-md-12 g-tabs">
+
+            <ul class="nav nav-pills pull-left" role="tablist">
+                <li class="active"><a href="#">Wszystkie <span class="badge g-badge-blue">4</span></a></li>
+                <li><a href="#">Otwarte <span class="badge g-badge-red">2</span></a></li>
+                <li><a href="#">Gotowe <span class="badge g-badge-green">3</span></a></li>
+            </ul>  
+
+
+            <div class="pull-right">
+            
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Sortowanie                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#">Submission Time</a></li>
+                            <li><a href="#">Room Number</a></li>
+                            <li><a href="#">Issue Name</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+                    
+        </div>  
+    </div>
+    
+    <!-- Application Content -->
+    <div class="g-application-content">    
+
+            <!-- Card Row -->
+    <div class="row">
+        <div class="col-md-12">
+                            
+            <table class="g-table-card g-table-issues">
+                <tbody>                    
+                    
+                    <% @memos.each do |c| %>
+                    	<tr class="g-table-card-header ">
+                        <td class="text-center g-vertical-middle g-table-card-icon-td">
+                            <%= image_tag "Ok.png", :class => "g-issue-icon"%>                        
+                            </td>
+                        
+                        <td class="g-vertical-middle">
+                            <label>Memo</label>
+                            <h4><%= c.description -%></h4>
+                        </td>
+
+                        <td class="g-vertical-top">
+                            <label>Pokoj</label>
+                            <h4><%= c.room_no -%></h4>
+                        </td>  
+
+                        <td class="hidden-sm g-vertical-top">
+                            <label>Kiedy</label>
+                            <h4><%= c.completion_date -%></h4>
+                        </td>  
+
+                        <td class="text-right g-vertical-middle">                         
+                            <a href="#" class="btn btn-link btn-action-done">Gotowe</a>
+                        </td>
+                    	</tr>
+   					<% end %>                   
+ 
+                </tbody>
+            </table>
+
+        </div>
+    </div>  
+    <!-- / Card Row -->
+  
+
+   </div>        
+</div>
+
+<!-- Modal Window -->
+<div id="modal-add-memo" class="modal fade modal-create-issue" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Utwórz Memo</h4>
+            </div>
+
+            <div class="modal-body">
+                <!--
+                    <p>Create new issue</p>
+                !-->
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+
+                            <div class="form-group">
+                                <label>Wzór</label>
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width: 100%">
+                                        Call for taxi <div data-icon="T" class="icon"></div>
+                                    <!--    <span class="caret"></span>  -->
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                        <li><a href="#">Wake up</a></li>
+                                        <li><a href="#">Call for maintance staff</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>                
+
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label>Memo</label>
+                            <input type="text" class="form-control" placeholder="Memo Description" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>                
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">                    
+                            <label>Pokoj</label>
+                            <input type="text" class="form-control" placeholder="Room" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div class="form-group">                    
+                            <label>Kiedy</label>
+
+                            <div class="btn-group" style="">
+                                <div class='input-group date' id='datetimepicker2'>
+                                    <input type='text' class="form-control" value="" />
+                                    <span class="input-group-addon">
+                                        <div data-icon="M" class="icon"></div>
+                                    </span>
+                                </div>
+                            </div> 
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Utwórz</button>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+</body>
+</html>
