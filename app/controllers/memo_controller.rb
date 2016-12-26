@@ -1,7 +1,17 @@
 class MemoController < ApplicationController
    	
+  	before_filter :init_items_size_list
+
    	def list
    		@memos = Memo.all
+   	end
+
+   	def list_open																																						
+   		@memos = Memo.where("is_done = ?", true)
+   	end
+
+   	def list_ready
+   		@memos = Memo.where("is_done = ?", false)
    	end
    
    	def show
@@ -56,5 +66,10 @@ class MemoController < ApplicationController
    	def show_rooms
    		@room = Room.find(params[:id])
 	end
+
+	def init_items_size_list
+	    @items_size_list ||= [Memo.all.size, @memos = Memo.where("is_done = ?", true).size, @memos = Memo.where("is_done = ?", false).size]
+	    #                             0                           1                                       2
+	end															
 
 end

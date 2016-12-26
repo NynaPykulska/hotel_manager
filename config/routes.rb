@@ -11,6 +11,8 @@ Rails.application.routes.draw do
    post 'memo/create'
    patch 'memo/update'
    get 'memo/list'
+   get 'memo/list_open'
+   get 'memo/list_ready'
    get 'memo/show'
    get 'memo/edit'
    get 'memo/delete'

@@ -4,6 +4,7 @@ class Memos < ActiveRecord::Migration[5.0]
          t.column :room_no, :integer
          t.column :description, :text
          t.column :completion_date, :date
+         t.column :is_done, :boolean
       end
    end
 
