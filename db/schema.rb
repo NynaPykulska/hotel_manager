@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20161225180550) do
     t.integer "room_no"
     t.text    "description"
     t.date    "completion_date"
+    t.boolean "is_done"
   end
 
   create_table "rooms", force: :cascade do |t|

@@ -3,6 +3,14 @@ class MemoController < ApplicationController
    	def list
    		@memos = Memo.all
    	end
+
+   	def list_open																																						
+   		@memos = Memo.where("is_done = ?", true)
+   	end
+
+   	def list_ready
+   		@memos = Memo.where("is_done = ?", false)
+   	end
    
    	def show
    		@memo = Memo.find(params[:id])
