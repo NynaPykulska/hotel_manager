@@ -3,7 +3,13 @@ class MemoController < ApplicationController
   	before_filter :init_items_size_list
 
    	def list
-   		@memos = Memo.all
+         if params[:group] == "all"
+            @memos = Memo.all
+         elsif params[:group] == "open"
+            @memos = Memo.where("is_done = ?", true)
+         else params[:group] == "ready"
+   	      @memos = Memo.where("is_done = ?", false)
+         end
    	end
 
    	def list_open																																						
@@ -28,7 +34,7 @@ class MemoController < ApplicationController
 		
 	   if @memo.save
 	      redirect_to :action => 'list'
-	   else
+	   els
 	      @rooms = Room.all
 	      render :action => 'new'
 	    end

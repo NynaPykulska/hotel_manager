@@ -55,9 +55,9 @@
         <div class="col-md-12 g-tabs">
 
             <ul class="nav nav-pills pull-left" role="tablist">
-                <li class="active"><a href="/memo/list">Wszystkie <span class="badge g-badge-blue">4</span></a></li>
-                <li><a href="/memo/list_open">Otwarte <span class="badge g-badge-red">2</span></a></li>
-                <li><a href="/memo/list_ready">Gotowe <span class="badge g-badge-green">3</span></a></li>
+                <li class= <%= params[:group] == 'all' ? 'active' : '' %> ><a href="/memo/list?group=all">Wszystkie <span class="badge g-badge-blue"><%= @items_size_list[0] -%></span></a></li>
+                <li class= <%= params[:group] == 'open' ? 'active' : '' %>><a href="/memo/list?group=open">Otwarte <span class="badge g-badge-red"><%= @items_size_list[1] -%></span></a></li>
+                <li class= <%= params[:group] == 'ready' ? 'active' : '' %>><a href="/memo/list?group=ready">Gotowe <span class="badge g-badge-green"><%= @items_size_list[2] -%></span></a></li>
             </ul>  
 
 
