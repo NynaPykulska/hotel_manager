@@ -2,6 +2,8 @@ class MemoController < ApplicationController
    	
   	before_filter :init_items_size_list
 
+   include MemoHelper
+
    	def list
          if params[:group] == "all"
             @memos = Memo.all
@@ -11,6 +13,12 @@ class MemoController < ApplicationController
    	      @memos = Memo.where("is_done = ?", false)
          end
    	end
+
+      def mark_ready
+         @memo = Memo.find(params[:id])
+         @memo.update_attribute(:is_done, false)
+         redirect_to :action => 'list', :group => "ready"
+      end
 
    	def list_open																																						
    		@memos = Memo.where("is_done = ?", true)

@@ -18,5 +18,6 @@ Rails.application.routes.draw do
    get 'memo/delete'
    get 'memo/update'
    get 'memo/show_subjects'
+   get 'memo/mark_ready'
 
 end
