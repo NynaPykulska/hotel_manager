@@ -8,15 +8,15 @@ class MemoController < ApplicationController
          if params[:group] == "all"
             @memos = Memo.all
          elsif params[:group] == "open"
-            @memos = Memo.where("is_done = ?", true)
+            @memos = Memo.where("is_done = ?", false)
          else params[:group] == "ready"
-   	      @memos = Memo.where("is_done = ?", false)
+   	      @memos = Memo.where("is_done = ?", true)
          end
    	end
 
       def mark_ready
          @memo = Memo.find(params[:id])
-         @memo.update_attribute(:is_done, false)
+         @memo.update_attribute(:is_done, true)
          redirect_to :action => 'list', :group => "ready"
       end
 
