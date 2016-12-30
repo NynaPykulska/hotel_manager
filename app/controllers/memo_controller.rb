@@ -51,7 +51,7 @@ class MemoController < ApplicationController
        end
    
 	def memo_params
-   		params.require(:memo).permit(:room_no, :description, :completion_date)
+   		params.require(:memo).permit(:room_no, :description, :completion_date, :is_done)
 	end
 
    	def edit
@@ -84,7 +84,7 @@ class MemoController < ApplicationController
 	end
 
 	def init_items_size_list
-	    @items_size_list ||= [Memo.all.size, @memos = Memo.where("is_done = ?", true).size, @memos = Memo.where("is_done = ?", false).size]
+	    @items_size_list ||= [Memo.all.size, Memo.where("is_done = ?", false).size, Memo.where("is_done = ?", true).size]
 	    #                             0                           1                                       2
 	end															
 

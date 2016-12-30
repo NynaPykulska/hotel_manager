@@ -151,6 +151,7 @@
                   <%= f.text_field :description %>
                   <%= f.number_field :room_no %>
                   <%= f.date_select :completion_date %>
+                  <%= f.hidden_field :is_done, :value => "false" %>
                   <%= f.submit "Utwórz" %>
                 <% end %>
 
