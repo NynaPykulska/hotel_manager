@@ -4,15 +4,14 @@ Rails.application.routes.draw do
   get '/roomStatus', to: 'manager#roomStatus', as: 'room_status'
   get '/employees', to: 'manager#employees', as: 'employees'
 
-  root 'manager#dayLog'
+  root to: redirect('/dayLog/list/all')
+  #root 'manager#dayLog'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-   get 'memo/list'
+   
+   get 'dayLog/list/:group', to: 'memo#list'
    get 'memo/new'
    post 'memo/create'
    patch 'memo/update'
-   get 'memo/list'
-   get 'memo/list_open'
-   get 'memo/list_ready'
    get 'memo/show'
    get 'memo/edit'
    get 'memo/delete'

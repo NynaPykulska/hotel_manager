@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'activerecord', :require => "active_record"
 gem 'bootstrap-sass', '3.3.7'
 gem 'font-awesome-sass'
+gem 'bootstrap_form'
 
 group :development, :test do
   gem 'sqlite3', '1.3.11'	

@@ -5,6 +5,8 @@ class MemoController < ApplicationController
    include MemoHelper
 
    	def list
+         @memo = Memo.new
+
          if params[:group] == "all"
             @memos = Memo.all
          elsif params[:group] == "open"
@@ -39,17 +41,17 @@ class MemoController < ApplicationController
    
    	def create
 	   @memo = Memo.new(memo_params)
-		
-	   if @memo.save
-	      redirect_to :action => 'list'
-	   els
-	      @rooms = Room.all
-	      render :action => 'new'
-	    end
-   	end
+    
+        if @memo.save
+           redirect_to controller: 'memo', action: 'list', group: 'all'
+                else
+           @rooms = Room.all
+           render :action => 'new'
+         end
+       end
    
 	def memo_params
-   		params.require(:memos).permit(:room_no, :description, :completion_date)
+   		params.require(:memo).permit(:room_no, :description, :completion_date)
 	end
 
    	def edit
