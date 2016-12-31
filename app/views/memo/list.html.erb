@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bocho</title>
 
+<script src="sorttable.js"></script>
 </head>
 <body>
 
@@ -65,6 +66,9 @@
             
                 <div class="btn-group">
                     <div class="dropdown">
+                        <!-- PRZYCISK SORTUJĄCY -->
+                        <button onclick="sorttable.innerSortFunction.apply(document.getElementById('room_no'), [])">Sort by 'Room' column</button>
+                        
                         <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             Sortowanie                            <span class="caret"></span>
                         </button>
@@ -88,14 +92,14 @@
     <div class="row">
         <div class="col-md-12">
                             
-            <table class="g-table-card g-table-issues sortable">
+            <table class="g-table-card g-table-issues mysortable sortable">
                 <thead>
                     <tr>
-                      <th>icon</th>
-                      <th>memo</th>
-                      <th>room_no</th>
-                      <th>deadline</th>
-                      <th>ready</th>
+                      <th id="icon">icon</th>
+                      <th id="memo">memo</th>
+                      <th id="room_no"> room_no</th>
+                      <th id="deadline">deadline</th>
+                      <th id="ready">ready</th>
                     </tr>                                               
                 </thead>
 
