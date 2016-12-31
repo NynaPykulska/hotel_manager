@@ -19,6 +19,7 @@ class MemoController < ApplicationController
       def mark_ready
          @memo = Memo.find(params[:id])
          @memo.update_attribute(:is_done, true)
+         @memo.update_attribute(:completion_date, Date.today)
          redirect_to :action => 'list', :group => "ready"
       end
 
@@ -51,7 +52,7 @@ class MemoController < ApplicationController
        end
    
 	def memo_params
-   		params.require(:memo).permit(:room_no, :description, :completion_date, :is_done)
+   		params.require(:memo).permit(:room_no, :description, :completion_date, :time_stamp, :is_done)
 	end
 
    	def edit

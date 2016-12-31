@@ -18,7 +18,9 @@ ActiveRecord::Schema.define(version: 20161225180550) do
   create_table "memos", force: :cascade do |t|
     t.integer "room_no"
     t.text    "description"
+    t.date    "deadline"
     t.date    "completion_date"
+    t.date    "time_stamp"
     t.boolean "is_done"
   end
 
