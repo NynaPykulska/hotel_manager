@@ -89,6 +89,16 @@
         <div class="col-md-12">
                             
             <table class="g-table-card g-table-issues">
+                <thead>
+                    <tr>
+                      <th>icon</th>
+                      <th>memo</th>
+                      <th>room_no</th>
+                      <th>deadline</th>
+                      <th>ready</th>
+                    </tr>                                               
+                </thead>
+
                 <tbody>                    
                     
                     <% @memos.each do |c| %>
@@ -113,7 +123,7 @@
 
                         <td class="hidden-sm g-vertical-top">
                             <label>Kiedy</label>
-                            <h4><%= c.completion_date -%></h4>
+                            <h4><%= c.deadline -%></h4>
                         </td>  
 
                         <td class="text-right g-vertical-middle">                         
@@ -151,7 +161,8 @@
                   <%= f.text_field :description %>
                   <%= f.number_field :room_no %>
                   <%= f.date_select :completion_date %>
-                  <%= f.hidden_field :is_done, :value => "false" %>
+                  <%= f.hidden_field :time_stamp, :value => Date.today %>
+                  <%= f.hidden_field :is_done, :value => false %>
                   <%= f.submit "Utwórz" %>
                 <% end %>
 

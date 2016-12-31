@@ -8,9 +8,9 @@
 
 10.times do |i|
 	Room.create(number: i+300, description: "ROOM DESCRIPTION")
- 	Memo.create(room_no: i+300, description: "MEMO DESCRIPTION", completion_date: DateTime.new(2009,9,1,19), is_done: true)
+ 	Memo.create(room_no: i+300, description: "MEMO DESCRIPTION", deadline: DateTime.new(2017,01,10), completion_date: DateTime.new(2016,12,30), is_done: true, time_stamp: DateTime.new(2016,12,11) )
 end
 
 10.times do |i|
- 	Memo.create(room_no: i+300, description: "MEMO DESCRIPTION", completion_date: DateTime.new(2009,9,1,19), is_done: false)
+ 	Memo.create(room_no: i+300, description: "MEMO DESCRIPTION", deadline: DateTime.new(2017,01,10), is_done: false, time_stamp: DateTime.new(2016,10,11))
 end
