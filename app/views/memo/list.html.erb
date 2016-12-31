@@ -66,16 +66,13 @@
             
                 <div class="btn-group">
                     <div class="dropdown">
-                        <!-- PRZYCISK SORTUJĄCY -->
-                        <button onclick="sorttable.innerSortFunction.apply(document.getElementById('room_no'), [])">Sort by 'Room' column</button>
-                        
+                        <!-- PRZYCISK SORTUJĄCY -->                       
                         <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Sortowanie                            <span class="caret"></span>
+                            Sortowanie <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="#">Submission Time</a></li>
-                            <li><a href="#">Room Number</a></li>
-                            <li><a href="#">Issue Name</a></li>
+                            <li><a onclick="sorttable.innerSortFunction.apply(document.getElementById('room_no'), [])">Room number</a></li>
+                            <li><a onclick="sorttable.innerSortFunction.apply(document.getElementById('deadline'), [])">Deadline</a></li>
                         </ul>
                     </div>
                 </div>
