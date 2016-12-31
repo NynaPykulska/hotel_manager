@@ -55,9 +55,9 @@
         <div class="col-md-12 g-tabs">
 
             <ul class="nav nav-pills pull-left" role="tablist">
-                <li class= <%= params[:group] == 'all' ? 'active' : '' %> ><a href="/memo/list?group=all">Wszystkie <span class="badge g-badge-blue"><%= @items_size_list[0] -%></span></a></li>
-                <li class= <%= params[:group] == 'open' ? 'active' : '' %>><a href="/memo/list?group=open">Otwarte <span class="badge g-badge-red"><%= @items_size_list[1] -%></span></a></li>
-                <li class= <%= params[:group] == 'ready' ? 'active' : '' %>><a href="/memo/list?group=ready">Gotowe <span class="badge g-badge-green"><%= @items_size_list[2] -%></span></a></li>
+                <li class= <%= params[:group] == 'all' ? 'active' : '' %> ><a href="/dayLog/list/all">Wszystkie <span class="badge g-badge-blue"><%= @items_size_list[0] -%></span></a></li>
+                <li class= <%= params[:group] == 'open' ? 'active' : '' %>><a href="/dayLog/list/open">Otwarte <span class="badge g-badge-red"><%= @items_size_list[1] -%></span></a></li>
+                <li class= <%= params[:group] == 'ready' ? 'active' : '' %>><a href="/dayLog/list/ready">Gotowe <span class="badge g-badge-green"><%= @items_size_list[2] -%></span></a></li>
             </ul>  
 
 
@@ -147,69 +147,18 @@
                 <!--
                     <p>Create new issue</p>
                 !-->
-
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="form-group">
-
-                            <div class="form-group">
-                                <label>Wzór</label>
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width: 100%">
-                                        Call for taxi <div data-icon="T" class="icon"></div>
-                                    <!--    <span class="caret"></span>  -->
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        <li><a href="#">Wake up</a></li>
-                                        <li><a href="#">Call for maintance staff</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>                
-
-
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="form-group">
-                            <label>Memo</label>
-                            <input type="text" class="form-control" placeholder="Memo Description" aria-describedby="basic-addon1">
-                        </div>
-                    </div>
-                </div>                
-
-                <div class="row">
-                    <div class="col-xs-6">
-                        <div class="form-group">                    
-                            <label>Pokoj</label>
-                            <input type="text" class="form-control" placeholder="Room" aria-describedby="basic-addon1">
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6">
-                        <div class="form-group">                    
-                            <label>Kiedy</label>
-
-                            <div class="btn-group" style="">
-                                <div class='input-group date' id='datetimepicker2'>
-                                    <input type='text' class="form-control" value="" />
-                                    <span class="input-group-addon">
-                                        <div data-icon="M" class="icon"></div>
-                                    </span>
-                                </div>
-                            </div> 
-
-                        </div>
-                    </div>
-                </div>
+                <%= bootstrap_form_for :memo, :url => url_for(:controller => 'memo', :action => 'create') do |f| %>
+                  <%= f.text_field :description %>
+                  <%= f.number_field :room_no %>
+                  <%= f.date_select :completion_date %>
+                  <%= f.hidden_field :is_done, :value => "false" %>
+                  <%= f.submit "Utwórz" %>
+                <% end %>
 
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Utwórz</button>
+               
             </div>
 
         </div><!-- /.modal-content -->

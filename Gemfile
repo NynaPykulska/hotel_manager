@@ -32,9 +32,12 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'activerecord', :require => "active_record"
 gem 'bootstrap-sass', '3.3.7'
+
 gem 'autoprefixer-rails'
 gem 'bootstrap-datepicker-rails'
 gem "font-awesome-rails"
+gem 'bootstrap_form'
+
 
 group :development, :test do
   gem 'sqlite3', '1.3.11'	

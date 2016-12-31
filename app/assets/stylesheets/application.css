@@ -14,7 +14,9 @@
  *= require_self
  *= require font-awesome
  *= require bootstrap-datepicker3
+ *= require rails_bootstrap_forms
  */
+
 @import "bootstrap-sprockets"
 @import "bootstrap"
 @import "styles"
