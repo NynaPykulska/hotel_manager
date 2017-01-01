@@ -22,6 +22,18 @@
             </div>
 
             <div class="pull-right ">
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <!-- PRZYCISK SORTUJĄCY -->                       
+                        <button class="btn-group" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Logged in as: <%= current_user.username %> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><%= link_to 'Profile', edit_user_registration_path %></li>
+                            <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+                        </ul>
+                    </div>
+                </div>
 
                 <div class="btn-group">
                     <a href="#" class="btn btn-default btn-icon"> 
@@ -178,4 +190,4 @@
 </div><!-- /.modal -->
 
 </body>
-</html>
+</html>f
