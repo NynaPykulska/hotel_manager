@@ -37,6 +37,7 @@ gem 'autoprefixer-rails'
 gem 'bootstrap-datepicker-rails'
 gem "font-awesome-rails"
 gem 'bootstrap_form'
+gem 'devise', '~> 4.2'
 
 
 group :development, :test do
