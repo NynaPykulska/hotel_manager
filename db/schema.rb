@@ -25,8 +25,9 @@ ActiveRecord::Schema.define(version: 20170101112153) do
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.integer "number"
+    t.integer "room_no"
     t.text    "description"
+    t.boolean "is_clean"
   end
 
   create_table "users", force: :cascade do |t|

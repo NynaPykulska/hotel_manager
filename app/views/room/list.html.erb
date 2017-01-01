@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+<html lang="en" class="g-dark-version">
+-->
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bocho</title>
+
+</head>
+<body>
+
+<div class="container-fluid g-aside-has-aside">
+
+    	<!-- Header with main buttons -->
+	<div class="row g-header">
+        <div class="col-sm-12">
+
+            <div class="pull-left g-navigation-text">
+                <h4>Pokoje</h4>
+            </div>
+
+            <div class="pull-right">
+
+                <div class="btn-group">
+                    <a href="rooms-grid.php" class="btn btn-default btn-icon">
+                        <div data-icon="&#xe05a;" class="icon"></div>                        
+                    </a> 
+                </div>            
+
+                <div class="btn-group" style="margin-left: 16px">
+                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modal-create-room">Utwórz</a> 
+                </div>
+
+            </div>
+
+        </div>
+    </div>    <!-- Sub Navigation Tabs -->
+    <div class="row g-subnavigation g-shadow">
+		<div class="col-md-12 g-tabs">
+
+            <ul class="nav nav-pills pull-left" role="tablist">
+                <li class= <%= params[:group] == 'all' ? 'active' : '' %> ><a href="/roomStatus/list/all">Wszystkie <span class="badge g-badge-blue"><%= @items_size_list[0] -%></span></a></li>
+                <li class= <%= params[:group] == 'open' ? 'active' : '' %>><a href="/roomStatus/list/open">Otwarte <span class="badge g-badge-red"><%= @items_size_list[1] -%></span></a></li>
+                <li class= <%= params[:group] == 'ready' ? 'active' : '' %>><a href="/roomStatus/list/ready">Gotowe <span class="badge g-badge-green"><%= @items_size_list[2] -%></span></a></li>
+            </ul> 
+
+
+            <div class="pull-right">
+            
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <!-- PRZYCISK SORTUJĄCY -->                       
+                        <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Sortowanie <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a onclick="sorttable.innerSortFunction.apply(document.getElementById('room_no'), [])">Room number</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+                    
+		</div>	
+	</div>
+    
+    <!-- Application Content -->
+    <div class="g-application-content">    
+
+            <!-- Card Row -->
+    <div class="row">
+        <div class="col-md-12">
+           	<table class="g-table-card g-table-issues mysortable sortable">
+                <thead>
+                    <tr>
+                      <th id="icon">icon</th>
+                      <th id="memo">memo</th>
+                      <th id="room_no"> room_no</th>
+                      <th id="deadline">deadline</th>
+                      <th id="ready">ready</th>
+                    </tr>                                               
+                </thead>
+
+                <tbody>                    
+                    
+                    <% @rooms.each do |c| %>
+                        <tr class="g-table-card-header ">
+                            <td class="text-center g-table-card-icon-td">   
+                                <% if c.is_clean %>
+                                    <%= image_tag "Ok.png", :class => "g-issue-icon"%>   
+                                <% else  %>
+                                    <%= image_tag "Attention.png", :class => "g-issue-icon g-issue-icon-red"%> 
+                                <% end  %>                         
+                            </td>
+
+                            <td class="g-vertical-top">
+                                <label>Pokoj</label>
+                                <h4><%= c.room_no -%></h4>
+                            </td>
+
+                            <td  class="g-vertical-top">
+                                <label>Usterki</label>
+                                <%= image_tag "Disconnected.png", :class => "g-issue-icon-mini g-issue-icon-red"%>
+                                <%= image_tag "Light Off.png", :class => "g-issue-icon-mini g-issue-icon-red"%>
+                                <%= image_tag "Toilet Paper.png", :class => "g-issue-icon-mini g-issue-icon-red"%>
+                                <%= image_tag "Water.png", :class => "g-issue-icon-mini g-issue-icon-red"%>
+                            </td>
+
+                            <td class="g-vertical-middle text-right">   
+                                <a href="#" class="btn btn-link" data-toggle="modal" data-target="#modal-create-issue">Edytuj</a>
+                                <a href="#" class="btn btn-link" data-toggle="modal" data-target="#modal-report-issue">Zgłoś usterkę</a>
+                            </td>
+                        </tr>
+                    <% end %>                   
+ 
+                </tbody>
+            </table>	
+        </div>
+    </div>	
+    <!-- / Card Row -->    
+
+   </div>        
+</div>
+
+<!-- Modal Window -->
+<div id="modal-create-issue" class="modal fade modal-create-issue" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Utwórz Pokój</h4>
+            </div>
+
+            <div class="modal-body">
+                <!--
+                    <p>Create new issue</p>
+                !-->
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label>Wzór</label>
+
+                            <div class="btn-group" style="width: calc(100% - 45px)">
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width: 100%">
+                                        None <div data-icon="T" class="icon"></div>
+                                    <!--    <span class="caret"></span>  -->
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                        <li><a href="#">None</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="#">Basic Standard Room</a></li>
+                                        <li><a href="#">Rooms on The Second Floor</a></li>
+                                        <li><a href="#">Hall</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="btn-group">
+                                <a href="issues.php" class="btn btn-default btn-icon"> <div data-icon="&#xe053;" class="icon"></div> </a>
+                            </div>
+
+                        </div>
+                    </div>                
+
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label>Pokoj</label>
+                            <input type="text" class="form-control" placeholder="Room Name" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>
+
+               
+
+                <div class="row" style="display: flex; align-items: center">
+                    <div class="col-xs-5">
+                        <div class="form-group">                    
+                            <label>Przypisane Usterki</label>
+                            <select size="10" multiple class="form-control">
+                                <option value="volvo">No Light</option>
+                                <option value="saab">No Toilet Paper</option>
+                                <option value="opel">Broken TV</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-2 text-center">
+                        <a href="#" class="btn btn-default btn-icon" style="margin-bottom: 8px"> <div data-icon="l" class="icon"></div> </a>
+                        <a href="#" class="btn btn-default btn-icon"> <div data-icon="m" class="icon"></div> </a>
+                    </div>
+
+                    <div class="col-xs-5">
+                        <div class="form-group">                    
+                            <label>Dostepne Usterki</label>
+                            <select size="10" multiple class="form-control">
+                                <option value="">No Electricity</option>
+                                <option value="">Broken Lamp</option>
+                                <option value="">Air Conditioner</option>
+                                <option value="">No Water</option>
+                                <option value="">No Clean Towels</option>
+                                <option value="">No Soap</option>      
+                                <option value="">No Electricity</option>
+                                <option value="">Broken Lamp</option>
+                                <option value="">Air Conditioner</option>
+                                <option value="">No Water</option>
+                                <option value="">No Clean Towels</option>
+                                <option value="">No Soap</option> 
+                                <option value="">No Electricity</option>
+                                <option value="">Broken Lamp</option>
+                                <option value="">Air Conditioner</option>
+                                <option value="">No Water</option>
+                                <option value="">No Clean Towels</option>
+                                <option value="">No Soap</option>                                                                                           
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+                <button type="button" class="btn btn-default">Zapisz Jako Wzór</button>                
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Utwórz</button>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal Window -->
+<div id="modal-report-issue" class="modal fade modal-create-issue" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Status Pokoju</h4>
+            </div>
+
+            <div class="modal-body">
+  
+                <div class="row">
+
+                    <div class="col-xs-4">   
+                        <table class="g-table-card g-table-card-grid g-report-issue-card">
+                            <tbody>
+
+                                <tr class="g-table-card-header">
+                                    <td>
+                                        <%= image_tag "Broom.png", :class => "g-issue-icon g-issue-icon-red"%> 
+                                    </td>
+                                </tr>  
+
+                                <tr>
+                                    <td class="g-report-issue-card-description text-center">
+                                        <h4>Clean the Room</h4>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-xs-4">   
+                        <table class="g-table-card g-table-card-grid g-report-issue-card">
+                            <tbody>
+
+                                <tr class="g-table-card-header">
+                                    <td>
+                                        
+                                        <%= image_tag "Light Off.png", :class => "g-issue-icon g-issue-icon-red"%>
+                                    </td>
+                                </tr>  
+
+                                <tr>
+                                    <td class="g-report-issue-card-description text-center">
+                                        <h4>No Light</h4>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-xs-4">   
+                        <table class="g-table-card g-table-card-grid g-report-issue-card">
+                            <tbody>
+
+                                <tr class="g-table-card-header">
+                                    <td>
+                                        
+                                        <%= image_tag "Water.png", :class => "g-issue-icon g-issue-icon-red"%>
+                                    </td>
+                                </tr>  
+
+                                <tr>
+                                    <td class="g-report-issue-card-description text-center">
+                                        <h4>No Water</h4>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-xs-4">   
+                        <table class="g-table-card g-table-card-grid g-report-issue-card">
+                            <tbody>
+
+                                <tr class="g-table-card-header">
+                                    <td>
+                                        <%= image_tag "Toilet Paper.png", :class => "g-issue-icon g-issue-icon-red"%>
+                                    </td>
+                                </tr>  
+
+                                <tr>
+                                    <td class="g-report-issue-card-description text-center">
+                                        <h4>No Toilet Paper</h4>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>                    
+
+                    <div class="col-xs-4">   
+                        <table class="g-table-card g-table-card-grid g-report-issue-card">
+                            <tbody>
+
+                                <tr class="g-table-card-header">
+                                    <td>
+                                        <%= image_tag "Desk Lamp.png", :class => "g-issue-icon g-issue-icon-red"%>
+                                    </td>
+                                </tr>  
+
+                                <tr>
+                                    <td class="g-report-issue-card-description text-center">
+                                        <h4>Broken Lamp</h4>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> 
+                </div>
+
+                <div class="row" style="margin-top: 20px">
+                    <div class="col-xs-12">
+
+                        <div class="btn-group">
+                            <label>Kiedy Naprawić Usterkę</label>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Fix when room is empy <div data-icon="T" class="icon"></div>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a href="#">When room is empy</a></li>
+                                    <li><a href="#">As soon as possible</a></li>
+                                    <li><a href="#">Before 14:00</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>                            
+
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>          
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Zgłoś</button>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+ -->
+</body>
+</html>
+
+<!-- Modal Window -->
+<div id="modal-add-room" class="modal fade modal-create-room" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Utwórz Memo</h4>
+            </div>
+
+            <div class="modal-body">
+                <!--
+                    <p>Create new room</p>
+                !-->
+                <%= bootstrap_form_for :memo, :url => url_for(:controller => 'memo', :action => 'create') do |f| %>
+                  <%= f.text_field :description %>
+                  <%= f.number_field :room_no %>
+                  <%= f.date_select :completion_date %>
+                  <%= f.hidden_field :time_stamp, :value => Date.today %>
+                  <%= f.hidden_field :is_done, :value => false %>
+                  <%= f.submit "Utwórz" %>
+                <% end %>
+
+            </div>
+
+            <div class="modal-footer">
+               
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+</body>
+</html>

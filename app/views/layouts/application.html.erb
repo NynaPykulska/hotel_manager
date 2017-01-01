@@ -17,22 +17,19 @@
 
 		<div class="g-aside-menu-position">
 			<a>	
-				<%= link_to image_tag("rooms.png"), "roomStatus", :class => "btn btn-link", 
-				:onclick => 'alert("rooms")'%>
+				<%= link_to image_tag("rooms.png"), "/roomStatus/list/all", :class => "btn btn-link"%>
 			</a>
 		</div>
 
-		<div class="g-aside-menu-position g-aside-menu-position-active">
+		<div class="g-aside-menu-position g-aside-menu-position-active"> 
 			<a>
-				<%= link_to image_tag("issues.png"), "issues", :class => "btn btn-link",
-				:onclick => 'puts "issues"'%>
+				<%= link_to image_tag("issues.png"), "issues", :class => "btn btn-link" %>
 			</a>			
 		</div>
 
 		<div class="g-aside-menu-position">
 			<a>
-				<%= link_to image_tag("employees.png"), "employees", :class => "btn btn-link", 
-				:onclick => 'alert("employees")'%>	
+				<%= link_to image_tag("employees.png"), "employees", :class => "btn btn-link" %>	
 			</a>
 		</div>
 

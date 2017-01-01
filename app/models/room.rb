@@ -1,3 +1,3 @@
 class Room < ApplicationRecord
-	validates_presence_of :number
+	validates_presence_of :room_no
 end
