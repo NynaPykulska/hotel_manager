@@ -26,7 +26,7 @@
                     <div class="dropdown">
                         <!-- PRZYCISK SORTUJĄCY -->                       
                         <button class="btn-group" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Logged in as: <%= current_user.username %> <span class="caret"></span>
+                            Zalogowano jako: <%= current_user.username %> <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                             <li><%= link_to 'Profile', edit_user_registration_path %></li>
@@ -35,26 +35,26 @@
                     </div>
                 </div>
 
-                <div class="btn-group">
-                    <a href="#" class="btn btn-default btn-icon"> 
-                        <div data-icon="l" class="icon"></div>
-                    </a>
-                </div>
+                <!-- datepicker -->
+                <div id="memo-calendar" class="btn-group" style="max-width: 140px">
 
-                <div class="btn-group" style="max-width: 140px">
-                    <div class='input-group date' id='datetimepicker1'>
-                        <input type='text' class="form-control" value="dupa" />
-                            <span class="input-group-addon">
-                                <div data-icon="M" class="icon"></div>
-                            </span>
+                    <div class="input-group date" data-provide='datepicker'>
+                        <input type="text" class="form-control">
+                        <span class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </span>
                     </div>
-                </div>   
 
-                <div class="btn-group">
-                    <a href="#" class="btn btn-default btn-icon"> 
-                        <div data-icon="m" class="icon"></div>
-                    </a>
-                </div>                 
+                </div>   
+                <script>
+                    $('#memo-calendar .input-group.date').datepicker({
+                        format: 'dd/mm/yyyy',
+                        language: "pl",
+                        autoclose: true,
+                        todayHighlight: true
+                    });
+                </script>
+                <!-- datepisker -->           
 
                 <div class="btn-group" style="margin-left: 16px">
                     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modal-add-memo">Utwórz Memo</a>                 
