@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170101112153) do
+ActiveRecord::Schema.define(version: 20170102220645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "issue_types", force: :cascade do |t|
+    t.integer  "issue_type_id"
+    t.text     "issue_desctiption"
+    t.text     "default_priority"
+    t.text     "when_to_resolve"
+    t.date     "icon"
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
+  end
+
+  create_table "issues", force: :cascade do |t|
+    t.integer "room_id"
+    t.integer "issue_type_id"
+    t.date    "requested_fix_date"
+    t.text    "fix_comment"
+    t.date    "timestamp"
+    t.date    "completion_date"
+  end
 
   create_table "memos", force: :cascade do |t|
     t.integer "room_no"

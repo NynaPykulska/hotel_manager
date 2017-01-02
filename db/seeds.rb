@@ -6,12 +6,80 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+
+
+light = IssueType.create(	issue_type_id: 2,
+				    issue_desctiption: "No light",
+				    default_priority: "High",
+				    when_to_resolve: "As soon as possible",
+				    icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/Light Off.png"))
+
+water = IssueType.create(	issue_type_id: 3,
+				    issue_desctiption: "No water",
+				    default_priority: "High",
+				    when_to_resolve: "As soon as possible",
+				    icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/Water.png"))
+
+paper = IssueType.create(	issue_type_id: 4,
+				    issue_desctiption: "No toilet paper",
+				    default_priority: "Medium",
+				    when_to_resolve: "As soon as possible",
+				    icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/Toilet Paper.png"))
+
+lamp = IssueType.create(	issue_type_id: 5,
+				    issue_desctiption: "Broken lamp",
+				    default_priority: "Medium",
+				    when_to_resolve: "As soon as possible",
+				    icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/Desk Lamp.png"))
+
+10.times do |i|
+	fuckingroom = Room.create(room_no: i+100, description: "ROOM DESCRIPTION", is_clean: false)
+	number = Random.rand(1..3)
+	case number
+	when 1
+	  fuckingroom.issues.create(
+        			issue_type_id: lamp.issue_type_id,
+        			requested_fix_date: DateTime.new(2020,01,10),
+        			fix_comment: "No comments on this one",
+        			timestamp: Date.today)
+	when 2
+	  fuckingroom.issues.create(
+        			issue_type_id: light.issue_type_id,
+        			requested_fix_date: DateTime.new(2020,01,10),
+        			fix_comment: "No comments on this one",
+        			timestamp: Date.today)
+	  fuckingroom.issues.create(
+        			issue_type_id: water.issue_type_id,
+        			requested_fix_date: DateTime.new(2020,01,10),
+        			fix_comment: "No comments on this one",
+        			timestamp: Date.today)
+	when 3
+	  fuckingroom.issues.create(
+        			issue_type_id: lamp.issue_type_id,
+        			requested_fix_date: DateTime.new(2020,01,10),
+        			fix_comment: "No comments on this one",
+        			timestamp: Date.today)
+	  fuckingroom.issues.create(
+        			issue_type_id: light.issue_type_id,
+        			requested_fix_date: DateTime.new(2020,01,10),
+        			fix_comment: "No comments on this one",
+        			timestamp: Date.today)
+	  fuckingroom.issues.create(
+        			issue_type_id: paper.issue_type_id,
+        			requested_fix_date: DateTime.new(2020,01,10),
+        			fix_comment: "No comments on this one",
+        			timestamp: Date.today)
+	end
+
+end
+
 10.times do |i|
 	Room.create(room_no: i+300, description: "ROOM DESCRIPTION", is_clean: true)
  	Memo.create(room_no: i+300, description: "MEMO DESCRIPTION", deadline: DateTime.new(2017,01,10), completion_date: DateTime.new(2016,12,30), is_done: true, time_stamp: DateTime.new(2016,12,11) )
 end
 
 10.times do |i|
-	Room.create(room_no: i+200, description: "ROOM DESCRIPTION", is_clean: false)
- 	Memo.create(room_no: i+200, description: "MEMO DESCRIPTION", deadline: DateTime.new(2017,01,10), is_done: false, time_stamp: DateTime.new(2016,10,11))
+	Room.create(room_no: i+500, description: "ROOM DESCRIPTION", is_clean: false)
+ 	Memo.create(room_no: i+500, description: "MEMO DESCRIPTION", deadline: DateTime.new(2017,10,10), is_done: false, time_stamp: DateTime.new(2016,12,11) )
 end
