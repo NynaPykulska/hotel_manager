@@ -12,6 +12,7 @@ Rails.application.routes.draw do
    
    get 'dayLog/list/:group', to: 'memo#list'
    get 'roomStatus/list/:group', to: 'room#list'
+   get 'issues/list/:group', to: 'issue#list'
    get 'memo/new'
    post 'memo/create'
    patch 'memo/update'

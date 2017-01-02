@@ -3,40 +3,15 @@
   <head>
     <title>HotelManager</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
- 	  <div class="g-aside">
-		<div class="g-aside-menu-position">
-			<%= link_to image_tag("day-log.png"), "/dayLog/list/all", :class => "btn btn-link" %>
-
+		<div class="g-aside">
+			<%= yield :menu %>
 		</div>
 
-		<div class="g-aside-menu-position">
-			<a>	
-				<%= link_to image_tag("rooms.png"), "/roomStatus/list/all", :class => "btn btn-link"%>
-			</a>
-		</div>
-
-		<div class="g-aside-menu-position g-aside-menu-position-active"> 
-			<a>
-				<%= link_to image_tag("issues.png"), "issues", :class => "btn btn-link" %>
-			</a>			
-		</div>
-
-		<div class="g-aside-menu-position">
-			<a>
-				<%= link_to image_tag("employees.png"), "employees", :class => "btn btn-link" %>	
-			</a>
-		</div>
-
-<!-- 		<div id="g-aside-expand" class="g-aside-menu-position">
-	        <%= image_tag "expand.png" %>
-		</div> -->
-	</div>
     <%= yield %>
   </body>
 </html>
