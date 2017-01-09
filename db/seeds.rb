@@ -34,16 +34,16 @@ lamp = IssueType.create(	issue_type_id: 5,
 				    icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/Desk Lamp.png"))
 
 10.times do |i|
-	fuckingroom = Room.create(room_no: i+100, description: "ROOM DESCRIPTION", is_clean: false)
-	number = Random.rand(1..3)
-	case number
-	when 1
+	fuckingroom = Room.create(room_id: i+100, description: "ROOM DESCRIPTION", is_clean: false)
+
+	case (i%3)
+	when 0
 	  fuckingroom.issues.create(
         			issue_type_id: lamp.issue_type_id,
         			requested_fix_date: DateTime.new(2020,01,10),
         			fix_comment: "No comments on this one",
         			timestamp: Date.today)
-	when 2
+	when 1
 	  fuckingroom.issues.create(
         			issue_type_id: light.issue_type_id,
         			requested_fix_date: DateTime.new(2020,01,10),
@@ -54,7 +54,7 @@ lamp = IssueType.create(	issue_type_id: 5,
         			requested_fix_date: DateTime.new(2020,01,10),
         			fix_comment: "No comments on this one",
         			timestamp: Date.today)
-	when 3
+	when 2
 	  fuckingroom.issues.create(
         			issue_type_id: lamp.issue_type_id,
         			requested_fix_date: DateTime.new(2020,01,10),
@@ -74,12 +74,17 @@ lamp = IssueType.create(	issue_type_id: 5,
 
 end
 
+
+
 10.times do |i|
-	Room.create(room_no: i+300, description: "ROOM DESCRIPTION", is_clean: true)
- 	Memo.create(room_no: i+300, description: "MEMO DESCRIPTION", deadline: DateTime.new(2017,01,10), completion_date: DateTime.new(2016,12,30), is_done: true, time_stamp: DateTime.new(2016,12,11) )
+	fuckingroom = Room.create(room_id: i+300, description: "ROOM DESCRIPTION", is_clean: true)
+ 	fuckingroom.memos.create(room_id: i+300, description: "MEMO DESCRIPTION", deadline: DateTime.new(2017,01,10), completion_date: DateTime.new(2016,12,30), is_done: true, time_stamp: DateTime.new(2016,12,11) )
 end
 
 10.times do |i|
-	Room.create(room_no: i+500, description: "ROOM DESCRIPTION", is_clean: false)
- 	Memo.create(room_no: i+500, description: "MEMO DESCRIPTION", deadline: DateTime.new(2017,10,10), is_done: false, time_stamp: DateTime.new(2016,12,11) )
+	fuckingroom = Room.create(room_id: i+500, description: "ROOM DESCRIPTION", is_clean: false)
+ 	fuckingroom.memos.create(room_id: i+500, description: "MEMO DESCRIPTION", deadline: DateTime.new(2017,10,10), is_done: false, time_stamp: DateTime.new(2016,12,11) )
 end
+
+User.create(username: 'nina', email: 'nina@nina.com', password: 'buttsex', password_confirmation: 'buttsex')
+User.create(username: 'michal', email: 'michal@michal.com', password: 'awesome', password_confirmation: 'buttsex')

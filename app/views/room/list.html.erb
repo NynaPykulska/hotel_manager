@@ -75,7 +75,7 @@
                             Sortowanie <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a onclick="sorttable.innerSortFunction.apply(document.getElementById('room_no'), [])">Room number</a></li>
+                            <li><a onclick="sorttable.innerSortFunction.apply(document.getElementById('room_id'), [])">Room number</a></li>
                         </ul>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                     <tr>
                       <th id="icon">icon</th>
                       <th id="memo">memo</th>
-                      <th id="room_no"> room_no</th>
+                      <th id="room_id"> room_id</th>
                       <th id="deadline">deadline</th>
                       <th id="ready">ready</th>
                     </tr>                                               
@@ -116,7 +116,7 @@
 
                             <td class="g-vertical-top">
                                 <label>Pokoj</label>
-                                <h4><%= c.room_no -%></h4>
+                                <h4><%= c.room_id -%></h4>
                             </td>
 
                             <td  class="g-vertical-top">
@@ -419,7 +419,7 @@
                 !-->
                 <%= bootstrap_form_for :memo, :url => url_for(:controller => 'memo', :action => 'create') do |f| %>
                   <%= f.text_field :description %>
-                  <%= f.number_field :room_no %>
+                  <%= f.number_field :room_id %>
                   <%= f.date_select :completion_date %>
                   <%= f.hidden_field :time_stamp, :value => Date.today %>
                   <%= f.hidden_field :is_done, :value => false %>
