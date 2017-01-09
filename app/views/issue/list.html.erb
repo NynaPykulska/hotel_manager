@@ -31,52 +31,66 @@
 
 <div class="container-fluid g-aside-has-aside">
 
-    	<!-- Header with main buttons -->
-	<div class="row g-header">
+    <!-- Header with main buttons -->
+	    <!-- Header with main buttons -->
+    <div class="row g-header">
         <div class="col-sm-12">
 
             <div class="pull-left g-navigation-text">
-                <h4>Issues <span class="label g-next">&#10095;</span> Issues List</h4>
+                <h4>Dziennik</h4>
             </div>
 
             <div class="pull-right ">
-
                 <div class="btn-group">
-                    <a href="#" class="btn btn-default btn-icon"> 
-                        <div data-icon="l" class="icon"></div>
-                    </a>
+                    <div class="dropdown">
+                        <!-- PRZYCISK SORTUJĄCY -->                       
+                        <button class="btn-group" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Zalogowano jako: <%= current_user.username %> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><%= link_to 'Profile', edit_user_registration_path %></li>
+                            <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="btn-group" style="max-width: 140px">
-                    <div class='input-group date' id='datetimepicker1'>
-                        <input type='text' class="form-control" value="dupa" />
-                            <span class="input-group-addon">
-                                <div data-icon="M" class="icon"></div>
-                            </span>
-                    </div>
-                </div>   
+                <!-- datepicker -->
+                <div id="memo-calendar" class="btn-group" style="max-width: 140px">
 
-                <div class="btn-group">
-                    <a href="#" class="btn btn-default btn-icon"> 
-                        <div data-icon="m" class="icon"></div>
-                    </a>
-                </div>                 
+                    <div class="input-group date" data-provide='datepicker'>
+                        <input type="text" class="form-control">
+                        <span class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </div>
+
+                </div>   
+                <script>
+                    $('#memo-calendar .input-group.date').datepicker({
+                        format: 'dd/mm/yyyy',
+                        language: "pl",
+                        autoclose: true,
+                        todayHighlight: true
+                    });
+                </script>
+                <!-- datepisker -->           
 
                 <div class="btn-group" style="margin-left: 16px">
-                    <a href="manage-issues.php" class="btn btn-primary pull-right">Manage Issues</a> 
+                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modal-add-issue">Zgłoś usterkę</a>                 
                 </div>
 
             </div>
 
         </div>
-    </div>    <!-- Sub Navigation Tabs -->
+    </div>    <!-- Sub Navigation Tabs -->   
+    <!-- Sub Navigation Tabs -->
     <div class="row g-subnavigation g-shadow">
 		<div class="col-md-12 g-tabs">
 
             <ul class="nav nav-pills pull-left" role="tablist">
-                <li class="active"><a href="#">All <span class="badge g-badge-blue">4</span></a></li>
-                <li><a href="#">Open <span class="badge g-badge-red">2</span></a></li>
-                <li><a href="#">Done <span class="badge g-badge-green">3</span></a></li>
+                <li class= <%= params[:group] == 'all' ? 'active' : '' %> ><a href="/issues/list/all">Wszystkie <span class="badge g-badge-blue"><%= @items_size_list[0] -%></span></a></li>
+                <li class= <%= params[:group] == 'open' ? 'active' : '' %>><a href="/issues/list/open">Otwarte <span class="badge g-badge-red"><%= @items_size_list[1] -%></span></a></li>
+                <li class= <%= params[:group] == 'ready' ? 'active' : '' %>><a href="/issues/list/ready">Gotowe <span class="badge g-badge-green"><%= @items_size_list[2] -%></span></a></li>
             </ul>  
 
 
@@ -104,7 +118,7 @@
     <!-- Application Content -->
     <div class="g-application-content">    
 
-                <!-- Spacer -->
+    <!-- TODO: SPACERS? -->
     <div class="row">
         <div class="col-md-12">
 
@@ -122,457 +136,108 @@
     <!-- Card Row -->
     <div class="row">
         <div class="col-md-12">
-           					
-            <table class="g-table-card g-table-issues">
-                <tbody>
-
-                    
-                    <tr class="g-table-card-header">
-                        <td class="text-center g-table-card-icon-td">
-                            <!-- <img class="g-issue-icon g-issue-icon-red" src="assets/img/icons/issues/Light Off.png"> -->
-                            <%= image_tag "Light Off.png", :class => "g-issue-icon g-issue-icon-red"%>
-                        </td>
-                        
-                        <td>
-                            <label>Issue Name</label>
-                            <h4>No Light</h4>
-                        </td>
-
-                        <td>
-                            <label>Room No</label>
-                            <h4>202</h4>
-                        </td>
-
-                        <td>
-                            <label>Submitted&nbsp;Time</label>
-                            <h4>16:30, today</h4>
-                        </td>
-
-                        <td class="hidden-sm">
-                            <label>Priority</label>
-                            <h4>High 
-                            <!-- <img src="assets/img/icons/application/Up.png" class="g-issue-icon-mini g-issue-icon-red"> -->
-                            <%= image_tag "Up.png", :class => "g-issue-icon g-issue-icon-red"%>
-                            </h4>
-                        </td>  
-
-                        <td class="hidden-sm">
-                            <label>When to Resolve</label>
-                            <h4>Resolve as soon as possible</h4>
-                        </td>  
-
-                        <td class="hidden-sm">
-                            <label>Submited By</label>
-                            <h4>Sebastian Bocho</h4>
-                        </td>
-
-                        <td class="text-right">  
-                            <!-- <img class="g-issue-icon g-issue-done" src="assets/img/good/Ok-64.png">           -->
-                            <%= image_tag "Ok-64.png", :class => "g-issue-icon g-issue-done"%>
-                            <a href="#" class="btn btn-link">Done</a>
-                        </td>
-                    </tr>  
-
-                    
-                    <tr class="g-table-card-header">
-                        <td class="text-center g-table-card-icon-td">
-                            <!-- <img class="g-issue-icon g-issue-icon-red" src="assets/img/icons/issues/Air Conditioner.png"> -->
-                            <%= image_tag "Air Conditioner.png", :class => "g-issue-icon g-issue-icon-red"%>
-                        </td>
-                        
-                        <td>
-                            <label>Issue Name</label>
-                            <h4>Broken Air Conditioner</h4>
-                        </td>
-
-                        <td>
-                            <label>Room No</label>
-                            <h4>210</h4>
-                        </td>
-
-                        <td>
-                            <label>Submitted&nbsp;Time</label>
-                            <h4>12:00, today</h4>
-                        </td>
-
-                        <td class="hidden-sm">
-                            <label>Priority</label>
-                            <h4>High 
-                            <!-- <img src="assets/img/icons/application/Up.png" class="g-issue-icon-mini g-issue-icon-red"> -->
-                            <%= image_tag "Up.png", :class => "g-issue-icon-mini g-issue-icon-red"%>
-                            </h4>
-                        </td>  
-
-                        <td class="hidden-sm">
-                            <label>When to Resolve</label>
-                            <h4>When room is empty</h4>
-                        </td>  
-
-                        <td class="hidden-sm">
-                            <label>Submited By</label>
-                            <h4>Sebastian Bocho</h4>
-                        </td>
-
-                        <td class="text-right">  
-                            <!-- <img class="g-issue-icon g-issue-done" src="assets/img/good/Ok-64.png">  -->
-                            <%= image_tag "Ok-64.png", :class => "g-issue-icon g-issue-done"%>
-                            <a href="#" class="btn btn-link">Done</a>
-                        </td>
-                    </tr>  
-
-                    
-                    <tr class="g-table-card-header">
-                        <td class="text-center g-table-card-icon-td">
-                            <!-- <img class="g-issue-icon g-issue-icon-red" src="assets/img/icons/issues/Disconnected.png"> -->
-                            <%= image_tag "Disconnected.png", :class => "g-issue-icon g-issue-icon-red"%>
-                        </td>
-                        
-                        <td>
-                            <label>Issue Name</label>
-                            <h4>No Electricity</h4>
-                        </td>
-
-                        <td>
-                            <label>Room No</label>
-                            <h4>214</h4>
-                        </td>
-
-                        <td>
-                            <label>Submitted&nbsp;Time</label>
-                            <h4>9:00, today</h4>
-                        </td>
-
-                        <td class="hidden-sm">
-                            <label>Priority</label>
-                            <h4>High 
-                            <!-- <img src="assets/img/icons/application/Up.png" class="g-issue-icon-mini g-issue-icon-red"> -->
-                            <%= image_tag "Up.png", :class => "g-issue-icon-mini g-issue-icon-red"%>
-                            </h4>
-                        </td>  
-
-                        <td class="hidden-sm">
-                            <label>When to Resolve</label>
-                            <h4>Resolve as soon as possible</h4>
-                        </td>  
-
-                        <td class="hidden-sm">
-                            <label>Submited By</label>
-                            <h4>Sebastian Bocho</h4>
-                        </td>
-
-                        <td class="text-right">  
-                            <!-- <img class="g-issue-icon g-issue-done" src="assets/img/good/Ok-64.png">           -->
-                            <%= image_tag "Ok-64.png", :class => "g-issue-icon g-issue-icon-done"%>
-                            <a href="#" class="btn btn-link">Done</a>
-                        </td>
-                    </tr>  
-                    
-
-                    
-                    <tr class="g-table-card-header">
-                        <td class="text-center g-table-card-icon-td">
-                            <!-- <img class="g-issue-icon g-issue-icon-red" src="assets/img/icons/issues/Water.png"> -->
-                            <%= image_tag "Water.png", :class => "g-issue-icon g-issue-icon-red"%>
-                        </td>
-                        
-                        <td>
-                            <label>Issue Name</label>
-                            <h4>No Water</h4>
-                        </td>
-
-                        <td>
-                            <label>Room No</label>
-                            <h4>216</h4>
-                        </td>
-
-                        <td>
-                            <label>Submitted&nbsp;Time</label>
-                            <h4>9:00, today</h4>
-                        </td>
-
-                        <td class="hidden-sm">
-                            <label>Priority</label>
-                            <h4>High 
-                            <!-- <img src="assets/img/icons/application/Up.png" class="g-issue-icon-mini g-issue-icon-red"> -->
-                            <%= image_tag "Light Off.png", :class => "g-issue-icon-mini g-issue-icon-red"%>
-                            </h4>
-                        </td>  
-
-                        <td class="hidden-sm">
-                            <label>When to Resolve</label>
-                            <h4>Resolve as soon as possible</h4>
-                        </td>  
-
-                        <td class="hidden-sm">
-                            <label>Submited By</label>
-                            <h4>Sebastian Bocho</h4>
-                        </td>
-
-                        <td class="text-right">  
-                            <!-- <img class="g-issue-icon g-issue-done" src="assets/img/good/Ok-64.png"> -->
-                            <%= image_tag "Ok-64.png", :class => "g-issue-icon g-issue-icon-done"%>                        
-                            <a href="#" class="btn btn-link">Done</a>
-                        </td>
-                    </tr>  
-      
-
-                    
-                    <tr class="g-table-card-header">
-                        <td class="text-center g-table-card-icon-td">
-                            <!-- <img class="g-issue-icon g-issue-icon-red" src="assets/img/icons/issues/Toilet Paper.png"> -->
-                            <%= image_tag "Toilet Paper.png", :class => "g-issue-icon g-issue-icon-red"%>
-                        </td>
-                        
-                        <td>
-                            <label>Issue Name</label>
-                            <h4>No Toilet Paper</h4>
-                        </td>
-
-                        <td>
-                            <label>Room No</label>
-                            <h4>221</h4>
-                        </td>
-
-                        <td>
-                            <label>Submitted&nbsp;Time</label>
-                            <h4>10:00, today</h4>
-                        </td>
-
-                        <td class="hidden-sm">
-                            <label>Priority</label>
-                            <h4>High 
-                            <!-- <img src="assets/img/icons/application/Down.png" class="g-issue-icon-mini"> -->
-                            <%= image_tag "Down.png", :class => "g-issue-icon-mini"%>
-                            </h4>
-                        </td>  
-
-                        <td class="hidden-sm">
-                            <label>When to Resolve</label>
-                            <h4>When room is empty</h4>
-                        </td>  
-
-                        <td class="hidden-sm">
-                            <label>Submited By</label>
-                            <h4>Sebastian Bocho</h4>
-                        </td>
-
-                        <td class="text-right">  
-                            <!-- <img class="g-issue-icon g-issue-done" src="assets/img/good/Ok-64.png">    --> 
-                            <%= image_tag "Ok-64.png", :class => "g-issue-icon g-issue-done"%>                    
-                            <a href="#" class="btn btn-link">Done</a>
-                        </td>
-                    </tr>  
-  
-
-                </tbody>
-            </table>
-
-        </div>
-    </div>	
-    <!-- / Card Row -->
-
-        <!-- Spacer -->
-    <div class="row">
-        <div class="col-md-12">
-
-            <div class="g-spacer">
-                <div class="g-spacer-label-container">
-                    <label>Submited Yesterday</label>
-                </div>
-                <hr class="g-spacer-hr-light">
-                <hr class="g-spacer-hr-dark">
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Card Row -->
-    <div class="row">
-        <div class="col-md-12">
                             
-            <table class="g-table-card g-table-issues">
-                <tbody>
-
+            <table class="g-table-card g-table-issues mysortable sortable">
+                <tbody>                    
                     
-                    <tr class="g-table-card-header">
-                        <td class="text-center g-table-card-icon-td">
-                            <!-- <img class="g-issue-icon g-issue-icon-red" src="assets/img/icons/issues/Light Off.png"> -->
-                            <%= image_tag "Light Off.png", :class => "g-issue-icon g-issue-icon-red"%>
-                        </td>
-                        
-                        <td>
-                            <label>Issue Name</label>
-                            <h4>No Light</h4>
-                        </td>
-
-                        <td>
-                            <label>Room No</label>
-                            <h4>202</h4>
-                        </td>
-
-                        <td>
-                            <label>Submitted&nbsp;Time</label>
-                            <h4>16:30, today</h4>
-                        </td>
-
-                        <td class="hidden-sm">
-                            <label>Priority</label>
-                            <h4>High 
-                            <!-- <img src="assets/img/icons/application/Up.png" class="g-issue-icon-mini g-issue-icon-red"> -->
-                            <%= image_tag "Up.png", :class => "g-issue-icon-mini g-issue-icon-red"%>
-                            </h4>
-                        </td>  
-
-                        <td class="hidden-sm">
-                            <label>When to Resolve</label>
-                            <h4>Resolve as soon as possible</h4>
-                        </td>  
-
-                        <td class="hidden-sm">
-                            <label>Submited By</label>
-                            <h4>Sebastian Bocho</h4>
-                        </td>
-
-                        <td class="text-right">  
-                            <!-- <img class="g-issue-icon g-issue-done" src="assets/img/good/Ok-64.png">     -->       
-                            <%= image_tag "Ok-64.png", :class => "g-issue-icon g-issue-done"%>
-                            <a href="#" class="btn btn-link">Done</a>
-                        </td>
-                    </tr>  
-
-                    
-                    <tr class="g-table-card-header">
-                        <td class="text-center g-table-card-icon-td">
-                            <!-- <img class="g-issue-icon g-issue-icon-red" src="assets/img/icons/issues/Air Conditioner.png"> -->
-                            <%= image_tag "Air Conditioner.png", :class => "g-issue-icon g-issue-icon-red"%>
-                        </td>
-                        
-                        <td>
-                            <label>Issue Name</label>
-                            <h4>Broken Air Conditioner</h4>
-                        </td>
-
-                        <td>
-                            <label>Room No</label>
-                            <h4>210</h4>
-                        </td>
-
-                        <td>
-                            <label>Submitted&nbsp;Time</label>
-                            <h4>12:00, today</h4>
-                        </td>
-
-                        <td class="hidden-sm">
-                            <label>Priority</label>
-                            <h4>High 
-                            <!-- <img src="assets/img/icons/application/Up.png" class="g-issue-icon-mini g-issue-icon-red"> -->
-                            <%= image_tag "Up.png", :class => "g-issue-icon-mini g-issue-icon-red"%>
-                            </h4>
-                        </td>  
-
-                        <td class="hidden-sm">
-                            <label>When to Resolve</label>
-                            <h4>When room is empty</h4>
-                        </td>  
-
-                        <td class="hidden-sm">
-                            <label>Submited By</label>
-                            <h4>Sebastian Bocho</h4>
-                        </td>
-
-                        <td class="text-right">  
-                            <!-- <img class="g-issue-icon g-issue-done" src="assets/img/good/Ok-64.png"> -->
-                            <%= image_tag "Ok-64.png", :class => "g-issue-icon g-issue-done"%>                        
-                            <a href="#" class="btn btn-link">Done</a>
-                        </td>
-                    </tr>  
-
-                </tbody>
-            </table>
-
-        </div>
-    </div>  
-    <!-- / Card Row -->
-
-        <!-- Spacer -->
-    <div class="row">
-        <div class="col-md-12">
-
-            <div class="g-spacer">
-                <div class="g-spacer-label-container">
-                    <label>Submited 2 days ago</label>
-                </div>
-                <hr class="g-spacer-hr-light">
-                <hr class="g-spacer-hr-dark">
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Card Row -->
-    <div class="row">
-        <div class="col-md-12">
+                    <% @issues.each do |c| %>
+                        <tr class="g-table-card-header">
+                            <td class="text-center g-table-card-icon-td">
+                                <%= image_tag IssueType.where("issue_type_id = ?", c.issue_type_id).first.icon.url %>
+                            </td>
                             
-            <table class="g-table-card g-table-issues">
-                <tbody>
+                            <td>
+                                <label>Issue Name</label>
+                                <h4> <% IssueType.where("issue_type_id = ?", c.issue_type_id) %> </h4>
+                            </td>
+                            <td>
+                                <label>Room No</label>
+                                <h4> <% c.room_id %> </h4>
+                            </td>
 
-                    
-                    <tr class="g-table-card-header">
-                        <td class="text-center g-table-card-icon-td">
-                           <!--  <img class="g-issue-icon g-issue-icon-red" src="assets/img/icons/issues/Light Off.png"> -->
-                           <%= image_tag "Light Off.png", :class => "g-issue-icon g-issue-icon-red"%>
-                        </td>
-                        
-                        <td>
-                            <label>Issue Name</label>
-                            <h4>No Light</h4>
-                        </td>
+                            <td>
+                                <label>Submitted&nbsp;Time</label>
+                                <h4> <% c.timestamp %> </h4>
+                            </td>
 
-                        <td>
-                            <label>Room No</label>
-                            <h4>202</h4>
-                        </td>
+                            <!-- TODO: ??? -->
+                            <td class="hidden-sm">
+                                <label>Priority</label>
+                                <h4>High 
+                                <!-- <img src="assets/img/icons/application/Up.png" class="g-issue-icon-mini g-issue-icon-red"> -->
+                                <%= image_tag "Up.png", :class => "g-issue-icon g-issue-icon-red"%>
+                                </h4>
+                            </td>
+                            <!-- ??? -->
 
-                        <td>
-                            <label>Submitted&nbsp;Time</label>
-                            <h4>16:30, today</h4>
-                        </td>
+                            <td class="hidden-sm">
+                                <label>When to Resolve</label>
+                                <h4> <% c.fix_comment %> </h4>
+                            </td>  
 
-                        <td class="hidden-sm">
-                            <label>Priority</label>
-                            <h4>High 
-                           <!--  <img src="assets/img/icons/application/Up.png" class="g-issue-icon-mini g-issue-icon-red"> -->
-                            <%= image_tag "Up.png", :class => "g-issue-icon-mini g-issue-icon-red"%>
-                            </h4>
-                        </td>  
+                            <!-- <td class="hidden-sm">
+                                <label>Submited By</label>
+                                <h4>Sebastian Bocho</h4>
+                            </td> -->
 
-                        <td class="hidden-sm">
-                            <label>When to Resolve</label>
-                            <h4>Resolve as soon as possible</h4>
-                        </td>  
+                            <td class="text-right">  
+                                <!-- <img class="g-issue-icon g-issue-done" src="assets/img/good/Ok-64.png">           -->
+                                <% if !c.completion_date.blank? %>
+                                    <%= image_tag "Ok.png", :class => "g-issue-icon"%>   
+                                <% else  %>
+                                    <%= image_tag "Circle.png", :class => "g-issue-icon"%> 
+                                <% end  %>
+                                <a href="#" class="btn btn-link">Done</a>
+                            </td>
+                        </tr> 
 
-                        <td class="hidden-sm">
-                            <label>Submited By</label>
-                            <h4>Sebastian Bocho</h4>
-                        </td>
 
-                        <td class="text-right">  
-                            <!-- <img class="g-issue-icon g-issue-done" src="assets/img/good/Ok-64.png">  -->
-                            <%= image_tag "Ok-64.png", :class => "g-issue-icon g-issue-done"%>                       
-                            <a href="#" class="btn btn-link">Done</a>
-                        </td>
-                    </tr>  
-
+                    <% end %>                   
+ 
                 </tbody>
             </table>
 
         </div>
-    </div>  
-    <!-- / Card Row -->
-  
+    </div> 
+
 
    </div>        
 </div>
+
+</body>
+</html>
+
+<!-- Modal Window -->
+<div id="modal-add-issue" class="modal fade modal-add-issue" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Utwórz Memo</h4>
+            </div>
+
+            <div class="modal-body">
+                <!--
+                    <p>Create new issue</p>
+                !-->
+                <%= bootstrap_form_for :issue, :url => url_for(:controller => 'issue', :action => 'create') do |f| %>
+                  <%= f.date_select :requested_fix_date %>
+                  <%= f.text_field :fix_comment %>
+                  <%= f.hidden_field :timestamp, :value => Date.today %>
+                  <%= f.hidden_field :completion_date, :value => nil %>
+                  <%= f.submit "Utwórz" %>
+                <% end %>
+
+            </div>
+
+            <div class="modal-footer">
+               
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 </body>
 </html>

@@ -15,6 +15,8 @@ Rails.application.routes.draw do
    get 'issues/list/:group', to: 'issue#list'
    get 'memo/new'
    post 'memo/create'
+   post 'room/create'
+   post 'issue/create'
    patch 'memo/update'
    get 'memo/show'
    get 'memo/edit'

@@ -37,19 +37,46 @@
         <div class="col-sm-12">
 
             <div class="pull-left g-navigation-text">
-                <h4>Pokoje</h4>
+                <h4>Dziennik</h4>
             </div>
 
-            <div class="pull-right">
-
+            <div class="pull-right ">
                 <div class="btn-group">
-                    <a href="rooms-grid.php" class="btn btn-default btn-icon">
-                        <div data-icon="&#xe05a;" class="icon"></div>                        
-                    </a> 
-                </div>            
+                    <div class="dropdown">
+                        <!-- PRZYCISK SORTUJĄCY -->                       
+                        <button class="btn-group" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Zalogowano jako: <%= current_user.username %> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><%= link_to 'Profile', edit_user_registration_path %></li>
+                            <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- datepicker -->
+                <div id="memo-calendar" class="btn-group" style="max-width: 140px">
+
+                    <div class="input-group date" data-provide='datepicker'>
+                        <input type="text" class="form-control">
+                        <span class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </div>
+
+                </div>   
+                <script>
+                    $('#memo-calendar .input-group.date').datepicker({
+                        format: 'dd/mm/yyyy',
+                        language: "pl",
+                        autoclose: true,
+                        todayHighlight: true
+                    });
+                </script>
+                <!-- datepisker -->           
 
                 <div class="btn-group" style="margin-left: 16px">
-                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modal-create-room">Utwórz</a> 
+                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modal-create-room">Utwórz Pokój</a>                 
                 </div>
 
             </div>
@@ -144,267 +171,7 @@
 </div>
 
 <!-- Modal Window -->
-<div id="modal-create-issue" class="modal fade modal-create-issue" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Utwórz Pokój</h4>
-            </div>
-
-            <div class="modal-body">
-                <!--
-                    <p>Create new issue</p>
-                !-->
-
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="form-group">
-                            <label>Wzór</label>
-
-                            <div class="btn-group" style="width: calc(100% - 45px)">
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width: 100%">
-                                        None <div data-icon="T" class="icon"></div>
-                                    <!--    <span class="caret"></span>  -->
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        <li><a href="#">None</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="#">Basic Standard Room</a></li>
-                                        <li><a href="#">Rooms on The Second Floor</a></li>
-                                        <li><a href="#">Hall</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="btn-group">
-                                <a href="issues.php" class="btn btn-default btn-icon"> <div data-icon="&#xe053;" class="icon"></div> </a>
-                            </div>
-
-                        </div>
-                    </div>                
-
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="form-group">
-                            <label>Pokoj</label>
-                            <input type="text" class="form-control" placeholder="Room Name" aria-describedby="basic-addon1">
-                        </div>
-                    </div>
-                </div>
-
-               
-
-                <div class="row" style="display: flex; align-items: center">
-                    <div class="col-xs-5">
-                        <div class="form-group">                    
-                            <label>Przypisane Usterki</label>
-                            <select size="10" multiple class="form-control">
-                                <option value="volvo">No Light</option>
-                                <option value="saab">No Toilet Paper</option>
-                                <option value="opel">Broken TV</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-2 text-center">
-                        <a href="#" class="btn btn-default btn-icon" style="margin-bottom: 8px"> <div data-icon="l" class="icon"></div> </a>
-                        <a href="#" class="btn btn-default btn-icon"> <div data-icon="m" class="icon"></div> </a>
-                    </div>
-
-                    <div class="col-xs-5">
-                        <div class="form-group">                    
-                            <label>Dostepne Usterki</label>
-                            <select size="10" multiple class="form-control">
-                                <option value="">No Electricity</option>
-                                <option value="">Broken Lamp</option>
-                                <option value="">Air Conditioner</option>
-                                <option value="">No Water</option>
-                                <option value="">No Clean Towels</option>
-                                <option value="">No Soap</option>      
-                                <option value="">No Electricity</option>
-                                <option value="">Broken Lamp</option>
-                                <option value="">Air Conditioner</option>
-                                <option value="">No Water</option>
-                                <option value="">No Clean Towels</option>
-                                <option value="">No Soap</option> 
-                                <option value="">No Electricity</option>
-                                <option value="">Broken Lamp</option>
-                                <option value="">Air Conditioner</option>
-                                <option value="">No Water</option>
-                                <option value="">No Clean Towels</option>
-                                <option value="">No Soap</option>                                                                                           
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
-                <button type="button" class="btn btn-default">Zapisz Jako Wzór</button>                
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Utwórz</button>
-            </div>
-
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-<!-- Modal Window -->
-<div id="modal-report-issue" class="modal fade modal-create-issue" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Status Pokoju</h4>
-            </div>
-
-            <div class="modal-body">
-  
-                <div class="row">
-
-                    <div class="col-xs-4">   
-                        <table class="g-table-card g-table-card-grid g-report-issue-card">
-                            <tbody>
-
-                                <tr class="g-table-card-header">
-                                    <td>
-                                        <%= image_tag "Broom.png", :class => "g-issue-icon g-issue-icon-red"%> 
-                                    </td>
-                                </tr>  
-
-                                <tr>
-                                    <td class="g-report-issue-card-description text-center">
-                                        <h4>Clean the Room</h4>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="col-xs-4">   
-                        <table class="g-table-card g-table-card-grid g-report-issue-card">
-                            <tbody>
-
-                                <tr class="g-table-card-header">
-                                    <td>
-                                        
-                                        <%= image_tag "Light Off.png", :class => "g-issue-icon g-issue-icon-red"%>
-                                    </td>
-                                </tr>  
-
-                                <tr>
-                                    <td class="g-report-issue-card-description text-center">
-                                        <h4>No Light</h4>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="col-xs-4">   
-                        <table class="g-table-card g-table-card-grid g-report-issue-card">
-                            <tbody>
-
-                                <tr class="g-table-card-header">
-                                    <td>
-                                        
-                                        <%= image_tag "Water.png", :class => "g-issue-icon g-issue-icon-red"%>
-                                    </td>
-                                </tr>  
-
-                                <tr>
-                                    <td class="g-report-issue-card-description text-center">
-                                        <h4>No Water</h4>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="col-xs-4">   
-                        <table class="g-table-card g-table-card-grid g-report-issue-card">
-                            <tbody>
-
-                                <tr class="g-table-card-header">
-                                    <td>
-                                        <%= image_tag "Toilet Paper.png", :class => "g-issue-icon g-issue-icon-red"%>
-                                    </td>
-                                </tr>  
-
-                                <tr>
-                                    <td class="g-report-issue-card-description text-center">
-                                        <h4>No Toilet Paper</h4>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>                    
-
-                    <div class="col-xs-4">   
-                        <table class="g-table-card g-table-card-grid g-report-issue-card">
-                            <tbody>
-
-                                <tr class="g-table-card-header">
-                                    <td>
-                                        <%= image_tag "Desk Lamp.png", :class => "g-issue-icon g-issue-icon-red"%>
-                                    </td>
-                                </tr>  
-
-                                <tr>
-                                    <td class="g-report-issue-card-description text-center">
-                                        <h4>Broken Lamp</h4>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div> 
-                </div>
-
-                <div class="row" style="margin-top: 20px">
-                    <div class="col-xs-12">
-
-                        <div class="btn-group">
-                            <label>Kiedy Naprawić Usterkę</label>
-                            <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    Fix when room is empy <div data-icon="T" class="icon"></div>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="#">When room is empy</a></li>
-                                    <li><a href="#">As soon as possible</a></li>
-                                    <li><a href="#">Before 14:00</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>                            
-
-
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>          
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Zgłoś</button>
-            </div>
-
-        </div><!-- /.modal-content -->
-    </div>
-</div>
-
- -->
-</body>
-</html>
-
-<!-- Modal Window -->
-<div id="modal-add-room" class="modal fade modal-create-room" tabindex="-1" role="dialog">
+<div id="modal-create-room" class="modal fade modal-create-room" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
 
         <div class="modal-content">
@@ -417,12 +184,9 @@
                 <!--
                     <p>Create new room</p>
                 !-->
-                <%= bootstrap_form_for :memo, :url => url_for(:controller => 'memo', :action => 'create') do |f| %>
-                  <%= f.text_field :description %>
+                <%= bootstrap_form_for :memo, :url => url_for(:controller => 'room', :action => 'create') do |f| %>
                   <%= f.number_field :room_id %>
-                  <%= f.date_select :completion_date %>
-                  <%= f.hidden_field :time_stamp, :value => Date.today %>
-                  <%= f.hidden_field :is_done, :value => false %>
+                  <%= f.text_field :description %>
                   <%= f.submit "Utwórz" %>
                 <% end %>
 
