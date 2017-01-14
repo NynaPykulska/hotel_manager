@@ -2,19 +2,20 @@ class MemoController < ApplicationController
    	
   	before_filter :init_items_size_list
     before_filter :authenticate_user!
+    protect_from_forgery
 
    include MemoHelper
 
    	def list
-         @memo = Memo.new
 
-         if params[:group] == "all"
-            @memos = Memo.all
-         elsif params[:group] == "open"
-            @memos = Memo.where("is_done = ?", false)
-         else params[:group] == "ready"
-   	      @memos = Memo.where("is_done = ?", true)
-         end
+        if params[:date_of_tour].blank?
+          date = DateTime.new(2017,01,10).to_date
+        else
+          date = DateTime.strptime(params[:date_of_tour], "%Y-%m-%d")
+        end
+
+        @memos = Memo.where(:deadline => date)
+
    	end
 
       def mark_ready
@@ -40,7 +41,7 @@ class MemoController < ApplicationController
    		@memo = Book.new
    		@rooms = Room.all
    	end
-   
+
    	def create
 	   @memo = Memo.new(memo_params)
     
@@ -53,7 +54,7 @@ class MemoController < ApplicationController
        end
    
 	def memo_params
-   		params.require(:memo).permit(:room_no, :description, :completion_date, :time_stamp, :is_done)
+   		params.require(:memo).permit(:room_no, :description, :date_of_tour, :completion_date, :time_stamp, :is_done)
 	end
 
    	def edit

@@ -10,9 +10,11 @@ Rails.application.routes.draw do
   #root 'manager#dayLog'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
    
-   get 'dayLog/list/:group', to: 'memo#list'
+   post 'dayLog/list', to: 'memo#list'
    get 'roomStatus/list/:group', to: 'room#list'
    get 'issues/list/:group', to: 'issue#list'
+
+   get 'dayLog/list', to: 'memo#list'
    get 'memo/new'
    post 'memo/create'
    post 'room/create'
