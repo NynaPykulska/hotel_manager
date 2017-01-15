@@ -81,25 +81,28 @@
                 <!-- datepicker -->
                 <div id="memo-calendar" class="btn-group" style="max-width: 140px">
                     <div class="input-group date" data-provide='datepicker'>
-                    <%= form_for :memo, :url => url_for(:action => 'list'), :html=> {:id => 'date-form'}  do |f| %>
-                        <%= text_field_tag :date_of_tour, params[:date_of_tour], "data-provide" => 'datepicker' %>
+                    <%= form_for :memo, :url => url_for(:action => 'list'), 
+                            :html=> {:id => 'date-form'}  do |f| %>
+          
+                            <%= f.text_field :date %>
                     <% end %>
-                    <script>
-                            $('#memo-calendar .input-group.date').datepicker({
-                                format: 'yyyy-mm-dd',
-                                language: "pl",
-                                autoclose: true,
-                                todayHighlight: true
-                            }).on('changeDate', function () {
-                                var form = document.getElementById("date-form");
-                                form.submit();
-                            });
-                    </script>
+                    
                         <span class="input-group-addon">
                             <i class="fa fa-calendar"></i>
                         </span>
                     </div>
                 </div>  
+                <script>
+                    $('#memo-calendar .input-group.date').datepicker({
+                        format: 'yyyy-mm-dd',
+                        language: "pl",
+                        autoclose: true,
+                        todayHighlight: true
+                    }).on('changeDate', function () {
+                        var form = document.getElementById("date-form");
+                        form.submit();
+                    });
+                </script>
                 <!-- datepicker -->           
 
                 

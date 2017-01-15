@@ -8,10 +8,20 @@ class MemoController < ApplicationController
 
    	def list
 
-        if params[:date_of_tour].blank?
-          date = DateTime.new(2017,01,10).to_date
+        if !params[:memo].blank?
+          puts params[:memo][:date]
+        end
+
+        if params[:memo].blank?
+          puts "is blank, man"
+          # date = DateTime.new(2017,01,10).to_date
+          date = Date.current();
+          puts date
         else
-          date = DateTime.strptime(params[:date_of_tour], "%Y-%m-%d")
+          # date = DateTime.strptime(params[:date_of_tour], "%Y-%m-%d")
+          puts "is not empty, yo"
+          puts params[:memo][:date]
+          date = Date.strptime(params[:memo][:date], "%Y-%m-%d")
         end
 
         @memos = Memo.where(:deadline => date)
