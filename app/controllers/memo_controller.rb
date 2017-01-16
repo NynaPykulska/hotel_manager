@@ -1,6 +1,5 @@
 class MemoController < ApplicationController
    	
-  	before_filter :init_items_size_list
     before_filter :authenticate_user!
     protect_from_forgery
 
@@ -25,6 +24,13 @@ class MemoController < ApplicationController
         end
 
         @memos = Memo.where(:deadline => date)
+
+        @done = 0
+        @not_done = 0
+
+        @memos.each do |m|
+          m.is_done ? @done+=1 : @not_done+=1
+        end
 
    	end
 
@@ -53,7 +59,10 @@ class MemoController < ApplicationController
    	end
 
    	def create
-	   @memo = Memo.new(memo_params)
+      @room = Room.where("room_id = ?", memo_params[:room_id]).first
+      @date = DateTime.new(params[:memo]["completion_date(1i)"].to_i, params[:memo]["completion_date(2i)"].to_i ,params[:memo]["completion_date(3i)"].to_i)
+
+	   @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: @date, completion_date: memo_params[:completion_date], is_done: memo_params[:is_done], time_stamp: memo_params[:time_stamp] )
     
         if @memo.save
            redirect_to controller: 'memo', action: 'list', group: 'all'
@@ -64,7 +73,7 @@ class MemoController < ApplicationController
        end
    
 	def memo_params
-   		params.require(:memo).permit(:room_no, :description, :date_of_tour, :completion_date, :time_stamp, :is_done)
+   		params.require(:memo).permit(:room_id, :description, :completion_date, :time_stamp, :is_done)
 	end
 
    	def edit
@@ -94,11 +103,6 @@ class MemoController < ApplicationController
 
    	def show_rooms
    		@room = Room.find(params[:id])
-	end
-
-	def init_items_size_list
-	    @items_size_list ||= [Memo.all.size, Memo.where("is_done = ?", false).size, Memo.where("is_done = ?", true).size]
-	    #                             0                           1                                       2
-	end															
+	end												
 
 end
