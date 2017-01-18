@@ -13,5 +13,6 @@ module HotelManager
     # -- all .rb files in that directory are automatically loaded.
     config.assets.enabled = true
     config.assets.digest = true
+    config.serve_static_assets = true
   end
 end

@@ -38,6 +38,26 @@
                 date_order = ((date_order + 1) % 2 );
             });
         });
+
+        $('#showall').click(function(e){        
+             $('.done').show();
+             $('.not_done').show();
+             e.stopPropagation();
+
+        });
+
+        $('#showopen').click(function(e){        
+             $('.done').hide();
+             $('.not_done').show();
+             e.stopPropagation();
+        });
+
+        $('#showready').click(function(e){        
+             $('.done').show();
+             $('.not_done').hide();
+             e.stopPropagation();
+        });
+
     });
 
      
@@ -48,7 +68,7 @@
 
 <% content_for :menu do %>
     <div class="g-aside-menu-position g-aside-menu-position-active">
-        <%= link_to image_tag("day-log.png"), "/dayLog/list/all", :class => "btn btn-link"%>
+        <%= link_to image_tag("day-log.png"), "/dayLog/list", :class => "btn btn-link"%>
     </div>
     <div class="g-aside-menu-position">
         <%= link_to image_tag("rooms.png"), "/roomStatus/list/all", :class => "btn btn-link"%>
@@ -79,25 +99,30 @@
                 
 
                 <!-- datepicker -->
-                <div id="memo-calendar" class="btn-group" style="max-width: 140px">
-
+                <div id="memo-calendar" class="btn-group" style="max-width: 140px margin-right: 20px">
                     <div class="input-group date" data-provide='datepicker'>
-                        <input type="text" class="form-control">
+                    <%= form_for :memo, :url => url_for(:action => 'list'), :html=> {:id => 'date-form'}  do |f| %>
+                            <%= f.text_field :date, class: 'form-control' %>
+                    <% end %>
+                    
                         <span class="input-group-addon">
                             <i class="fa fa-calendar"></i>
                         </span>
                     </div>
-
-                </div>   
+                </div>  
                 <script>
                     $('#memo-calendar .input-group.date').datepicker({
-                        format: 'dd/mm/yyyy',
+                        format: 'yyyy-mm-dd',
                         language: "pl",
                         autoclose: true,
                         todayHighlight: true
+                    }).on('changeDate', function () {
+                        var form = document.getElementById("date-form");
+                        form.submit();
                     });
                 </script>
                 <!-- datepicker -->           
+
 
                 <div class="btn-group" style="margin-left: 16px">
                     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modal-add-memo">Utwórz Memo</a>                 
@@ -110,9 +135,9 @@
         <div class="col-md-12 g-tabs">
 
             <ul class="nav nav-pills pull-left" role="tablist">
-                <li class= <%= params[:group] == 'all' ? 'active' : '' %> ><a href="/dayLog/list/all">Wszystkie <span class="badge g-badge-blue"><%= @items_size_list[0] -%></span></a></li>
-                <li class= <%= params[:group] == 'open' ? 'active' : '' %>><a href="/dayLog/list/open">Otwarte <span class="badge g-badge-red"><%= @items_size_list[1] -%></span></a></li>
-                <li class= <%= params[:group] == 'ready' ? 'active' : '' %>><a href="/dayLog/list/ready">Gotowe <span class="badge g-badge-green"><%= @items_size_list[2] -%></span></a></li>
+                <li> <a id="showall">Wszystkie <span class="badge g-badge-blue"><%= @done + @not_done -%></span></a></li>
+                <li> <a id="showopen">Otwarte <span class="badge g-badge-red"><%= @not_done -%></span></a></li>
+                <li> <a id="showready">Gotowe <span class="badge g-badge-green"><%= @done -%></span></a></li>
             </ul>  
 
 
@@ -157,7 +182,7 @@
                 <tbody>                    
                     
                     <% @memos.each do |c| %>
-                    	<tr class="g-table-card-header ">
+                    	<tr class="<%= c.is_done ? 'g-table-card-header done' : 'g-table-card-header not_done' =%>" >
                         <td class="text-center g-vertical-middle g-table-card-icon-td">
                             <% if c.is_done %>
                             	<%= image_tag "Ok.png", :class => "g-issue-icon"%>   
@@ -178,7 +203,7 @@
 
                         <td class="hidden-sm g-vertical-top">
                             <label>Kiedy</label>
-                            <h4><%= c.deadline.strftime("%d-%m-%Y") -%></h4>
+                            <h4><%= c.deadline.strftime("%Y-%m-%d") -%></h4>
                         </td>  
 
                         <td class="text-right g-vertical-middle">                         
