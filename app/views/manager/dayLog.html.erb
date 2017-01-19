@@ -25,7 +25,7 @@
 
 
 <!-- datepicker -->
-                <div id="memo-calendar" class="btn-group" style="max-width: 140px">
+                <div id="memo-calendar" class="btn-group" style="max-width: 140px;">
 
                     <div class="input-group date" data-provide='datepicker'>
                         <input type="text" class="form-control">
@@ -46,7 +46,7 @@
 <!-- datepisker -->
              
 
-                <div class="btn-group" style="margin-left: 16px">
+                <div class="btn-group">
                     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modal-add-memo">Utwórz Memo</a>                 
                 </div>
 
@@ -181,7 +181,7 @@
                     <tr class="g-table-card-header ">
                         <td class="text-center g-vertical-middle g-table-card-icon-td">
                             <%= image_tag "circle-circle.png", :class => "g-issue-icon"%>                        
-                            </td>
+                        </td>
                         
                         <td class="g-vertical-middle">
                             <label>Memo</label>
@@ -198,8 +198,10 @@
                             <h4>16:30, tomorow</h4>
                         </td>  
 
-                        <td class="text-right g-vertical-middle">                         
-                            <a href="#" class="btn btn-link btn-action-done">Gotowe</a>
+                        <td class="text-right g-vertical-middle">      
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-link btn-action-done g-ripple-effect">Gotowe</a>
+                            </div>
                         </td>
                     </tr>  
 

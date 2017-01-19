@@ -1,0 +1,40 @@
+.g-aside {
+    position: fixed;
+    width: 64px;
+    height: 100vh;
+    background-color: #2c3946;
+    overflow: hidden;
+    white-space: nowrap; 
+    padding-top: 156px;   
+}
+.g-aside-menu-position {
+	padding: 14px;
+	opacity: 0.64;
+	cursor: pointer;
+}
+.g-aside-menu-position:hover {
+	opacity: 1;
+}
+
+.g-aside-menu-position-active {
+	border-left: 4px solid #03a9f4;
+	opacity: 1;
+	padding-left: 10px;
+}
+
+.g-aside-expanded {
+	width: 200px;
+}
+
+.g-aside-menu-position .btn-link {
+	padding-left: 10px;
+}
+
+.g-aside-expanded #g-aside-expand img {
+	transform: rotate(180deg);
+}
+
+.g-badge-on-icon {
+    margin-left: -16px;
+    margin-top: 1px;
+}
