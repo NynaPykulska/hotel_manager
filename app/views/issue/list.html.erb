@@ -1,243 +1,231 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bocho</title>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700;800;900" rel="stylesheet">
+    </head>
 
-
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700;800;900" rel="stylesheet">
-
-
-</head>
-<body>
-
-<% content_for :menu do %>
-    <div class="g-aside-menu-position">
-        <%= link_to image_tag("day-log.png"), "/dayLog/list", :class => "btn btn-link"%>
-    </div>
-    <div class="g-aside-menu-position ">
-        <%= link_to image_tag("rooms.png"), "/roomStatus/list/all", :class => "btn btn-link"%>
-    </div>
-    <div class="g-aside-menu-position g-aside-menu-position-active"> 
-        <%= link_to image_tag("issues.png"), "/issues/list/all", :class => "btn btn-link" %>          
-    </div>
-    <div class="g-aside-menu-position">
-        <%= link_to image_tag("employees.png"), "employees", :class => "btn btn-link" %>    
-    </div>
-<% end %>
-
-<div class="container-fluid g-aside-has-aside">
-
-    <!-- Header with main buttons -->
-	    <!-- Header with main buttons -->
-    <div class="row g-header">
-        <div class="col-sm-12">
-
-            <div class="pull-left g-navigation-text">
-                <h4>Dziennik</h4>
+    <body>
+        <% content_for :menu do %>
+            <div class="g-aside-menu-position">
+                <%= link_to image_tag("day-log.png"), "/dayLog/list", :class => "g-aside-icon"%>
             </div>
+            <div class="g-aside-menu-position">
+                <%= link_to image_tag("rooms.png"), "/roomStatus/list/all", :class =>  "g-aside-icon"%>
+            </div>
+            <div class="g-aside-menu-position g-aside-menu-position-active"> 
+                <%= link_to image_tag("issues.png"), "/issues/list/all", :class =>  "g-aside-icon"%>
+            </div>
+            <div class="g-aside-menu-position">
+                <%= link_to image_tag("employees.png"), "employees", :class =>  "g-aside-icon"%>
+            </div>
+        <% end %>
 
-            <div class="pull-right ">
-                <div class="btn-group">
-                    <div class="dropdown">
-                        <!-- PRZYCISK SORTUJĄCY -->                       
-                        <button class="btn-group" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Zalogowano jako: <%= current_user.username %> <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><%= link_to 'Profile', edit_user_registration_path %></li>
-                            <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
-                        </ul>
-                    </div>
-                </div>
+        <!-- Fluid Container -->
+        <div class="container-fluid g-aside-has-aside">
 
-                <!-- datepicker -->
-                <div id="memo-calendar" class="btn-group" style="max-width: 140px">
+            <!-- Header with main buttons -->
+            <div class="row g-header">
+                <div class="col-sm-12">
 
-                    <div class="input-group date" data-provide='datepicker'>
-                        <input type="text" class="form-control">
-                        <span class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                        </span>
+                    <div class="pull-left g-navigation-text">
+                        <h4>Usterki</h4>
                     </div>
 
-                </div>   
-                <script>
-                    $('#memo-calendar .input-group.date').datepicker({
-                        format: 'dd/mm/yyyy',
-                        language: "pl",
-                        autoclose: true,
-                        todayHighlight: true
-                    });
-                </script>
-                <!-- datepicker -->           
+                    <div class="pull-right ">      
 
-                <div class="btn-group">
-                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modal-add-issue">Zgłoś usterkę</a>                 
+                        <!-- datepicker -->
+                        <div id="memo-calendar" class="btn-group" style="max-width: 140px">
+                            <div class="input-group date" data-provide='datepicker'>
+                                <input type="text" class="form-control">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>   
+                        <script>
+                            $('#memo-calendar .input-group.date').datepicker({
+                                format: 'dd/mm/yyyy',
+                                language: "pl",
+                                autoclose: true,
+                                todayHighlight: true
+                            });
+                        </script>
+                        <!-- datepicker -->           
+
+                        <!-- Primary Action Button -->
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modal-add-issue">Zgłoś usterkę</a>                 
+                        </div>
+
+                        <!-- User Avatar / Profile -->
+                        <div class="btn-group">                
+                            <div class="dropdown">
+                                <img class="g-header-avatar dropdown-toggle" src="assets/img/users/user_1.png" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left: -90px">
+                                    <li><%= link_to 'Profile', edit_user_registration_path %></li>
+                                    <li role="separator" class="divider"></li>                            
+                                    <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>                            
+                                </ul>
+                            </div>
+                        </div>                   
+
+                    </div>
+
                 </div>
+            </div>   
 
-            </div>
+            <!-- Sub Navigation Tabs -->   
+            <div class="row g-subnavigation">
+        		<div class="col-md-12 g-tabs">
 
-        </div>
-    </div>    <!-- Sub Navigation Tabs -->   
-    <!-- Sub Navigation Tabs -->
-    <div class="row g-subnavigation g-shadow">
-		<div class="col-md-12 g-tabs">
+                    <ul class="nav nav-pills pull-left" role="tablist">
+                        <li class= <%= params[:group] == 'all' ? 'active' : '' %> ><a href="/issues/list/all">Wszystkie <span class="badge g-badge-blue"><%= @items_size_list[0] -%></span></a></li>
+                        <li class= <%= params[:group] == 'open' ? 'active' : '' %>><a href="/issues/list/open">Otwarte <span class="badge g-badge-red"><%= @items_size_list[1] -%></span></a></li>
+                        <li class= <%= params[:group] == 'ready' ? 'active' : '' %>><a href="/issues/list/ready">Gotowe <span class="badge g-badge-green"><%= @items_size_list[2] -%></span></a></li>
+                    </ul>  
 
-            <ul class="nav nav-pills pull-left" role="tablist">
-                <li class= <%= params[:group] == 'all' ? 'active' : '' %> ><a href="/issues/list/all">Wszystkie <span class="badge g-badge-blue"><%= @items_size_list[0] -%></span></a></li>
-                <li class= <%= params[:group] == 'open' ? 'active' : '' %>><a href="/issues/list/open">Otwarte <span class="badge g-badge-red"><%= @items_size_list[1] -%></span></a></li>
-                <li class= <%= params[:group] == 'ready' ? 'active' : '' %>><a href="/issues/list/ready">Gotowe <span class="badge g-badge-green"><%= @items_size_list[2] -%></span></a></li>
-            </ul>  
-
-
-            <div class="pull-right">
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <div class="dropdown">
+                                <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Sort By Time
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a href="#">Submission Time</a></li>
+                                    <li><a href="#">Room Number</a></li>
+                                    <li><a href="#">Issue Name</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                            
+        		</div>	
+        	</div>
             
-                <div class="btn-group">
-                    <div class="dropdown">
-                        <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Sort By Time
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="#">Submission Time</a></li>
-                            <li><a href="#">Room Number</a></li>
-                            <li><a href="#">Issue Name</a></li>
-                        </ul>
+            <!-- Application Content -->
+            <div class="g-application-content">    
+
+                <!-- TODO: SPACERS? -->
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="g-spacer">
+                            <div class="g-spacer-label-container">
+                                <label>Submited Today</label>
+                            </div>
+                            <hr class="g-spacer-hr-light">
+                            <hr class="g-spacer-hr-dark">
+                        </div>
+
                     </div>
                 </div>
 
-            </div>
-                    
-		</div>	
-	</div>
+                <!-- Card Row -->
+                <div class="row">
+                    <div class="col-md-12">
+                                        
+                        <table class="g-table-card g-table-issues mysortable sortable">
+                            <tbody>                    
+                                
+                                <% @issues.each do |c| %>
+                                    <tr class="g-table-card-header">
+                                        <td class="text-center g-table-card-icon-td">
+                                            <%= image_tag IssueType.where("issue_type_id = ?", c.issue_type_id).first.icon.url, :class => "g-issue-icon"%>
+                                        </td>
+                                        
+                                        <td>
+                                            <label>Issue Name</label>
+                                            <h4> <% IssueType.where("issue_type_id = ?", c.issue_type_id) %> </h4>
+                                        </td>
+                                        <td>
+                                            <label>Room No</label>
+                                            <h4> <% c.room_id %> </h4>
+                                        </td>
+
+                                        <td>
+                                            <label>Submitted&nbsp;Time</label>
+                                            <h4> <% c.timestamp %> </h4>
+                                        </td>
+
+                                        <!-- TODO: ??? -->
+                                        <td class="hidden-sm">
+                                            <label>Priority</label>
+                                            <h4>High 
+                                            <!-- <img src="assets/img/icons/application/Up.png" class="g-issue-icon-mini g-issue-icon-red"> -->
+                                            <%= image_tag "Up.png", :class => "g-issue-icon-mini g-issue-icon-red"%>
+                                            </h4>
+                                        </td>
+                                        <!-- ??? -->
+
+                                        <td class="hidden-sm">
+                                            <label>When to Resolve</label>
+                                            <h4> <% c.fix_comment %> </h4>
+                                        </td>  
+
+                                        <!-- <td class="hidden-sm">
+                                            <label>Submited By</label>
+                                            <h4>Sebastian Bocho</h4>
+                                        </td> -->
+
+                                        <td class="text-right">  
+                                            <!-- <img class="g-issue-icon g-issue-done" src="assets/img/good/Ok-64.png">           -->
+                                            <% if !c.completion_date.blank? %>
+                                                <%= image_tag "Ok.png", :class => "g-issue-icon"%>   
+                                            <% else  %>
+                                                <%= image_tag "Circle.png", :class => "g-issue-icon"%> 
+                                            <% end  %>
+                                            <a href="#" class="btn btn-link">Done</a>
+                                        </td>
+                                    </tr> 
+
+
+                                <% end %>                   
+             
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div> 
+           </div>        
+        </div>
+
+        <!-- Modal Window -->
+        <div id="modal-add-issue" class="modal fade modal-add-issue" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Utwórz Memo</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <!--
+                            <p>Create new issue</p>
+                        !-->
+                        <%= bootstrap_form_for :issue, :url => url_for(:controller => 'issue', :action => 'create') do |f| %>
+                          <%= f.date_select :requested_fix_date %>
+                          <%= f.text_field :fix_comment %>
+                          <%= f.hidden_field :timestamp, :value => Date.today %>
+                          <%= f.hidden_field :completion_date, :value => nil %>
+                          <%= f.submit "Utwórz" %>
+                        <% end %>
+
+                    </div>
+
+                    <div class="modal-footer">
+                       
+                    </div>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </body>
     
-    <!-- Application Content -->
-    <div class="g-application-content">    
-
-    <!-- TODO: SPACERS? -->
-    <div class="row">
-        <div class="col-md-12">
-
-            <div class="g-spacer">
-                <div class="g-spacer-label-container">
-                    <label>Submited Today</label>
-                </div>
-                <hr class="g-spacer-hr-light">
-                <hr class="g-spacer-hr-dark">
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Card Row -->
-    <div class="row">
-        <div class="col-md-12">
-                            
-            <table class="g-table-card g-table-issues mysortable sortable">
-                <tbody>                    
-                    
-                    <% @issues.each do |c| %>
-                        <tr class="g-table-card-header">
-                            <td class="text-center g-table-card-icon-td">
-                                <%= image_tag IssueType.where("issue_type_id = ?", c.issue_type_id).first.icon.url %>
-                            </td>
-                            
-                            <td>
-                                <label>Issue Name</label>
-                                <h4> <% IssueType.where("issue_type_id = ?", c.issue_type_id) %> </h4>
-                            </td>
-                            <td>
-                                <label>Room No</label>
-                                <h4> <% c.room_id %> </h4>
-                            </td>
-
-                            <td>
-                                <label>Submitted&nbsp;Time</label>
-                                <h4> <% c.timestamp %> </h4>
-                            </td>
-
-                            <!-- TODO: ??? -->
-                            <td class="hidden-sm">
-                                <label>Priority</label>
-                                <h4>High 
-                                <!-- <img src="assets/img/icons/application/Up.png" class="g-issue-icon-mini g-issue-icon-red"> -->
-                                <%= image_tag "Up.png", :class => "g-issue-icon g-issue-icon-red"%>
-                                </h4>
-                            </td>
-                            <!-- ??? -->
-
-                            <td class="hidden-sm">
-                                <label>When to Resolve</label>
-                                <h4> <% c.fix_comment %> </h4>
-                            </td>  
-
-                            <!-- <td class="hidden-sm">
-                                <label>Submited By</label>
-                                <h4>Sebastian Bocho</h4>
-                            </td> -->
-
-                            <td class="text-right">  
-                                <!-- <img class="g-issue-icon g-issue-done" src="assets/img/good/Ok-64.png">           -->
-                                <% if !c.completion_date.blank? %>
-                                    <%= image_tag "Ok.png", :class => "g-issue-icon"%>   
-                                <% else  %>
-                                    <%= image_tag "Circle.png", :class => "g-issue-icon"%> 
-                                <% end  %>
-                                <a href="#" class="btn btn-link">Done</a>
-                            </td>
-                        </tr> 
-
-
-                    <% end %>                   
- 
-                </tbody>
-            </table>
-
-        </div>
-    </div> 
-
-
-   </div>        
-</div>
-
-</body>
-</html>
-
-<!-- Modal Window -->
-<div id="modal-add-issue" class="modal fade modal-add-issue" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Utwórz Memo</h4>
-            </div>
-
-            <div class="modal-body">
-                <!--
-                    <p>Create new issue</p>
-                !-->
-                <%= bootstrap_form_for :issue, :url => url_for(:controller => 'issue', :action => 'create') do |f| %>
-                  <%= f.date_select :requested_fix_date %>
-                  <%= f.text_field :fix_comment %>
-                  <%= f.hidden_field :timestamp, :value => Date.today %>
-                  <%= f.hidden_field :completion_date, :value => nil %>
-                  <%= f.submit "Utwórz" %>
-                <% end %>
-
-            </div>
-
-            <div class="modal-footer">
-               
-            </div>
-
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-</body>
 </html>

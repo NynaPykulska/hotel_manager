@@ -602,6 +602,13 @@ label {
 .g-avatar-red {
   border: 4px solid #fa6b5b; }
 
+.g-header-avatar {
+  height: 40px;
+  border-radius: 40px;
+  border: none;
+  margin-left: 30px;
+  cursor: pointer; }
+
 /* Dark Version */
 /* Basic colors */
 /* Text color */
