@@ -111,7 +111,10 @@
             <!-- Application Content -->
             <div class="g-application-content">    
 
-                <!-- TODO: SPACERS? -->
+                <!-- TODO: SPACERS? 
+
+                Zamiast tego bedzie TR (chyba)
+
                 <div class="row">
                     <div class="col-md-12">
 
@@ -125,6 +128,7 @@
 
                     </div>
                 </div>
+                -->
 
                 <!-- Card Row -->
                 <div class="row">
@@ -133,6 +137,20 @@
                         <table class="g-table-card g-table-issues mysortable sortable">
                             <tbody>                    
                                 
+                                    <tr class="g-spacer">
+                                        <td colspan="100%" class="text-center">
+
+                                            <p class="g-spacer-line">
+                                                <span>
+                                                    <label style="width: auto">
+                                                        Test
+                                                    </label>
+                                                </span>
+                                            </p>
+
+                                        </td>
+                                    </tr>
+
                                 <% @issues.each do |c| %>
                                     <tr class="g-table-card-header">
                                         <td class="text-center g-table-card-icon-td">

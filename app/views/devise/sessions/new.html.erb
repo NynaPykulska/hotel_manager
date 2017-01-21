@@ -1,19 +1,17 @@
-<div id="login-container">
+<div id="login-container" style="z-index: 99; background-image: url('/assets/images/login-background.png'" >
 
     <div id="login-content" class="text-center" style="padding: 40px; border: 1px solid rgba(255,255,255,0.16);">
 
-        <img class="fadeInDown animated" src="assets/img/logo/ih-logo.png">
+    	<img src="<%= asset_path( 'ih-logo.png' ) %>"  class="fadeInDown animated">
 
         <h2>Welcome to <strong>eHOTEL</strong></h2>
         <h4>Your on-line hotel system</h4>
-
-
 
         <div class="form-group login-additional-margins-top">
 			<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 				<div class="field">
 					<!-- <%= f.label :username %> -->
-					<%= f.text_field :username, autofocus: true, :class => "form-control" %>
+					<%= f.text_field :username, autofocus: true, :class => "form-control", :style => "background-color: #fff !important" %>
 				</div>
 
 				<div class="field">

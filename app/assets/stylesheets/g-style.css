@@ -734,7 +734,7 @@ label {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  background-image: url(../img/login/login-background.png);
+  background-image: url(assets/images/login-background.png);
   background-position: center center;
   background-size: cover; }
   #login-container h2, #login-container h4 {
