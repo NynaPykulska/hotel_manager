@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bocho</title>
+
+</head>
+<body>
+
+<div class="container-fluid g-aside-has-aside">
+
+        <!-- Header with main buttons -->
+    <div class="row g-header">
+        <div class="col-sm-12">
+
+
+        </div>
+    </div>    <!-- Sub Navigation Tabs -->
+    <div class="row g-subnavigation g-shadow">
+        <div class="col-md-12 g-tabs">
+
+                    
+        </div>  
+    </div>
+    
+    <div class="g-application-content">    
+
+    <!-- NEED TO BETTER HANDLE MESSAGES IN FLASH -->
+      <!-- <div class="container">
+        <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>">
+            <%= value %>
+          </div>
+        <% end %>
+      </div> -->
+
+      <div class="row col-centered">
+          <div class="col-md-12 ">
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                  <div class="field">
+                    <%= f.label :username %><br />
+                    <%= f.text_field :username, autofocus: true %>
+                  </div>
+
+                  <div class="field">
+                    <%= f.label :password %><br />
+                    <%= f.password_field :password, autocomplete: "off" %>
+                  </div>
+
+                  <% if devise_mapping.rememberable? -%>
+                    <div class="field">
+                      <%= f.check_box :remember_me %>
+                      <%= f.label :remember_me %>
+                    </div>
+                  <% end -%>
+
+                  <div class="actions">
+                    <%= f.submit "Log in" %>
+                  </div>
+              <% end %>
+          </div>
+      </div>  
+   </div>        
+</div>

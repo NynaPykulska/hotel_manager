@@ -1,67 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
+<div id="login-container">
 
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bocho</title>
+    <div id="login-content" class="text-center" style="padding: 40px; border: 1px solid rgba(255,255,255,0.16);">
 
-</head>
-<body>
+        <img class="fadeInDown animated" src="assets/img/logo/ih-logo.png">
 
-<div class="container-fluid g-aside-has-aside">
-
-        <!-- Header with main buttons -->
-    <div class="row g-header">
-        <div class="col-sm-12">
+        <h2>Welcome to <strong>eHOTEL</strong></h2>
+        <h4>Your on-line hotel system</h4>
 
 
+
+        <div class="form-group login-additional-margins-top">
+			<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+				<div class="field">
+					<!-- <%= f.label :username %> -->
+					<%= f.text_field :username, autofocus: true, :class => "form-control" %>
+				</div>
+
+				<div class="field">
+					<!-- <%= f.label :password %> -->
+					<%= f.password_field :password, autocomplete: "off", :class => "form-control" %>
+				</div>
+
+					<!-- tego chyba nie obslugujemy :) 
+					<% if devise_mapping.rememberable? -%>
+						<div class="field">
+							<%= f.check_box :remember_me %>
+							<%= f.label :remember_me %>
+						</div>
+					<% end -%>
+					-->
+
+					<div class="form-group login-additional-margins-top">
+						<%= f.submit "Zaloguj", :class => "btn btn-primary g-ripple-effect", :style => "width: 100%" %>
+					</div>
+
+			<% end %>
         </div>
-    </div>    <!-- Sub Navigation Tabs -->
-    <div class="row g-subnavigation g-shadow">
-        <div class="col-md-12 g-tabs">
 
-                    
-        </div>  
+        <p class="login-restore-password">Forgot your password? Click <strong><a href="#">here</a></strong> to restore</p>
+
     </div>
-    
-    <div class="g-application-content">    
 
-    <!-- NEED TO BETTER HANDLE MESSAGES IN FLASH -->
-      <!-- <div class="container">
-        <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key %>">
-            <%= value %>
-          </div>
-        <% end %>
-      </div> -->
-
-      <div class="row col-centered">
-          <div class="col-md-12 ">
-              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                  <div class="field">
-                    <%= f.label :username %><br />
-                    <%= f.text_field :username, autofocus: true %>
-                  </div>
-
-                  <div class="field">
-                    <%= f.label :password %><br />
-                    <%= f.password_field :password, autocomplete: "off" %>
-                  </div>
-
-                  <% if devise_mapping.rememberable? -%>
-                    <div class="field">
-                      <%= f.check_box :remember_me %>
-                      <%= f.label :remember_me %>
-                    </div>
-                  <% end -%>
-
-                  <div class="actions">
-                    <%= f.submit "Log in" %>
-                  </div>
-              <% end %>
-          </div>
-      </div>  
-   </div>        
 </div>
