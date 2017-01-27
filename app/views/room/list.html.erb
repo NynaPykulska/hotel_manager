@@ -14,22 +14,33 @@
 
         <% content_for :menu do %>
             <div class="g-aside-menu-position">
-                <%= link_to image_tag("day-log.png"), "/dayLog/list", :class => "g-aside-icon"%>
+                <%= link_to image_tag("left-menu/day-log.png"), "/dayLog/list", :class => "g-aside-icon g-ripple-effect"%>
+                <span class="btn btn-link">Dziennik</span>                
             </div>
+
             <div class="g-aside-menu-position g-aside-menu-position-active">
-                <%= link_to image_tag("rooms.png"), "/roomStatus/list/all", :class =>  "g-aside-icon"%>
+                <%= link_to image_tag("left-menu/rooms.png"), "/roomStatus/list/all", :class =>  "g-aside-icon g-ripple-effect"%>
+                <span class="btn btn-link">Status Pokojów</span>                
             </div>
+
             <div class="g-aside-menu-position"> 
-                <%= link_to image_tag("issues.png"), "/issues/list/all", :class =>  "g-aside-icon"%>
+                <%= link_to image_tag("left-menu/issues.png"), "/issues/list/all", :class =>  "g-aside-icon g-ripple-effect"%>
+                <span class="btn btn-link">Usterki</span>                
             </div>
+
             <div class="g-aside-menu-position">
-                <%= link_to image_tag("employees.png"), "employees", :class =>  "g-aside-icon"%>
+                <%= link_to image_tag("left-menu/employees.png"), "employees", :class =>  "g-aside-icon g-ripple-effect"%>
+                <span class="btn btn-link">Pracownicy</span>                
             </div>
+
+            <div id="g-aside-expand" class="g-aside-menu-position g-ripple-effect">
+                <%= image_tag "left-menu/expand.png", :class =>  "g-aside-icon g-ripple-effect"%>
+            </div>            
         <% end %>
 
         <div class="container-fluid g-aside-has-aside">
 
-            	<!-- Header with main buttons -->
+            <!-- Header with main buttons -->
         	<div class="row g-header">
                 <div class="col-sm-12">
 
@@ -73,7 +84,7 @@
                         <!-- datepisker -->           
 
                         <div class="btn-group">
-                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modal-create-room">Utwórz Pokój</a>                 
+                            <a href="#" class="btn btn-primary g-ripple-effect" data-toggle="modal" data-target="#modal-create-room">Utwórz Pokój</a>                 
                         </div>
 
                     </div>
@@ -152,7 +163,7 @@
 
                                         <td class="g-vertical-middle text-right">   
                                             <a href="#" class="btn btn-link" data-toggle="modal" data-target="#modal-create-issue">Edytuj</a>
-                                            <a href="#" class="btn btn-link" data-toggle="modal" data-target="#modal-report-issue">Zgłoś usterkę</a>
+                                            <a href="#" class="btn btn-link" data-toggle="modal" data-target="#modal-report-issue g-ripple-effect">Zgłoś usterkę</a>
                                         </td>
                                     </tr>
                                 <% end %>                   
@@ -196,7 +207,9 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-
     </body>
+
+    <%= javascript_include_tag "ripple-effect.js" %>
+    <%= javascript_include_tag "g-aside-expand.js" %>    
     
 </html>
