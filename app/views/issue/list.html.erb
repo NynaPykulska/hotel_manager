@@ -24,6 +24,9 @@
 
             <div class="g-aside-menu-position g-aside-menu-position-active"> 
                 <%= link_to image_tag("left-menu/issues.png"), "/issues/list/all", :class =>  "g-aside-icon g-ripple-effect"%>
+                <span class="badge g-badge-red g-badge-on-icon">
+                    <%= params[:group] == 'open' ? 'active' : '' %><%= @items_size_list[1] -%>
+                </span>                
                 <span class="btn btn-link">Usterki</span>                
             </div>
 
@@ -67,24 +70,27 @@
                                 todayHighlight: true
                             });
                         </script>
-                        <!-- datepicker -->           
+                        <!-- datepicker -->
 
                         <!-- Primary Action Button -->
                         <div class="btn-group">
-                            <a href="#" class="btn btn-primary g-ripple-effect" data-toggle="modal" data-target="#modal-add-issue">Zgłoś usterkę</a>                 
+                            <a href="#" class="btn btn-primary g-ripple-effect" data-toggle="modal" data-target="#modal-add-issue">Zgłoś usterkę</a>
                         </div>
 
                         <!-- User Avatar / Profile -->
-                        <div class="btn-group">                
-                            <div class="dropdown">
-                                <img class="g-header-avatar dropdown-toggle" src="assets/img/users/user_1.png" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left: -90px">
-                                    <li><%= link_to 'Profile', edit_user_registration_path %></li>
-                                    <li role="separator" class="divider"></li>                            
-                                    <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>                            
-                                </ul>
+                        <%if user_signed_in? %>
+                            <div class="btn-group">
+                                <div class="dropdown">
+
+                                    <img class="g-header-avatar dropdown-toggle" src="<%= asset_path( 'avatars/user-avatar-1.png' ) %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left: -90px">
+                                        <li><%= link_to 'Profile', edit_user_registration_path %></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>                   
+                        <% end %>
 
                     </div>
 

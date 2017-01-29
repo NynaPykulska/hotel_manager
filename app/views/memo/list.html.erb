@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -47,7 +46,6 @@
                         <h4>Dziennik</h4>
                     </div>
 
-                    <!-- Action Buttons -->
                     <div class="pull-right ">
 
                         <!-- datepicker -->
@@ -79,10 +77,26 @@
                             <a href="#" class="btn btn-primary g-ripple-effect" data-toggle="modal" data-target="#modal-add-memo">Utwórz Memo</a>                 
                         </div>
 
-                    </div>
+                        <!-- User Avatar / Profile -->
+                        <%if user_signed_in? %>
+                            <div class="btn-group">
+                                <div class="dropdown">
+
+                                    <img class="g-header-avatar dropdown-toggle" src="<%= asset_path( 'avatars/user-avatar-1.png' ) %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left: -90px">
+                                        <li><%= link_to 'Profile', edit_user_registration_path %></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        <% end %>
+
+                    </div>                        
 
                 </div>
             </div>    <!-- Sub Navigation Tabs -->
+            
             <div class="row g-subnavigation">
                 <div class="col-md-12 g-tabs">
 

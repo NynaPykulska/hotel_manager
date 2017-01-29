@@ -9,12 +9,16 @@
 
   <body>
   <div class="pull-right">
-    <!-- logout -->
+    <!-- logout 
+
+    Skasowalem tylko komentarze. Nie wiem jak zrobic by bylo to widoczne w odpowiednim miejscu
+    w aplikacji wiec tylko na szybko przerzucilem
+
     <%if user_signed_in? %>
       <div class="dropdown" >
           <button class="login btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin: 10px; padding: 5px 9px;">
               Zalogowano jako: <%= current_user.username %> <div data-icon="T" class="icon"></div>
-          <!--    <span class="caret"></span>  -->
+
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left:10px; min-width: 150px; top: 40px; border-radius:0;">
               <li class="dropdown-item-login">
@@ -26,7 +30,8 @@
           </ul>
       </div>
     <% end %> 
-    <!-- logout -->
+   logout -->
+
   </div>
 	 <div class="g-aside">
     <%= yield :menu %>
