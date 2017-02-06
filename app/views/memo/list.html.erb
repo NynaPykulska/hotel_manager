@@ -188,7 +188,21 @@
                                             </div>
                                         </td>  
 
-                                        <td class="text-right g-vertical-middle">  
+                                        <td class="text-right g-vertical-middle g-stay-in-one-line">  
+
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-link btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <div data-icon="/" class="icon"></div> more
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" data-toggle="modal" data-target="#modal-add-memo"> Edit </a></li>
+                                                <li><a href="#" class="btn-memo-reopen"> Re-Open </a></li>                                                                        
+                                                <li><a href="#" class="btn-issues-remove"> Remove </a></li>                                    
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">Cancel</a></li>
+                                            </ul>
+                                        </div>  
+
                                             <div class="btn-group">
                                                 <%= link_to "Gotowe", "/memo/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done g-ripple-effect"%>
                                             </div>
