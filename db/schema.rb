@@ -16,8 +16,7 @@ ActiveRecord::Schema.define(version: 20170109204701) do
   enable_extension "plpgsql"
 
   create_table "issue_types", force: :cascade do |t|
-    t.integer  "issue_type_id"
-    t.text     "issue_desctiption"
+    t.text     "issue_description"
     t.text     "default_priority"
     t.text     "when_to_resolve"
     t.date     "icon"
@@ -45,8 +44,7 @@ ActiveRecord::Schema.define(version: 20170109204701) do
     t.boolean "is_done"
   end
 
-  create_table "rooms", force: :cascade do |t|
-    t.integer "room_id"
+  create_table "rooms", primary_key: "room_id", id: :integer, force: :cascade do |t|
     t.text    "description"
     t.boolean "is_clean"
   end

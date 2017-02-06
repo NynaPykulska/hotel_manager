@@ -130,12 +130,13 @@
                 <div class="row">
                     <div class="col-md-12">            
                         <table class="g-table-card g-table-issues tablesorter mysortable" id="memo_table">
-                            <thead>
+                            <thead style="display: none">
                                 <tr>
                                     <th>Icon</th>
                                     <th>Desc</th>
                                     <th>Room</th>
                                     <th>Date</th>
+                                    <th>Hour</th>
                                     <th>Done</th>
                                 </tr>
                             </thead>
@@ -165,6 +166,11 @@
                                         <td class="hidden-sm g-vertical-top">
                                             <label>Kiedy</label>
                                             <h4><%= c.deadline.strftime("%Y-%m-%d") -%></h4>
+                                        </td>  
+
+                                        <td class="hidden-sm g-vertical-top">
+                                            <label>Godzina</label>
+                                            <h4><%= c.deadline.strftime("%H:%M") -%></h4>
                                         </td>  
 
                                         <td class="hidden-sm g-vertical-middle">
@@ -213,9 +219,10 @@
                             <p>Create new issue</p>
                         !-->
                         <%= bootstrap_form_for :memo, :url => url_for(:controller => 'memo', :action => 'create') do |f| %>
-                          <%= f.text_field :description %>
-                          <%= f.number_field :room_id %>
-                          <%= f.date_select :completion_date %>
+                          <%= f.text_field :description, label: "Opis" %>
+                          <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Pokój" %>
+                          <%= f.date_select :completion_date, label: "Data Wykonania" %>
+                          <%= f.time_select :memo_time, label: "Godzina" %>
                           <%= f.hidden_field :time_stamp, :value => Date.today %>
                           <%= f.hidden_field :is_done, :value => false %>
                           <%= f.submit "Utwórz" %>

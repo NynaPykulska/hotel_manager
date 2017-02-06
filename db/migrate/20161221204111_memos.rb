@@ -3,8 +3,8 @@ class Memos < ActiveRecord::Migration[5.0]
       create_table :memos do |t|
          t.column :room_id, :integer
          t.column :description, :text
-         t.column :deadline, :date
-         t.column :completion_date, :date
+         t.column :deadline, :datetime
+         t.column :completion_date, :datetime
          t.column :time_stamp, :date
          t.column :is_done, :boolean
       end

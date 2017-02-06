@@ -87,4 +87,3 @@ end
 end
 
 User.create(username: 'nina', email: 'nina@nina.com', password: 'buttsex', password_confirmation: 'buttsex')
-User.create(username: 'michal', email: 'michal@michal.com', password: 'awesome', password_confirmation: 'buttsex')

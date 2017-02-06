@@ -7,10 +7,6 @@ class MemoController < ApplicationController
 
    	def list
 
-        if !params[:memo].blank?
-          puts params[:memo][:date]
-        end
-
         if params[:memo].blank?
           puts "is blank, man"
           # date = DateTime.new(2017,01,10).to_date
@@ -34,12 +30,12 @@ class MemoController < ApplicationController
 
    	end
 
-      def mark_ready
-         @memo = Memo.find(params[:id])
-         @memo.update_attribute(:is_done, true)
-         @memo.update_attribute(:completion_date, Date.today)
-         redirect_to :action => 'list', :group => "ready"
-      end
+    def mark_ready
+       @memo = Memo.find(params[:id])
+       @memo.update_attribute(:is_done, true)
+       @memo.update_attribute(:completion_date, Date.today)
+       redirect_to :action => 'list', :group => "ready"
+    end
 
    	def list_open																																						
    		@memos = Memo.where("is_done = ?", true)
@@ -58,51 +54,52 @@ class MemoController < ApplicationController
    		@rooms = Room.all
    	end
 
-   	def create
-      @room = Room.where("room_id = ?", memo_params[:room_id]).first
-      @date = DateTime.new(params[:memo]["completion_date(1i)"].to_i, params[:memo]["completion_date(2i)"].to_i ,params[:memo]["completion_date(3i)"].to_i)
+ 	def create
+    @room = Room.where("room_id = ?", memo_params[:room_id]).first
+    @date = DateTime.new(params[:memo]["completion_date(1i)"].to_i, params[:memo]["completion_date(2i)"].to_i ,params[:memo]["completion_date(3i)"].to_i, params[:memo]["memo_time(4i)"].to_i, params[:memo]["memo_time(5i)"].to_i)
 
-	   @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: @date, completion_date: memo_params[:completion_date], is_done: memo_params[:is_done], time_stamp: memo_params[:time_stamp] )
-    
-        if @memo.save
-           redirect_to controller: 'memo', action: 'list', group: 'all'
-                else
-           @rooms = Room.all
-           render :action => 'new'
-         end
-       end
+    @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: @date, completion_date: memo_params[:completion_date], is_done: memo_params[:is_done], time_stamp: memo_params[:time_stamp] )
+  
+    if @memo.save
+       redirect_to controller: 'memo', action: 'list', group: 'all'
+    else
+       @rooms = Room.all
+       render :action => 'new'
+    end
+
+  end
    
 	def memo_params
    		params.require(:memo).permit(:room_id, :description, :completion_date, :time_stamp, :is_done)
 	end
 
-   	def edit
-   		@book = Memo.find(params[:id])
-   		@rooms = Room.all
-   	end
+ 	def edit
+ 		@book = Memo.find(params[:id])
+ 		@rooms = Room.all
+ 	end
    
-   	def update
-   		@book = Memo.find(params[:id])
-	
-	   	if @memo.update_attributes(memo_param)
-	      redirect_to :action => 'show', :id => @memo
-	   	else
-	      @rooms = Room.all
-	      render :action => 'edit'
-	   end
-   	end
+ 	def update
+ 		@book = Memo.find(params[:id])
 
-   	def memo_param
-   		params.require(:memo).permit(:room_no, :description, :completion_date)
+   	if @memo.update_attributes(memo_param)
+      redirect_to :action => 'show', :id => @memo
+   	else
+      @rooms = Room.all
+      render :action => 'edit'
+   end
+ 	end
+
+ 	def memo_param
+ 		params.require(:memo).permit(:room_no, :description, :completion_date)
 	end
    
-   	def delete
-   		Memo.find(params[:id]).destroy
-   		redirect_to :action => 'list'
-   	end
+ 	def delete
+ 		Memo.find(params[:id]).destroy
+ 		redirect_to :action => 'list'
+ 	end
 
-   	def show_rooms
-   		@room = Room.find(params[:id])
-	end												
+ 	def show_rooms
+ 		@room = Room.find(params[:id])
+	end											
 
 end
