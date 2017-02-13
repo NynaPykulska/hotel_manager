@@ -171,40 +171,32 @@
                                         <td class="hidden-sm g-vertical-top">
                                             <label>Godzina</label>
                                             <h4><%= c.deadline.strftime("%H:%M") -%></h4>
-                                        </td>  
-
-                                        <td class="hidden-sm g-vertical-middle">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-link btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <div data-icon="/" class="icon"></div>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="#" data-toggle="modal" data-target="#modal-add-memo"> Edit </a></li>
-                                                    <li><a href="#" class="btn-memo-reopen"> Re-Open </a></li>                                                                        
-                                                    <li><a href="#" class="btn-issues-remove"> Remove </a></li>                                    
-                                                    <li role="separator" class="divider"></li>
-                                                    <li><a href="#">Cancel</a></li>
-                                                </ul>
-                                            </div>
-                                        </td>  
+                                        </td>   
 
                                         <td class="text-right g-vertical-middle g-stay-in-one-line">  
 
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-link btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <div data-icon="/" class="icon"></div> more
+                                                <i class="fa fa-ellipsis-h"></i>
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li><a href="#" data-toggle="modal" data-target="#modal-add-memo"> Edit </a></li>
-                                                <li><a href="#" class="btn-memo-reopen"> Re-Open </a></li>                                                                        
-                                                <li><a href="#" class="btn-issues-remove"> Remove </a></li>                                    
+                                                <li>
+                                                    <%= link_to "Reopen", "memo/reopen?id=#{c.id}", :class =>  "btn-memo-reopen"  %>
+                                                <!-- <a href="#" class="btn-memo-reopen"> Re-Open </a> -->
+
+                                                </li>
+                                                <li>
+                                                <%= link_to "Delete", "memo/delete?id=#{c.id}", :class =>  "btn-issues-remove"  %>
+                                                <!-- <a href="#" class="btn-issues-remove"> Remove </a> -->
+                                                </li>                                    
                                                 <li role="separator" class="divider"></li>
                                                 <li><a href="#">Cancel</a></li>
                                             </ul>
                                         </div>  
 
                                             <div class="btn-group">
-                                                <%= link_to "Gotowe", "/memo/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done g-ripple-effect"%>
+                                                <%= link_to "Gotowe", "memo/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done g-ripple-effect"%>
                                             </div>
                                         </td>
                                 	</tr>

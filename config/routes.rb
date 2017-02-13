@@ -5,6 +5,9 @@ Rails.application.routes.draw do
    post 'dayLog/list', to: 'memo#list'
    get 'roomStatus/list/:group', to: 'room#list'
    get 'issues/list/:group', to: 'issue#list'
+   get 'dayLog/memo/mark_ready', to: 'memo#mark_ready'
+   get 'dayLog/memo/reopen', to: 'memo#reopen'
+   get 'dayLog/memo/delete', to: 'memo#delete'
 
    get 'dayLog/list', to: 'memo#list'
    get 'memo/new'
@@ -19,5 +22,7 @@ Rails.application.routes.draw do
    get 'memo/update'
    get 'memo/show_subjects'
    get 'memo/mark_ready'
+   get 'memo/reopen'
+
 
 end

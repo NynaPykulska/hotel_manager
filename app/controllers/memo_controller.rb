@@ -34,7 +34,13 @@ class MemoController < ApplicationController
        @memo = Memo.find(params[:id])
        @memo.update_attribute(:is_done, true)
        @memo.update_attribute(:completion_date, Date.today)
-       redirect_to :action => 'list', :group => "ready"
+       redirect_to :action => 'list'
+    end
+
+    def reopen
+      @memo = Memo.find(params[:id])
+      @memo.update_attribute(:is_done, false)
+      redirect_to :action => 'list'
     end
 
    	def list_open																																						
