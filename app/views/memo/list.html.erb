@@ -225,20 +225,23 @@
                             <p>Create new issue</p>
                         !-->
                         <%= bootstrap_form_for :memo, :url => url_for(:controller => 'memo', :action => 'create') do |f| %>
-                          <%= f.text_field :description, label: "Opis" %>
-                          <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Pokój" %>
-                          <%= f.date_select :completion_date, label: "Data Wykonania" %>
-                          <%= f.time_select :memo_time, label: "Godzina" %>
-                          <%= f.hidden_field :time_stamp, :value => Date.today %>
-                          <%= f.hidden_field :is_done, :value => false %>
-                          <%= f.submit "Utwórz" %>
+                            <%= f.text_field :description, label: "Opis" %>
+                            <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Pokój" %>
+                            <%= f.date_select :completion_date, label: "Data Wykonania" %>
+                            <%= f.time_select :memo_time, label: "Godzina" %>
+                            <%= f.hidden_field :time_stamp, :value => Date.today %>
+                            <%= f.hidden_field :is_done, :value => false %>
+                            <div class="text-right">
+                            <%= f.submit "Utwórz", :class => 'btn btn-primary' %>
+                            </div>
                         <% end %>
 
                     </div>
 
+                    <!--
                     <div class="modal-footer">
-
                     </div>
+                    -->
 
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
