@@ -172,12 +172,12 @@
                                 <% @issues.each do |c| %>
                                     <tr class="g-table-card-header">
                                         <td class="text-center g-table-card-icon-td">
-                                            <%= image_tag IssueType.where("issue_type_id = ?", c.issue_type_id).first.icon.url, :class => "g-issue-icon"%>
+                                            <%= image_tag IssueType.where("id = ?", c.issue_type_id).first.icon.url, :class => "g-issue-icon"%>
                                         </td>
                                         
                                         <td>
                                             <label>Issue Name</label>
-                                            <h4> <% IssueType.where("issue_type_id = ?", c.issue_type_id) %> </h4>
+                                            <h4> <% IssueType.where("id = ?", c.issue_type_id) %> </h4>
                                         </td>
                                         <td>
                                             <label>Room No</label>

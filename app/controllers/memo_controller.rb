@@ -10,8 +10,12 @@ class MemoController < ApplicationController
         if params[:memo].blank?
           puts "is blank, man"
           # date = DateTime.new(2017,01,10).to_date
-          date = Date.current();
-          puts date
+          if @stored_date.blank?
+            @date = Date.current();
+            puts @date
+          else 
+            @date = get_date
+          end
         else
           # date = DateTime.strptime(params[:date_of_tour], "%Y-%m-%d")
           puts "is not empty, yo"
@@ -29,6 +33,10 @@ class MemoController < ApplicationController
         end
 
    	end
+
+    def get_date
+      @date = @stored_date  
+    end
 
     def mark_ready
        @memo = Memo.find(params[:id])

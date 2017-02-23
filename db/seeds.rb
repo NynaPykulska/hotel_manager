@@ -8,6 +8,11 @@
 
 
 
+lamp = IssueType.create(	issue_type_id: 1,
+				    issue_desctiption: "Broken lamp",
+				    default_priority: "Medium",
+				    when_to_resolve: "As soon as possible",
+				    icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/Desk Lamp.png"))
 
 light = IssueType.create(	issue_type_id: 2,
 				    issue_desctiption: "No light",
@@ -27,11 +32,6 @@ paper = IssueType.create(	issue_type_id: 4,
 				    when_to_resolve: "As soon as possible",
 				    icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/Toilet Paper.png"))
 
-lamp = IssueType.create(	issue_type_id: 5,
-				    issue_desctiption: "Broken lamp",
-				    default_priority: "Medium",
-				    when_to_resolve: "As soon as possible",
-				    icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/Desk Lamp.png"))
 
 10.times do |i|
 	fuckingroom = Room.create(room_id: i+100, description: "ROOM DESCRIPTION", is_clean: false)
