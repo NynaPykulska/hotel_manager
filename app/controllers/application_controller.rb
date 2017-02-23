@@ -10,4 +10,15 @@ class ApplicationController < ActionController::Base
       ## render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
     end
   end
+
+  def after_sign_in_path_for(resource)
+    if resource.admin? or resource.receptionist?
+      '/dayLog/list'
+    elsif resource.maid?
+      '/roomStatus/list/all' 
+    elsif resource.maitenance?
+      '/issues/list/all'
+    end
+  end
+
 end
