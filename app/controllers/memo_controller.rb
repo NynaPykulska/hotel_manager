@@ -1,7 +1,7 @@
 class MemoController < ApplicationController
    	
     before_filter :authenticate_user!
-    protect_from_forgery
+    protect_from_forgery with: :null_session
 
    include MemoHelper
 
@@ -42,7 +42,7 @@ class MemoController < ApplicationController
        @memo = Memo.find(params[:id])
        @memo.update_attribute(:is_done, true)
        @memo.update_attribute(:completion_date, Date.today)
-       redirect_to :action => 'list'
+       # redirect_to :action => 'list'
     end
 
     def reopen

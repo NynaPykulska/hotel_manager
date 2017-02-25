@@ -10,19 +10,19 @@
     <body>
 
         <% content_for :menu do %>
-            <% if current_user.receptionist? || current_user.admin?%>
+            <% if current_user && (current_user.receptionist? || current_user.admin?) %>
                 <div class="g-aside-menu-position g-aside-menu-position-active">
                     <%= link_to image_tag("left-menu/day-log.png"), "/dayLog/list", :class => "g-aside-icon g-ripple-effect"%>
                     <span class="btn btn-link">Dziennik</span>                
                 </div>
             <% end %> 
-            <% if current_user.maid? || current_user.admin? %>
+            <% if current_user && (current_user.maid? || current_user.admin?) %>
                 <div class="g-aside-menu-position">
                     <%= link_to image_tag("left-menu/rooms.png"), "/roomStatus/list/all", :class =>  "g-aside-icon g-ripple-effect"%>
                     <span class="btn btn-link">Status Pokojów</span>                
                 </div>
             <% end %> 
-            <% if current_user.maitenance? || current_user.admin? %>
+            <% if current_user && (current_user.maitenance? || current_user.admin?) %>
                 <div class="g-aside-menu-position"> 
                     <%= link_to image_tag("left-menu/issues.png"), "/issues/list/all", :class =>  "g-aside-icon g-ripple-effect"%>
                     <span class="btn btn-link">Usterki</span>                
@@ -194,7 +194,7 @@
                                         </div>  
 
                                             <div class="btn-group">
-                                                <%= link_to "Gotowe", "memo/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done g-ripple-effect"%>
+                                                <%= link_to "Gotowe", "memo/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done g-ripple-effect", :id => "mark_ready" %>
                                             </div>
                                         </td>
                                 	</tr>

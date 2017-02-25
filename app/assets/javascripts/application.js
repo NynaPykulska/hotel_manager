@@ -67,4 +67,9 @@ var room_order = 0;
                  $('.not_done').hide();
                  e.stopPropagation();
             });
+
+            $('#mark_ready').click(function(e){
+						    $(this).closest("tr").css("color","#FF0000");
+						});
+
         });
