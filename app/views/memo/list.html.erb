@@ -179,20 +179,25 @@
                                                 <i class="fa fa-ellipsis-h"></i>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a href="#" data-toggle="modal" data-target="#modal-add-memo"> Edit </a></li>
+                                                <li><a data-toggle="modal" data-target="#modal-add-memo"> Edit </a></li>
                                                 <li>
                                                     <%= link_to "Reopen", "memo/reopen?id=#{c.id}", :class =>  "btn-memo-reopen reopen", remote: true  %>
                                                 <!-- <a href="#" class="btn-memo-reopen"> Re-Open </a> -->
 
+
                                                 </li>
                                                 <li>
-                                                <%= link_to "Delete", "memo/delete?id=#{c.id}", :class =>  "btn-issues-remove"  %>
-                                                <!-- <a href="#" class="btn-issues-remove"> Remove </a> -->
+                                                    <%= link_to "Delete", "memo/delete?id=#{c.id}", :class =>  "btn-issues-remove"  %>
                                                 </li>                                    
                                                 <li role="separator" class="divider"></li>
-                                                <li><a href="#">Cancel</a></li>
+                                                <li><a>Cancel</a></li>
                                             </ul>
-                                        </div>  
+                                        </div> 
+                                        <script>
+                                            $(document).on('click', ' .dropdown-menu', function (e) {
+                                                e.stopPropagation();
+                                            });
+                                        </script> 
 
                                             <div class="btn-group ready-button" style="<%= c.is_done ? 'display: none;' : '' =%>" >
                                                 <%= link_to "Gotowe", "memo/mark_ready?id=#{c.id}", :class => "mark_ready btn btn-link btn-memo-done g-ripple-effect", remote: true %>
