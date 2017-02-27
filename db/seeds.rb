@@ -42,34 +42,40 @@ paper = IssueType.create(	issue_type_id: 4,
         			issue_type_id: lamp.issue_type_id,
         			requested_fix_date: DateTime.new(2020,01,10),
         			fix_comment: "No comments on this one",
-        			timestamp: Date.today)
+        			timestamp: Date.today,
+        			priority: "High")
 	when 1
 	  fuckingroom.issues.create(
         			issue_type_id: light.issue_type_id,
         			requested_fix_date: DateTime.new(2020,01,10),
         			fix_comment: "No comments on this one",
-        			timestamp: Date.today)
+        			timestamp: Date.today,
+        			priority: "Medium")
 	  fuckingroom.issues.create(
         			issue_type_id: water.issue_type_id,
         			requested_fix_date: DateTime.new(2020,01,10),
         			fix_comment: "No comments on this one",
-        			timestamp: Date.today)
+        			timestamp: Date.today,
+        			priority: "Low")
 	when 2
 	  fuckingroom.issues.create(
         			issue_type_id: lamp.issue_type_id,
         			requested_fix_date: DateTime.new(2020,01,10),
         			fix_comment: "No comments on this one",
-        			timestamp: Date.today)
+        			timestamp: Date.today,
+        			priority: "High")
 	  fuckingroom.issues.create(
         			issue_type_id: light.issue_type_id,
         			requested_fix_date: DateTime.new(2020,01,10),
         			fix_comment: "No comments on this one",
-        			timestamp: Date.today)
+        			timestamp: Date.today,
+        			priority: "Medium")
 	  fuckingroom.issues.create(
         			issue_type_id: paper.issue_type_id,
         			requested_fix_date: DateTime.new(2020,01,10),
         			fix_comment: "No comments on this one",
-        			timestamp: Date.today)
+        			timestamp: Date.today,
+        			priority: "Low")
 	end
 
 end

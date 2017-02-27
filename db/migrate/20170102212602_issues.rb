@@ -7,6 +7,7 @@ class Issues < ActiveRecord::Migration[5.0]
          t.column :fix_comment, :text
          t.column :timestamp, :date
          t.column :completion_date, :date
+         t.column :priority, :text
       end
    end
 

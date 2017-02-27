@@ -159,7 +159,7 @@
                                             <p class="g-spacer-line">
                                                 <span>
                                                     <label style="width: auto">
-                                                        Test
+                                                        Usterki
                                                     </label>
                                                 </span>
                                             </p>
@@ -174,38 +174,38 @@
                                         </td>
                                         
                                         <td>
-                                            <label>Issue Name</label>
-                                            <h4> <% IssueType.where("id = ?", c.issue_type_id) %> </h4>
+                                            <label>Nazwa</label>
+                                            <h4> <%= IssueType.where("id = ?", c.issue_type_id).first.issue_description %> </h4>
                                         </td>
                                         <td>
-                                            <label>Room No</label>
-                                            <h4> <% c.room_id %> </h4>
+                                            <label>Pokój</label>
+                                            <h4> <%= c.room_id %> </h4>
                                         </td>
 
                                         <td>
-                                            <label>Submitted&nbsp;Time</label>
-                                            <h4> <% c.timestamp %> </h4>
+                                            <label>Czas&nbsp;zgłoszenia</label>
+                                            <h4> <%= c.timestamp %> </h4>
                                         </td>
 
-                                        <!-- TODO: ??? -->
                                         <td class="hidden-sm">
-                                            <label>Priority</label>
-                                            <h4>High 
+                                            <label>Priorytet</label>
+                                            <h4>
+                                            <% if c.priority == 'High' %>
+                                                Wysoki <%= image_tag "Up.png", :class => "g-issue-icon-mini g-issue-icon-red"%>
+                                            <% elsif c.priority == 'Medium' %>
+                                                Średni
+                                            <% elsif c.priority == 'Low' %>
+                                                Niski <%= image_tag "Down.png", :class => "g-issue-icon-mini"%>
+                                            <% end %>
                                             <!-- <img src="assets/img/icons/application/Up.png" class="g-issue-icon-mini g-issue-icon-red"> -->
-                                            <%= image_tag "Up.png", :class => "g-issue-icon-mini g-issue-icon-red"%>
+                                            
                                             </h4>
                                         </td>
-                                        <!-- ??? -->
 
                                         <td class="hidden-sm">
-                                            <label>When to Resolve</label>
-                                            <h4> <% c.fix_comment %> </h4>
+                                            <label>Komentarz</label>
+                                            <h4> <%= c.fix_comment %> </h4>
                                         </td>  
-
-                                        <!-- <td class="hidden-sm">
-                                            <label>Submited By</label>
-                                            <h4>Sebastian Bocho</h4>
-                                        </td> -->
 
                                         <td class="text-right">  
                                             <!-- <img class="g-issue-icon g-issue-done" src="assets/img/good/Ok-64.png">           -->

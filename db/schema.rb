@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223200601) do
+ActiveRecord::Schema.define(version: 20170227210125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,15 +33,16 @@ ActiveRecord::Schema.define(version: 20170223200601) do
     t.text    "fix_comment"
     t.date    "timestamp"
     t.date    "completion_date"
+    t.text    "priority"
   end
 
   create_table "memos", force: :cascade do |t|
-    t.integer "room_id"
-    t.text    "description"
-    t.date    "deadline"
-    t.date    "completion_date"
-    t.date    "time_stamp"
-    t.boolean "is_done"
+    t.integer  "room_id"
+    t.text     "description"
+    t.datetime "deadline"
+    t.date     "completion_date"
+    t.datetime "time_stamp"
+    t.boolean  "is_done"
   end
 
   create_table "rooms", primary_key: "room_id", id: :integer, force: :cascade do |t|
