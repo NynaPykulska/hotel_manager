@@ -7,7 +7,7 @@ class MemoController < ApplicationController
 
    	def list
 
-        if params[:memo].blank?
+        if params[:date].blank?
           puts "is blank, man"
           # date = DateTime.new(2017,01,10).to_date
           if @stored_date.blank?
@@ -19,8 +19,8 @@ class MemoController < ApplicationController
         else
           # date = DateTime.strptime(params[:date_of_tour], "%Y-%m-%d")
           puts "is not empty, yo"
-          puts params[:memo][:date]
-          date = Date.strptime(params[:memo][:date], "%Y-%m-%d")
+          puts params[:date]
+          date = Date.strptime(params[:date], "%Y-%m-%d")
         end
 
         @memos = Memo.where(:deadline => date)
@@ -48,7 +48,7 @@ class MemoController < ApplicationController
     def reopen
       @memo = Memo.find(params[:id])
       @memo.update_attribute(:is_done, false)
-      redirect_to :action => 'list'
+      # redirect_to :action => 'list'
     end
 
    	def list_open																																						
