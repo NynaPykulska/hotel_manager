@@ -1,7 +1,7 @@
 class MemoController < ApplicationController
    	
-    before_filter :authenticate_user!
     protect_from_forgery with: :null_session
+    before_filter :authenticate_user!
 
    include MemoHelper
 
