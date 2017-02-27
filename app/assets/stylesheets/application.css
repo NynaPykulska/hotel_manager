@@ -20,3 +20,4 @@
 
 @import "bootstrap-sprockets";
 
+.strike-out.td-done { text-decoration: line-through; }

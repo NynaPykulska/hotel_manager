@@ -50,27 +50,61 @@ var room_order = 0;
             });
 
             $('#showall').click(function(e){        
-                 $('.done').show();
-                 $('.not_done').show();
+                 $('.tr-done').show();
+                 $('.tr-not_done').show();
                  e.stopPropagation();
 
             });
 
             $('#showopen').click(function(e){        
-                 $('.done').hide();
-                 $('.not_done').show();
+                 $('.tr-done').hide();
+                 $('.tr-not_done').show();
                  e.stopPropagation();
             });
 
             $('#showready').click(function(e){        
-                 $('.done').show();
-                 $('.not_done').hide();
+                 $('.tr-done').show();
+                 $('.tr-not_done').hide();
                  e.stopPropagation();
             });
 
-            $('#mark_ready').click(function(e){
-            		console.log("xaxax");
-						    $(this).closest("tr").css("color","#FF0000");
-						});
+            $('.mark_ready').click(function(e){
+            if($(this).closest('tr').hasClass("tr-not_done"))
+            {
+                $(this).closest('tr').find('.strike-out').addClass('td-done');
+                $(this).closest('tr').removeClass('tr-not_done');
+                $(this).closest('tr').addClass('tr-done');
+                // Change number of ready memos
+                var old_number = parseInt(document.getElementById('ready-number').innerHTML);
+                old_number++;
+                $('#ready-number').text(old_number);
+                // Change number of open memos
+                old_number = parseInt(document.getElementById('open-number').innerHTML);
+                old_number--;
+                $('#open-number').text(old_number);
+                $(this).closest('tr').find('.ready-button').hide();
+                $(this).closest('tr').find('.is-complete-icon-ok').show();
+                $(this).closest('tr').find('.is-complete-icon-circle').hide();
+            }
+            });
 
-        });
+            $('.reopen').click(function(e){
+                if($(this).closest('tr').hasClass("tr-done"))
+                {
+                    $(this).closest('tr').find('.strike-out').removeClass('td-done');
+                    $(this).closest('tr').addClass('tr-not_done');
+                    $(this).closest('tr').removeClass('tr-done');
+                    // Change number of ready memos
+                    var old_number = parseInt(document.getElementById('ready-number').innerHTML);
+                    old_number--;
+                    $('#ready-number').text(old_number);
+                    // Change number of open memos
+                    old_number = parseInt(document.getElementById('open-number').innerHTML);
+                    old_number++;
+                    $('#open-number').text(old_number);
+                    $(this).closest('tr').find('.ready-button').show();
+                    $(this).closest('tr').find('.is-complete-icon-ok').hide();
+                    $(this).closest('tr').find('.is-complete-icon-circle').show();
+                }
+            });
+});

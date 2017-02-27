@@ -103,9 +103,9 @@
                 <div class="col-md-12 g-tabs">
 
                     <ul class="nav nav-pills pull-left" role="tablist">
-                        <li> <a id="showall">Wszystkie <span class="badge g-badge-blue"><%= @done + @not_done -%></span></a></li>
-                        <li> <a id="showopen">Otwarte <span class="badge g-badge-red"><%= @not_done -%></span></a></li>
-                        <li> <a id="showready">Gotowe <span class="badge g-badge-green"><%= @done -%></span></a></li>
+                        <li> <a id="showall">Wszystkie <span class="badge g-badge-blue" id="all-number"><%= @done + @not_done -%></span></a></li>
+                        <li> <a id="showopen">Otwarte <span class="badge g-badge-red" id="open-number"><%= @not_done -%></span></a></li>
+                        <li> <a id="showready">Gotowe <span class="badge g-badge-green" id="ready-number"><%= @done -%></span></a></li>
                     </ul>  
 
                     <!-- Sortowanie --> 
@@ -146,31 +146,28 @@
                             <tbody>                    
                                 
                                 <% @memos.each do |c| %>
-                                	<tr class="<%= c.is_done ? 'g-table-card-header done' : 'g-table-card-header not_done' =%>" >
+                                	<tr class="<%= c.is_done ? 'g-table-card-header tr-done' : 'g-table-card-header tr-not_done' =%>" >
                                         <td class="text-center g-vertical-middle g-table-card-icon-td">
-                                            <% if c.is_done %>
-                                            	<%= image_tag "Ok.png", :class => "g-issue-icon"%>   
-                                            <% else  %>
-                                            	<%= image_tag "Circle.png", :class => "g-issue-icon"%> 
-                                            <% end  %>                  
+                                            	<%= image_tag "Ok.png", :class => "g-issue-icon is-complete-icon-ok", :style => c.is_done ? '' : 'display: none;'%>   
+                                            	<%= image_tag "Circle.png", :class => "g-issue-icon is-complete-icon-circle", :style => c.is_done ? 'display: none;' : ''%>                  
                                             </td>
                                         
-                                        <td class="g-vertical-middle">
+                                        <td class="g-vertical-middle strike-out">
                                             <label>Memo</label>
                                             <h4><%= c.description -%></h4>
                                         </td>
 
-                                        <td class="g-vertical-top">
+                                        <td class="g-vertical-top strike-out">
                                             <label>Pokój</label>
                                             <h4><%= c.room_id -%></h4>
                                         </td>  
 
-                                        <td class="hidden-sm g-vertical-top">
+                                        <td class="hidden-sm g-vertical-top strike-out">
                                             <label>Kiedy</label>
                                             <h4><%= c.deadline.strftime("%Y-%m-%d") -%></h4>
                                         </td>  
 
-                                        <td class="hidden-sm g-vertical-top">
+                                        <td class="hidden-sm g-vertical-top strike-out">
                                             <label>Godzina</label>
                                             <h4><%= c.deadline.strftime("%H:%M") -%></h4>
                                         </td>   
@@ -184,7 +181,7 @@
                                             <ul class="dropdown-menu">
                                                 <li><a href="#" data-toggle="modal" data-target="#modal-add-memo"> Edit </a></li>
                                                 <li>
-                                                    <%= link_to "Reopen", "memo/reopen?id=#{c.id}", :class =>  "btn-memo-reopen", remote: true  %>
+                                                    <%= link_to "Reopen", "memo/reopen?id=#{c.id}", :class =>  "btn-memo-reopen reopen", remote: true  %>
                                                 <!-- <a href="#" class="btn-memo-reopen"> Re-Open </a> -->
 
                                                 </li>
@@ -197,8 +194,8 @@
                                             </ul>
                                         </div>  
 
-                                            <div class="btn-group">
-                                                <%= link_to "Gotowe", "memo/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done g-ripple-effect", :id => "mark_ready", remote: true %>
+                                            <div class="btn-group ready-button" style="<%= c.is_done ? 'display: none;' : '' =%>" >
+                                                <%= link_to "Gotowe", "memo/mark_ready?id=#{c.id}", :class => "mark_ready btn btn-link btn-memo-done g-ripple-effect", remote: true %>
                                             </div>
                                         </td>
                                 	</tr>
