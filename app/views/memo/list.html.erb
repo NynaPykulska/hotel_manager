@@ -64,9 +64,13 @@
                                 language: "pl",
                                 autoclose: true,
                                 todayHighlight: true
-                            }).on('changeDate', function () {
-                                var form = document.getElementById("date-form");
-                                form.submit();
+                            }).on('changeDate', function (a) {
+                                // var form = document.getElementById("date-form");
+                                // form.submit();
+                                var date = a.date.getFullYear() + "-" + (a.date.getMonth() + 1) + "-" + a.date.getDate();
+                                var link = window.location.href.split('?')[0] + "?date=" + date;
+                                window.location.href = link;
+                                // $.get("/dayLog/list", {date});
                             });
                         </script>
 
@@ -180,7 +184,7 @@
                                             <ul class="dropdown-menu">
                                                 <li><a href="#" data-toggle="modal" data-target="#modal-add-memo"> Edit </a></li>
                                                 <li>
-                                                    <%= link_to "Reopen", "memo/reopen?id=#{c.id}", :class =>  "btn-memo-reopen"  %>
+                                                    <%= link_to "Reopen", "memo/reopen?id=#{c.id}", :class =>  "btn-memo-reopen", remote: true  %>
                                                 <!-- <a href="#" class="btn-memo-reopen"> Re-Open </a> -->
 
                                                 </li>
@@ -194,12 +198,11 @@
                                         </div>  
 
                                             <div class="btn-group">
-                                                <%= link_to "Gotowe", "memo/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done g-ripple-effect", :id => "mark_ready" %>
+                                                <%= link_to "Gotowe", "memo/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done g-ripple-effect", :id => "mark_ready", remote: true %>
                                             </div>
                                         </td>
                                 	</tr>
                					<% end %>                   
-             
                             </tbody>
                         </table>
                     </div>

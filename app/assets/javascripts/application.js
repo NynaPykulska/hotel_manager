@@ -69,6 +69,7 @@ var room_order = 0;
             });
 
             $('#mark_ready').click(function(e){
+            		console.log("xaxax");
 						    $(this).closest("tr").css("color","#FF0000");
 						});
 
