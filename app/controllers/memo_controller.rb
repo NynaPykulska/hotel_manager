@@ -11,10 +11,11 @@ class MemoController < ApplicationController
           puts "is blank, man"
           # date = DateTime.new(2017,01,10).to_date
           if @stored_date.blank?
-            @date = Date.current();
+            date = Date.current();
             puts @date
           else 
-            @date = get_date
+            date = get_date
+            puts "xaxa"
           end
         else
           # date = DateTime.strptime(params[:date_of_tour], "%Y-%m-%d")
@@ -42,12 +43,14 @@ class MemoController < ApplicationController
        @memo = Memo.find(params[:id])
        @memo.update_attribute(:is_done, true)
        @memo.update_attribute(:completion_date, Date.today)
+       render :nothing => true
        # redirect_to :action => 'list'
     end
 
     def reopen
       @memo = Memo.find(params[:id])
       @memo.update_attribute(:is_done, false)
+      render :nothing => true
       # redirect_to :action => 'list'
     end
 
