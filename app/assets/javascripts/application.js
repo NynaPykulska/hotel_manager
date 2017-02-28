@@ -82,7 +82,6 @@ var room_order = 0;
                 old_number = parseInt(document.getElementById('open-number').innerHTML);
                 old_number--;
                 $('#open-number').text(old_number);
-                $(this).closest('tr').find('.ready-button').hide();
                 $(this).closest('tr').find('.is-complete-icon-ok').show();
                 $(this).closest('tr').find('.is-complete-icon-circle').hide();
             }
@@ -102,7 +101,6 @@ var room_order = 0;
                     old_number = parseInt(document.getElementById('open-number').innerHTML);
                     old_number++;
                     $('#open-number').text(old_number);
-                    $(this).closest('tr').find('.ready-button').show();
                     $(this).closest('tr').find('.is-complete-icon-ok').hide();
                     $(this).closest('tr').find('.is-complete-icon-circle').show();
                 }

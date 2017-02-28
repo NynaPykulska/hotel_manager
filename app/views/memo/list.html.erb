@@ -197,7 +197,7 @@
                                             });
                                         </script> 
 
-                                            <div class="btn-group ready-button" style="<%= c.is_done ? 'display: none;' : '' =%>" >
+                                            <div class="btn-group ready-button">
                                                 <%= link_to "Gotowe", "memo/mark_ready?id=#{c.id}", :class => "mark_ready btn btn-link btn-memo-done g-ripple-effect", remote: true %>
                                             </div>
                                         </td>

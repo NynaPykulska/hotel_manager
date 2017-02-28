@@ -7,25 +7,16 @@ class MemoController < ApplicationController
 
    	def list
 
+        @stored_date = nil
+
         if params[:date].blank?
-          puts "is blank, man"
-          # date = DateTime.new(2017,01,10).to_date
-          if @stored_date.blank?
-            date = Date.current();
-            puts @date
-          else 
-            date = get_date
-            puts "xaxa"
-          end
+          @date = Date.current();
+
         else
-          # date = DateTime.strptime(params[:date_of_tour], "%Y-%m-%d")
-          puts "is not empty, yo"
-          puts params[:date]
-          date = Date.strptime(params[:date], "%Y-%m-%d")
-          puts date
+          @date = Date.strptime(params[:date], "%Y-%m-%d")
         end
-        
-        @memos = Memo.where('deadline BETWEEN ? AND ?', date.beginning_of_day, date.end_of_day).all
+        @stored_date = @date
+        @memos = Memo.where('deadline BETWEEN ? AND ?', @date.beginning_of_day, @date.end_of_day).all
 
         @done = 0
         @not_done = 0
@@ -35,10 +26,6 @@ class MemoController < ApplicationController
         end
 
    	end
-
-    def get_date
-      @date = @stored_date  
-    end
 
     def mark_ready
        @memo = Memo.find(params[:id])
@@ -84,7 +71,7 @@ class MemoController < ApplicationController
        @rooms = Room.all
        render :action => 'new'
     end
-
+    redirect_to :back
   end
    
 	def memo_params
@@ -113,7 +100,7 @@ class MemoController < ApplicationController
    
  	def delete
  		Memo.find(params[:id]).destroy
- 		redirect_to :action => 'list'
+ 		redirect_to :back
  	end
 
  	def show_rooms
