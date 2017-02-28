@@ -192,14 +192,22 @@
                                             </ul>
                                         </div> 
                                         <script>
-                                            $(document).on('click', ' .dropdown-menu', function (e) {
+                                            $(document).on('click', '.dropdown-menu', function (e) {
                                                 e.stopPropagation();
                                             });
                                         </script> 
 
                                             <div class="btn-group ready-button">
-                                                <%= link_to "Gotowe", "memo/mark_ready?id=#{c.id}", :class => "mark_ready btn btn-link btn-memo-done g-ripple-effect", remote: true %>
+                                                <%= link_to "Gotowe", "memo/mark_ready?id=#{c.id}", :class => "mark_ready btn btn-link btn-memo-done g-ripple-effect", remote: true, :disabled => c.is_done %>
                                             </div>
+
+                                            <script type="text/javascript">
+                                                $(document).ready(function() {
+                                                    $('a[disabled=disabled]').click(function(event){
+                                                        event.preventDefault(); // Prevent link from following its href
+                                                    });
+                                                });
+                                            </script>
                                         </td>
                                 	</tr>
                					<% end %>                   

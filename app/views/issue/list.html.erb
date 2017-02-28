@@ -244,10 +244,12 @@
                             <p>Create new issue</p>
                         !-->
                         <%= bootstrap_form_for :issue, :url => url_for(:controller => 'issue', :action => 'create') do |f| %>
-                          <%= f.date_select :requested_fix_date %>
-                          <%= f.text_field :fix_comment %>
+                          <%= f.collection_select :issue_type, IssueType.all, :id, :issue_description, label: "Rodzaj Usterki" %>
+                          <%= f.date_select :requested_fix_date, label: "Data naprawy" %>
+                          <%= f.text_field :fix_comment, label: "Komentarz" %>
                           <%= f.hidden_field :timestamp, :value => Date.today %>
                           <%= f.hidden_field :completion_date, :value => nil %>
+                          <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Pokój" %>
                           <%= f.submit "Utwórz" %>
                         <% end %>
 
