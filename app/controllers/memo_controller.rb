@@ -22,9 +22,10 @@ class MemoController < ApplicationController
           puts "is not empty, yo"
           puts params[:date]
           date = Date.strptime(params[:date], "%Y-%m-%d")
+          puts date
         end
-
-        @memos = Memo.where(:deadline => date)
+        
+        @memos = Memo.where('deadline BETWEEN ? AND ?', date.beginning_of_day, date.end_of_day).all
 
         @done = 0
         @not_done = 0
