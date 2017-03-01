@@ -71,7 +71,7 @@ class MemoController < ApplicationController
        @rooms = Room.all
        render :action => 'new'
     end
-    redirect_to :back
+    # redirect_to :back
   end
    
 	def memo_params

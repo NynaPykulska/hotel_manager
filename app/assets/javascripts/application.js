@@ -84,6 +84,8 @@ var room_order = 0;
                 $('#open-number').text(old_number);
                 $(this).closest('tr').find('.is-complete-icon-ok').show();
                 $(this).closest('tr').find('.is-complete-icon-circle').hide();
+                console.log($(this).closest('tr').find('.btn-memo-done'));
+                $(this).closest('tr').find('.ready-button').hide();
             }
             });
 
@@ -103,6 +105,7 @@ var room_order = 0;
                     $('#open-number').text(old_number);
                     $(this).closest('tr').find('.is-complete-icon-ok').hide();
                     $(this).closest('tr').find('.is-complete-icon-circle').show();
+                    $(this).closest('tr').find('.ready-button').show();
                 }
             });
 });
