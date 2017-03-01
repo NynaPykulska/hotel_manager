@@ -5,9 +5,11 @@ class MemoController < ApplicationController
 
    include MemoHelper
 
+    @stored_date = nil         
+
    	def list
 
-        @stored_date = nil
+
 
         if params[:date].blank?
           @date = Date.current();

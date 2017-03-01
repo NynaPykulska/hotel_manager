@@ -50,7 +50,7 @@
                         <div id="memo-calendar" class="btn-group" style="max-width: 140px;">
                             <div class="input-group date" data-provide='datepicker'>
                             <%= form_for :memo, :url => url_for(:action => 'list'), :html=> {:id => 'date-form'}  do |f| %>
-                                    <%= f.text_field :date, class: 'form-control' %>
+                                <%= f.text_field :date, class: 'form-control' , :value => @stored_date %>
                             <% end %>
                             
                                 <span class="input-group-addon">
@@ -63,7 +63,8 @@
                                 format: 'yyyy-mm-dd',
                                 language: "pl",
                                 autoclose: true,
-                                todayHighlight: true
+                                todayHighlight: true,
+                                todayBtn: "linked"
                             }).on('changeDate', function (a) {
                                 // var form = document.getElementById("date-form");
                                 // form.submit();
