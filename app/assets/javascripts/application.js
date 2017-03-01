@@ -105,4 +105,25 @@ var room_order = 0;
                     $(this).closest('tr').find('.is-complete-icon-circle').show();
                 }
             });
+
+            $("#recurring_check_box").change(function() {
+                if(this.checked)
+                {
+                    $("#new_memo_date_field").hide()
+                    $("#new_memo_recurring_options").show()
+                }
+                else
+                {
+                    $("#new_memo_date_field").show()
+                    $("#new_memo_recurring_options").hide()
+                }
+            });
+
+            $("#memo_recurrence").change(function() {
+                if($(this).val() == 4){
+                    $("#new_memo_recurring_additional").show()
+                } else {
+                    $("#new_memo_recurring_additional").hide()
+                }
+            });
 });

@@ -61,21 +61,23 @@ class MemoController < ApplicationController
 
  	def create
     @room = Room.where("room_id = ?", memo_params[:room_id]).first
-    @date = DateTime.new(params[:memo]["completion_date(1i)"].to_i, params[:memo]["completion_date(2i)"].to_i ,params[:memo]["completion_date(3i)"].to_i, params[:memo]["memo_time(4i)"].to_i, params[:memo]["memo_time(5i)"].to_i)
 
-    @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: @date, completion_date: memo_params[:completion_date], is_done: memo_params[:is_done], time_stamp: memo_params[:time_stamp] )
-  
-    if @memo.save
-       redirect_to controller: 'memo', action: 'list', group: 'all'
-    else
-       @rooms = Room.all
-       render :action => 'new'
+    if(memo_params[:is_recurring])
+      @date = DateTime.new(params[:memo]["completion_date(1i)"].to_i, params[:memo]["completion_date(2i)"].to_i ,params[:memo]["completion_date(3i)"].to_i, params[:memo]["memo_time(4i)"].to_i, params[:memo]["memo_time(5i)"].to_i)
+      @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: @date, completion_date: memo_params[:completion_date], is_done: memo_params[:is_done], time_stamp: memo_params[:time_stamp] )
+    
+      if @memo.save
+         redirect_to :back
+      else
+         @rooms = Room.all
+         render :action => 'new'
+      end
     end
-    redirect_to :back
+    
   end
    
 	def memo_params
-   		params.require(:memo).permit(:room_id, :description, :completion_date, :time_stamp, :is_done)
+   		params.require(:memo).permit(:room_id, :description, :completion_date, :time_stamp, :is_done, :is_recurring, :start_date, :end_date, :recurrence, :pattern)
 	end
 
  	def edit

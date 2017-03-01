@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170227210125) do
+ActiveRecord::Schema.define(version: 20170301164019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 20170227210125) do
     t.date     "completion_date"
     t.datetime "time_stamp"
     t.boolean  "is_done"
+    t.boolean  "is_recurring",    default: false
+    t.text     "event_id"
   end
 
   create_table "rooms", primary_key: "room_id", id: :integer, force: :cascade do |t|
