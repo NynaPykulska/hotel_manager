@@ -65,13 +65,11 @@ class MemoController < ApplicationController
     @room = Room.where("room_id = ?", memo_params[:room_id]).first
 
     if(memo_params[:is_recurring] == "0")
-      puts "Standard"
       @date = DateTime.new(params[:memo]["completion_date(1i)"].to_i, params[:memo]["completion_date(2i)"].to_i ,params[:memo]["completion_date(3i)"].to_i, params[:memo]["memo_time(4i)"].to_i, params[:memo]["memo_time(5i)"].to_i)
       @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: @date, completion_date: memo_params[:completion_date], is_done: memo_params[:is_done], time_stamp: memo_params[:time_stamp], is_recurring: false )
       redirect_to :back
 
     else
-      puts "Non-standard"
       start_date =  DateTime.new(params[:memo]["start_date(1i)"].to_i, params[:memo]["start_date(2i)"].to_i ,params[:memo]["start_date(3i)"].to_i, params[:memo]["memo_time(4i)"].to_i, params[:memo]["memo_time(5i)"].to_i)
       end_date =    DateTime.new(params[:memo]["end_date(1i)"].to_i, params[:memo]["end_date(2i)"].to_i ,params[:memo]["end_date(3i)"].to_i, params[:memo]["memo_time(4i)"].to_i, params[:memo]["memo_time(5i)"].to_i)
 
@@ -82,21 +80,18 @@ class MemoController < ApplicationController
 
       case memo_params[:recurrence]
       when "1"
-        puts "codziennie"
         (start_date.to_i .. end_date.to_i).step(1.day) do |f|
           puts Time.at(f)
           @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: Time.at(f), completion_date: memo_params[:completion_date], is_done: memo_params[:is_done], time_stamp: memo_params[:time_stamp], is_recurring: true, event_id: id )
         end
         redirect_to :back
       when "2"
-        puts "co tydzien"
         (start_date.to_i .. end_date.to_i).step(7.day) do |f|
           puts Time.at(f)
           @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: Time.at(f), completion_date: memo_params[:completion_date], is_done: memo_params[:is_done], time_stamp: memo_params[:time_stamp], is_recurring: true, event_id: id )
         end
         redirect_to :back
       when "3"
-        puts "co miesiac"
         requested_day = start_date.day
         start_date = start_date.change(day: 1)
         max_days = 0
@@ -111,7 +106,24 @@ class MemoController < ApplicationController
         end       
         redirect_to :back
       when "4"
-        puts "custom"
+        pattern = memo_params[:pattern].delete(' ').split(",").map(&:to_i)
+        
+        start_date = start_date.change(day: 1)
+        max_days = 0
+
+        while start_date < end_date
+          max_days = Time.days_in_month(start_date.month, start_date.year)
+          pattern.each do |day|
+            if(day <= max_days)
+              @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: start_date.change(day: day), completion_date: memo_params[:completion_date], is_done: memo_params[:is_done], time_stamp: memo_params[:time_stamp], is_recurring: true, event_id: id )
+            else
+              @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: start_date.change(day: max_days), completion_date: memo_params[:completion_date], is_done: memo_params[:is_done], time_stamp: memo_params[:time_stamp], is_recurring: true, event_id: id )
+            end
+          end
+          start_date = start_date + 1.month
+        end
+
+        redirect_to :back
       end
     end
   end
