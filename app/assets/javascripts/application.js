@@ -106,6 +106,7 @@ var room_order = 0;
                     $(this).closest('tr').find('.is-complete-icon-ok').hide();
                     $(this).closest('tr').find('.is-complete-icon-circle').show();
                     $(this).closest('tr').find('.ready-button').show();
+                    // $(this).closest('div').find('.dropdown-menu').hide();
                 }
             });
 

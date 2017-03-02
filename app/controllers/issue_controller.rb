@@ -29,7 +29,7 @@ class IssueController < ApplicationController
 	end
 
 	def issue_params
-			params.require(:issue).permit(:room_id, :issue_type_id, :requested_fix_date, :fix_comment, :timestamp, :completion_date)
+		params.require(:issue).permit(:room_id, :issue_type_id, :requested_fix_date, :fix_comment, :timestamp, :completion_date)
 	end
 
 	def init_items_size_list

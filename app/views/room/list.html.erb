@@ -63,26 +63,7 @@
                                 </ul>
                             </div>
                         </div>
-                        -->
-
-                        <!-- datepicker -->
-                        <div id="memo-calendar" class="btn-group" style="max-width: 140px">
-                            <div class="input-group date" data-provide='datepicker'>
-                                <input type="text" class="form-control">
-                                <span class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </span>
-                            </div>
-                        </div>   
-                        <script>
-                            $('#memo-calendar .input-group.date').datepicker({
-                                format: 'dd/mm/yyyy',
-                                language: "pl",
-                                autoclose: true,
-                                todayHighlight: true
-                            });
-                        </script>
-                        <!-- datepisker -->           
+                        -->         
 
                         <div class="btn-group">
                             <a href="#" class="btn btn-primary g-ripple-effect" data-toggle="modal" data-target="#modal-create-room">Utwórz Pokój</a>                 
@@ -178,8 +159,8 @@
                                         </td>
 
                                         <td class="g-vertical-middle text-right">   
-                                            <a href="#" class="btn btn-link" data-toggle="modal" data-target="#modal-create-issue">Edytuj</a>
-                                            <a href="#" class="btn btn-link" data-toggle="modal" data-target="#modal-report-issue g-ripple-effect">Zgłoś usterkę</a>
+                                            <a class="btn btn-link" data-toggle="modal" data-target="#modal-create-issue">Edytuj</a>
+                                            <a class="btn btn-link" data-toggle="modal" data-target="#modal-report-issue g-ripple-effect">Zgłoś usterkę</a>
                                         </td>
                                     </tr>
                                 <% end %>                   
@@ -200,16 +181,38 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Utwórz Memo</h4>
+                        <h4 class="modal-title">Dodaj pokój</h4>
                     </div>
 
                     <div class="modal-body">
                         <!--
                             <p>Create new room</p>
                         !-->
-                        <%= bootstrap_form_for :memo, :url => url_for(:controller => 'room', :action => 'create') do |f| %>
-                          <%= f.number_field :room_id %>
-                          <%= f.text_field :description %>
+
+                    </div>
+
+                    <div class="modal-footer">
+                       
+                    </div>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <!-- Modal Window -->
+        <div id="modal-create-room" class="modal fade modal-create-room" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Zgłoś usterkę</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <%= bootstrap_form_for :new_issue, :url => url_for(:controller => 'room', :action => 'report_issue') do |f| %>
+                          <%= f.collection_select :id, IssueType.all, :issue_description, :room_id, label: "Rodzaj Usterki" %>
+
                           <%= f.submit "Utwórz" %>
                         <% end %>
 

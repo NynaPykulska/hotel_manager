@@ -8,9 +8,6 @@ class MemoController < ApplicationController
     @stored_date = nil         
 
    	def list
-
-
-
         if params[:date].blank?
           @date = Date.current();
 
@@ -26,7 +23,6 @@ class MemoController < ApplicationController
         @memos.each do |m|
           m.is_done ? @done+=1 : @not_done+=1
         end
-
    	end
 
     def mark_ready

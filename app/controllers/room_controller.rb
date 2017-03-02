@@ -33,4 +33,8 @@ class RoomController < ApplicationController
     #                             0                           1                                       2
 	end		
 
+  def report_issue
+        
+  end
+
 end
