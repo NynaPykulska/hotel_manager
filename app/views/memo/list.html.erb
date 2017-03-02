@@ -24,7 +24,7 @@
             <% end %> 
             <% if current_user && (current_user.maitenance? || current_user.admin?) %>
                 <div class="g-aside-menu-position"> 
-                    <%= link_to image_tag("left-menu/issues.png"), "/issues/list/all", :class =>  "g-aside-icon g-ripple-effect"%>
+                    <%= link_to image_tag("left-menu/issues.png"), "/issues/list", :class =>  "g-aside-icon g-ripple-effect"%>
                     <span class="btn btn-link">Usterki</span>                
                 </div>
             <% end %>        
@@ -52,10 +52,9 @@
                             <%= form_for :memo, :url => url_for(:action => 'list'), :html=> {:id => 'date-form'}  do |f| %>
                                 <%= f.text_field :date, class: 'form-control' , :value => @stored_date %>
                             <% end %>
-                            
-                                <span class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </span>
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
                             </div>
                         </div>  
                         <script>
@@ -104,9 +103,9 @@
                 <div class="col-md-12 g-tabs">
 
                     <ul class="nav nav-pills pull-left" role="tablist">
-                        <li> <a id="showall">Wszystkie <span class="badge g-badge-blue" id="all-number"><%= @done + @not_done -%></span></a></li>
-                        <li> <a id="showopen">Otwarte <span class="badge g-badge-red" id="open-number"><%= @not_done -%></span></a></li>
-                        <li> <a id="showready">Gotowe <span class="badge g-badge-green" id="ready-number"><%= @done -%></span></a></li>
+                        <li> <a class="showall">Wszystkie <span class="badge g-badge-blue" id="all-number"><%= @done + @not_done -%></span></a></li>
+                        <li> <a class="showopen">Otwarte <span class="badge g-badge-red" id="open-number"><%= @not_done -%></span></a></li>
+                        <li> <a class="showready">Gotowe <span class="badge g-badge-green" id="ready-number"><%= @done -%></span></a></li>
                     </ul>  
 
                     <!-- Sortowanie --> 

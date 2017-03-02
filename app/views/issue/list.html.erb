@@ -20,16 +20,13 @@
             <% end %>
             <% if current_user.maid? || current_user.admin? %>
                 <div class="g-aside-menu-position">
-                    <%= link_to image_tag("left-menu/rooms.png"), "/roomStatus/list/all", :class =>  "g-aside-icon g-ripple-effect"%>
+                    <%= link_to image_tag("left-menu/rooms.png"), "/roomStatus/list", :class =>  "g-aside-icon g-ripple-effect"%>
                     <span class="btn btn-link">Status Pokojów</span>                
                 </div>
             <% end %>
             <% if current_user.maitenance? || current_user.admin? %>
                 <div class="g-aside-menu-position g-aside-menu-position-active"> 
-                    <%= link_to image_tag("left-menu/issues.png"), "/issues/list/all", :class =>  "g-aside-icon g-ripple-effect"%>
-                    <span class="badge g-badge-red g-badge-on-icon">
-                        <%= params[:group] == 'open' ? 'active' : '' %><%= @items_size_list[1] -%>
-                    </span>                
+                    <%= link_to image_tag("left-menu/issues.png"), "/issues/list", :class =>  "g-aside-icon g-ripple-effect"%>               
                     <span class="btn btn-link">Usterki</span>                
                 </div>
             <% end %> 
@@ -50,25 +47,6 @@
                     </div>
 
                     <div class="pull-right ">      
-
-                        <!-- datepicker -->
-                        <div id="memo-calendar" class="btn-group" style="max-width: 140px">
-                            <div class="input-group date" data-provide='datepicker'>
-                                <input type="text" class="form-control">
-                                <span class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </span>
-                            </div>
-                        </div>   
-                        <script>
-                            $('#memo-calendar .input-group.date').datepicker({
-                                format: 'dd/mm/yyyy',
-                                language: "pl",
-                                autoclose: true,
-                                todayHighlight: true
-                            });
-                        </script>
-                        <!-- datepicker -->
 
                         <!-- Primary Action Button -->
                         <div class="btn-group">
@@ -100,9 +78,9 @@
         		<div class="col-md-12 g-tabs">
 
                     <ul class="nav nav-pills pull-left" role="tablist">
-                        <li class= <%= params[:group] == 'all' ? 'active' : '' %> ><a href="/issues/list/all">Wszystkie <span class="badge g-badge-blue"><%= @items_size_list[0] -%></span></a></li>
-                        <li class= <%= params[:group] == 'open' ? 'active' : '' %>><a href="/issues/list/open">Otwarte <span class="badge g-badge-red"><%= @items_size_list[1] -%></span></a></li>
-                        <li class= <%= params[:group] == 'ready' ? 'active' : '' %>><a href="/issues/list/ready">Gotowe <span class="badge g-badge-green"><%= @items_size_list[2] -%></span></a></li>
+                        <li> <a class="showall">Wszystkie <span class="badge g-badge-blue" id="all-number"><%= @done + @not_done -%></span></a></li>
+                        <li> <a class="showopen">Otwarte <span class="badge g-badge-red" id="open-number"><%= @not_done -%></span></a></li>
+                        <li> <a class="showready">Gotowe <span class="badge g-badge-green" id="ready-number"><%= @done -%></span></a></li>
                     </ul>  
 
                     <div class="pull-right">
@@ -127,24 +105,6 @@
             <!-- Application Content -->
             <div class="g-application-content">    
 
-                <!-- TODO: SPACERS? 
-
-                Zamiast tego bedzie TR (chyba)
-
-                <div class="row">
-                    <div class="col-md-12">
-
-                        <div class="g-spacer">
-                            <div class="g-spacer-label-container">
-                                <label>Submited Today</label>
-                            </div>
-                            <hr class="g-spacer-hr-light">
-                            <hr class="g-spacer-hr-dark">
-                        </div>
-
-                    </div>
-                </div>
-                -->
 
                 <!-- Card Row -->
                 <div class="row">
@@ -168,26 +128,26 @@
                                     </tr>
 
                                 <% @issues.each do |c| %>
-                                    <tr class="g-table-card-header">
+                                    <tr class="<%= c.is_done ? 'g-table-card-header tr-done' : 'g-table-card-header tr-not_done' =%>" >
                                         <td class="text-center g-table-card-icon-td">
                                             <%= image_tag IssueType.where("id = ?", c.issue_type_id).first.icon.url, :class => "g-issue-icon"%>
                                         </td>
                                         
-                                        <td>
+                                        <td class="strike-out">
                                             <label>Nazwa</label>
                                             <h4> <%= IssueType.where("id = ?", c.issue_type_id).first.issue_description %> </h4>
                                         </td>
-                                        <td>
+                                        <td class="strike-out">
                                             <label>Pokój</label>
                                             <h4> <%= c.room_id %> </h4>
                                         </td>
 
-                                        <td>
+                                        <td class="strike-out">
                                             <label>Czas&nbsp;zgłoszenia</label>
                                             <h4> <%= c.timestamp %> </h4>
                                         </td>
 
-                                        <td class="hidden-sm">
+                                        <td class="hidden-sm strike-out">
                                             <label>Priorytet</label>
                                             <h4>
                                             <% if c.priority == 'High' %>
@@ -202,25 +162,48 @@
                                             </h4>
                                         </td>
 
-                                        <td class="hidden-sm">
+                                        <td class="hidden-sm strike-out" >
                                             <label>Komentarz</label>
                                             <h4> <%= c.fix_comment %> </h4>
                                         </td>  
 
                                         <td class="text-right">  
-                                            <!-- <img class="g-issue-icon g-issue-done" src="assets/img/good/Ok-64.png">           -->
-                                            <% if !c.completion_date.blank? %>
-                                                <%= image_tag "Ok.png", :class => "g-issue-icon"%>   
-                                            <% else  %>
-                                                <%= image_tag "Circle.png", :class => "g-issue-icon"%> 
-                                            <% end  %>
-                                            <a href="#" class="btn btn-link g-ripple-effect">Done</a>
+                                            <%= image_tag "Ok.png", :class => "g-issue-icon is-complete-icon-ok", :style => c.is_done ? '' : 'display: none;'%>   
+                                            <%= image_tag "Circle.png", :class => "g-issue-icon is-complete-icon-circle", :style => c.is_done ? 'display: none;' : ''%>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-link btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fa fa-ellipsis-h"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a data-toggle="modal" data-target="#modal-add-memo"> Edytuj </a></li>
+                                                    <li>
+                                                        <%= link_to "Otwórz", "memo/reopen?id=#{c.id}", :class =>  "btn-memo-reopen reopen", remote: true  %>
+                                                    <!-- <a href="#" class="btn-memo-reopen"> Re-Open </a> -->
+                                                    </li>
+                                                    <li>
+                                                        <%= link_to "Usuń", "memo/delete?id=#{c.id}", :class =>  "btn-issues-remove"  %>
+                                                    </li>                                                                             
+                                                    <li role="separator" class="divider"></li>
+                                                    <li><a>Anuluj</a></li>
+                                                </ul>
+                                            </div> 
+                                            <script>
+                                                $(document).on('click', '.dropdown-menu', function (e) {
+                                                    e.stopPropagation();
+                                                });
+                                            </script>
+                                            <%= link_to "Gotowe", "issue/mark_ready?id=#{c.id}", :class => "mark_ready btn btn-link btn-memo-done g-ripple-effect", remote: true, :disabled => c.is_done %>
+                                            <script type="text/javascript">
+                                                $(document).ready(function() {
+                                                    $('a[disabled=disabled]').click(function(event){
+                                                        event.preventDefault(); // Prevent link from following its href
+                                                    });
+                                                });
+                                            </script>
+
                                         </td>
                                     </tr> 
-
-
-                                <% end %>                   
-             
+                                <% end %>                          
                             </tbody>
                         </table>
 
@@ -250,6 +233,7 @@
                           <%= f.hidden_field :timestamp, :value => Date.today %>
                           <%= f.hidden_field :completion_date, :value => nil %>
                           <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Pokój" %>
+                          <%= f.select :priority, options_for_select([['Niski' ,1], ['Średni', 2], ['Wysoki', 3]])%>
                           <%= f.submit "Utwórz" %>
                         <% end %>
 

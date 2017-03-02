@@ -3,29 +3,26 @@ class MemoController < ApplicationController
     protect_from_forgery with: :null_session
     before_filter :authenticate_user!
 
-   include MemoHelper
-
-    @stored_date = nil         
+   include MemoHelper       
+   @stored_date = nil
 
    	def list
 
+      if params[:date].blank?
+        @date = Date.current();
 
+      else
+        @date = Date.strptime(params[:date], "%Y-%m-%d")
+      end
+      @memos = Memo.where('deadline BETWEEN ? AND ?', @date.beginning_of_day, @date.end_of_day).all
 
-        if params[:date].blank?
-          @date = Date.current();
+      @stored_date = @date
+      @done = 0
+      @not_done = 0
 
-        else
-          @date = Date.strptime(params[:date], "%Y-%m-%d")
-        end
-        @stored_date = @date
-        @memos = Memo.where('deadline BETWEEN ? AND ?', @date.beginning_of_day, @date.end_of_day).all
-
-        @done = 0
-        @not_done = 0
-
-        @memos.each do |m|
-          m.is_done ? @done+=1 : @not_done+=1
-        end
+      @memos.each do |m|
+        m.is_done ? @done+=1 : @not_done+=1
+      end
 
    	end
 
@@ -40,6 +37,7 @@ class MemoController < ApplicationController
     def reopen
       @memo = Memo.find(params[:id])
       @memo.update_attribute(:is_done, false)
+      @memo.update_attribute(:completion_date, nil)
       render :nothing => true
       # redirect_to :action => 'list'
     end
