@@ -19,7 +19,7 @@
 var room_order = 0;
         var date_order = 0;
 
-        $(document).ready(function() {
+        $(document).on('turbolinks:load',function() {
 
             $('#my-link').click(function (event) {
                 $('div.g-aside-menu-position-active').removeClass('g-aside-menu-position-active');
@@ -49,23 +49,21 @@ var room_order = 0;
                 });
             });
 
-            $('#showall').click(function(e){        
+            $('.showall').click(function(e){        
                  $('.tr-done').show();
                  $('.tr-not_done').show();
-                 e.stopPropagation();
 
             });
 
-            $('#showopen').click(function(e){        
+            $('.showopen').click(function(e){        
                  $('.tr-done').hide();
                  $('.tr-not_done').show();
-                 e.stopPropagation();
             });
 
-            $('#showready').click(function(e){        
+            $('.showready').click(function(e){        
+                 console.log("eeeee")
                  $('.tr-done').show();
                  $('.tr-not_done').hide();
-                 e.stopPropagation();
             });
 
             $('.mark_ready').click(function(e){
@@ -84,8 +82,7 @@ var room_order = 0;
                 $('#open-number').text(old_number);
                 $(this).closest('tr').find('.is-complete-icon-ok').show();
                 $(this).closest('tr').find('.is-complete-icon-circle').hide();
-                console.log($(this).closest('tr').find('.btn-memo-done'));
-                $(this).closest('tr').find('.ready-button').hide();
+                // $(this).closest('tr').find('.ready-button').hide();
             }
             });
 
@@ -105,7 +102,7 @@ var room_order = 0;
                     $('#open-number').text(old_number);
                     $(this).closest('tr').find('.is-complete-icon-ok').hide();
                     $(this).closest('tr').find('.is-complete-icon-circle').show();
-                    $(this).closest('tr').find('.ready-button').show();
+                    // $(this).closest('tr').find('.ready-button').show();
                     // $(this).closest('div').find('.dropdown-menu').hide();
                 }
             });
