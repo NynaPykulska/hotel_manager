@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20170301164019) do
     t.datetime "time_stamp"
     t.boolean  "is_done"
     t.boolean  "is_recurring",    default: false
-    t.text     "event_id"
+    t.bigint   "event_id"
   end
 
   create_table "rooms", primary_key: "room_id", id: :integer, force: :cascade do |t|

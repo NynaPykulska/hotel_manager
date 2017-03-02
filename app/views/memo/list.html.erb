@@ -155,7 +155,11 @@
                                         
                                         <td class="g-vertical-middle strike-out">
                                             <label>Memo</label>
-                                            <h4><%= c.description -%></h4>
+                                            <h4><%= c.description -%>
+                                            <% if c.is_recurring == true %>
+                                                <%= image_tag "recurrence.png", :class => "g-issue-icon is-complete-icon-ok"%>
+                                            <% end %>
+                                            </h4>
                                         </td>
 
                                         <td class="g-vertical-top strike-out">
@@ -171,7 +175,7 @@
                                         <td class="hidden-sm g-vertical-top strike-out">
                                             <label>Godzina</label>
                                             <h4><%= c.deadline.strftime("%H:%M") -%></h4>
-                                        </td>   
+                                        </td>     
 
                                         <td class="text-right g-vertical-middle g-stay-in-one-line">  
 
@@ -180,16 +184,22 @@
                                                 <i class="fa fa-ellipsis-h"></i>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a data-toggle="modal" data-target="#modal-add-memo"> Edit </a></li>
+                                                <li><a data-toggle="modal" data-target="#modal-add-memo"> Edytuj </a></li>
                                                 <li>
-                                                    <%= link_to "Reopen", "memo/reopen?id=#{c.id}", :class =>  "btn-memo-reopen reopen", remote: true  %>
+                                                    <%= link_to "Otwórz", "memo/reopen?id=#{c.id}", :class =>  "btn-memo-reopen reopen", remote: true  %>
                                                 <!-- <a href="#" class="btn-memo-reopen"> Re-Open </a> -->
                                                 </li>
                                                 <li>
-                                                    <%= link_to "Delete", "memo/delete?id=#{c.id}", :class =>  "btn-issues-remove"  %>
-                                                </li>                                    
+                                                    <%= link_to "Usuń", "memo/delete?id=#{c.id}", :class =>  "btn-issues-remove"  %>
+                                                </li>
+                                                <% if c.is_recurring == true %>  
+                                                <li>
+                                                    <%= link_to "Usuń serię", "memo/delete_recurrence?event_id=#{c.event_id}", :class =>  "btn-issues-remove"  %>
+                                                </li>    
+                                                <% end %>
+                                                                             
                                                 <li role="separator" class="divider"></li>
-                                                <li><a>Cancel</a></li>
+                                                <li><a>Anuluj</a></li>
                                             </ul>
                                         </div> 
                                         <script>
