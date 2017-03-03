@@ -179,11 +179,11 @@
                                                 <ul class="dropdown-menu">
                                                     <li><a data-toggle="modal" data-target="#modal-add-memo"> Edytuj </a></li>
                                                     <li>
-                                                        <%= link_to "Otwórz", "memo/reopen?id=#{c.id}", :class =>  "btn-memo-reopen reopen", remote: true  %>
+                                                        <%= link_to "Otwórz", "issue/reopen?id=#{c.id}", :class =>  "btn-memo-reopen reopen", remote: true  %>
                                                     <!-- <a href="#" class="btn-memo-reopen"> Re-Open </a> -->
                                                     </li>
                                                     <li>
-                                                        <%= link_to "Usuń", "memo/delete?id=#{c.id}", :class =>  "btn-issues-remove"  %>
+                                                        <%= link_to "Usuń", "issue/delete?id=#{c.id}", :class =>  "btn-issues-remove"  %>
                                                     </li>                                                                             
                                                     <li role="separator" class="divider"></li>
                                                     <li><a>Anuluj</a></li>

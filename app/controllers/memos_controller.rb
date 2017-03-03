@@ -1,4 +1,4 @@
-class MemoController < ApplicationController
+class MemosController < ApplicationController
    	
     protect_from_forgery with: :null_session
     before_filter :authenticate_user!
@@ -131,20 +131,14 @@ class MemoController < ApplicationController
 	end
 
  	def edit
- 		@book = Memo.find(params[:id])
- 		@rooms = Room.all
- 	end
+    @c = Memo.find(params[:id])
+  end
    
  	def update
- 		@book = Memo.find(params[:id])
-
-   	if @memo.update_attributes(memo_param)
-      redirect_to :action => 'show', :id => @memo
-   	else
-      @rooms = Room.all
-      render :action => 'edit'
-   end
- 	end
+    @memo = Memo.find(params[:id])
+    @memo.update_attributes(memo_params)
+    redirect_to :back
+  end
 
  	def memo_param
  		params.require(:memo).permit(:room_no, :description, :completion_date)

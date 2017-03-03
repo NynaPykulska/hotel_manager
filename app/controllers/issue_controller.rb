@@ -53,4 +53,9 @@ class IssueController < ApplicationController
 		redirect_to :back
 	end
 
+	def delete
+ 		Issue.find(params[:id]).destroy
+ 		redirect_to :back
+ 	end
+
 end
