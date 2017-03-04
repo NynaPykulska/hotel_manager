@@ -1,9 +1,11 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
+
       <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">Edytuj Memo</h4>
       </div>
+
       <div class="modal-body">
         <%= bootstrap_form_for @c, remote: true, html: { style: "display:inline;" } do |f| %>
           <%= f.text_field :description, label: "Opis" %>
@@ -11,13 +13,15 @@
           <%= f.date_select :deadline, label: "Data Wykonania"%>
           <%= f.time_select :deadline, :ignore_date => true %>
           <%= f.hidden_field :time_stamp, :value => Date.today %>
+      </div>
 
-          <div class="text-right">
-              <%= f.submit "Uaktualnij", :class => 'btn btn-primary' %>
-          </div>
-
-          
+      <div class="modal-footer">
+        <div class="text-right">
+            <a href="" data-dismiss="modal" class="btn btn-default">Anuluj</a>
+            <%= f.submit "Uaktualnij", :class => 'btn btn-primary' %>
+        </div>
         <% end %>
       </div>
+
     </div>
   </div>

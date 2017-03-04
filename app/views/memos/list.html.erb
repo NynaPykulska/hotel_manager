@@ -274,18 +274,15 @@
 
                             <%= f.hidden_field :time_stamp, :value => Date.today %>
                             <%= f.hidden_field :is_done, :value => false %>
-
-                            <div class="text-right">
-                                <%= f.submit "Utwórz", :class => 'btn btn-primary' %>
-                            </div>
-                        <% end %>
-
                     </div>
 
-                    <!--
                     <div class="modal-footer">
+                        <div class="text-right">
+                            <a href="" data-dismiss="modal" class="btn btn-default">Anuluj</a>
+                            <%= f.submit "Utwórz", :class => 'btn btn-primary' %>
+                        </div>
+                        <% end %>
                     </div>
-                    -->
 
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
