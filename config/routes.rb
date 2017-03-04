@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :issues
    
    post 'dayLog/list', to: 'memos#list'
-   get 'roomStatus/list/:group', to: 'room#list'
+   get 'roomStatus/list', to: 'room#list'
    get 'issueLog/list', to: 'issues#list'
    get 'dayLog/memos/mark_ready', to: 'memos#mark_ready'
    get 'issueLog/issue/mark_ready', to: 'issues#mark_ready'
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
    get 'dayLog/list', to: 'memos#list'
    get 'memos/new'
-   post 'memos/new'
+   post 'memos/new', to: 'memos#create'
    post 'memos/create'
    post 'room/create'
    post 'issues/create'

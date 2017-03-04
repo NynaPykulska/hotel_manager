@@ -15,9 +15,9 @@ class ApplicationController < ActionController::Base
     if resource.admin? or resource.receptionist?
       '/dayLog/list'
     elsif resource.maid?
-      '/roomStatus/list/all' 
+      '/roomStatus/list' 
     elsif resource.maitenance?
-      '/issues/list/all'
+      '/issueLog/list'
     end
   end
 

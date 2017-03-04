@@ -55,8 +55,7 @@ class MemosController < ApplicationController
    	end
    
    	def new
-   		@memo = Book.new
-   		@rooms = Room.all
+
    	end
 
  	def create
