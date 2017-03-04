@@ -1,1 +1,29 @@
-<%= render "form" %>
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Edytuj Usterkę</h4>
+    </div>
+    <div class="modal-body">
+      <%= bootstrap_form_for @c, remote: true, html: { style: "display:inline;" } do |f| %>
+        <%= f.collection_select :issue_type_id, IssueType.all, :id, :issue_description, label: "Rodzaj Usterki" %>
+        <%= f.date_select :requested_fix_date, label: "Data naprawy" %>
+        <%= f.text_field :fix_comment, label: "Komentarz" %>
+        <%= f.hidden_field :timestamp, :value => Date.today %>
+        <%= f.hidden_field :completion_date, :value => nil %>
+        <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Pokój" %>
+        <%= f.select :priority, options_for_select([['Niski' ,'Low'], ['Średni', 'Medium'], ['Wysoki', 'High']])%>
+        
+        <div class="modal-footer">
+          <div class="text-right">
+              <a href="" data-dismiss="modal" class="btn btn-default">Anuluj</a>
+                  <%= f.submit "Uaktualnij", :class => 'btn btn-primary' %>
+              </div>
+          <% end %>
+         </div>
+
+        
+      <% end %>
+    </div>
+  </div>
+</div>
