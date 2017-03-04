@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: redirect('/dayLog/list')
    
    post 'dayLog/list', to: 'memo#list'
-   get 'roomStatus/list/:group', to: 'room#list'
+   get 'roomStatus/list', to: 'room#list'
    get 'issues/list', to: 'issue#list'
    get 'dayLog/memo/mark_ready', to: 'memo#mark_ready'
    get 'issues/issue/mark_ready', to: 'issue#mark_ready'

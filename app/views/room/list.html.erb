@@ -210,11 +210,6 @@
                     </div>
 
                     <div class="modal-body">
-                        <%= bootstrap_form_for :new_issue, :url => url_for(:controller => 'room', :action => 'report_issue') do |f| %>
-                          <%= f.collection_select :id, IssueType.all, :issue_description, :room_id, label: "Rodzaj Usterki" %>
-
-                          <%= f.submit "Utwórz" %>
-                        <% end %>
 
                     </div>
 
