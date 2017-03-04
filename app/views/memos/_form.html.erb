@@ -8,7 +8,8 @@
         <%= bootstrap_form_for @c, remote: true, html: { style: "display:inline;" } do |f| %>
           <%= f.text_field :description, label: "Opis" %>
           <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Pokój" %>  
-          <%= f.date_select :completion_date, label: "Data Wykonania"%>
+          <%= f.date_select :deadline, label: "Data Wykonania"%>
+          <%= f.time_select :deadline, :ignore_date => true %>
           <%= f.hidden_field :time_stamp, :value => Date.today %>
 
           <div class="text-right">

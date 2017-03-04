@@ -127,7 +127,7 @@ class MemosController < ApplicationController
   end
    
 	def memo_params
-   		params.require(:memo).permit(:room_id, :description, :completion_date, :memo_time, :time_stamp, :is_done, :is_recurring, :start_date, :end_date, :recurrence, :pattern)
+   		params.require(:memo).permit(:room_id, :description, :completion_date, :deadline, :memo_time, :time_stamp, :is_done, :is_recurring, :start_date, :end_date, :recurrence, :pattern)
 	end
 
  	def edit
