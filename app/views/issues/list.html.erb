@@ -10,31 +10,6 @@
     </head>
 
     <body>
-
-        <% content_for :menu do %>
-            <% if current_user.receptionist? || current_user.admin?%>
-                <div class="g-aside-menu-position">
-                    <%= link_to image_tag("left-menu/day-log.png"), "/dayLog/list", :class => "g-aside-icon g-ripple-effect"%>
-                    <span class="btn btn-link">Dziennik</span>                
-                </div>
-            <% end %>
-            <% if current_user.maid? || current_user.admin? %>
-                <div class="g-aside-menu-position">
-                    <%= link_to image_tag("left-menu/rooms.png"), "/roomStatus/list/all", :class =>  "g-aside-icon g-ripple-effect"%>
-                    <span class="btn btn-link">Status Pokojów</span>                
-                </div>
-            <% end %>
-            <% if current_user.maitenance? || current_user.admin? %>
-                <div class="g-aside-menu-position g-aside-menu-position-active"> 
-                    <%= link_to image_tag("left-menu/issues.png"), "/issues/list", :class =>  "g-aside-icon g-ripple-effect"%>               
-                    <span class="btn btn-link">Usterki</span>                
-                </div>
-            <% end %> 
-            <div id="g-aside-expand" class="g-aside-menu-position g-ripple-effect">
-                <%= image_tag "left-menu/expand.png", :class =>  "g-aside-icon g-ripple-effect"%>
-            </div>            
-        <% end %>
-
         <!-- Fluid Container -->
         <div class="container-fluid g-aside-has-aside">
 
@@ -177,13 +152,13 @@
                                                     <i class="fa fa-ellipsis-h"></i>
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a data-toggle="modal" data-target="#modal-add-memo"> Edytuj </a></li>
+                                                    <li><%= link_to "Edytuj", edit_issue_path(c), remote: true %></li>
                                                     <li>
-                                                        <%= link_to "Otwórz", "memo/reopen?id=#{c.id}", :class =>  "btn-memo-reopen reopen", remote: true  %>
+                                                        <%= link_to "Otwórz", "issue/reopen?id=#{c.id}", :class =>  "btn-memo-reopen reopen", remote: true  %>
                                                     <!-- <a href="#" class="btn-memo-reopen"> Re-Open </a> -->
                                                     </li>
                                                     <li>
-                                                        <%= link_to "Usuń", "memo/delete?id=#{c.id}", :class =>  "btn-issues-remove"  %>
+                                                        <%= link_to "Usuń", "issue/delete?id=#{c.id}", :class =>  "btn-issues-remove"  %>
                                                     </li>                                                                             
                                                     <li role="separator" class="divider"></li>
                                                     <li><a>Anuluj</a></li>
@@ -215,26 +190,30 @@
                         <!--
                             <p>Create new issue</p>
                         !-->
-                        <%= bootstrap_form_for :issue, :url => url_for(:controller => 'issue', :action => 'create') do |f| %>
-                          <%= f.collection_select :issue_type, IssueType.all, :id, :issue_description, label: "Rodzaj Usterki" %>
-                          <%= f.date_select :requested_fix_date, label: "Data naprawy" %>
-                          <%= f.text_field :fix_comment, label: "Komentarz" %>
-                          <%= f.hidden_field :timestamp, :value => Date.today %>
-                          <%= f.hidden_field :completion_date, :value => nil %>
-                          <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Pokój" %>
-                          <%= f.select :priority, options_for_select([['Niski' ,1], ['Średni', 2], ['Wysoki', 3]])%>
-                          <%= f.submit "Utwórz" %>
-                        <% end %>
+                        <%= bootstrap_form_for :issue, :url => url_for(:controller => 'issues', :action => 'create') do |f| %>
+                            <%= f.collection_select :issue_type, IssueType.all, :id, :issue_description, label: "Rodzaj Usterki" %>
+                            <%= f.date_select :requested_fix_date, label: "Data naprawy" %>
+                            <%= f.text_field :fix_comment, label: "Komentarz" %>
+                            <%= f.hidden_field :timestamp, :value => Date.today %>
+                            <%= f.hidden_field :completion_date, :value => nil %>
+                            <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Pokój" %>
+                            <%= f.select :priority, options_for_select([['Niski' ,1], ['Średni', 2], ['Wysoki', 3]])%>
 
                     </div>
 
                     <div class="modal-footer">
-                       
+                        <div class="text-right">
+                            <a href="" data-dismiss="modal" class="btn btn-default">Anuluj</a>
+                            <%= f.submit "Utwórz", :class => 'btn btn-primary' %>
+                        </div>
+                        <% end %>
                     </div>
 
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+
+        <div id="issue-modal" class="modal fade" ></div>
     </body>
     
     <%= javascript_include_tag "ripple-effect.js" %>

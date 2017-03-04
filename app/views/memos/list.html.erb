@@ -8,31 +8,7 @@
     </head>
 
     <body>
-
-        <% content_for :menu do %>
-            <% if current_user && (current_user.receptionist? || current_user.admin?) %>
-                <div class="g-aside-menu-position g-aside-menu-position-active">
-                    <%= link_to image_tag("left-menu/day-log.png"), "/dayLog/list", :class => "g-aside-icon g-ripple-effect"%>
-                    <span class="btn btn-link">Dziennik</span>                
-                </div>
-            <% end %> 
-            <% if current_user && (current_user.maid? || current_user.admin?) %>
-                <div class="g-aside-menu-position">
-                    <%= link_to image_tag("left-menu/rooms.png"), "/roomStatus/list/all", :class =>  "g-aside-icon g-ripple-effect"%>
-                    <span class="btn btn-link">Status Pokojów</span>                
-                </div>
-            <% end %> 
-            <% if current_user && (current_user.maitenance? || current_user.admin?) %>
-                <div class="g-aside-menu-position"> 
-                    <%= link_to image_tag("left-menu/issues.png"), "/issues/list", :class =>  "g-aside-icon g-ripple-effect"%>
-                    <span class="btn btn-link">Usterki</span>                
-                </div>
-            <% end %>        
-                <div id="g-aside-expand" class="g-aside-menu-position g-ripple-effect">
-                    <%= image_tag "left-menu/expand.png", :class =>  "g-aside-icon g-ripple-effect"%>
-                </div>            
-        <% end %>  
-
+        <!-- Fluid Container -->
         <div class="container-fluid g-aside-has-aside">
 
             <!-- Header with main buttons -->
@@ -76,7 +52,7 @@
 
                         <!-- Primary Action Button -->
                         <div class="btn-group">
-                            <a href="#" class="btn btn-primary g-ripple-effect" data-toggle="modal" data-target="#modal-add-memo">Utwórz Memo</a>                 
+                            <%= link_to "Utwórz ", new_memo_path, remote: true, :class => "btn btn-primary g-ripple-effect" %>               
                         </div>
 
                         <!-- User Avatar / Profile -->
@@ -134,12 +110,7 @@
                         <table class="g-table-card g-table-issues tablesorter mysortable" id="memo_table">
                             <thead style="display: none">
                                 <tr>
-                                    <th>Icon</th>
-                                    <th>Desc</th>
-                                    <th>Room</th>
-                                    <th>Date</th>
-                                    <th>Hour</th>
-                                    <th>Done</th>
+                                    <th>Icon</th>  <th>Desc</th> <th>Room</th> <th>Date</th> <th>Hour</th> <th>Done</th>
                                 </tr>
                             </thead>
 
@@ -179,7 +150,7 @@
                                         <td class="text-right g-vertical-middle g-stay-in-one-line"> 
                                          
                                             <div class="btn-group ready-button">
-                                                <%= link_to "Gotowe", "memo/mark_ready?id=#{c.id}", :class => "mark_ready btn btn-link btn-memo-done g-ripple-effect", remote: true %>
+                                                <%= link_to "Gotowe", "memos/mark_ready?id=#{c.id}", :class => "mark_ready btn btn-link btn-memo-done g-ripple-effect", remote: true %>
                                             </div>
 
                                         <div class="btn-group">
@@ -188,18 +159,17 @@
                                             </button>
                                         
                                             <ul class="dropdown-menu">
-
-                                                <li><a data-toggle="modal" data-target="#modal-add-memo"> Edytuj </a></li>
+                                                <li><%= link_to "Edytuj", edit_memo_path(c), remote: true %></li>
                                                 <li>
-                                                    <%= link_to "Otwórz", "memo/reopen?id=#{c.id}", :class =>  "btn-memo-reopen reopen", remote: true  %>
+                                                    <%= link_to "Otwórz", "memos/reopen?id=#{c.id}", :class =>  "btn-memo-reopen reopen", remote: true  %>
                                                 <!-- <a href="#" class="btn-memo-reopen"> Re-Open </a> -->
                                                 </li>
                                                 <li>
-                                                    <%= link_to "Usuń", "memo/delete?id=#{c.id}", :class =>  "btn-issues-remove"  %>
+                                                    <%= link_to "Usuń", "memos/delete?id=#{c.id}", :class =>  "btn-issues-remove"  %>
                                                 </li>
                                                 <% if c.is_recurring == true %>  
                                                 <li>
-                                                    <%= link_to "Usuń serię", "memo/delete_recurrence?event_id=#{c.event_id}", :class =>  "btn-issues-remove"  %>
+                                                    <%= link_to "Usuń serię", "memos/delete_recurrence?event_id=#{c.event_id}", :class =>  "btn-issues-remove"  %>
                                                 </li>    
                                                 <% end %>
                                                                              
@@ -207,6 +177,18 @@
                                                 <li><a>Anuluj</a></li>
                                             </ul>
                                         </div> 
+                                        <script>
+                                            $(document).on('click', '.dropdown-menu', function (e) {
+                                                e.stopPropagation();
+                                            });
+                                        </script> 
+                                        <script type="text/javascript">
+                                            $(document).ready(function() {
+                                                $('a[disabled=disabled]').click(function(event){
+                                                    event.preventDefault(); // Prevent link from following its href
+                                                });
+                                            });
+                                        </script>
                                         </td>
                                 	</tr>
                					<% end %>                   
@@ -217,73 +199,9 @@
                 <!-- / Card Row -->
            </div>        
         </div>
-
-        <!-- Modal Window -->
-        <div id="modal-add-memo" class="modal fade modal-create-issue" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Utwórz Memo</h4>
-                    </div>
-
-                    <div class="modal-body">
-                        <!--
-                            <p>Create new issue</p>
-                        !-->
-                        <%= bootstrap_form_for :memo, :url => url_for(:controller => 'memo', :action => 'create') do |f| %>
-                            <%= f.text_field :description, label: "Opis" %>
-                            <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Pokój" %>
-
-                            <div class="row">
-                                <div class="form-group col-xs-5">
-                                    <%= f.time_select :memo_time, label: "Godzina" %>
-                                </div>
-                                <div class="form-group col-xs-7">
-                                    <%= f.form_group :is_recurring do %>
-                                        <%= f.check_box :is_recurring, label: "Powtarzanie", id: "recurring_check_box" %>
-                                    <% end %>
-                                </div>
-                            </div>
-
-                            <div id="new_memo_date_field">
-                                <%= f.date_select :completion_date, label: "Data Wykonania"%>
-                            </div>
-
-                            <div id="new_memo_recurring_options" style="display: none">
-                                <%= f.date_select :start_date, label: "Data rozpoczęcia"%>
-                                <%= f.date_select :end_date, label: "Data zakończenia"%>
-                                <%= f.select :recurrence, options_for_select([['Codziennie' ,1], ['Co tydzień', 2], ['Co miesiąc', 3], ['Wybrane dni miesiaca', 4]])%>
-                            </div>
-
-                            <div id="new_memo_recurring_additional" style="display: none">
-                                <%= f.text_field :pattern, label: "Dni, oddzielone przecinkami" %>
-                            </div>
-
-                            <%= f.hidden_field :time_stamp, :value => Date.today %>
-                            <%= f.hidden_field :is_done, :value => false %>
-
-                            <div class="text-right">
-                                <%= f.submit "Utwórz", :class => 'btn btn-primary' %>
-                            </div>
-                        <% end %>
-
-                    </div>
-
-                    <!--
-                    <div class="modal-footer">
-                    </div>
-                    -->
-
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+        <div id="modal-add-memo" class="modal fade"></div>
+        <div id="memo-modal" class="modal fade" ></div>
     </body>
-
-    <script type="text/javascript">
-        
-    </script>
 
     <%= javascript_include_tag "ripple-effect.js" %>
     <%= javascript_include_tag "g-aside-expand.js" %>

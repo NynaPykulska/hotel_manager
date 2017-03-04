@@ -1,0 +1,51 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Utwórz Memo</h4>
+        </div>
+
+        <div class="modal-body">
+            <%= bootstrap_form_for :memo, remote: true, html: { style: "display:inline;" } do |f| %>
+                <%= f.text_field :description, label: "Opis" %>
+                <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Pokój" %>
+
+                <div class="row">
+                    <div class="form-group col-xs-5">
+                        <%= f.time_select :memo_time, label: "Godzina" %>
+                    </div>
+                    <div class="form-group col-xs-7">
+                        <%= f.form_group :is_recurring do %>
+                            <%= f.check_box :is_recurring, label: "Powtarzanie", id: "recurring_check_box" %>
+                        <% end %>
+                    </div>
+                </div>
+
+                <div id="new_memo_date_field">
+                    <%= f.date_select :completion_date, label: "Data Wykonania"%>
+                </div>
+
+                <div id="new_memo_recurring_options" style="display: none">
+                    <%= f.date_select :start_date, label: "Data rozpoczęcia"%>
+                    <%= f.date_select :end_date, label: "Data zakończenia"%>
+                    <%= f.select :recurrence, options_for_select([['Codziennie' ,1], ['Co tydzień', 2], ['Co miesiąc', 3], ['Wybrane dni miesiaca', 4]])%>
+                </div>
+
+                <div id="new_memo_recurring_additional" style="display: none">
+                    <%= f.text_field :pattern, label: "Dni, oddzielone przecinkami" %>
+                </div>
+
+                <%= f.hidden_field :time_stamp, :value => Date.today %>
+                <%= f.hidden_field :is_done, :value => false %>
+
+                <div class="modal-footer">
+                    <div class="text-right">
+                        <a href="" data-dismiss="modal" class="btn btn-default">Anuluj</a>
+                        <%= f.submit "Utwórz", :class => 'btn btn-primary' %>
+                    </div>
+                </div>
+            <% end %>
+
+        </div>
+    </div>
+</div>

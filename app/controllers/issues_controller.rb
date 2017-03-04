@@ -1,14 +1,15 @@
-class IssueController < ApplicationController
-	before_filter :authenticate_user!
+class IssuesController < ApplicationController
+	protect_from_forgery with: :null_session
+	before_action :authenticate_user!
 
 	def create
-	@issue = Issue.new(issue_params)
+		@issue = Issue.new(issue_params)
 
-	if @room.save
-	  redirect_to controller: 'issue', action: 'list', group: 'all'
-	else
-	  render :action => 'new'
-	end
+		if @room.save
+		  redirect_to controller: 'issue', action: 'list'
+		else
+		  render :action => 'new'
+		end
 	end
 
 	def list
@@ -40,6 +41,10 @@ class IssueController < ApplicationController
 		render :nothing => true
 	end
 
+	def show
+ 		
+ 	end
+
 	def issue_params
 		params.require(:issue).permit(:room_id, :issue_type_id, :requested_fix_date, :fix_comment, :timestamp, :completion_date, :issue_type)
 	end
@@ -50,7 +55,22 @@ class IssueController < ApplicationController
 		@room = Room.where("room_id = ?", issue_params[:room_id]).first
 		@date = DateTime.new(params[:issue]["requested_fix_date(1i)"].to_i, params[:issue]["requested_fix_date(2i)"].to_i ,params[:issue]["requested_fix_date(3i)"].to_i)
 		@issue = @room.issues.create(room_id: issue_params[:room_id], fix_comment: issue_params[:fix_comment], requested_fix_date: @date, completion_date: nil, is_done: issue_params[:is_done], timestamp: issue_params[:timestamp], issue_type_id: issue_params[:issue_type], priority: priority_list[issue_params[:priority].to_i - 1])
-		redirect_to :back
+		redirect_back(fallback_location: root_path)
 	end
+
+	def delete
+ 		Issue.find(params[:id]).destroy
+ 		redirect_back(fallback_location: root_path)
+ 	end
+
+ 	def edit
+    @c = Issue.find(params[:id])
+  end
+   
+ 	def update
+    @issue = Issue.find(params[:id])
+    @issue.update_attributes(issue_params)
+    redirect_back(fallback_location: root_path)
+  end
 
 end

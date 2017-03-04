@@ -8,34 +8,56 @@
   </head>
 
   <body>
-  <div class="pull-right">
-    <!-- logout 
+    <div class="pull-right">
+      <!-- logout 
 
-    Skasowalem tylko komentarze. Nie wiem jak zrobic by bylo to widoczne w odpowiednim miejscu
-    w aplikacji wiec tylko na szybko przerzucilem
+      Skasowalem tylko komentarze. Nie wiem jak zrobic by bylo to widoczne w odpowiednim miejscu
+      w aplikacji wiec tylko na szybko przerzucilem
 
-    <%if user_signed_in? %>
-      <div class="dropdown" >
-          <button class="login btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin: 10px; padding: 5px 9px;">
-              Zalogowano jako: <%= current_user.username %> <div data-icon="T" class="icon"></div>
+      <%if user_signed_in? %>
+        <div class="dropdown" >
+            <button class="login btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin: 10px; padding: 5px 9px;">
+                Zalogowano jako: <%= current_user.username %> <div data-icon="T" class="icon"></div>
 
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left:10px; min-width: 150px; top: 40px; border-radius:0;">
-              <li class="dropdown-item-login">
-              <%= link_to 'Profile', edit_user_registration_path %>
-              </li>
-              <li class="dropdown-item-login">
-              <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
-              </li>
-          </ul>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left:10px; min-width: 150px; top: 40px; border-radius:0;">
+                <li class="dropdown-item-login">
+                <%= link_to 'Profile', edit_user_registration_path %>
+                </li>
+                <li class="dropdown-item-login">
+                <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+                </li>
+            </ul>
+        </div>
+      <% end %> 
+     logout -->
+    </div>
+   <div class="g-aside">
+    <% if current_user && (current_user.receptionist? || current_user.admin?) %>
+      <div class="g-aside-menu-position <%= controller_name == 'memos' ? ' g-aside-menu-position-active' : '' =%>">
+          <%= link_to image_tag("left-menu/day-log.png"), "/dayLog/list", :class => "g-aside-icon g-ripple-effect"%>
+          <span class="btn btn-link">Dziennik</span>                
       </div>
     <% end %> 
-   logout -->
 
-  </div>
-	 <div class="g-aside">
-    <%= yield :menu %>
-  </div>
+    <% if current_user && (current_user.maid? || current_user.admin?) %>
+      <div class="g-aside-menu-position <%= controller_name == 'room' ? ' g-aside-menu-position-active' : '' =%>">
+          <%= link_to image_tag("left-menu/rooms.png"), "/roomStatus/list", :class =>  "g-aside-icon g-ripple-effect"%>
+          <span class="btn btn-link">Status Pokojów</span>                
+      </div>
+    <% end %> 
+
+    <% if current_user && (current_user.maitenance? || current_user.admin?) %>
+      <div class="g-aside-menu-position <%= controller_name == 'issues' ? ' g-aside-menu-position-active' : '' =%>"> 
+          <%= link_to image_tag("left-menu/issues.png"), "/issueLog/list", :class =>  "g-aside-icon g-ripple-effect"%>
+          <span class="btn btn-link">Usterki</span>                
+      </div>
+    <% end %>  
+
+    <div id="g-aside-expand" class="g-aside-menu-position g-ripple-effect">
+    <%= image_tag "left-menu/expand.png", :class =>  "g-aside-icon g-ripple-effect"%>
+    </div>            
+    </div>
 
     <%= yield %>
   </body>
