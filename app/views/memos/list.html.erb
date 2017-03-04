@@ -24,7 +24,7 @@
             <% end %> 
             <% if current_user && (current_user.maitenance? || current_user.admin?) %>
                 <div class="g-aside-menu-position"> 
-                    <%= link_to image_tag("left-menu/issues.png"), "/issues/list", :class =>  "g-aside-icon g-ripple-effect"%>
+                    <%= link_to image_tag("left-menu/issues.png"), "/issueLog/list", :class =>  "g-aside-icon g-ripple-effect"%>
                     <span class="btn btn-link">Usterki</span>                
                 </div>
             <% end %>        
@@ -188,7 +188,7 @@
                                             </button>
                                         
                                             <ul class="dropdown-menu">
-                                                <li><%= link_to "Edytuj", edit_memo_path(c), remote: true, class: "btn btn-default" %></li>
+                                                <li><%= link_to "Edytuj", edit_memo_path(c), remote: true %></li>
                                                 <li>
                                                     <%= link_to "Otwórz", "memos/reopen?id=#{c.id}", :class =>  "btn-memo-reopen reopen", remote: true  %>
                                                 <!-- <a href="#" class="btn-memo-reopen"> Re-Open </a> -->

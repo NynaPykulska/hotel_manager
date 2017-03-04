@@ -27,7 +27,7 @@
             <% end %>
             <% if current_user.maitenance? || current_user.admin? %>
                 <div class="g-aside-menu-position"> 
-                    <%= link_to image_tag("left-menu/issues.png"), "/issues/list", :class =>  "g-aside-icon g-ripple-effect"%>
+                    <%= link_to image_tag("left-menu/issues.png"), "/issueLog/list", :class =>  "g-aside-icon g-ripple-effect"%>
                     <span class="btn btn-link">Usterki</span>  
                     <span class="badge g-badge-red g-badge-on-icon">
                         <%= params[:group] == 'open' ? 'active' : '' %><%= @items_size_list[1] -%>

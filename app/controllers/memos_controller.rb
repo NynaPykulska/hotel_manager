@@ -1,7 +1,7 @@
 class MemosController < ApplicationController
    	
     protect_from_forgery with: :null_session
-    before_filter :authenticate_user!
+    before_action :authenticate_user!
 
    include MemoHelper       
    @stored_date = nil
@@ -65,7 +65,7 @@ class MemosController < ApplicationController
     if(memo_params[:is_recurring] == "0")
       @date = DateTime.new(params[:memo]["completion_date(1i)"].to_i, params[:memo]["completion_date(2i)"].to_i ,params[:memo]["completion_date(3i)"].to_i, params[:memo]["memo_time(4i)"].to_i, params[:memo]["memo_time(5i)"].to_i)
       @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: @date, completion_date: memo_params[:completion_date], is_done: memo_params[:is_done], time_stamp: memo_params[:time_stamp], is_recurring: false )
-      redirect_to :back
+      redirect_back(fallback_location: root_path)
 
     else
       start_date =  DateTime.new(params[:memo]["start_date(1i)"].to_i, params[:memo]["start_date(2i)"].to_i ,params[:memo]["start_date(3i)"].to_i, params[:memo]["memo_time(4i)"].to_i, params[:memo]["memo_time(5i)"].to_i)
@@ -82,13 +82,13 @@ class MemosController < ApplicationController
           puts Time.at(f)
           @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: Time.at(f), completion_date: memo_params[:completion_date], is_done: memo_params[:is_done], time_stamp: memo_params[:time_stamp], is_recurring: true, event_id: id )
         end
-        redirect_to :back
+        redirect_back(fallback_location: root_path)
       when "2"
         (start_date.to_i .. end_date.to_i).step(7.day) do |f|
           puts Time.at(f)
           @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: Time.at(f), completion_date: memo_params[:completion_date], is_done: memo_params[:is_done], time_stamp: memo_params[:time_stamp], is_recurring: true, event_id: id )
         end
-        redirect_to :back
+        redirect_back(fallback_location: root_path)
       when "3"
         requested_day = start_date.day
         start_date = start_date.change(day: 1)
@@ -102,7 +102,7 @@ class MemosController < ApplicationController
           end
           start_date = start_date + 1.month
         end       
-        redirect_to :back
+        redirect_back(fallback_location: root_path)
       when "4"
         pattern = memo_params[:pattern].delete(' ').split(",").map(&:to_i)
         
@@ -121,7 +121,7 @@ class MemosController < ApplicationController
           start_date = start_date + 1.month
         end
 
-        redirect_to :back
+        redirect_back(fallback_location: root_path)
       end
     end
   end
@@ -137,7 +137,7 @@ class MemosController < ApplicationController
  	def update
     @memo = Memo.find(params[:id])
     @memo.update_attributes(memo_params)
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 
  	def memo_param
