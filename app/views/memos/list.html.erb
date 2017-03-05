@@ -79,11 +79,11 @@
                 <div class="col-md-12 g-tabs">
 
                     <ul class="nav nav-pills pull-left" role="tablist">
-                        <li> <a class="showall">Wszystkie <span class="badge g-badge-blue" id="all-number"><%= @done + @not_done -%></span></a></li>
-                        <li> <a class="showopen">Otwarte <span class="badge g-badge-red" id="open-number"><%= @not_done -%></span></a></li>
-                        <li> <a class="showready">Gotowe <span class="badge g-badge-green" id="ready-number"><%= @done -%></span></a></li>
+                        <li class="showall active">   <a>Wszystkie <span class="badge g-badge-blue" id="all-number"><%= @done + @not_done -%></span></a></li>
+                        <li class="showopen">  <a>Otwarte   <span class="badge g-badge-red" id="open-number"><%= @not_done -%></span></a></li>
+                        <li class="showready"> <a>Gotowe    <span class="badge g-badge-green" id="ready-number"><%= @done -%></span></a></li>
                     </ul>  
-
+ 
                     <!-- Sortowanie --> 
                     <div class="pull-right">
                         <div class="btn-group">

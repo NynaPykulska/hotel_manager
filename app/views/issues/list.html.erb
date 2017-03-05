@@ -53,9 +53,9 @@
         		<div class="col-md-12 g-tabs">
 
                     <ul class="nav nav-pills pull-left" role="tablist">
-                        <li> <a class="showall">Wszystkie <span class="badge g-badge-blue" id="all-number"><%= @done + @not_done -%></span></a></li>
-                        <li> <a class="showopen">Otwarte <span class="badge g-badge-red" id="open-number"><%= @not_done -%></span></a></li>
-                        <li> <a class="showready">Gotowe <span class="badge g-badge-green" id="ready-number"><%= @done -%></span></a></li>
+                        <li class="showall active"> <a>Wszystkie <span class="badge g-badge-blue" id="all-number"><%= @done + @not_done -%></span></a></li>
+                        <li class="showopen"> <a>Otwarte <span class="badge g-badge-red" id="open-number"><%= @not_done -%></span></a></li>
+                        <li class="showready"> <a>Gotowe <span class="badge g-badge-green" id="ready-number"><%= @done -%></span></a></li>
                     </ul>  
 
                     <div class="pull-right">
@@ -179,7 +179,6 @@
         <!-- Modal Window -->
         <div id="modal-add-issue" class="modal fade modal-add-issue" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
-
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -187,9 +186,6 @@
                     </div>
 
                     <div class="modal-body">
-                        <!--
-                            <p>Create new issue</p>
-                        !-->
                         <%= bootstrap_form_for :issue, :url => url_for(:controller => 'issues', :action => 'create') do |f| %>
                             <%= f.collection_select :issue_type, IssueType.all, :id, :issue_description, label: "Rodzaj Usterki" %>
                             <%= f.date_select :requested_fix_date, label: "Data naprawy" %>
@@ -198,20 +194,17 @@
                             <%= f.hidden_field :completion_date, :value => nil %>
                             <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Pokój" %>
                             <%= f.select :priority, options_for_select([['Niski' ,1], ['Średni', 2], ['Wysoki', 3]])%>
-
-                    </div>
-
-                    <div class="modal-footer">
-                        <div class="text-right">
-                            <a href="" data-dismiss="modal" class="btn btn-default">Anuluj</a>
-                            <%= f.submit "Utwórz", :class => 'btn btn-primary' %>
-                        </div>
+                            <div class="modal-footer">
+                                <div class="text-right">
+                                    <a href="" data-dismiss="modal" class="btn btn-default">Anuluj</a>
+                                    <%= f.submit "Utwórz", :class => 'btn btn-primary' %>
+                                </div>
+                            </div>
                         <% end %>
                     </div>
-
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+                </div>
+            </div>
+        </div>
 
         <div id="issue-modal" class="modal fade" ></div>
     </body>

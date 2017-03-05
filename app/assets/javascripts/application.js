@@ -52,18 +52,27 @@ var room_order = 0;
             $('.showall').click(function(e){        
                  $('.tr-done').show();
                  $('.tr-not_done').show();
+                 $('.showopen').removeClass('active');
+                 $('.showready').removeClass('active');
+                 $('.showall').addClass('active');
 
             });
 
             $('.showopen').click(function(e){        
                  $('.tr-done').hide();
                  $('.tr-not_done').show();
+                 $('.showready').removeClass('active');
+                 $('.showall').removeClass('active');
+                 $('.showopen').addClass('active');
             });
 
             $('.showready').click(function(e){        
                  console.log("eeeee")
                  $('.tr-done').show();
                  $('.tr-not_done').hide();
+                 $('.showopen').removeClass('active');
+                 $('.showall').removeClass('active');
+                 $('.showready').addClass('active');
             });
 
             $('.mark_ready').click(function(e){
