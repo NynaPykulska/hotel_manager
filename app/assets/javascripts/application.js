@@ -91,7 +91,7 @@ var room_order = 0;
                 $('#open-number').text(old_number);
                 $(this).closest('tr').find('.is-complete-icon-ok').show();
                 $(this).closest('tr').find('.is-complete-icon-circle').hide();
-                $(this).closest('tr').find('.edit-issue-button').hide();
+                $(this).closest('tr').find('.edit-button').hide();
                 $(this).closest('tr').find('.ready-button').attr('disabled', true);
             }
             });
@@ -114,29 +114,8 @@ var room_order = 0;
                     $(this).closest('tr').find('.is-complete-icon-circle').show();
                     // $(this).closest('tr').find('.ready-button').show();
                     // $(this).closest('div').find('.dropdown-menu').hide();
-                    $(this).closest('tr').find('.edit-issue-button').show();
+                    $(this).closest('tr').find('.edit-button').show();
                     $(this).closest('tr').find('.ready-button').removeAttr('disabled');
-                }
-            });
-
-            $("#recurring_check_box").change(function() {
-                if(this.checked)
-                {
-                    $("#new_memo_date_field").hide()
-                    $("#new_memo_recurring_options").show()
-                }
-                else
-                {
-                    $("#new_memo_date_field").show()
-                    $("#new_memo_recurring_options").hide()
-                }
-            });
-
-            $("#memo_recurrence").change(function() {
-                if($(this).val() == 4){
-                    $("#new_memo_recurring_additional").show()
-                } else {
-                    $("#new_memo_recurring_additional").hide()
                 }
             });
 });

@@ -127,7 +127,7 @@
                                             <label>Memo</label>
                                             <h4><%= c.description -%>
                                             <% if c.is_recurring == true %>
-                                                <%= image_tag "recurrence.png", :class => "g-issue-icon is-complete-icon-ok"%>
+                                                <%= image_tag "recurrence.png", :class => "g-issue-icon"%>
                                             <% end %>
                                             </h4>
                                         </td>
@@ -149,9 +149,7 @@
 
                                         <td class="text-right g-vertical-middle g-stay-in-one-line"> 
                                          
-                                            <div class="btn-group ready-button">
-                                                <%= link_to "Gotowe", "memos/mark_ready?id=#{c.id}", :class => "mark_ready btn btn-link btn-memo-done g-ripple-effect", remote: true %>
-                                            </div>
+                                            <%= button_to "Gotowe", "issue/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done ready-button", remote: true, :method => :get, form: {style: 'display:inline-block;'}, :disabled => c.is_done %>
 
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-link btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -159,7 +157,7 @@
                                             </button>
                                         
                                             <ul class="dropdown-menu">
-                                                <li><%= link_to "Edytuj", edit_memo_path(c), remote: true %></li>
+                                                <li><%= link_to "Edytuj", edit_memo_path(c), remote: true, :class => "edit-button" , :style => c.is_done ? 'display: none;' : ''  %></li>
                                                 <li>
                                                     <%= link_to "Otwórz", "memos/reopen?id=#{c.id}", :class =>  "btn-memo-reopen reopen", remote: true  %>
                                                 <!-- <a href="#" class="btn-memo-reopen"> Re-Open </a> -->
