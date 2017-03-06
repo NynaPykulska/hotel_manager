@@ -75,7 +75,7 @@ var room_order = 0;
                  $('.showready').addClass('active');
             });
 
-            $('.mark_ready').click(function(e){
+            $('.ready-button').click(function(e){
             if($(this).closest('tr').hasClass("tr-not_done"))
             {
                 $(this).closest('tr').find('.strike-out').addClass('td-done');
@@ -91,8 +91,8 @@ var room_order = 0;
                 $('#open-number').text(old_number);
                 $(this).closest('tr').find('.is-complete-icon-ok').show();
                 $(this).closest('tr').find('.is-complete-icon-circle').hide();
-                $('.edit-issue-button').hide();
-                // $(this).closest('tr').find('.ready-button').hide();
+                $(this).closest('tr').find('.edit-issue-button').hide();
+                $(this).closest('tr').find('.ready-button').attr('disabled', true);
             }
             });
 
@@ -114,7 +114,8 @@ var room_order = 0;
                     $(this).closest('tr').find('.is-complete-icon-circle').show();
                     // $(this).closest('tr').find('.ready-button').show();
                     // $(this).closest('div').find('.dropdown-menu').hide();
-                    $('.edit-issue-button').show();
+                    $(this).closest('tr').find('.edit-issue-button').show();
+                    $(this).closest('tr').find('.ready-button').removeAttr('disabled');
                 }
             });
 

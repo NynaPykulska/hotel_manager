@@ -145,7 +145,7 @@
                                         <td class="text-right">  
                                             <%= image_tag "Ok.png", :class => "g-issue-icon is-complete-icon-ok", :style => c.is_done ? '' : 'display: none;'%>   
                                             <%= image_tag "Circle.png", :class => "g-issue-icon is-complete-icon-circle", :style => c.is_done ? 'display: none;' : ''%>
-                                            <%= link_to "Gotowe", "issue/mark_ready?id=#{c.id}", :class => "mark_ready btn btn-link btn-memo-done ready-button", remote: true %>
+                                            <%= button_to "Gotowe", "issue/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done ready-button", remote: true, :method => :get, form: {style: 'display:inline-block;'} %>
 
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-link btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
