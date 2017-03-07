@@ -91,6 +91,9 @@ var room_order = 0;
                 $('#open-number').text(old_number);
                 $(this).closest('tr').find('.is-complete-icon-ok').show();
                 $(this).closest('tr').find('.is-complete-icon-circle').hide();
+                $(this).closest('tr').find('.issue-ok-icon').show();
+                $(this).closest('tr').find('.issue-nok-icon').hide();
+                
                 $(this).closest('tr').find('.edit-button').hide();
                 $(this).closest('tr').find('.ready-button').prop('disabled', true);
             }
@@ -112,6 +115,9 @@ var room_order = 0;
                     $('#open-number').text(old_number);
                     $(this).closest('tr').find('.is-complete-icon-ok').hide();
                     $(this).closest('tr').find('.is-complete-icon-circle').show();
+                    $(this).closest('tr').find('.issue-nok-icon').show();
+                    $(this).closest('tr').find('.issue-ok-icon').hide();
+                    
                     // $(this).closest('tr').find('.ready-button').show();
                     // $(this).closest('div').find('.dropdown-menu').hide();
                     $(this).closest('tr').find('.edit-button').show();

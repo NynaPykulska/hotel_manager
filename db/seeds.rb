@@ -8,29 +8,34 @@
 
 
 
-lamp = IssueType.create(	issue_type_id: 1,
-				    issue_desctiption: "Broken lamp",
+lamp = IssueType.create(	id: 1,
+				    issue_description: "Broken lamp",
 				    default_priority: "Medium",
 				    when_to_resolve: "As soon as possible",
-				    icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/Desk Lamp.png"))
+				    ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
+						nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
+			
 
-light = IssueType.create(	issue_type_id: 2,
-				    issue_desctiption: "No light",
+light = IssueType.create(	id: 2,
+				    issue_description: "No light",
 				    default_priority: "High",
 				    when_to_resolve: "As soon as possible",
-				    icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/Light Off.png"))
+				    ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/lightbulb-ok.png"),
+						nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/lightbulb-nok.png"))
 
-water = IssueType.create(	issue_type_id: 3,
-				    issue_desctiption: "No water",
+water = IssueType.create(	id: 3,
+				    issue_description: "No water",
 				    default_priority: "High",
 				    when_to_resolve: "As soon as possible",
-				    icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/Water.png"))
+				    ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/water-ok.png"),
+						nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/water-nok.png"))
 
-paper = IssueType.create(	issue_type_id: 4,
-				    issue_desctiption: "No toilet paper",
+paper = IssueType.create(	id: 4,
+				    issue_description: "No toilet paper",
 				    default_priority: "Medium",
 				    when_to_resolve: "As soon as possible",
-				    icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/Toilet Paper.png"))
+				    ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/toiletpaper-ok.png"),
+						nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/toiletpaper-nok.png"))
 
 
 10.times do |i|

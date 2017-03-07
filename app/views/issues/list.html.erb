@@ -105,7 +105,8 @@
                                 <% @issues.each do |c| %>
                                     <tr class="<%= c.is_done ? 'g-table-card-header tr-done' : 'g-table-card-header tr-not_done' =%>" >
                                         <td class="text-center g-table-card-icon-td">
-                                            <%= image_tag IssueType.where("id = ?", c.issue_type_id).first.icon.url, :class => "g-issue-icon"%>
+                                            <%= image_tag IssueType.where("id = ?", c.issue_type_id).first.ok_icon.url, :class => "g-issue-icon issue-ok-icon",  :style => c.is_done ? '' : 'display: none;'%>
+                                            <%= image_tag IssueType.where("id = ?", c.issue_type_id).first.nok_icon.url, :class => "g-issue-icon issue-nok-icon",  :style => c.is_done ? 'display: none;' : ''%>
                                         </td>
                                         
                                         <td class="strike-out <%= c.is_done ? 'td-done' : '' =%>">
@@ -142,9 +143,7 @@
                                             <h4> <%= c.fix_comment %> </h4>
                                         </td>  
 
-                                        <td class="text-right">  
-                                            <%= image_tag "Ok.png", :class => "g-issue-icon is-complete-icon-ok", :style => c.is_done ? '' : 'display: none;'%>   
-                                            <%= image_tag "Circle.png", :class => "g-issue-icon is-complete-icon-circle", :style => c.is_done ? 'display: none;' : ''%>
+                                        <td class="text-right">
                                             <%= button_to "Gotowe", "issue/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done ready-button", remote: true, :method => :get, form: {style: 'display:inline-block;'}, disabled: c.is_done%>
 
                                             <div class="btn-group">

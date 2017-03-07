@@ -19,19 +19,7 @@
                             <%= f.check_box :is_recurring, label: "Powtarzanie", id: "recurring_check_box" %>
 
                             <script type="text/javascript">
-                                $("#recurring_check_box").change(function() {
-                                    console.log("xaxaxa")
-                                    if(this.checked)
-                                    {
-                                        $("#new_memo_date_field").hide()
-                                        $("#new_memo_recurring_options").show()
-                                    }
-                                    else
-                                    {
-                                        $("#new_memo_date_field").show()
-                                        $("#new_memo_recurring_options").hide()
-                                    }
-                                });
+                                
                             </script>
                         <% end %>
                     </div>
