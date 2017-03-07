@@ -53,9 +53,9 @@
         		<div class="col-md-12 g-tabs">
 
                     <ul class="nav nav-pills pull-left" role="tablist">
-                        <li> <a class="showall">Wszystkie <span class="badge g-badge-blue" id="all-number"><%= @done + @not_done -%></span></a></li>
-                        <li> <a class="showopen">Otwarte <span class="badge g-badge-red" id="open-number"><%= @not_done -%></span></a></li>
-                        <li> <a class="showready">Gotowe <span class="badge g-badge-green" id="ready-number"><%= @done -%></span></a></li>
+                        <li class="showall active"> <a>Wszystkie <span class="badge g-badge-blue" id="all-number"><%= @done + @not_done -%></span></a></li>
+                        <li class="showopen"> <a>Otwarte <span class="badge g-badge-red" id="open-number"><%= @not_done -%></span></a></li>
+                        <li class="showready"> <a>Gotowe <span class="badge g-badge-green" id="ready-number"><%= @done -%></span></a></li>
                     </ul>  
 
                     <div class="pull-right">
@@ -105,19 +105,20 @@
                                 <% @issues.each do |c| %>
                                     <tr class="<%= c.is_done ? 'g-table-card-header tr-done' : 'g-table-card-header tr-not_done' =%>" >
                                         <td class="text-center g-table-card-icon-td">
-                                            <%= image_tag IssueType.where("id = ?", c.issue_type_id).first.icon.url, :class => "g-issue-icon"%>
+                                            <%= image_tag IssueType.where("id = ?", c.issue_type_id).first.ok_icon.url, :class => "g-issue-icon issue-ok-icon",  :style => c.is_done ? '' : 'display: none;'%>
+                                            <%= image_tag IssueType.where("id = ?", c.issue_type_id).first.nok_icon.url, :class => "g-issue-icon issue-nok-icon",  :style => c.is_done ? 'display: none;' : ''%>
                                         </td>
                                         
-                                        <td class="strike-out">
+                                        <td class="strike-out <%= c.is_done ? 'td-done' : '' =%>">
                                             <label>Nazwa</label>
                                             <h4> <%= IssueType.where("id = ?", c.issue_type_id).first.issue_description %> </h4>
                                         </td>
-                                        <td class="strike-out">
+                                        <td class="strike-out <%= c.is_done ? 'td-done' : '' =%>">
                                             <label>Pokój</label>
                                             <h4> <%= c.room_id %> </h4>
                                         </td>
 
-                                        <td class="strike-out">
+                                        <td class="strike-out <%= c.is_done ? 'td-done' : '' =%>">
                                             <label>Czas&nbsp;zgłoszenia</label>
                                             <h4> <%= c.timestamp %> </h4>
                                         </td>
@@ -137,22 +138,20 @@
                                             </h4>
                                         </td>
 
-                                        <td class="hidden-sm strike-out" >
+                                        <td class="hidden-sm strike-out <%= c.is_done ? 'td-done' : '' =%>" >
                                             <label>Komentarz</label>
                                             <h4> <%= c.fix_comment %> </h4>
                                         </td>  
 
-                                        <td class="text-right">  
-                                            <%= image_tag "Ok.png", :class => "g-issue-icon is-complete-icon-ok", :style => c.is_done ? '' : 'display: none;'%>   
-                                            <%= image_tag "Circle.png", :class => "g-issue-icon is-complete-icon-circle", :style => c.is_done ? 'display: none;' : ''%>
-                                            <%= link_to "Gotowe", "issue/mark_ready?id=#{c.id}", :class => "mark_ready btn btn-link btn-memo-done ready-button", remote: true %>
+                                        <td class="text-right">
+                                            <%= button_to "Gotowe", "issue/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done ready-button", remote: true, :method => :get, form: {style: 'display:inline-block;'}, disabled: c.is_done%>
 
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-link btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="fa fa-ellipsis-h"></i>
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><%= link_to "Edytuj", edit_issue_path(c), remote: true %></li>
+                                                    <li><%= link_to "Edytuj", edit_issue_path(c), remote: true, :class => "edit-button" , :style => c.is_done ? 'display: none;' : '' %></li>
                                                     <li>
                                                         <%= link_to "Otwórz", "issue/reopen?id=#{c.id}", :class =>  "btn-memo-reopen reopen", remote: true  %>
                                                     <!-- <a href="#" class="btn-memo-reopen"> Re-Open </a> -->
@@ -179,17 +178,13 @@
         <!-- Modal Window -->
         <div id="modal-add-issue" class="modal fade modal-add-issue" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
-
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Utwórz Memo</h4>
+                        <h4 class="modal-title">Utwórz usterkę</h4>
                     </div>
 
                     <div class="modal-body">
-                        <!--
-                            <p>Create new issue</p>
-                        !-->
                         <%= bootstrap_form_for :issue, :url => url_for(:controller => 'issues', :action => 'create') do |f| %>
                             <%= f.collection_select :issue_type, IssueType.all, :id, :issue_description, label: "Rodzaj Usterki" %>
                             <%= f.date_select :requested_fix_date, label: "Data naprawy" %>
@@ -198,20 +193,17 @@
                             <%= f.hidden_field :completion_date, :value => nil %>
                             <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Pokój" %>
                             <%= f.select :priority, options_for_select([['Niski' ,1], ['Średni', 2], ['Wysoki', 3]])%>
-
-                    </div>
-
-                    <div class="modal-footer">
-                        <div class="text-right">
-                            <a href="" data-dismiss="modal" class="btn btn-default">Anuluj</a>
-                            <%= f.submit "Utwórz", :class => 'btn btn-primary' %>
-                        </div>
+                            <div class="modal-footer">
+                                <div class="text-right">
+                                    <a href="" data-dismiss="modal" class="btn btn-default">Anuluj</a>
+                                    <%= f.submit "Utwórz", :class => 'btn btn-primary' %>
+                                </div>
+                            </div>
                         <% end %>
                     </div>
-
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+                </div>
+            </div>
+        </div>
 
         <div id="issue-modal" class="modal fade" ></div>
     </body>

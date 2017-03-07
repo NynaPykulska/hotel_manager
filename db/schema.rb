@@ -20,10 +20,14 @@ ActiveRecord::Schema.define(version: 20170302194358) do
     t.text     "default_priority"
     t.text     "when_to_resolve"
     t.date     "icon"
-    t.string   "icon_file_name"
-    t.string   "icon_content_type"
-    t.integer  "icon_file_size"
-    t.datetime "icon_updated_at"
+    t.string   "ok_icon_file_name"
+    t.string   "ok_icon_content_type"
+    t.integer  "ok_icon_file_size"
+    t.datetime "ok_icon_updated_at"
+    t.string   "nok_icon_file_name"
+    t.string   "nok_icon_content_type"
+    t.integer  "nok_icon_file_size"
+    t.datetime "nok_icon_updated_at"
   end
 
   create_table "issues", force: :cascade do |t|

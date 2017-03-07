@@ -67,9 +67,9 @@
         		<div class="col-md-12 g-tabs">
 
                     <ul class="nav nav-pills pull-left" role="tablist">
-                        <li class= <%= params[:group] == 'all' ? 'active' : '' %> ><a href="/roomStatus/list/all">Wszystkie <span class="badge g-badge-blue"><%= @items_size_list[0] -%></span></a></li>
-                        <li class= <%= params[:group] == 'open' ? 'active' : '' %>><a href="/roomStatus/list/open">Otwarte <span class="badge g-badge-red"><%= @items_size_list[1] -%></span></a></li>
-                        <li class= <%= params[:group] == 'ready' ? 'active' : '' %>><a href="/roomStatus/list/ready">Gotowe <span class="badge g-badge-green"><%= @items_size_list[2] -%></span></a></li>
+                        <li class="showall active"><a>Wszystkie <span class="badge g-badge-blue"><%= @items_size_list[0] -%></span></a></li>
+                        <li class="showopen"><a>Otwarte <span class="badge g-badge-red"><%= @items_size_list[1] -%></span></a></li>
+                        <li class="showready"><a>Gotowe <span class="badge g-badge-green"><%= @items_size_list[2] -%></span></a></li>
                     </ul> 
 
                     <!-- Sortowanie --> 

@@ -52,21 +52,30 @@ var room_order = 0;
             $('.showall').click(function(e){        
                  $('.tr-done').show();
                  $('.tr-not_done').show();
+                 $('.showopen').removeClass('active');
+                 $('.showready').removeClass('active');
+                 $('.showall').addClass('active');
 
             });
 
             $('.showopen').click(function(e){        
                  $('.tr-done').hide();
                  $('.tr-not_done').show();
+                 $('.showready').removeClass('active');
+                 $('.showall').removeClass('active');
+                 $('.showopen').addClass('active');
             });
 
             $('.showready').click(function(e){        
                  console.log("eeeee")
                  $('.tr-done').show();
                  $('.tr-not_done').hide();
+                 $('.showopen').removeClass('active');
+                 $('.showall').removeClass('active');
+                 $('.showready').addClass('active');
             });
 
-            $('.mark_ready').click(function(e){
+            $('.ready-button').click(function(e){
             if($(this).closest('tr').hasClass("tr-not_done"))
             {
                 $(this).closest('tr').find('.strike-out').addClass('td-done');
@@ -82,7 +91,11 @@ var room_order = 0;
                 $('#open-number').text(old_number);
                 $(this).closest('tr').find('.is-complete-icon-ok').show();
                 $(this).closest('tr').find('.is-complete-icon-circle').hide();
-                // $(this).closest('tr').find('.ready-button').hide();
+                $(this).closest('tr').find('.issue-ok-icon').show();
+                $(this).closest('tr').find('.issue-nok-icon').hide();
+                
+                $(this).closest('tr').find('.edit-button').hide();
+                $(this).closest('tr').find('.ready-button').prop('disabled', true);
             }
             });
 
@@ -102,29 +115,13 @@ var room_order = 0;
                     $('#open-number').text(old_number);
                     $(this).closest('tr').find('.is-complete-icon-ok').hide();
                     $(this).closest('tr').find('.is-complete-icon-circle').show();
+                    $(this).closest('tr').find('.issue-nok-icon').show();
+                    $(this).closest('tr').find('.issue-ok-icon').hide();
+                    
                     // $(this).closest('tr').find('.ready-button').show();
                     // $(this).closest('div').find('.dropdown-menu').hide();
-                }
-            });
-
-            $("#recurring_check_box").change(function() {
-                if(this.checked)
-                {
-                    $("#new_memo_date_field").hide()
-                    $("#new_memo_recurring_options").show()
-                }
-                else
-                {
-                    $("#new_memo_date_field").show()
-                    $("#new_memo_recurring_options").hide()
-                }
-            });
-
-            $("#memo_recurrence").change(function() {
-                if($(this).val() == 4){
-                    $("#new_memo_recurring_additional").show()
-                } else {
-                    $("#new_memo_recurring_additional").hide()
+                    $(this).closest('tr').find('.edit-button').show();
+                    $(this).closest('tr').find('.ready-button').prop('disabled', false);
                 }
             });
 });
