@@ -108,16 +108,16 @@
                                             <%= image_tag IssueType.where("id = ?", c.issue_type_id).first.icon.url, :class => "g-issue-icon"%>
                                         </td>
                                         
-                                        <td class="strike-out">
+                                        <td class="strike-out <%= c.is_done ? 'td-done' : '' =%>">
                                             <label>Nazwa</label>
                                             <h4> <%= IssueType.where("id = ?", c.issue_type_id).first.issue_description %> </h4>
                                         </td>
-                                        <td class="strike-out">
+                                        <td class="strike-out <%= c.is_done ? 'td-done' : '' =%>">
                                             <label>Pokój</label>
                                             <h4> <%= c.room_id %> </h4>
                                         </td>
 
-                                        <td class="strike-out">
+                                        <td class="strike-out <%= c.is_done ? 'td-done' : '' =%>">
                                             <label>Czas&nbsp;zgłoszenia</label>
                                             <h4> <%= c.timestamp %> </h4>
                                         </td>
@@ -137,7 +137,7 @@
                                             </h4>
                                         </td>
 
-                                        <td class="hidden-sm strike-out" >
+                                        <td class="hidden-sm strike-out <%= c.is_done ? 'td-done' : '' =%>" >
                                             <label>Komentarz</label>
                                             <h4> <%= c.fix_comment %> </h4>
                                         </td>  
@@ -145,7 +145,7 @@
                                         <td class="text-right">  
                                             <%= image_tag "Ok.png", :class => "g-issue-icon is-complete-icon-ok", :style => c.is_done ? '' : 'display: none;'%>   
                                             <%= image_tag "Circle.png", :class => "g-issue-icon is-complete-icon-circle", :style => c.is_done ? 'display: none;' : ''%>
-                                            <%= button_to "Gotowe", "issue/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done ready-button", remote: true, :method => :get, form: {style: 'display:inline-block;'}, :disabled => c.is_done %>
+                                            <%= button_to "Gotowe", "issue/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done ready-button", remote: true, :method => :get, form: {style: 'display:inline-block;'}, disabled: c.is_done%>
 
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-link btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -182,7 +182,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Utwórz Memo</h4>
+                        <h4 class="modal-title">Utwórz usterkę</h4>
                     </div>
 
                     <div class="modal-body">

@@ -149,7 +149,7 @@
 
                                         <td class="text-right g-vertical-middle g-stay-in-one-line"> 
                                          
-                                            <%= button_to "Gotowe", "issue/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done ready-button", remote: true, :method => :get, form: {style: 'display:inline-block;'}, :disabled => c.is_done %>
+                                            <%= button_to "Gotowe", "memos/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done ready-button", remote: true, :method => :get, form: {style: 'display:inline-block;',  autocomplete: "off"}, disabled: c.is_done%>
 
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-link btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -180,13 +180,6 @@
                                                 e.stopPropagation();
                                             });
                                         </script> 
-                                        <script type="text/javascript">
-                                            $(document).ready(function() {
-                                                $('a[disabled=disabled]').click(function(event){
-                                                    event.preventDefault(); // Prevent link from following its href
-                                                });
-                                            });
-                                        </script>
                                         </td>
                                 	</tr>
                					<% end %>                   

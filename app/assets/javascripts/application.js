@@ -92,7 +92,7 @@ var room_order = 0;
                 $(this).closest('tr').find('.is-complete-icon-ok').show();
                 $(this).closest('tr').find('.is-complete-icon-circle').hide();
                 $(this).closest('tr').find('.edit-button').hide();
-                $(this).closest('tr').find('.ready-button').attr('disabled', true);
+                $(this).closest('tr').find('.ready-button').prop('disabled', true);
             }
             });
 
@@ -115,7 +115,7 @@ var room_order = 0;
                     // $(this).closest('tr').find('.ready-button').show();
                     // $(this).closest('div').find('.dropdown-menu').hide();
                     $(this).closest('tr').find('.edit-button').show();
-                    $(this).closest('tr').find('.ready-button').removeAttr('disabled');
+                    $(this).closest('tr').find('.ready-button').prop('disabled', false);
                 }
             });
 });
