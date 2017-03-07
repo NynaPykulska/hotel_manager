@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <!--
 <html lang="en" class="g-dark-version">
@@ -125,15 +125,16 @@
 
                                         <td  class="g-vertical-top">
                                             <label>Usterki</label>
-                                            <%= image_tag "Disconnected.png", :class => "g-issue-icon-mini g-issue-icon-red"%>
-                                            <%= image_tag "Light Off.png", :class => "g-issue-icon-mini g-issue-icon-red"%>
-                                            <%= image_tag "Toilet Paper.png", :class => "g-issue-icon-mini g-issue-icon-red"%>
-                                            <%= image_tag "Water.png", :class => "g-issue-icon-mini g-issue-icon-red"%>
+
+                                            <% Issue.where("room_id = ?", c.room_id).each do |issue| %>
+                                                <%= image_tag  IssueType.where("id = ?", issue.issue_type_id).first.icon.url, :class => "g-issue-icon-mini g-issue-icon-red"%>
+                                            <% end %>
+                                            
                                         </td>
 
                                         <td class="g-vertical-middle text-right">   
                                             <a class="btn btn-link" data-toggle="modal" data-target="#modal-create-issue">Edytuj</a>
-                                            <a class="btn btn-link" data-toggle="modal" data-target="#modal-report-issue g-ripple-effect">Zgłoś usterkę</a>
+                                            <a class="btn btn-link" data-toggle="modal" data-target="#modal-report-issue">Zgłoś usterkę</a>
                                         </td>
                                     </tr>
                                 <% end %>                   
@@ -173,7 +174,7 @@
         </div><!-- /.modal -->
 
         <!-- Modal Window -->
-        <div id="modal-create-room" class="modal fade modal-create-room" tabindex="-1" role="dialog">
+        <div id="modal-report-issue" class="modal fade modal-create-room" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
 
                 <div class="modal-content">
@@ -183,6 +184,27 @@
                     </div>
 
                     <div class="modal-body">
+                        <div class="row" style="display: flex; flex-wrap: wrap;">
+                            <% @issueTypes.each do |c| %>
+                                    <div class="col-xs-4">   
+                                        <table class="g-table-card g-table-card-grid g-report-issue-card">
+                                            <tbody>
+                                                <tr class="g-table-card-header">
+
+                                                    <td>
+                                                        <%= image_tag  c.nok_icon.url, :class => "g-issue-icon-mini g-issue-icon-red"%> 
+                                                    </td>
+                                                </tr>  
+                                                <tr>
+                                                    <td class="g-report-issue-card-description text-center">
+                                                        <h4> <%= c.issue_description %> </h4>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            <% end %>
+                        </div>  
 
                     </div>
 
