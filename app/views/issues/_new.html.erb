@@ -23,13 +23,71 @@
                     </div>
                 </div>
 
-                <div id="new_issue_date_field">
-                    <%= f.date_select :requested_fix_date, label: "Data naprawy" %>
-                </div>
+
+
+                <div id="new_issue_date_field" class="btn-group" style="max-width: 140px;">
+                    <div class="input-group date" data-provide='datepicker'>
+                    <%= f.date_field :requested_fix_date, class: 'form-control' , :value => @stored_date %>
+                    <span class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </span>
+                    </div>
+                </div>  
+                <script>
+                    $('#new_issue_date_field .input-group.date').datepicker({
+                        format: 'yyyy-mm-dd',
+                        language: "pl",
+                        autoclose: true,
+                        todayHighlight: true,
+                        todayBtn: "linked"
+                    }).on('changeDate', function (a) {
+                        var date = a.date.getFullYear() + "-" + (a.date.getMonth() + 1) + "-" + a.date.getDate();
+                    });
+                </script>
+
 
                 <div id="new_issue_recurring_options" style="display: none">
-                    <%= f.date_select :start_date, label: "Data rozpoczęcia"%>
-                    <%= f.date_select :end_date, label: "Data zakończenia"%>
+
+                    <div id="new_issue_start_date_field" class="btn-group" style="max-width: 140px;">
+                        <div class="input-group date" data-provide='datepicker'>
+                            <%= f.date_field :start_date, class: 'form-control', label: "Data rozpoczęcia"%>
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div> 
+                    <script>
+                        $('#new_issue_start_date_field .input-group.date').datepicker({
+                            format: 'yyyy-mm-dd',
+                            language: "pl",
+                            autoclose: true,
+                            todayHighlight: true,
+                            todayBtn: "linked"
+                        }).on('changeDate', function (a) {
+                            var date = a.date.getFullYear() + "-" + (a.date.getMonth() + 1) + "-" + a.date.getDate();
+                        });
+                    </script>
+
+                    <div id="new_issue_end_date_field" class="btn-group" style="max-width: 140px;">
+                        <div class="input-group date" data-provide='datepicker'>
+                            <%= f.date_field :end_date, class: 'form-control', label: "Data zakończenia"%>
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div> 
+                    <script>
+                        $('#new_issue_end_date_field .input-group.date').datepicker({
+                            format: 'yyyy-mm-dd',
+                            language: "pl",
+                            autoclose: true,
+                            todayHighlight: true,
+                            todayBtn: "linked"
+                        }).on('changeDate', function (a) {
+                            var date = a.date.getFullYear() + "-" + (a.date.getMonth() + 1) + "-" + a.date.getDate();
+                        });
+                    </script>
+
                     <%= f.select :recurrence, options_for_select([['Codziennie' ,1], ['Co tydzień', 2], ['Co miesiąc', 3], ['Wybrane dni miesiaca', 4]])%>
                 </div>
 
