@@ -1,0 +1,23 @@
+$("#modal-add-issue").html("<%= escape_javascript(render 'new') %>")
+$("#modal-add-issue").modal("show")
+
+$("#recurring_check_box").change(function() {
+    if(this.checked)
+    {
+        $("#new_issue_date_field").hide()
+        $("#new_issue_recurring_options").show()
+    }
+    else
+    {
+        $("#new_issue_date_field").show()
+        $("#new_issue_recurring_options").hide()
+    }
+});
+
+$("#issue_recurrence").change(function() {
+    if($(this).val() == 4){
+        $("#new_issue_recurring_additional").show()
+    } else {
+        $("#new_issue_recurring_additional").hide()
+    }
+});

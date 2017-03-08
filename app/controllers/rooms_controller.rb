@@ -1,15 +1,14 @@
-class RoomController < ApplicationController
+class RoomsController < ApplicationController
 	before_filter :init_items_size_list
   before_filter :authenticate_user!
 
-  def create
-    @room = Room.new(room_params)
+  def new
 
-    if @room.save
-      redirect_to controller: 'room', action: 'list', group: 'all'
-    else
-      render :action => 'new'
-    end
+  end
+
+  def create
+    @room = Room.create(room_id: room_params[:room_id], description: room_params[:description], is_clean: true)
+    redirect_back(fallback_location: root_path)
   end
 
   def list
@@ -27,7 +26,7 @@ class RoomController < ApplicationController
  	end
 
   def room_params
-      params.require(:room).permit(:room_nid, :description)
+      params.require(:room).permit(:room_id, :description)
   end
 
  	def init_items_size_list

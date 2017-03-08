@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   root to: redirect('/dayLog/list')
   resources :memos
   resources :issues
+  resources :rooms
    
    post 'dayLog/list', to: 'memos#list'
-   get 'roomStatus/list', to: 'room#list'
+   get 'roomStatus/list', to: 'rooms#list'
    get 'issueLog/list', to: 'issues#list'
    get 'dayLog/memos/mark_ready', to: 'memos#mark_ready'
    get 'issueLog/issue/mark_ready', to: 'issues#mark_ready'
@@ -19,8 +20,9 @@ Rails.application.routes.draw do
    get 'dayLog/list', to: 'memos#list'
    get 'memos/new'
    post 'memos/new', to: 'memos#create'
+   post 'rooms/new', to: 'rooms#create'
    post 'memos/create'
-   post 'room/create'
+   post 'rooms/create'
    post 'issues/create'
    patch 'memos/update'
    get 'memos/show'
