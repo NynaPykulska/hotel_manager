@@ -127,14 +127,15 @@
                                             <label>Usterki</label>
 
                                             <% Issue.where("room_id = ?", c.room_id).each do |issue| %>
-                                                <%= image_tag  IssueType.where("id = ?", issue.issue_type_id).first.icon.url, :class => "g-issue-icon-mini g-issue-icon-red"%>
+                                                <%= image_tag  IssueType.where("id = ?", issue.issue_type_id).first.nok_icon.url, :class => "g-issue-icon-mini"%>
                                             <% end %>
                                             
                                         </td>
 
                                         <td class="g-vertical-middle text-right">   
                                             <a class="btn btn-link" data-toggle="modal" data-target="#modal-create-issue">Edytuj</a>
-                                            <a class="btn btn-link" data-toggle="modal" data-target="#modal-report-issue">Zgłoś usterkę</a>
+                                            <!-- <a class="btn btn-link" data-toggle="modal" data-target="#modal-report-issue">Zgłoś usterkę</a> -->
+                                            <%= link_to "Zgłoś usterkę", "/roomStatus/report?id=#{c.id}", {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-report-issue', :class =>  "btn btn-link"}  %>
                                         </td>
                                     </tr>
                                 <% end %>                   
@@ -192,7 +193,7 @@
                                                 <tr class="g-table-card-header">
 
                                                     <td>
-                                                        <%= image_tag  c.nok_icon.url, :class => "g-issue-icon-mini g-issue-icon-red"%> 
+                                                        <%= image_tag  c.nok_icon.url, :class => "g-issue-icon-mini"%> 
                                                     </td>
                                                 </tr>  
                                                 <tr>
