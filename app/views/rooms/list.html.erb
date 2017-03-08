@@ -24,25 +24,10 @@
 
                     <div class="pull-right ">
 
-                        <!-- Zamiast tego bedzie avatar
                         <div class="btn-group">
-                            <div class="dropdown">
-                                <button class="btn-group" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    Zalogowano jako: <%= current_user.username %> <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><%= link_to 'Profile', edit_user_registration_path %></li>
-                                    <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
-                                </ul>
-                            </div>
-                        </div>
-                        -->         
-
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-primary g-ripple-effect" data-toggle="modal" data-target="#modal-create-room">Utwórz Pokój</a>                 
+                            <%= link_to "Utwórz pokój", new_room_path, remote: true, :class => "btn btn-primary g-ripple-effect" %>
                         </div>
 
-                        <!-- User Avatar / Profile -->
                         <%if user_signed_in? %>
                             <div class="btn-group">
                                 <div class="dropdown">
@@ -147,30 +132,7 @@
             </div>        
         </div>
 
-        <!-- Modal Window -->
-        <div id="modal-create-room" class="modal fade modal-create-room" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Dodaj pokój</h4>
-                    </div>
-
-                    <div class="modal-body">
-                        <!--
-                            <p>Create new room</p>
-                        !-->
-
-                    </div>
-
-                    <div class="modal-footer">
-                       
-                    </div>
-
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+        <div id="modal-create-room" class="modal fade"> </div>
 
         <!-- Modal Window -->
         <div id="modal-create-room" class="modal fade modal-create-room" tabindex="-1" role="dialog">

@@ -41,7 +41,7 @@
     <% end %> 
 
     <% if current_user && (current_user.maid? || current_user.admin?) %>
-      <div class="g-aside-menu-position <%= controller_name == 'room' ? ' g-aside-menu-position-active' : '' =%>">
+      <div class="g-aside-menu-position <%= controller_name == 'rooms' ? ' g-aside-menu-position-active' : '' =%>">
           <%= link_to image_tag("left-menu/rooms.png"), "/roomStatus/list", :class =>  "g-aside-icon g-ripple-effect"%>
           <span class="btn btn-link">Status Pokojów</span>                
       </div>

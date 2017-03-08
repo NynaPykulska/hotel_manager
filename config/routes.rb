@@ -19,6 +19,7 @@ Rails.application.routes.draw do
    get 'dayLog/list', to: 'memos#list'
    get 'memos/new'
    post 'memos/new', to: 'memos#create'
+   post 'rooms/new', to: 'rooms#create'
    post 'memos/create'
    post 'rooms/create'
    post 'issues/create'
