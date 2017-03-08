@@ -1,4 +1,4 @@
-class RoomController < ApplicationController
+class RoomsController < ApplicationController
 	before_filter :init_items_size_list
   before_filter :authenticate_user!
 
