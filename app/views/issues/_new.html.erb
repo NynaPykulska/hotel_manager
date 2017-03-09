@@ -26,9 +26,11 @@
 
 
                 <div id="new_issue_date_field" class="btn-group" style="max-width: 140px;">
+                    <label>Data wykonania</label>
                     <div class="input-group date" data-provide='datepicker'>
-                    <%= f.date_field :requested_fix_date, class: 'form-control' , :value => @stored_date %>
-                    <span class="input-group-addon">
+                        <%= f.text_field :requested_fix_date, class: 'form-control' , :value => @stored_date, 
+                            hide_label: true  %>
+                        <span class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                     </span>
                     </div>
@@ -49,8 +51,9 @@
                 <div id="new_issue_recurring_options" style="display: none">
 
                     <div id="new_issue_start_date_field" class="btn-group" style="max-width: 140px;">
+                        <label>Data rozpoczęcia</label>
                         <div class="input-group date" data-provide='datepicker'>
-                            <%= f.date_field :start_date, class: 'form-control', label: "Data rozpoczęcia"%>
+                            <%= f.text_field :start_date, class: 'form-control', hide_label: true%>
                             <span class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </span>
@@ -69,8 +72,9 @@
                     </script>
 
                     <div id="new_issue_end_date_field" class="btn-group" style="max-width: 140px;">
+                        <label>Data zakończenia</label>
                         <div class="input-group date" data-provide='datepicker'>
-                            <%= f.date_field :end_date, class: 'form-control', label: "Data zakończenia"%>
+                            <%= f.text_field :end_date, class: 'form-control', hide_label: true%>
                             <span class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </span>
