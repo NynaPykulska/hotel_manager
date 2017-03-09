@@ -21,13 +21,39 @@
                     </div>
                 </div>
 
-                <div id="new_memo_date_field">
-                    <%= f.date_select :completion_date, label: "Data Wykonania"%>
+                <div id="new_memo_date_field" class="btn-group" style="max-width: 140px;">
+                    <label>Data wykonania</label>
+                    <div class="input-group date" data-provide='datepicker'>
+                        <%= f.text_field :completion_date, class: 'form-control' , :value => @stored_date, 
+                            hide_label: true  %>
+                        <span class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </span>
+                    </div>
                 </div>
 
                 <div id="new_memo_recurring_options" style="display: none">
-                    <%= f.date_select :start_date, label: "Data rozpoczęcia"%>
-                    <%= f.date_select :end_date, label: "Data zakończenia"%>
+
+                    <div id="new_memo_start_date_field" class="btn-group" style="max-width: 140px;">
+                        <label>Data rozpoczęcia</label>
+                        <div class="input-group date" data-provide='datepicker'>
+                            <%= f.text_field :start_date, class: 'form-control', hide_label: true%>
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div> 
+
+                    <div id="new_memo_end_date_field" class="btn-group" style="max-width: 140px;">
+                        <label>Data zakończenia</label>
+                        <div class="input-group date" data-provide='datepicker'>
+                            <%= f.text_field :end_date, class: 'form-control', hide_label: true%>
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div> 
+
                     <%= f.select :recurrence, options_for_select([['Codziennie' ,1], ['Co tydzień', 2], ['Co miesiąc', 3], ['Wybrane dni miesiaca', 4]])%>
                 </div>
 

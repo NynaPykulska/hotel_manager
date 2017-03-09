@@ -21,3 +21,33 @@ $("#issue_recurrence").change(function() {
         $("#new_issue_recurring_additional").hide()
     }
 });
+
+$('#new_issue_date_field .input-group.date').datepicker({
+    format: 'yyyy-mm-dd',
+    language: "pl",
+    autoclose: true,
+    todayHighlight: true,
+    todayBtn: "linked"
+}).on('changeDate', function (a) {
+    
+});
+
+$('#new_issue_start_date_field .input-group.date').datepicker({
+    format: 'yyyy-mm-dd',
+    language: "pl",
+    autoclose: true,
+    todayHighlight: true,
+    todayBtn: "linked"
+}).on('changeDate', function (a) {
+    
+});
+
+$('#new_issue_end_date_field .input-group.date').datepicker({
+    format: 'yyyy-mm-dd',
+    language: "pl",
+    autoclose: true,
+    todayHighlight: true,
+    todayBtn: "linked"
+}).on('changeDate', function (a) {
+    
+});

@@ -23,8 +23,6 @@
                     </div>
                 </div>
 
-
-
                 <div id="new_issue_date_field" class="btn-group" style="max-width: 140px;">
                     <label>Data wykonania</label>
                     <div class="input-group date" data-provide='datepicker'>
@@ -35,18 +33,6 @@
                     </span>
                     </div>
                 </div>  
-                <script>
-                    $('#new_issue_date_field .input-group.date').datepicker({
-                        format: 'yyyy-mm-dd',
-                        language: "pl",
-                        autoclose: true,
-                        todayHighlight: true,
-                        todayBtn: "linked"
-                    }).on('changeDate', function (a) {
-                        var date = a.date.getFullYear() + "-" + (a.date.getMonth() + 1) + "-" + a.date.getDate();
-                    });
-                </script>
-
 
                 <div id="new_issue_recurring_options" style="display: none">
 
@@ -59,17 +45,6 @@
                             </span>
                         </div>
                     </div> 
-                    <script>
-                        $('#new_issue_start_date_field .input-group.date').datepicker({
-                            format: 'yyyy-mm-dd',
-                            language: "pl",
-                            autoclose: true,
-                            todayHighlight: true,
-                            todayBtn: "linked"
-                        }).on('changeDate', function (a) {
-                            var date = a.date.getFullYear() + "-" + (a.date.getMonth() + 1) + "-" + a.date.getDate();
-                        });
-                    </script>
 
                     <div id="new_issue_end_date_field" class="btn-group" style="max-width: 140px;">
                         <label>Data zakończenia</label>
@@ -80,17 +55,6 @@
                             </span>
                         </div>
                     </div> 
-                    <script>
-                        $('#new_issue_end_date_field .input-group.date').datepicker({
-                            format: 'yyyy-mm-dd',
-                            language: "pl",
-                            autoclose: true,
-                            todayHighlight: true,
-                            todayBtn: "linked"
-                        }).on('changeDate', function (a) {
-                            var date = a.date.getFullYear() + "-" + (a.date.getMonth() + 1) + "-" + a.date.getDate();
-                        });
-                    </script>
 
                     <%= f.select :recurrence, options_for_select([['Codziennie' ,1], ['Co tydzień', 2], ['Co miesiąc', 3], ['Wybrane dni miesiaca', 4]])%>
                 </div>

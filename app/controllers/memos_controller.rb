@@ -62,13 +62,13 @@ class MemosController < ApplicationController
     @room = Room.where("room_id = ?", memo_params[:room_id]).first
 
     if(memo_params[:is_recurring] == "0")
-      @date = DateTime.new(params[:memo]["completion_date(1i)"].to_i, params[:memo]["completion_date(2i)"].to_i ,params[:memo]["completion_date(3i)"].to_i, params[:memo]["memo_time(4i)"].to_i, params[:memo]["memo_time(5i)"].to_i)
+      @date = Date.strptime(params[:memo]["completion_date"], '%Y-%m-%d')
       @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: @date, completion_date: memo_params[:completion_date], is_done: memo_params[:is_done], time_stamp: memo_params[:time_stamp], is_recurring: false )
       redirect_back(fallback_location: root_path)
 
     else
-      start_date =  DateTime.new(params[:memo]["start_date(1i)"].to_i, params[:memo]["start_date(2i)"].to_i ,params[:memo]["start_date(3i)"].to_i, params[:memo]["memo_time(4i)"].to_i, params[:memo]["memo_time(5i)"].to_i)
-      end_date =    DateTime.new(params[:memo]["end_date(1i)"].to_i, params[:memo]["end_date(2i)"].to_i ,params[:memo]["end_date(3i)"].to_i, params[:memo]["memo_time(4i)"].to_i, params[:memo]["memo_time(5i)"].to_i)
+      start_date = DateTime.strptime(params[:memo]["start_date"], '%Y-%m-%d')
+      end_date = DateTime.strptime(params[:memo]["end_date"], '%Y-%m-%d')
 
       # Generate a unique ID for an event
       id = DateTime.now.strftime("%Y%m%d%k%M%S%L")
