@@ -450,7 +450,7 @@ label {
       -ms-transform: rotate(180deg);
           transform: rotate(180deg); }
 
-.g-aside-icon {
+.g-aside-icon, .g-aside-icon > img {
   width: 32px;
   height: 32px;
   margin: 4px;
