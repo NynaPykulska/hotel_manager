@@ -130,4 +130,14 @@ var room_order = 0;
                     $(this).closest('tr').find('.ready-button.disabled').hide();
                 }
             });
+
+            $('#new_issue_date_field .input-group.date').datepicker({
+                        format: 'yyyy-mm-dd',
+                        language: "pl",
+                        autoclose: true,
+                        todayHighlight: true,
+                        todayBtn: "linked"
+                    }).on('changeDate', function (a) {
+                        
+                    });
 });

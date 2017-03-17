@@ -6,23 +6,31 @@
         </div>
 
         <div class="modal-body">
+
             <%= bootstrap_form_for :room, remote: true, html: { style: "display:inline;" } do |f| %>
-                <%= f.number_field :room_id, label: "Numer pokoju" %>
-                <%= f.text_field :description, label: "Opis pokoju" %>
 
+                <!-- Room ID -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <%= f.number_field :room_id, label: "Numer pokoju" %>
+                    </div>
+                </div>
 
-                <div class="modal-footer">
+                <!-- Description -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <%= f.text_field :description, label: "Opis pokoju" %>
+                    </div>
+                </div>
+
+                 <div class="modal-footer">
                     <div class="text-right">
                         <a href="" data-dismiss="modal" class="btn btn-default">Anuluj</a>
                         <%= f.submit "Utwórz", :class => 'btn btn-primary' %>
                     </div>
                 </div>
+
             <% end %>  
-
-        </div>
-
-        <div class="modal-footer">
-           
         </div>
 
     </div>

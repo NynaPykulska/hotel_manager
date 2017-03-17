@@ -1,9 +1,11 @@
 <div class="modal-dialog" role="document">
   <div class="modal-content">
+
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Edytuj Memo</h4>
     </div>
+
     <div class="modal-body">
       <%= bootstrap_form_for @c, remote: true, html: { style: "display:inline;" } do |f| %>
         <%= f.text_field :description, label: "Opis" %>
@@ -18,9 +20,9 @@
               <%= f.submit "Uaktualnij", :class => 'btn btn-primary' %>
           </div>
         </div>
-
         
       <% end %>
     </div>
+
   </div>
 </div>

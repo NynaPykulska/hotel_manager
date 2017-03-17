@@ -268,6 +268,10 @@ label {
   text-decoration: line-through;
   color: #adbec5; }
 
+.strike-out.td-done h4 {
+  text-decoration: line-through;
+  color: #adbec5; }
+
 .form-group h4 {
   margin-top: 0;
   margin-bottom: 0; }
@@ -356,7 +360,13 @@ label {
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.32);
   font-size: 11px;
-  font-weight: 400; }
+  font-weight: 400;
+  padding-left: 0;
+  padding-right: 0;
+  cursor: pointer; }
+
+.nav-pills > li:not(:first-child) {
+  margin-left: 16px; }
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
   background: none;
@@ -440,7 +450,7 @@ label {
       -ms-transform: rotate(180deg);
           transform: rotate(180deg); }
 
-.g-aside-icon {
+.g-aside-icon, .g-aside-icon > img {
   width: 32px;
   height: 32px;
   margin: 4px;
@@ -503,8 +513,8 @@ label {
   padding: 32px; }
 
 .modal-footer {
-  padding: 32px;
-  padding-top: 0; }
+  padding: 0;
+  padding-top: 32px; }
 
 .form-control {
   border-radius: 0;

@@ -7,96 +7,96 @@
 
         <div class="modal-body">
             <%= bootstrap_form_for :issue, :url => url_for(:controller => 'issues', :action => 'create') do |f| %>
-                <%= f.collection_select :issue_type, IssueType.all, :id, :issue_description, label: "Rodzaj Usterki" %>
-                <%= f.text_field :fix_comment, label: "Komentarz" %>
-                <%= f.hidden_field :timestamp, :value => Date.today %>
-                <%= f.hidden_field :completion_date, :value => nil %>
-                <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Pokój" %>
+
+                <!-- Room ID & Priority -->
                 <div class="row">
-                    <div class="form-group col-xs-5">
+                    <div class="col-xs-12">
+                        <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Pokój" %>
+                    </div>
+                </div>
+
+                <!-- Issue Type & Priority -->
+                <div class="row">
+                    <div class="col-xs-8">
+                        <%= f.collection_select :issue_type, IssueType.all, :id, :issue_description, label: "Rodzaj Usterki" %>
+                    </div>
+                    <div class="col-xs-4">
                         <%= f.select :priority, options_for_select([['Niski' ,1], ['Średni', 2], ['Wysoki', 3]])%>
                     </div>
-                    <div class="form-group col-xs-7">
+                </div>
+
+                <!-- Comment -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <%= f.text_field :fix_comment, label: "Komentarz" %>
+                    </div>
+                </div>
+
+                <%= f.hidden_field :timestamp, :value => Date.today %>
+                <%= f.hidden_field :completion_date, :value => nil %>
+
+                <!-- Recurring Checbox & Dropdown -->
+                <div class="row">
+                    <div class="form-group col-xs-6">
                         <%= f.form_group :is_recurring do %>
                             <%= f.check_box :is_recurring, label: "Powtarzanie", id: "recurring_check_box" %>
                         <% end %>
                     </div>
-                </div>
 
-
-
-                <div id="new_issue_date_field" class="btn-group" style="max-width: 140px;">
-                    <label>Data wykonania</label>
-                    <div class="input-group date" data-provide='datepicker'>
-                        <%= f.text_field :requested_fix_date, class: 'form-control' , :value => @stored_date, 
-                            hide_label: true  %>
-                        <span class="input-group-addon">
-                        <i class="fa fa-calendar"></i>
-                    </span>
+                    <div class="col-xs-6" id="new_issue_recurring_options" style="display: none">
+                        <%= f.select :recurrence, options_for_select([['Codziennie' ,1], ['Co tydzień', 2], ['Co miesiąc', 3], ['Wybrane dni miesiaca', 4]])%>
                     </div>
-                </div>  
-                <script>
-                    $('#new_issue_date_field .input-group.date').datepicker({
-                        format: 'yyyy-mm-dd',
-                        language: "pl",
-                        autoclose: true,
-                        todayHighlight: true,
-                        todayBtn: "linked"
-                    }).on('changeDate', function (a) {
-                        var date = a.date.getFullYear() + "-" + (a.date.getMonth() + 1) + "-" + a.date.getDate();
-                    });
-                </script>
-
-
-                <div id="new_issue_recurring_options" style="display: none">
-
-                    <div id="new_issue_start_date_field" class="btn-group" style="max-width: 140px;">
-                        <label>Data rozpoczęcia</label>
-                        <div class="input-group date" data-provide='datepicker'>
-                            <%= f.text_field :start_date, class: 'form-control', hide_label: true%>
-                            <span class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
-                            </span>
-                        </div>
-                    </div> 
-                    <script>
-                        $('#new_issue_start_date_field .input-group.date').datepicker({
-                            format: 'yyyy-mm-dd',
-                            language: "pl",
-                            autoclose: true,
-                            todayHighlight: true,
-                            todayBtn: "linked"
-                        }).on('changeDate', function (a) {
-                            var date = a.date.getFullYear() + "-" + (a.date.getMonth() + 1) + "-" + a.date.getDate();
-                        });
-                    </script>
-
-                    <div id="new_issue_end_date_field" class="btn-group" style="max-width: 140px;">
-                        <label>Data zakończenia</label>
-                        <div class="input-group date" data-provide='datepicker'>
-                            <%= f.text_field :end_date, class: 'form-control', hide_label: true%>
-                            <span class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
-                            </span>
-                        </div>
-                    </div> 
-                    <script>
-                        $('#new_issue_end_date_field .input-group.date').datepicker({
-                            format: 'yyyy-mm-dd',
-                            language: "pl",
-                            autoclose: true,
-                            todayHighlight: true,
-                            todayBtn: "linked"
-                        }).on('changeDate', function (a) {
-                            var date = a.date.getFullYear() + "-" + (a.date.getMonth() + 1) + "-" + a.date.getDate();
-                        });
-                    </script>
-
-                    <%= f.select :recurrence, options_for_select([['Codziennie' ,1], ['Co tydzień', 2], ['Co miesiąc', 3], ['Wybrane dni miesiaca', 4]])%>
                 </div>
 
-                <div id="new_issue_recurring_additional" style="display: none">
-                    <%= f.text_field :pattern, label: "Dni, oddzielone przecinkami" %>
+                <!-- Date Picker -->
+                <div class="row" id="new_issue_date_field">
+                    <div class="col-xs-6">                    
+                        <div class="btn-group">
+                            <label>Data wykonania</label>
+                            <div class="input-group date" data-provide='datepicker'>
+                                <%= f.text_field :requested_fix_date, class: 'form-control' , :value => @stored_date, 
+                                    hide_label: true  %>
+                                <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+
+                <!-- Selected Days -->
+                <div class="row" id="new_issue_recurring_additional" style="display: none">
+                    <div class="col-xs-12">
+                        <%= f.text_field :pattern, label: "Dni, oddzielone przecinkami" %>
+                    </div>
+                </div>                
+
+                <!-- Recurring Date Pickers -->
+                <div class="row" id="new_issue_recurring_date_pickers" style="display: none">
+                    
+                    <div class="col-xs-6">
+                        <div id="new_issue_start_date_field" class="btn-group">
+                            <label>Data rozpoczęcia</label>
+                            <div class="input-group date" data-provide='datepicker'>
+                                <%= f.text_field :start_date, class: 'form-control', hide_label: true%>
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div> 
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div id="new_issue_end_date_field" class="btn-group">
+                            <label>Data zakończenia</label>
+                            <div class="input-group date" data-provide='datepicker'>
+                                <%= f.text_field :end_date, class: 'form-control', hide_label: true%>
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="modal-footer">
@@ -105,7 +105,9 @@
                         <%= f.submit "Utwórz", :class => 'btn btn-primary' %>
                     </div>
                 </div>
+
             <% end %>
+            
         </div>
     </div>
 </div>
