@@ -78,6 +78,7 @@ var room_order = 0;
             $('.ready-button').click(function(e){
             if($(this).closest('tr').hasClass("tr-not_done"))
             {
+                console.log("ready");
                 $(this).closest('tr').find('.strike-out').addClass('td-done');
                 $(this).closest('tr').removeClass('tr-not_done');
                 $(this).closest('tr').addClass('tr-done');
@@ -85,7 +86,7 @@ var room_order = 0;
                 var old_number = parseInt(document.getElementById('ready-number').innerHTML);
                 old_number++;
                 $('#ready-number').text(old_number);
-                // Change number of open memos
+                // // Change number of open memos
                 old_number = parseInt(document.getElementById('open-number').innerHTML);
                 old_number--;
                 $('#open-number').text(old_number);
@@ -95,7 +96,10 @@ var room_order = 0;
                 $(this).closest('tr').find('.issue-nok-icon').hide();
                 
                 $(this).closest('tr').find('.edit-button').hide();
-                $(this).closest('tr').find('.ready-button').prop('disabled', true);
+                // $(this).closest('tr').find('.ready-button').prop('disabled', true);
+                $(this).closest('tr').find('.ready-button.enabled').hide();
+                $(this).closest('tr').find('.ready-button.disabled').show();
+        
             }
             });
 
@@ -121,7 +125,9 @@ var room_order = 0;
                     // $(this).closest('tr').find('.ready-button').show();
                     // $(this).closest('div').find('.dropdown-menu').hide();
                     $(this).closest('tr').find('.edit-button').show();
-                    $(this).closest('tr').find('.ready-button').prop('disabled', false);
+                    // $(this).closest('tr').find('.ready-button').prop('disabled', false);
+                    $(this).closest('tr').find('.ready-button.enabled').show();
+                    $(this).closest('tr').find('.ready-button.disabled').hide();
                 }
             });
 });

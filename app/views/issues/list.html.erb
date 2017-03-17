@@ -144,7 +144,12 @@
                                         </td>  
 
                                         <td class="text-right">
-                                            <%= button_to "Gotowe", "issue/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done ready-button", remote: true, :method => :get, form: {style: 'display:inline-block;'}, disabled: c.is_done%>
+                                            
+                                            <%= button_to "Gotowe", "", :class => "btn btn-link btn-memo-done ready-button disabled", remote: true, :method => :get, form: {style: 'display:inline-block;'}, disabled: "true", :style => c.is_done ? '' : 'display: none;' %>
+
+                                            <%= button_to "Gotowe", "issue/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done ready-button enabled", remote: true, :method => :get, form: {style: 'display:inline-block;'}, :style => c.is_done ? 'display: none;' : ''%>
+
+
 
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-link btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
