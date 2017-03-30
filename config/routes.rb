@@ -9,13 +9,15 @@ Rails.application.routes.draw do
    get 'roomStatus/list', to: 'rooms#list'
    get 'issueLog/list', to: 'issues#list'
    get 'dayLog/memos/mark_ready', to: 'memos#mark_ready'
+
    get 'issueLog/issue/mark_ready', to: 'issues#mark_ready'
    get 'dayLog/memos/reopen', to: 'memos#reopen'
    get 'issueLog/issue/reopen', to: 'issues#reopen'
    get 'dayLog/memos/delete', to: 'memos#delete'
    get 'issueLog/issue/delete', to: 'issues#delete'
    get 'dayLog/memos/delete_recurrence', to: 'memos#delete_recurrence'
-   get 'roomStatus/report', to: 'room#report'
+   get 'roomStatus/report_modal', to: 'rooms#report_modal'
+   get 'roomStatus/markIssue', to: 'rooms#markIssue'
 
    get 'dayLog/list', to: 'memos#list'
    get 'memos/new'

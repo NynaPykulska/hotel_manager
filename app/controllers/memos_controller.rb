@@ -30,7 +30,7 @@ class MemosController < ApplicationController
       @memo.update_attribute(:completion_date, Date.today)
       @memo.is_done = true
       render :nothing => true
-       # redirect_to :action => 'list'
+      # redirect_to :action => 'list'
     end
 
     def reopen

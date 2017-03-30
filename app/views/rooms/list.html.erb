@@ -120,7 +120,9 @@
                                         <td class="g-vertical-middle text-right">   
                                             <a class="btn btn-link" data-toggle="modal" data-target="#modal-create-issue">Edytuj</a>
                                             <!-- <a class="btn btn-link" data-toggle="modal" data-target="#modal-report-issue">Zgłoś usterkę</a> -->
-                                            <%= link_to "Zgłoś usterkę", "/roomStatus/report?id=#{c.id}", {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-report-issue', :class =>  "btn btn-link"}  %>
+                                           
+
+                                            <%= link_to "Zgłoś usterkę", "report_modal?room_id=#{c.id}", :remote => true, :class =>  "btn btn-link"%>
                                         </td>
                                     </tr>
                                 <% end %>                   
@@ -135,49 +137,9 @@
         </div>
 
         <div id="modal-create-room" class="modal fade"> </div>
+        <div id="modal-report-issue" class="modal fade"> </div>
 
-        <!-- Modal Window -->
-        <div id="modal-report-issue" class="modal fade modal-create-room" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
 
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Zgłoś usterkę</h4>
-                    </div>
-
-                    <div class="modal-body">
-                        <div class="row" style="display: flex; flex-wrap: wrap;">
-                            <% @issueTypes.each do |c| %>
-                                    <div class="col-xs-4">   
-                                        <table class="g-table-card g-table-card-grid g-report-issue-card">
-                                            <tbody>
-                                                <tr class="g-table-card-header">
-
-                                                    <td>
-                                                        <%= image_tag  c.nok_icon.url, :class => "g-issue-icon"%> 
-                                                    </td>
-                                                </tr>  
-                                                <tr>
-                                                    <td class="g-report-issue-card-description text-center">
-                                                        <h4> <%= c.issue_description %> </h4>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                            <% end %>
-                        </div>  
-
-                    </div>
-
-                    <div class="modal-footer">
-                       
-                    </div>
-
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
     </body>
 
     <%= javascript_include_tag "ripple-effect.js" %>

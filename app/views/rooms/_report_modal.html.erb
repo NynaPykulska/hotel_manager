@@ -1,0 +1,32 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Zgłoś usterkę</h4>
+        </div>
+
+        <div class="modal-body">
+            <div class="row" style="display: flex; flex-wrap: wrap;">
+                <% @issuesForRoom.each do |c| %>
+                    <div class="col-xs-4">  
+                        <table class = "<%= c.is_done ? "g-table-card g-table-card-grid g-report-issue-card g-report-issue-card-selected--red" : "g-table-card g-table-card-grid g-report-issue-card" %>" >
+                            <tbody>
+                                <tr class="g-table-card-header">
+
+                                    <td>
+                                        <%= image_tag  c.ok_icon.url, :class => c.is_done ? "g-issue-icon g-issue-icon-green g-issue-icon-white" : "g-issue-icon  g-issue-icon-red" %>
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td class="g-report-issue-card-description text-center">
+                                        <h4> <%= c.issue_description %> </h4>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>    
+                    </div>
+                <% end %>
+            </div>  
+        </div>
+    </div>
+</div>
