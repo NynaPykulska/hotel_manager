@@ -16,36 +16,39 @@
 //= require sorttable
 //= require_tree .
 
-var room_order = 0;
-        var date_order = 0;
-
         $(document).on('turbolinks:load',function() {
 
             $('#my-link').click(function (event) {
                 $('div.g-aside-menu-position-active').removeClass('g-aside-menu-position-active');
             });
 
-            $("table").tablesorter({
-                dateFormat : "uk",
-                headers: {
-                    // set "sorter: false" (no quotes) to disable the column
-                    0: { sorter: "false" },
-                    1: { sorter: "text" },
-                    3: { sorter: "text" }
-                }
+            // add parser through the tablesorter addParser method 
+            $.tablesorter.addParser({ 
+                // set a unique id 
+                id: 'grades', 
+                is: function(s) { 
+                    // return false so this parser is not auto detected 
+                    return false; 
+                }, 
+                format: function(s) { 
+                    // format your data for normalization 
+                    return parseInt(s.replace(/:/g, " ")); 
+                }, 
+                // set type, either numeric or text 
+                type: 'numeric' 
             }); 
+
+            $("table").tablesorter(); 
 
             $(function(){
                 $('#sort_room').click(function() {
-                    $("table").trigger("sorton", [[[2, room_order]]]);
-                    room_order = ((room_order + 1) % 2 );
+                    $("table thead").find("th:eq(3)").trigger("sort");
                 });
             });
 
             $(function(){
-                $('#sort_date').click(function() {
-                    $("table").trigger("sorton", [[[3, date_order]]]);
-                    date_order = ((date_order + 1) % 2 );
+                $('#sort_time').click(function() {
+                    $("table thead").find("th:eq(5)").trigger("sort");
                 });
             });
 
