@@ -155,7 +155,8 @@
                                          
                                             <%= button_to "Gotowe", "memos/mark_ready" , params: {id: c.id}, class: "btn btn-link btn-memo-done ready-button enabled", remote: true, method: :get, form: {style: 'display:inline-block;',  autocomplete: "off"}, :style => c.is_done ? 'display: none;' : ''%>
                                             <%= button_to "Gotowe", "", class: "btn btn-link btn-memo-done ready-button disabled", disabled: "true", :style => c.is_done ? '' : 'display: none;'%> 
-
+                                        </td>
+                                        <td>
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-link btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fa fa-ellipsis-h"></i>
