@@ -123,7 +123,7 @@
                                             <h4> <%= c.timestamp %> </h4>
                                         </td>
 
-                                        <td class="hidden-sm strike-out">
+                                        <td class="hidden-sm strike-out <%= c.is_done ? 'td-done' : '' =%>">
                                             <label>Priorytet</label>
                                             <h4>
                                             <% if c.priority == 'High' %>
