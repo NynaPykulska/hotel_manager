@@ -62,7 +62,7 @@ class MemosController < ApplicationController
     @room = Room.where("room_id = ?", memo_params[:room_id]).first
 
     if(memo_params[:is_recurring] == "0")
-      @date = Date.strptime(params[:memo]["completion_date"], '%Y-%m-%d')
+      @date = DateTime.strptime(params[:memo]["completion_date"], '%Y-%m-%d').change({ hour: params[:memo]["completion_date(4i)"].to_i, min: params[:memo]["completion_date(5i)"].to_i})  
       @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: @date, completion_date: memo_params[:completion_date], is_done: memo_params[:is_done], time_stamp: memo_params[:time_stamp], is_recurring: false )
       redirect_back(fallback_location: root_path)
 

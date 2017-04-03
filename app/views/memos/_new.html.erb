@@ -15,7 +15,7 @@
                     </div>
 
                     <div class="col-xs-6">
-                        <%= f.time_select :memo_time, label: "Godzina" %>
+                        <%= f.time_select :completion_date, label: "Godzina", :ignore_date => true %>
                     </div>
                 </div>
 
@@ -81,7 +81,7 @@
                         <div class="btn-group">
                             <label>Data wykonania</label>
                             <div class="input-group date" data-provide='datepicker'>
-                                <%= f.text_field :completion_date, class: 'form-control' , :value => @stored_date, 
+                                <%= f.text_field :completion_date, class: 'form-control' , :value => Date.today(), 
                                     hide_label: true  %>
                                 <span class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
