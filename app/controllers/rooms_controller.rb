@@ -39,9 +39,7 @@ class RoomsController < ApplicationController
 
   def report_modal
     room = params[:room_id]
-    # @issueTypes = IssueType.all
     @issuesForRoom = Issue.where("room_id = ?", room)
-    # @reportedIssues = IssueType.joins("INNER JOIN issues ON issues.issue_type_id = issue_types.id AND issues.room_id = " + room)
 
     @issues = Array.new
 
@@ -56,35 +54,7 @@ class RoomsController < ApplicationController
 
       @issues.push(issueEntity)
     end
-    # @issueTypes.each do |issueType|
-    #   issueEntity = IssueEntity.new
-    #   issueEntity.issue_type = issueType.id
-    #   issueEntity.room_id = room
-    #   issueEntity.ok_icon = issueType.ok_icon
-      
-    #   if @reportedIssues.detect {|i| i.id == issueType.id} == nil 
-    #     issueEntity.is_done = false
-    #   else
-    #     issueEntity.is_done = true
-    #   end
-
-    #   issueEntity.issue_description = issueType.issue_description
-
-    #   @issues.push(issueEntity)
-    # end
   end
-
-  # def report
-  #   @issueTypes = IssueType.all
-  #   room = params[:room_id]
-  #   @reportedIssues = IssueType.joins("INNER JOIN issues ON issues.issue_type_id = issue_types.id AND issues.room_id = "+ room)
-  #   @otherIssues = []
-  #   @issueTypes.each do |issue|
-  #     if @reportedIssues.detect {|i| i.id == issue.id} == nil
-  #       @otherIssues.push(issue)
-  #     end
-  #   end
-  # end
 
   def markIssue
     room = params[:room]
@@ -92,21 +62,13 @@ class RoomsController < ApplicationController
     puts room
     puts issueType
 
-    # @issue = Issue.find(:first, :conditions => [ "room_id = ? AND issue_type_id = ?", room, issueType])
     @issue = Issue.where("room_id = ? AND issue_type_id = ?", room, issueType).first
 
     currentValue = @issue.is_done
     @issue.update_attribute(:is_done, !currentValue)
 
-    puts ""
-    puts "koniec"
-    puts ""
-    # @issue.is_done = !currentValue
     render :nothing => true
   end
-  
-
-
 end
 
 class IssueEntity
