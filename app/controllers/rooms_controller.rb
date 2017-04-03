@@ -39,51 +39,72 @@ class RoomsController < ApplicationController
 
   def report_modal
     room = params[:room_id]
-    @issueTypes = IssueType.all
-    @reportedIssues = IssueType.joins("INNER JOIN issues ON issues.issue_type_id = issue_types.id AND issues.room_id = " + room)
+    # @issueTypes = IssueType.all
+    @issuesForRoom = Issue.where("room_id = ?", room)
+    # @reportedIssues = IssueType.joins("INNER JOIN issues ON issues.issue_type_id = issue_types.id AND issues.room_id = " + room)
 
-    @issuesForRoom = Array.new
+    @issues = Array.new
 
-    @issueTypes.each do |issueType|
+    @issuesForRoom.each do |issue| 
       issueEntity = IssueEntity.new
-      issueEntity.issue_type = issueType.id
+      type = IssueType.where("id = ?", issue.issue_type_id).first
+      issueEntity.issue_type = issue.issue_type_id
       issueEntity.room_id = room
-      issueEntity.ok_icon = issueType.ok_icon
+      issueEntity.ok_icon = type.ok_icon
+      issueEntity.is_done = issue.is_done
+      issueEntity.issue_description = type.issue_description
+
+      @issues.push(issueEntity)
+    end
+    # @issueTypes.each do |issueType|
+    #   issueEntity = IssueEntity.new
+    #   issueEntity.issue_type = issueType.id
+    #   issueEntity.room_id = room
+    #   issueEntity.ok_icon = issueType.ok_icon
       
-      if @reportedIssues.detect {|i| i.id == issueType.id} == nil 
-        issueEntity.is_done = false
-      else
-        issueEntity.is_done = true
-      end
+    #   if @reportedIssues.detect {|i| i.id == issueType.id} == nil 
+    #     issueEntity.is_done = false
+    #   else
+    #     issueEntity.is_done = true
+    #   end
 
-      issueEntity.issue_description = issueType.issue_description
+    #   issueEntity.issue_description = issueType.issue_description
 
-      @issuesForRoom.push(issueEntity)
-    end
+    #   @issues.push(issueEntity)
+    # end
   end
 
-  def report
-    @issueTypes = IssueType.all
-    room = params[:room_id]
-    @reportedIssues = IssueType.joins("INNER JOIN issues ON issues.issue_type_id = issue_types.id AND issues.room_id = "+ room)
-    @otherIssues = []
-    @issueTypes.each do |issue|
-      if @reportedIssues.detect {|i| i.id == issue.id} == nil
-        @otherIssues.push(issue)
-      end
-    end
+  # def report
+  #   @issueTypes = IssueType.all
+  #   room = params[:room_id]
+  #   @reportedIssues = IssueType.joins("INNER JOIN issues ON issues.issue_type_id = issue_types.id AND issues.room_id = "+ room)
+  #   @otherIssues = []
+  #   @issueTypes.each do |issue|
+  #     if @reportedIssues.detect {|i| i.id == issue.id} == nil
+  #       @otherIssues.push(issue)
+  #     end
+  #   end
+  # end
 
-    def markIssue
-      room = params[:room]
-      issueType = params[:issue]
-      value = params[:value]
+  def markIssue
+    room = params[:room]
+    issueType = params[:issueType]
+    puts room
+    puts issueType
 
-      @issue = Issues.find(:first, :conditions => [ "room_id = ? AND issue_type = ?", room, issueType])
-      @issue.update_attribute(:is_done, value)
-      @issue.is_done = false
-      render :nothing => true
-    end
+    # @issue = Issue.find(:first, :conditions => [ "room_id = ? AND issue_type_id = ?", room, issueType])
+    @issue = Issue.where("room_id = ? AND issue_type_id = ?", room, issueType).first
+
+    currentValue = @issue.is_done
+    @issue.update_attribute(:is_done, !currentValue)
+
+    puts ""
+    puts "koniec"
+    puts ""
+    # @issue.is_done = !currentValue
+    render :nothing => true
   end
+  
 
 
 end

@@ -7,14 +7,16 @@
 
         <div class="modal-body">
             <div class="row" style="display: flex; flex-wrap: wrap;">
-                <% @issuesForRoom.each do |c| %>
+                <% @issues.each do |c| %>
                     <div class="col-xs-4">  
-                        <table class = "<%= c.is_done ? "g-table-card g-table-card-grid g-report-issue-card g-report-issue-card-selected--red" : "g-table-card g-table-card-grid g-report-issue-card" %>" >
+                            <%= link_to "report?room=#{c.room_id}&issueType=#{c.issue_type}", remote: true do %>
+
+                        <table class = "<%= c.is_done ? "g-table-card g-table-card-grid g-report-issue-card" : "g-table-card g-table-card-grid g-report-issue-card  g-report-issue-card-selected--red" %>" >
                             <tbody>
                                 <tr class="g-table-card-header">
 
                                     <td>
-                                        <%= image_tag  c.ok_icon.url, :class => c.is_done ? "g-issue-icon g-issue-icon-green g-issue-icon-white" : "g-issue-icon  g-issue-icon-red" %>
+                                        <%= image_tag  c.ok_icon.url, :class => c.is_done ? "g-issue-icon g-issue-icon-red " : "g-issue-icon g-issue-icon-green g-issue-icon-white" %>
                                     </td>
                                 </tr>  
                                 <tr>
@@ -24,6 +26,7 @@
                                 </tr>
                             </tbody>
                         </table>    
+                            <% end %>
                     </div>
                 <% end %>
             </div>  

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
    get 'issueLog/issue/delete', to: 'issues#delete'
    get 'dayLog/memos/delete_recurrence', to: 'memos#delete_recurrence'
    get 'roomStatus/report_modal', to: 'rooms#report_modal'
-   get 'roomStatus/markIssue', to: 'rooms#markIssue'
+   get 'roomStatus/report', to: 'rooms#markIssue'
 
    get 'dayLog/list', to: 'memos#list'
    get 'memos/new'

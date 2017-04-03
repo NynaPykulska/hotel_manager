@@ -7,94 +7,190 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+if ENV["old_seeds"]
+	lamp = IssueType.create(	id: 1,
+					    issue_description: "Broken lamp",
+					    default_priority: "Medium",
+					    when_to_resolve: "As soon as possible",
+					    ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
+				
 
-lamp = IssueType.create(	id: 1,
-				    issue_description: "Broken lamp",
-				    default_priority: "Medium",
-				    when_to_resolve: "As soon as possible",
-				    ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
-						nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
-			
+	light = IssueType.create(	id: 2,
+					    issue_description: "No light",
+					    default_priority: "High",
+					    when_to_resolve: "As soon as possible",
+					    ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/lightbulb-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/lightbulb-nok.png"))
 
-light = IssueType.create(	id: 2,
-				    issue_description: "No light",
-				    default_priority: "High",
-				    when_to_resolve: "As soon as possible",
-				    ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/lightbulb-ok.png"),
-						nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/lightbulb-nok.png"))
+	water = IssueType.create(	id: 3,
+					    issue_description: "No water",
+					    default_priority: "High",
+					    when_to_resolve: "As soon as possible",
+					    ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/water-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/water-nok.png"))
 
-water = IssueType.create(	id: 3,
-				    issue_description: "No water",
-				    default_priority: "High",
-				    when_to_resolve: "As soon as possible",
-				    ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/water-ok.png"),
-						nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/water-nok.png"))
-
-paper = IssueType.create(	id: 4,
-				    issue_description: "No toilet paper",
-				    default_priority: "Medium",
-				    when_to_resolve: "As soon as possible",
-				    ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/toiletpaper-ok.png"),
-						nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/toiletpaper-nok.png"))
+	paper = IssueType.create(	id: 4,
+					    issue_description: "No toilet paper",
+					    default_priority: "Medium",
+					    when_to_resolve: "As soon as possible",
+					    ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/toiletpaper-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/toiletpaper-nok.png"))
 
 
-10.times do |i|
-	fuckingroom = Room.create(room_id: i+100, description: "ROOM DESCRIPTION", is_clean: false)
+	10.times do |i|
+		fuckingroom = Room.create(room_id: i+100, description: "ROOM DESCRIPTION", is_clean: false)
 
-	case (i%3)
-	when 0
-	  fuckingroom.issues.create(
-        			issue_type_id: lamp.issue_type_id,
-        			requested_fix_date: DateTime.new(2020,01,10),
-        			fix_comment: "No comments on this one",
-        			timestamp: Date.today,
-        			priority: "High")
-	when 1
-	  fuckingroom.issues.create(
-        			issue_type_id: light.issue_type_id,
-        			requested_fix_date: DateTime.new(2020,01,10),
-        			fix_comment: "No comments on this one",
-        			timestamp: Date.today,
-        			priority: "Medium")
-	  fuckingroom.issues.create(
-        			issue_type_id: water.issue_type_id,
-        			requested_fix_date: DateTime.new(2020,01,10),
-        			fix_comment: "No comments on this one",
-        			timestamp: Date.today,
-        			priority: "Low")
-	when 2
-	  fuckingroom.issues.create(
-        			issue_type_id: lamp.issue_type_id,
-        			requested_fix_date: DateTime.new(2020,01,10),
-        			fix_comment: "No comments on this one",
-        			timestamp: Date.today,
-        			priority: "High")
-	  fuckingroom.issues.create(
-        			issue_type_id: light.issue_type_id,
-        			requested_fix_date: DateTime.new(2020,01,10),
-        			fix_comment: "No comments on this one",
-        			timestamp: Date.today,
-        			priority: "Medium")
-	  fuckingroom.issues.create(
-        			issue_type_id: paper.issue_type_id,
-        			requested_fix_date: DateTime.new(2020,01,10),
-        			fix_comment: "No comments on this one",
-        			timestamp: Date.today,
-        			priority: "Low")
+		case (i%3)
+		when 0
+		  fuckingroom.issues.create(
+	        			issue_type_id: lamp.issue_type_id,
+	        			requested_fix_date: DateTime.new(2020,01,10),
+	        			fix_comment: "No comments on this one",
+	        			timestamp: Date.today,
+	        			priority: "High")
+		when 1
+		  fuckingroom.issues.create(
+	        			issue_type_id: light.issue_type_id,
+	        			requested_fix_date: DateTime.new(2020,01,10),
+	        			fix_comment: "No comments on this one",
+	        			timestamp: Date.today,
+	        			priority: "Medium")
+		  fuckingroom.issues.create(
+	        			issue_type_id: water.issue_type_id,
+	        			requested_fix_date: DateTime.new(2020,01,10),
+	        			fix_comment: "No comments on this one",
+	        			timestamp: Date.today,
+	        			priority: "Low")
+		when 2
+		  fuckingroom.issues.create(
+	        			issue_type_id: lamp.issue_type_id,
+	        			requested_fix_date: DateTime.new(2020,01,10),
+	        			fix_comment: "No comments on this one",
+	        			timestamp: Date.today,
+	        			priority: "High")
+		  fuckingroom.issues.create(
+	        			issue_type_id: light.issue_type_id,
+	        			requested_fix_date: DateTime.new(2020,01,10),
+	        			fix_comment: "No comments on this one",
+	        			timestamp: Date.today,
+	        			priority: "Medium")
+		  fuckingroom.issues.create(
+	        			issue_type_id: paper.issue_type_id,
+	        			requested_fix_date: DateTime.new(2020,01,10),
+	        			fix_comment: "No comments on this one",
+	        			timestamp: Date.today,
+	        			priority: "Low")
+		end
+
 	end
 
+
+
+	10.times do |i|
+		fuckingroom = Room.create(room_id: i+300, description: "ROOM DESCRIPTION", is_clean: true)
+	 	fuckingroom.memos.create(room_id: i+300, description: "MEMO DESCRIPTION", deadline: DateTime.new(2017,01,10), completion_date: DateTime.new(2016,12,30), is_done: true, time_stamp: DateTime.new(2016,12,11) )
+	end
+
+	10.times do |i|
+		fuckingroom = Room.create(room_id: i+500, description: "ROOM DESCRIPTION", is_clean: false)
+	 	fuckingroom.memos.create(room_id: i+500, description: "MEMO DESCRIPTION", deadline: DateTime.new(2017,10,10), is_done: false, time_stamp: DateTime.new(2016,12,11) )
+	end
+
+	User.create(username: 'nina', email: 'nina@nina.com', password: 'buttsex', password_confirmation: 'buttsex')
+
 end
 
+if ENV["new_seeds"]
+
+	10.times do |i|
+		Issue.create(
+			room_id: 100+i,
+			issue_type_id: 1,
+			priority: "low",
+			is_done: false,
+			is_recurring: false
+			)
+		Issue.create(
+			room_id: 100+i,
+			issue_type_id: 2,
+			priority: "low",
+			is_done: false,
+			is_recurring: false
+			)
+		Issue.create(
+			room_id: 100+i,
+			issue_type_id: 3,
+			priority: "low",
+			is_done: false,
+			is_recurring: false
+			)
+		Issue.create(
+			room_id: 100+i,
+			issue_type_id: 4,
+			priority: "low",
+			is_done: false,
+			is_recurring: false
+			)
+
+		Issue.create(
+			room_id: 300+i,
+			issue_type_id: 1,
+			priority: "low",
+			is_done: false,
+			is_recurring: false
+			)
+		Issue.create(
+			room_id: 300+i,
+			issue_type_id: 2,
+			priority: "low",
+			is_done: false,
+			is_recurring: false
+			)
+		Issue.create(
+			room_id: 300+i,
+			issue_type_id: 3,
+			priority: "low",
+			is_done: false,
+			is_recurring: false
+			)
+		Issue.create(
+			room_id: 300+i,
+			issue_type_id: 4,
+			priority: "low",
+			is_done: false,
+			is_recurring: false
+			)
+
+		Issue.create(
+			room_id: 500+i,
+			issue_type_id: 1,
+			priority: "low",
+			is_done: false,
+			is_recurring: false
+			)
+		Issue.create(
+			room_id: 500+i,
+			issue_type_id: 2,
+			priority: "low",
+			is_done: false,
+			is_recurring: false
+			)
+		Issue.create(
+			room_id: 500+i,
+			issue_type_id: 3,
+			priority: "low",
+			is_done: false,
+			is_recurring: false
+			)
+		Issue.create(
+			room_id: 500+i,
+			issue_type_id: 4,
+			priority: "low",
+			is_done: false,
+			is_recurring: false
+			)
+	end
 
 
-10.times do |i|
-	fuckingroom = Room.create(room_id: i+300, description: "ROOM DESCRIPTION", is_clean: true)
- 	fuckingroom.memos.create(room_id: i+300, description: "MEMO DESCRIPTION", deadline: DateTime.new(2017,01,10), completion_date: DateTime.new(2016,12,30), is_done: true, time_stamp: DateTime.new(2016,12,11) )
 end
-
-10.times do |i|
-	fuckingroom = Room.create(room_id: i+500, description: "ROOM DESCRIPTION", is_clean: false)
- 	fuckingroom.memos.create(room_id: i+500, description: "MEMO DESCRIPTION", deadline: DateTime.new(2017,10,10), is_done: false, time_stamp: DateTime.new(2016,12,11) )
-end
-
-User.create(username: 'nina', email: 'nina@nina.com', password: 'buttsex', password_confirmation: 'buttsex')
