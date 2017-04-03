@@ -96,7 +96,7 @@
                                 <% @rooms.each do |c| %>
                                     <tr class="g-table-card-header ">
                                         <td class="text-center g-table-card-icon-td">   
-                                            <% if c.is_clean %>
+                                            <% if Issue.where("room_id = ? AND is_done = ?", c.room_id, false).count == 0 %>
                                                 <%= image_tag "Ok.png", :class => "g-issue-icon"%>   
                                             <% else  %>
                                                 <%= image_tag "Attention.png", :class => "g-issue-icon g-issue-icon-red"%> 
