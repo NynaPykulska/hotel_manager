@@ -126,11 +126,11 @@
                                         <td class="hidden-sm strike-out <%= c.is_done ? 'td-done' : '' =%>">
                                             <label>Priorytet</label>
                                             <h4>
-                                            <% if c.priority == 'High' %>
+                                            <% if c.priority.downcase == 'high' %>
                                                 Wysoki <%= image_tag "Up.png", :class => "g-issue-icon-mini g-issue-icon-red"%>
-                                            <% elsif c.priority == 'Medium' %>
+                                            <% elsif c.priority.downcase == 'medium' %>
                                                 Średni
-                                            <% elsif c.priority == 'Low' %>
+                                            <% elsif c.priority.downcase == 'low' %>
                                                 Niski <%= image_tag "Down.png", :class => "g-issue-icon-mini"%>
                                             <% end %>
                                             <!-- <img src="assets/img/icons/application/Up.png" class="g-issue-icon-mini g-issue-icon-red"> -->
