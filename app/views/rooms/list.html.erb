@@ -95,6 +95,8 @@
                                 
                                 <% @rooms.each do |c| %>
                                     <tr class="g-table-card-header ">
+
+                                        <!-- Status Icon -->
                                         <td class="text-center g-table-card-icon-td">   
                                             <% if Issue.where("room_id = ? AND is_done = ?", c.room_id, false).count == 0 %>
                                                 <%= image_tag "Ok.png", :class => "g-issue-icon"%>   
@@ -103,26 +105,41 @@
                                             <% end  %>                         
                                         </td>
 
+                                        <!-- Room Number -->
                                         <td class="g-vertical-top">
                                             <label>Pokoj</label>
                                             <h4><%= c.room_id -%></h4>
                                         </td>
 
+                                        <!-- Issues -->
                                         <td  class="g-vertical-top">
                                             <label>Usterki</label>
-
                                             <% Issue.where("room_id = ? AND is_done = ?", c.room_id, false).each do |issue| %>
                                                 <%= image_tag  IssueType.where("id = ?", issue.issue_type_id).first.nok_icon.url, :class => "g-issue-icon-mini"%>
                                             <% end %>
-                                            
                                         </td>
 
-                                        <td class="g-vertical-middle text-right g-stay-in-one-line g-buttons-in-line">   
-                                            <a class="btn btn-link" data-toggle="modal" data-target="#modal-create-issue">Edytuj</a>
-                                            <!-- <a class="btn btn-link" data-toggle="modal" data-target="#modal-report-issue">Zgłoś usterkę</a> -->
-                                           
+                                        <!-- Action Buttons -->
+                                        <td class="g-vertical-middle text-right g-stay-in-one-line g-buttons-in-line">  
+
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-link btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                   <div data-icon="/" class="icon"></div>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="" data-toggle="modal" data-target="#modal-create-room">Edytuj</a></li>
+                                                    <li role="separator" class="divider"></li>
+                                                    <li><a>Anuluj</a></li>
+                                                </ul>
+                                            </div> 
 
                                             <%= link_to "Zgłoś", "report_modal?room_id=#{c.id}", :remote => true, :class =>  "btn btn-link"%>
+
+                                            <!--
+                                            <a class="btn btn-link" data-toggle="modal" data-target="#modal-report-issue">Zgłoś usterkę</a>
+                                            -->
+
+
                                         </td>
                                     </tr>
                                 <% end %>                   

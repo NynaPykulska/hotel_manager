@@ -106,26 +106,33 @@
 
                                 <% @issues.each do |c| %>
                                     <tr class="<%= c.is_done ? 'g-table-card-header tr-done' : 'g-table-card-header tr-not_done' =%>" >
+                                        
+                                        <!-- Status Icon -->
                                         <td class="text-center g-table-card-icon-td">
                                             <%= image_tag IssueType.where("id = ?", c.issue_type_id).first.ok_icon.url, :class => "g-issue-icon issue-ok-icon",  :style => c.is_done ? '' : 'display: none;'%>
                                             <%= image_tag IssueType.where("id = ?", c.issue_type_id).first.nok_icon.url, :class => "g-issue-icon issue-nok-icon",  :style => c.is_done ? 'display: none;' : ''%>
                                         </td>
                                         
-                                        <td class="strike-out <%= c.is_done ? 'td-done' : '' =%>">
+                                        <!-- Name -->
+                                        <td class="g-vertical-top strike-out <%= c.is_done ? 'td-done' : '' =%>">
                                             <label>Nazwa</label>
                                             <h4> <%= IssueType.where("id = ?", c.issue_type_id).first.issue_description %> </h4>
                                         </td>
-                                        <td class="strike-out <%= c.is_done ? 'td-done' : '' =%>">
+
+                                        <!-- Room Number -->
+                                        <td class="g-vertical-top strike-out <%= c.is_done ? 'td-done' : '' =%>">
                                             <label>Pokój</label>
                                             <h4> <%= c.room_id %> </h4>
                                         </td>
 
-                                        <td class="strike-out <%= c.is_done ? 'td-done' : '' =%>">
+                                        <!-- Time -->
+                                        <td class="g-vertical-top strike-out <%= c.is_done ? 'td-done' : '' =%>">
                                             <label>Czas&nbsp;zgłoszenia</label>
                                             <h4> <%= c.timestamp %> </h4>
                                         </td>
 
-                                        <td class="hidden-sm strike-out <%= c.is_done ? 'td-done' : '' =%>">
+                                        <!-- Priority -->
+                                        <td class="g-vertical-top hidden-sm strike-out <%= c.is_done ? 'td-done' : '' =%>">
                                             <label>Priorytet</label>
                                             <h4>
                                             <% if c.priority.downcase == 'high' %>
@@ -140,11 +147,13 @@
                                             </h4>
                                         </td>
 
-                                        <td class="hidden-sm strike-out <%= c.is_done ? 'td-done' : '' =%>" >
+                                        <!-- Comment -->
+                                        <td class="g-vertical-top hidden-sm strike-out <%= c.is_done ? 'td-done' : '' =%>" >
                                             <label>Komentarz</label>
                                             <h4> <%= c.fix_comment %> </h4>
                                         </td>  
 
+                                        <!-- Action Buttons -->
                                         <td class="text-right">
 
                                             <div class="btn-group">
@@ -165,17 +174,14 @@
                                                 </ul>
                                             </div> 
 
-
-                                            
                                             <%= button_to "Gotowe", "", :class => "btn btn-link btn-memo-done ready-button disabled", remote: true, :method => :get, form: {style: 'display:inline-block;'}, disabled: "true", :style => c.is_done ? '' : 'display: none;' %>
 
                                             <%= button_to "Gotowe", "issue/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done ready-button enabled", remote: true, :method => :get, form: {style: 'display:inline-block;'}, :style => c.is_done ? 'display: none;' : ''%>
-
-
-                                            
                                         </td>
+
                                     </tr> 
-                                <% end %>                          
+                                <% end %>
+
                             </tbody>
                         </table>
 
