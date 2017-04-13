@@ -22,22 +22,6 @@
                 $('div.g-aside-menu-position-active').removeClass('g-aside-menu-position-active');
             });
 
-            // add parser through the tablesorter addParser method 
-            $.tablesorter.addParser({ 
-                // set a unique id 
-                id: 'grades', 
-                is: function(s) { 
-                    // return false so this parser is not auto detected 
-                    return false; 
-                }, 
-                format: function(s) { 
-                    // format your data for normalization 
-                    return parseInt(s.replace(/:/g, " ")); 
-                }, 
-                // set type, either numeric or text 
-                type: 'numeric' 
-            }); 
-
             $("table").tablesorter(); 
 
             $(function(){
@@ -67,6 +51,13 @@
             $(function(){
                 $('#sort_comment_issue').click(function() {
                     $("table thead").find("th:eq(5)").trigger("sort");
+                });
+            });
+
+            $(function(){
+                $('#sort_priority_issue').click(function() {
+                    $("table thead").find("th:eq(4)").trigger("sort");
+                    console.log("xaxax");
                 });
             });
 
