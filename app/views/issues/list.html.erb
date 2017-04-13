@@ -63,7 +63,7 @@
                             <div class="dropdown">
                                 <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     Sort By Time
-                                    <span class="caret"></span>
+                                    <div data-icon="T" class="icon"></div>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <li><a href="#">Submission Time</a></li>
@@ -88,6 +88,7 @@
                         <table class="g-table-card g-table-issues mysortable sortable">
                             <tbody>                    
                                 
+                                    <!--
                                     <tr class="g-spacer">
                                         <td colspan="100%" class="text-center">
 
@@ -101,6 +102,7 @@
 
                                         </td>
                                     </tr>
+                                    -->
 
                                 <% @issues.each do |c| %>
                                     <tr class="<%= c.is_done ? 'g-table-card-header tr-done' : 'g-table-card-header tr-not_done' =%>" >
@@ -144,16 +146,10 @@
                                         </td>  
 
                                         <td class="text-right">
-                                            
-                                            <%= button_to "Gotowe", "", :class => "btn btn-link btn-memo-done ready-button disabled", remote: true, :method => :get, form: {style: 'display:inline-block;'}, disabled: "true", :style => c.is_done ? '' : 'display: none;' %>
-
-                                            <%= button_to "Gotowe", "issue/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done ready-button enabled", remote: true, :method => :get, form: {style: 'display:inline-block;'}, :style => c.is_done ? 'display: none;' : ''%>
-
-
 
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-link btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="fa fa-ellipsis-h"></i>
+                                                   <div data-icon="/" class="icon"></div>
                                                 </button>
                                                 <ul class="dropdown-menu">
                                                     <li><%= link_to "Edytuj", edit_issue_path(c), remote: true, :class => "edit-button" , :style => c.is_done ? 'display: none;' : '' %></li>
@@ -168,6 +164,14 @@
                                                     <li><a>Anuluj</a></li>
                                                 </ul>
                                             </div> 
+
+
+                                            
+                                            <%= button_to "Gotowe", "", :class => "btn btn-link btn-memo-done ready-button disabled", remote: true, :method => :get, form: {style: 'display:inline-block;'}, disabled: "true", :style => c.is_done ? '' : 'display: none;' %>
+
+                                            <%= button_to "Gotowe", "issue/mark_ready?id=#{c.id}", :class => "btn btn-link btn-memo-done ready-button enabled", remote: true, :method => :get, form: {style: 'display:inline-block;'}, :style => c.is_done ? 'display: none;' : ''%>
+
+
                                             
                                         </td>
                                     </tr> 

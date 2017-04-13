@@ -62,7 +62,7 @@
                         <div class="btn-group">
                             <div class="dropdown">
                                 <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    Sortuj <i class="fa fa-chevron-down"></i>
+                                    Sortuj <div data-icon="T" class="icon"></div>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <li><a onclick="sorttable.innerSortFunction.apply(document.getElementById('room_id'), [])">Numer pokoju</a></li>
@@ -117,12 +117,12 @@
                                             
                                         </td>
 
-                                        <td class="g-vertical-middle text-right">   
+                                        <td class="g-vertical-middle text-right g-stay-in-one-line g-buttons-in-line">   
                                             <a class="btn btn-link" data-toggle="modal" data-target="#modal-create-issue">Edytuj</a>
                                             <!-- <a class="btn btn-link" data-toggle="modal" data-target="#modal-report-issue">Zgłoś usterkę</a> -->
                                            
 
-                                            <%= link_to "Zgłoś usterkę", "report_modal?room_id=#{c.id}", :remote => true, :class =>  "btn btn-link"%>
+                                            <%= link_to "Zgłoś", "report_modal?room_id=#{c.id}", :remote => true, :class =>  "btn btn-link"%>
                                         </td>
                                     </tr>
                                 <% end %>                   
