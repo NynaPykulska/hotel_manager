@@ -16,7 +16,7 @@
                 <div class="col-sm-12">
 
                     <!-- Screen Name -->
-                    <div class="pull-left g-navigation-text">
+                    <div class="pull-left g-navigation-text g-mobile-hide">
                         <h4>Dziennik</h4>
                     </div>
 
@@ -78,6 +78,7 @@
             <div class="row g-subnavigation">
                 <div class="col-md-12 g-tabs">
 
+                    <!-- All, Opened, Ready -->
                     <ul class="nav nav-pills pull-left" role="tablist">
                         <li class="showall active">   <a>Wszystkie <span class="badge g-badge-blue" id="all-number"><%= @done + @not_done -%></span></a></li>
                         <li class="showopen">  <a>Otwarte   <span class="badge g-badge-red" id="open-number"><%= @not_done -%></span></a></li>
@@ -85,7 +86,7 @@
                     </ul>  
  
                     <!-- Sortowanie --> 
-                    <div class="pull-right">
+                    <div class="pull-right g-mobile-hide">
                         <div class="btn-group">
                             <div class="dropdown">
                                 <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

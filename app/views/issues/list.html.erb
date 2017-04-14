@@ -17,7 +17,7 @@
             <div class="row g-header">
                 <div class="col-sm-12">
 
-                    <div class="pull-left g-navigation-text">
+                    <div class="pull-left g-navigation-text g-mobile-hide">
                         <h4>Usterki</h4>
                     </div>
 
@@ -52,13 +52,15 @@
             <div class="row g-subnavigation">
         		<div class="col-md-12 g-tabs">
 
+                    <!-- Select All, Open, Closed --> 
                     <ul class="nav nav-pills pull-left" role="tablist">
                         <li class="showall active"> <a>Wszystkie <span class="badge g-badge-blue" id="all-number"><%= @done + @not_done -%></span></a></li>
                         <li class="showopen"> <a>Otwarte <span class="badge g-badge-red" id="open-number"><%= @not_done -%></span></a></li>
                         <li class="showready"> <a>Gotowe <span class="badge g-badge-green" id="ready-number"><%= @done -%></span></a></li>
                     </ul>  
 
-                    <div class="pull-right">
+                    <!-- Sort by -->
+                    <div class="pull-right g-mobile-hide">
                         <div class="btn-group">
                             <div class="dropdown">
                                 <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -126,13 +128,13 @@
                                         </td>
 
                                         <!-- Time -->
-                                        <td class="g-vertical-top strike-out <%= c.is_done ? 'td-done' : '' =%>">
+                                        <td class="hidden-xs hidden-sm g-vertical-top strike-out <%= c.is_done ? 'td-done' : '' =%>">
                                             <label>Czas&nbsp;zgłoszenia</label>
                                             <h4> <%= c.timestamp %> </h4>
                                         </td>
 
                                         <!-- Priority -->
-                                        <td class="g-vertical-top hidden-sm strike-out <%= c.is_done ? 'td-done' : '' =%>">
+                                        <td class="hidden-xs hidden-sm g-vertical-top strike-out <%= c.is_done ? 'td-done' : '' =%>">
                                             <label>Priorytet</label>
                                             <h4>
                                             <% if c.priority.downcase == 'high' %>
@@ -148,13 +150,13 @@
                                         </td>
 
                                         <!-- Comment -->
-                                        <td class="g-vertical-top hidden-sm strike-out <%= c.is_done ? 'td-done' : '' =%>" >
+                                        <td class="hidden-xs hidden-sm g-vertical-top hidden-sm strike-out <%= c.is_done ? 'td-done' : '' =%>" >
                                             <label>Komentarz</label>
                                             <h4> <%= c.fix_comment %> </h4>
                                         </td>  
 
                                         <!-- Action Buttons -->
-                                        <td class="text-right">
+                                        <td class="g-vertical-middle text-right g-stay-in-one-line g-buttons-in-line">  
 
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-link btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

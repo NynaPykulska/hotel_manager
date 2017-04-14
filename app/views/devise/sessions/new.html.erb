@@ -11,32 +11,31 @@
 			<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 				<div class="field">
 					<!-- <%= f.label :username %> -->
-					<%= f.text_field :username, autofocus: true, :class => "form-control", :style => "background-color: #fff !important" %>
+					<%= f.text_field :username, autofocus: true, :class => "form-control", :style => "background-color: #fff !important", placeholder: "login" %>
 				</div>
 
 				<div class="field">
 					<!-- <%= f.label :password %> -->
-					<%= f.password_field :password, autocomplete: "off", :class => "form-control" %>
+					<%= f.password_field :password, autocomplete: "off", :class => "form-control", placeholder: "password" %>
 				</div>
 
-					<!-- tego chyba nie obslugujemy :) 
-					<% if devise_mapping.rememberable? -%>
-						<div class="field">
-							<%= f.check_box :remember_me %>
-							<%= f.label :remember_me %>
-						</div>
-					<% end -%>
-					-->
-
-					<div class="form-group login-additional-margins-top">
-						<%= f.submit "Zaloguj", :class => "btn btn-primary g-ripple-effect", :style => "width: 100%" %>
+				<!-- tego chyba nie obslugujemy :) 
+				<% if devise_mapping.rememberable? -%>
+					<div class="field">
+						<%= f.check_box :remember_me %>
+						<%= f.label :remember_me %>
 					</div>
+				<% end -%>
+				-->
+
+				<div class="form-group login-additional-margins-top">
+					<%= f.submit "Zaloguj", :class => "btn btn-primary g-ripple-effect", :style => "width: 100%" %>
+				</div>
 
 			<% end %>
         </div>
 
         <p class="login-restore-password">Forgot your password? Click <strong><a href="#">here</a></strong> to restore</p>
-
     </div>
 
 </div>
