@@ -2,12 +2,12 @@
 <div class="modal-dialog" role="document" >
     <div class="modal-content">
         <div class="modal-header">
-            <button id="close-issues-modal" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close close-issues-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">Zgłoś usterkę</h4>
 
             <script type="text/javascript">
                 $(function() {
-                    $('#close-issues-modal').on("click", function() {
+                    $('.close-issues-modal').on("click", function() {
                         location.reload();
                     });
                 });
@@ -39,6 +39,14 @@
                     </div>
                 <% end %>
             </div>  
+
+            <!-- Footer -->
+            <div class="modal-footer">
+                <div class="text-right">
+                    <!-- <a href="" data-dismiss="modal" class="btn btn-default">Anuluj</a> -->
+                    <a href="" class="btn btn btn-primary close-issues-modal">Gotowe</a>
+                </div>
+            </div>
         </div>
         
     </div>
