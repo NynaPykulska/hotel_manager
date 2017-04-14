@@ -9,27 +9,19 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
 
     if @room.save
-      redirect_to controller: 'room', action: 'list', group: 'all'
+      redirect_back(fallback_location: root_path)
     else
       render :action => 'new'
     end
   end
 
   def list
-    @room = Room.new
     @issueTypes = IssueType.all
-
-    if params[:group] == "all"
-      @rooms = Room.all
-    elsif params[:group] == "open"
-      @rooms = Room.where("is_clean = ?", false)
-    else params[:group] == "ready"
-      @rooms = Room.where("is_clean = ?", true)
-    end
+    @rooms = Room.all
   end
 
   def room_params
-    params.require(:room).permit(:room_nid, :description)
+    params.require(:room).permit(:room_id, :description)
   end
 
   def init_items_size_list
