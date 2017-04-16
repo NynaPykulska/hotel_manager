@@ -7,7 +7,7 @@
 
         <div class="modal-body">
 
-            <%= bootstrap_form_for :room, remote: true, html: { style: "display:inline;" } do |f| %>
+            <%= bootstrap_form_for :room, remote: true, html: { style: "display:inline;", id: "newRoomForm" } do |f| %>
 
                 <!-- Room ID -->
                 <div class="row">
@@ -23,10 +23,24 @@
                     </div>
                 </div>
 
+                <!-- List -->
+                <div class="row">
+                    <div class="col-xs-5">
+                        <%= f.collection_select :availableIssues, IssueType.all, :id, :issue_description, {label: "Dostępne usterki"}, {multiple: true, id: "issueSelect", :class => "never-submit"} %>
+                    </div>
+                    <div class="col-xs-2">
+                        <a class="btn g-ripple-effect" id="addIssue"> -> </a>
+                        <a class="btn g-ripple-effect" id="removeIssue"> <- </a>
+                    </div>
+                    <div class="col-xs-5">
+                        <%= f.collection_select :selectedIssues, IssueType.none, :id, :issue_description, {label: "Wybrane usterki"}, {multiple: true, id: "selectedIssues"} %>
+                    </div>
+                </div>
+
                  <div class="modal-footer">
                     <div class="text-right">
                         <a href="" data-dismiss="modal" class="btn btn-default">Anuluj</a>
-                        <%= f.submit "Utwórz", :class => 'btn btn-primary' %>
+                        <a href="" class="btn btn-primary" id="submitNewRoom">Utwórz</a>
                     </div>
                 </div>
 

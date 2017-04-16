@@ -6,7 +6,12 @@ class RoomsController < ApplicationController
 
 
   def create
+    room_params[:selectedIssues].each do |c|
+    puts c
+  end
+
     @room = Room.new(room_params)
+    @issues = IssueType.all
 
     if @room.save
       redirect_back(fallback_location: root_path)
@@ -21,7 +26,7 @@ class RoomsController < ApplicationController
   end
 
   def room_params
-    params.require(:room).permit(:room_id, :description)
+    params.require(:room).permit(:room_id, :description, :availableIssues, :selectedIssues)
   end
 
   def init_items_size_list

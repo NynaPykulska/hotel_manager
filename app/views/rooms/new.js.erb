@@ -1,2 +1,26 @@
 $("#modal-create-room").html("<%= escape_javascript(render 'new') %>")
 $("#modal-create-room").modal("show")
+
+$('#addIssue').click(function(e){        
+  if($('#issueSelect').val()){
+  	var index = $('#issueSelect').get(0).selectedIndex;
+		var txt = $("#issueSelect option:selected").text();
+		var val = $("#issueSelect option:selected").val();
+		console.log("text: " + txt);
+		console.log("value: " + val);
+		$('#issueSelect option:eq(' + index + ')').remove();
+		$('#selectedIssues').append($('<option>', {
+	    value: val,
+	    text: txt
+		}));
+	} else {
+		// Some error handling?
+	}
+});
+
+$('#submitNewRoom').click(function(e){        
+	$('#selectedIssues option').prop('selected', true);
+	$( "#newRoomForm" ).submit();
+});
+
+
