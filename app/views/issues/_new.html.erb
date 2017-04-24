@@ -37,10 +37,24 @@
 
                 <!-- Recurring Checbox & Dropdown -->
                 <div class="row">
-                    <div class="form-group col-xs-6">
-                        <%= f.form_group :is_recurring do %>
-                            <%= f.check_box :is_recurring, label: "Powtarzanie", id: "recurring_check_box" %>
-                        <% end %>
+
+                    <div class="col-xs-6">
+                        <div id="recurring_check_box_wrapper">
+                            <%= f.form_group :is_recurring do %>
+                                <div class="checkbox-slider--c">
+                                    <label> 
+                                        <%= f.check_box :is_recurring, id: "recurring_check_box" do %>
+                                            <span>Powtarzanie</span>
+                                        <% end %>
+                                    </label>
+                                </div>
+                            <% end %>
+                        </div>
+                        <script type="text/javascript">
+                            $('#recurring_check_box_wrapper').click(function() {
+                                document.getElementById('recurring_check_box').click();
+                            })
+                        </script>
                     </div>
 
                     <div class="col-xs-6" id="new_issue_recurring_options" style="display: none">
