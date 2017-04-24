@@ -94,6 +94,8 @@ GEM
     mimemagic (0.3.0)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    multi-select-rails (0.9.12)
+      railties (>= 3.0)
     multi_json (1.12.1)
     mysql2 (0.4.5)
     mysql2 (0.4.5-x86-mingw32)
@@ -201,6 +203,7 @@ DEPENDENCIES
   font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails
+  multi-select-rails
   mysql2 (~> 0.4.2)
   paperclip (~> 4.3, >= 4.3.6)
   pg (~> 0.18.4)

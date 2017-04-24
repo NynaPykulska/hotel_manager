@@ -26,15 +26,18 @@
                 <!-- List -->
                 <div class="row">
                     <div class="col-xs-5">
-                        <%= f.collection_select :availableIssues, IssueType.all, :id, :issue_description, {label: "Dostępne usterki"}, {multiple: true, id: "issueSelect", :class => "never-submit"} %>
+                        <%= f.collection_select :selectedIssues, IssueType.all, :id, :issue_description, {label: "Dostępne usterki"}, {multiple: true, id: "selectedIssues"} %>
                     </div>
-                    <div class="col-xs-2">
+                    <script type="text/javascript">
+                        $('#selectedIssues').multiSelect();
+                    </script>
+                    <!-- <div class="col-xs-2">
                         <a class="btn g-ripple-effect" id="addIssue"> -> </a>
                         <a class="btn g-ripple-effect" id="removeIssue"> <- </a>
                     </div>
                     <div class="col-xs-5">
                         <%= f.collection_select :selectedIssues, IssueType.none, :id, :issue_description, {label: "Wybrane usterki"}, {multiple: true, id: "selectedIssues"} %>
-                    </div>
+                    </div> -->
                 </div>
 
                  <div class="modal-footer">

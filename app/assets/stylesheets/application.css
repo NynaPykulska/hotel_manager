@@ -16,6 +16,7 @@
  *= require bootstrap-datepicker3
  *= require bootstrap-datepicker
  *= require rails_bootstrap_forms
+ *= require multi-select
  */
 
 @import "bootstrap-sprockets";

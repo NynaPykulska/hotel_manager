@@ -14,6 +14,7 @@
 //= require bootstrap-datepicker
 //= require turbolinks
 //= require sorttable
+//= require multi-select
 //= require_tree .
 
         $(document).on('turbolinks:load',function() {

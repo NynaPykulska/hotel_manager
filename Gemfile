@@ -40,6 +40,7 @@ gem 'bootstrap-datepicker-rails'
 gem "font-awesome-rails"
 gem 'bootstrap_form'
 gem 'devise', '~> 4.2'
+gem 'multi-select-rails'
 
 
 group :development, :test do
