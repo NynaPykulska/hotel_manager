@@ -14,9 +14,13 @@ class RoomsController < ApplicationController
     @room_id = room_params[:room_id]
     @description = room_params[:description]
 
-    puts @selectedIssues
-    puts @room_id
-    puts @description
+    @room = Room.create(room_id: @room_id.to_i, description: @description, is_clean: true)
+    @selectedIssues.each do |d|
+      if not d.blank?
+        Issue.create(room_id: @room_id.to_i, issue_type_id: d.to_i, priority: "Medium", is_done: true, is_recurring: false)
+      end
+    end
+
 
     if @room.save
       redirect_back(fallback_location: root_path)
@@ -31,7 +35,7 @@ class RoomsController < ApplicationController
   end
 
   def room_params
-    params.require(:room).permit(:room_id, :description, :selectedIssues)
+    params.require(:room).permit(:room_id, :description, :selectedIssues => [])
   end
 
   def init_items_size_list
@@ -61,8 +65,6 @@ class RoomsController < ApplicationController
   def markIssue
     room = params[:room]
     issueType = params[:issueType]
-    puts room
-    puts issueType
 
     @issue = Issue.where("room_id = ? AND issue_type_id = ?", room, issueType).first
 
