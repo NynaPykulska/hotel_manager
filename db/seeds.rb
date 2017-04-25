@@ -194,3 +194,159 @@ if ENV["new_seeds"]
 
 
 end
+
+if ENV["actual_hotel_stuff"]
+	Room.create(room_id: 100, description: "Pokój wewnetrzny", is_clean: true)
+
+	Room.create(room_id: 101, description: "Pokój dwuosobowy", is_clean: true)
+	Room.create(room_id: 102, description: "Pokój dwuosobowy", is_clean: true)
+	Room.create(room_id: 103, description: "Pokój dwuosobowy", is_clean: true)
+	Room.create(room_id: 104, description: "Pokój dwuosobowy", is_clean: true)
+	Room.create(room_id: 105, description: "Pokój dwuosobowy", is_clean: true)
+	Room.create(room_id: 106, description: "Pokój dwuosobowy", is_clean: true)
+	Room.create(room_id: 201, description: "Pokój dwuosobowy", is_clean: true)
+	Room.create(room_id: 202, description: "Pokój dwuosobowy", is_clean: true)
+	Room.create(room_id: 203, description: "Pokój dwuosobowy", is_clean: true)
+	Room.create(room_id: 204, description: "Pokój dwuosobowy", is_clean: true)
+	Room.create(room_id: 205, description: "Pokój dwuosobowy", is_clean: true)
+	Room.create(room_id: 206, description: "Pokój dwuosobowy", is_clean: true)
+	Room.create(room_id: 301, description: "Pokój dwuosobowy", is_clean: true)
+	Room.create(room_id: 302, description: "Pokój dwuosobowy", is_clean: true)
+	Room.create(room_id: 303, description: "Pokój dwuosobowy", is_clean: true)
+	Room.create(room_id: 304, description: "Pokój dwuosobowy", is_clean: true)
+	Room.create(room_id: 305, description: "Pokój dwuosobowy", is_clean: true)
+	Room.create(room_id: 306, description: "Pokój dwuosobowy", is_clean: true)
+
+	Room.create(room_id: 107, description: "Apartament", is_clean: true)
+	Room.create(room_id: 207, description: "Apartament", is_clean: true)
+	Room.create(room_id: 307, description: "Apartament", is_clean: true)
+
+	Room.create(room_id: 108, description: "Pokój trzyosobowy", is_clean: true)
+	Room.create(room_id: 208, description: "Pokój trzyosobowy", is_clean: true)
+	Room.create(room_id: 308, description: "Pokój trzyosobowy", is_clean: true)
+
+	Room.create(room_id: 1, description: "Anex", is_clean: true)
+	Room.create(room_id: 2, description: "Anex", is_clean: true)
+	Room.create(room_id: 3, description: "Anex", is_clean: true)
+	Room.create(room_id: 4, description: "Anex", is_clean: true)
+	Room.create(room_id: 5, description: "Anex", is_clean: true)
+	Room.create(room_id: 6, description: "Anex", is_clean: true)
+	Room.create(room_id: 7, description: "Anex", is_clean: true)
+	Room.create(room_id: 8, description: "Anex", is_clean: true)
+	Room.create(room_id: 9, description: "Anex", is_clean: true)
+	Room.create(room_id: 10, description: "Anex", is_clean: true)
+
+end
+
+if ENV["issueTypes"]
+
+
+	# water = File.new("C:/Users/ninap/Documents/workspace/hotel_manager/app/assets/images/issue-icons/water-ok.png")
+	# airconditioner = File.new("C:/Users/ninap/Documents/workspace/hotel_manager/app/assets/images/issue-icons/airconditioner-ok.png")
+	# lightbulb = File.new("C:/Users/ninap/Documents/workspace/hotel_manager/app/assets/images/issue-icons/lightbulb-ok.png")
+
+	water = File.join(Rails.root, 'app', 'assets', 'images', 'issue-icons', 'water-ok.png')
+
+	# airconditioner = File.new("C:/Users/ninap/Documents/workspace/hotel_manager/app/assets/images/issue-icons/airconditioner-ok.png")
+	# lightbulb = File.new("C:/Users/ninap/Documents/workspace/hotel_manager/app/assets/images/issue-icons/lightbulb-ok.png")
+
+	IssueType.create!(id: 1,
+			    issue_description: "Popsuty kran",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.read(water))
+	IssueType.create!(id: 2,
+			    issue_description: "Popsuty prysznic",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.read(water))
+	IssueType.create!(id: 3,
+			    issue_description: "Zimny kaloryfer",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.read(water))
+	IssueType.create!(id: 4,
+			    issue_description: "Brudna zasłonka prysznica",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.read(water))
+	IssueType.create!(id: 5,
+			    issue_description: "Firanka do wymiany",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.read(water))
+	IssueType.create!(id: 6,
+			    issue_description: "Lampka nocna lewa",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.read(water))
+	IssueType.create!(id: 7,
+			    issue_description: "Lampka nocna prawa",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.read(water))
+	IssueType.create!(id: 8,
+			    issue_description: "Lampka na biurku",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.read(water))
+	IssueType.create!(id: 9,
+			    issue_description: "Wyrwany kontakt",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.read(water))
+	IssueType.create!(id: 10,
+			    issue_description: "Popsuty telewizor",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.read(water))
+	IssueType.create!(id: 11,
+			    issue_description: "Usterka szafy",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.read(water))
+	IssueType.create!(id: 12,
+			    issue_description: "Brak wieszków",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.read(water))
+	IssueType.create!(id: 13,
+			    issue_description: "Usterka sejfu",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.read(water))
+	IssueType.create!(id: 14,
+			    issue_description: "Dywan",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.read(water))
+	IssueType.create!(id: 15,
+			    issue_description: "Usterka toalety",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.read(water))
+	IssueType.create!(id: 16,
+			    issue_description: "Popsuta spłuczka",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.read(water))
+	IssueType.create!(id: 17,
+			    issue_description: "Zamek do ubikacji",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.read(water))
+end
+
+if ENV["issues"]
+	Room.all.each do |room|
+		IssueType.all.each do |issueType|
+			Issue.create(room_id: room.room_id,
+			issue_type_id: issueType.id,
+			priority: "Medium",
+			is_done: true,
+			is_recurring: false
+			)
+		end
+	end
+
+end
