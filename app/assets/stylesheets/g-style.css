@@ -189,6 +189,10 @@ a {
 .g-stay-in-one-line {
   white-space: nowrap; }
 
+.button_to {
+  display: inline-block;
+  display: none; }
+
 html, body {
   color: rgba(0, 0, 0, 0.87); }
 
@@ -490,7 +494,7 @@ label {
   background-color: rgba(0, 0, 0, 0.64); }
 
 .modal-content {
-  border-radius: 2px;
+  border-radius: 0;
   box-shadow: none;
   border: none; }
 
@@ -852,6 +856,19 @@ label {
     background-image: none !important; }
 .datepicker table td.old, .datepicker table td.new, .bootstrap-datetimepicker-widget table td.old, .bootstrap-datetimepicker-widget table td.new {
   color: #adbec5 !important; }
+
+.ms-container {
+  width: 100% !important; }
+
+.ms-list {
+  border-radius: 0 !important;
+  border-color: #e6e6e6 !important; }
+
+.ms-selectable .ms-elem-selectable, .ms-selection, .ms-elem-selection {
+  border: none !important; }
+
+.ms-selectable li.ms-hover, .ms-selection li.ms-hover {
+  background-color: #03a9f4 !important; }
 
 @media only screen and (max-device-width: 640px) {
   html, body {
