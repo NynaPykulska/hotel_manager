@@ -210,7 +210,7 @@ label {
   width: 100%;
   color: #adbec5;
   font-size: 11px;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   text-transform: uppercase; }
 
 .label {
@@ -283,7 +283,7 @@ label {
   margin-bottom: 0; }
 
 .form-group label {
-  margin-bottom: 8px; }
+  margin-bottom: 4px; }
 
 .g-table-card {
   width: 100%;
@@ -854,7 +854,7 @@ label {
   background: #03a9f4 !important; }
 
 .checkbox-slider--c {
-  height: 39px;
+  height: 40px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -965,5 +965,3 @@ label {
 @media only screen and (min-device-width: 641px) {
   .g-desktop-hide {
     display: none !important; } }
-
-/*# sourceMappingURL=g-style.css.map */
