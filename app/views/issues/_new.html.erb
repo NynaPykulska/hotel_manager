@@ -8,35 +8,56 @@
         <div class="modal-body">
             <%= bootstrap_form_for :issue, :url => url_for(:controller => 'issues', :action => 'create') do |f| %>
 
-                <!-- Room ID & Priority -->
                 <div class="row">
-                    <div class="col-xs-12">
-                        <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Pokój" %>
+                    <div class="col-xs-8">
+                        <%= f.text_field :pattern, label: "Nazwa" %>
+                    </div>
+
+                    <div class="col-xs-4">
+                        <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Ikona" %>
                     </div>
                 </div>
 
-                <!-- Issue Type & Priority -->
                 <div class="row">
+                    <div class="col-xs-8">
+                        <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Grupa" %>
+                    </div>
+
+                    <div class="col-xs-4">
+                         <%= f.select :priority, options_for_select([['Niski' ,1], ['Średni', 2], ['Wysoki', 3]])%>
+                    </div>
+                </div>
+
+
+                <!-- Room ID & Priority -->
+               <!--  <div class="row">
+                    <div class="col-xs-12">
+                        <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Pokój" %>
+                    </div>
+                </div> -->
+
+                <!-- Issue Type & Priority -->
+                <!-- <div class="row">
                     <div class="col-xs-8">
                         <%= f.collection_select :issue_type, IssueType.all, :id, :issue_description, label: "Rodzaj Usterki" %>
                     </div>
                     <div class="col-xs-4">
                         <%= f.select :priority, options_for_select([['Niski' ,1], ['Średni', 2], ['Wysoki', 3]])%>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Comment -->
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-xs-12">
                         <%= f.text_field :fix_comment, label: "Komentarz" %>
                     </div>
-                </div>
+                </div> -->
 
                 <%= f.hidden_field :timestamp, :value => Date.today %>
                 <%= f.hidden_field :completion_date, :value => nil %>
 
                 <!-- Recurring Checbox & Dropdown -->
-                <div class="row">
+                <!-- <div class="row">
 
                     <div class="col-xs-6">
 
@@ -63,10 +84,10 @@
                     <div class="col-xs-6" id="new_issue_recurring_options" style="display: none">
                         <%= f.select :recurrence, options_for_select([['Codziennie' ,1], ['Co tydzień', 2], ['Co miesiąc', 3], ['Wybrane dni miesiaca', 4]])%>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Date Picker -->
-                <div class="row" id="new_issue_date_field">
+                <!-- <div class="row" id="new_issue_date_field">
                     <div class="col-xs-6">                    
                         <div class="btn-group">
                             <label>Data wykonania</label>
@@ -79,17 +100,17 @@
                             </div>
                         </div>  
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Selected Days -->
-                <div class="row" id="new_issue_recurring_additional" style="display: none">
+                <!-- <div class="row" id="new_issue_recurring_additional" style="display: none">
                     <div class="col-xs-12">
                         <%= f.text_field :pattern, label: "Dni, oddzielone przecinkami" %>
                     </div>
-                </div>                
+                </div>    -->             
 
                 <!-- Recurring Date Pickers -->
-                <div class="row" id="new_issue_recurring_date_pickers" style="display: none">
+                <!-- <div class="row" id="new_issue_recurring_date_pickers" style="display: none">
                     
                     <div class="col-xs-6">
                         <div id="new_issue_start_date_field" class="btn-group">
@@ -114,7 +135,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="modal-footer">
                     <div class="text-right">
