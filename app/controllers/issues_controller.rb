@@ -14,7 +14,7 @@ class IssuesController < ApplicationController
 
 	def list
 
-    @issues = Issue.order('requested_fix_date')
+    @issues = Issue.where("is_done = false or completion_date = ?", Date.today)
 
     @done = 0
     @not_done = 0
