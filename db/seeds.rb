@@ -350,3 +350,110 @@ if ENV["issues"]
 	end
 
 end
+
+if ENV["asdf"]
+	# lamp = IssueType.create(	id: 1,
+	# 				    issue_description: "Broken lamp",
+	# 				    default_priority: "Medium",
+	# 				    when_to_resolve: "As soon as possible",
+	# 				    ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
+	# 						nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
+				
+	IssueType.create!(id: 2,
+			    issue_description: "Popsuty prysznic",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			   ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
+	IssueType.create!(id: 3,
+			    issue_description: "Zimny kaloryfer",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
+	IssueType.create!(id: 4,
+			    issue_description: "Brudna zasłonka prysznica",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
+	IssueType.create!(id: 5,
+			    issue_description: "Firanka do wymiany",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
+	IssueType.create!(id: 6,
+			    issue_description: "Lampka nocna lewa",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
+	IssueType.create!(id: 7,
+			    issue_description: "Lampka nocna prawa",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
+	IssueType.create!(id: 8,
+			    issue_description: "Lampka na biurku",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+			    ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
+	IssueType.create!(id: 9,
+			    issue_description: "Wyrwany kontakt",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
+	IssueType.create!(id: 10,
+			    issue_description: "Popsuty telewizor",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
+	IssueType.create!(id: 11,
+			    issue_description: "Usterka szafy",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
+	IssueType.create!(id: 12,
+			    issue_description: "Brak wieszków",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
+	IssueType.create!(id: 13,
+			    issue_description: "Usterka sejfu",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
+	IssueType.create!(id: 14,
+			    issue_description: "Dywan",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
+	IssueType.create!(id: 15,
+			    issue_description: "Usterka toalety",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
+	IssueType.create!(id: 16,
+			    issue_description: "Popsuta spłuczka",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
+	IssueType.create!(id: 17,
+			    issue_description: "Zamek do ubikacji",
+			    default_priority: "Medium",
+			    when_to_resolve: "As soon as possible",
+ok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-ok.png"),
+							nok_icon: File.new("/home/micc/Pulpit/hotel_manager/app/assets/images/issue-icons/desklamp-nok.png"))
+			    
+end

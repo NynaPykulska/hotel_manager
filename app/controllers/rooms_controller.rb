@@ -3,7 +3,35 @@ class RoomsController < ApplicationController
   before_filter :init_items_size_list
   before_filter :authenticate_user!
 
+  def edit
+    @c = Room.find(params[:id])
+    @chuj = []
+    @issues = IssueType.all
+    @selectedIssues = Issue.where(room_id: params[:id]);
 
+    @selectedIssues.each do |penis| 
+      @chuj.push(penis.issue_type_id)
+    end
+
+  end
+   
+  def update
+    @room = Room.find(params[:id])
+
+    id = room_params[:room_id]
+    description = room_params[:description]
+    selectedIssues = room_params[:selectedIssues]
+
+    @room.update(room_id: id, description: description)
+    Issue.where(room_id: id).delete_all
+    
+    selectedIssues.each do |d|
+      if not d.blank?
+        Issue.create(room_id: id.to_i, issue_type_id: d.to_i, priority: "Medium", is_done: true, is_recurring: false)
+      end
+    end
+    redirect_back(fallback_location: root_path)
+  end
 
   def create
 

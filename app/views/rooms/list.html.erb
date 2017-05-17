@@ -127,7 +127,7 @@
                                                    <div data-icon="/" class="icon"></div>
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="" data-toggle="modal" data-target="#modal-create-room">Edytuj</a></li>
+                                                    <li><%= link_to "Edytuj", edit_room_path(c), remote: true, :class => "edit-button"  %></li>
                                                     <li role="separator" class="divider"></li>
                                                     <li><a>Anuluj</a></li>
                                                 </ul>
@@ -154,6 +154,7 @@
         </div>
 
         <div id="modal-create-room" class="modal fade"> </div>
+        <div id="modal-edit-room" class="modal fade"> </div>
         <div id="modal-report-issue" class="modal fade" data-backdrop="static" > </div>
 
 
