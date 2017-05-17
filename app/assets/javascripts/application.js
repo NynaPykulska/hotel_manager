@@ -19,6 +19,8 @@
 
         $(document).on('turbolinks:load',function() {
 
+            var current_tab = "all"
+
             $('#my-link').click(function (event) {
                 $('div.g-aside-menu-position-active').removeClass('g-aside-menu-position-active');
             });
@@ -73,6 +75,7 @@
                  $('.showopen').removeClass('active');
                  $('.showready').removeClass('active');
                  $('.showall').addClass('active');
+                 current_tab = "all";
 
             });
 
@@ -82,6 +85,7 @@
                  $('.showready').removeClass('active');
                  $('.showall').removeClass('active');
                  $('.showopen').addClass('active');
+                 current_tab = "open";
             });
 
             $('.showready').click(function(e){        
@@ -91,6 +95,7 @@
                  $('.showopen').removeClass('active');
                  $('.showall').removeClass('active');
                  $('.showready').addClass('active');
+                 current_tab = "ready";
             });
 
             $('.ready-button').click(function(e){
@@ -117,6 +122,10 @@
                 // $(this).closest('tr').find('.ready-button').prop('disabled', true);
                 $(this).closest('tr').find('.ready-button.enabled').hide();
                 $(this).closest('tr').find('.ready-button.disabled').show();
+                if(current_tab === "open")
+                {
+                    $(this).closest('tr').hide();
+                }
         
             }
             });
@@ -146,6 +155,10 @@
                     // $(this).closest('tr').find('.ready-button').prop('disabled', false);
                     $(this).closest('tr').find('.ready-button.enabled').show();
                     $(this).closest('tr').find('.ready-button.disabled').hide();
+                    if(current_tab ==="ready")
+                    {
+                        $(this).closest('tr').hide();
+                    }
                 }
             });
 
