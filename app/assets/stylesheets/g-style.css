@@ -495,7 +495,7 @@ label {
   border: none; }
 
 .modal-dialog {
-  top: 80px; }
+  top: 0; }
 
 .modal-header {
   border: none; }
@@ -504,17 +504,17 @@ label {
   border: none; }
 
 .modal-header {
-  padding: 32px;
-  padding-bottom: 0; }
+  padding: 32px; }
   .modal-header button {
     text-shadow: none; }
 
 .modal-body {
-  padding: 32px; }
+  padding: 32px;
+  max-height: calc(100vh - 260px);
+  overflow-y: scroll; }
 
 .modal-footer {
-  padding: 0;
-  padding-top: 32px; }
+  padding: 32px; }
 
 .form-control {
   height: 40px;
@@ -564,7 +564,8 @@ label {
     background-color: #f3f3f3; }
 
 .g-issue-icon {
-  width: 32px; }
+  width: 32px;
+  fill: #03a9f4; }
 
 .g-issue-icon-red {
   -webkit-filter: hue-rotate(225deg);
