@@ -58,7 +58,12 @@
             $(function(){
                 $('#sort_priority_issue').click(function() {
                     $("table thead").find("th:eq(4)").trigger("sort");
-                    console.log("xaxax");
+                });
+            });
+
+            $(function(){
+                $('#sort_room_rooms').click(function() {
+                    $("table thead").find("th:eq(1)").trigger("sort");
                 });
             });
 

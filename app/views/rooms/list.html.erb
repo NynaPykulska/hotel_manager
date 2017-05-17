@@ -65,7 +65,7 @@
                                     Sortuj <div data-icon="T" class="icon"></div>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a onclick="sorttable.innerSortFunction.apply(document.getElementById('room_id'), [])">Numer pokoju</a></li>
+                                    <li><a id="sort_room_rooms">Po pokoju</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -80,15 +80,11 @@
                 <!-- Card Row -->
                 <div class="row">
                     <div class="col-md-12">
-                       	<table class="g-table-card g-table-issues mysortable sortable">
-                            <thead>
-                                <tr style="display: none;">
-                                  <th id="icon">icon</th>
-                                  <th id="memo">memo</th>
-                                  <th id="room_id"> room_id</th>
-                                  <th id="deadline">deadline</th>
-                                  <th id="ready">ready</th>
-                                </tr>                                               
+                       	<table class="g-table-card g-table-issues mysortable tablesorter">
+                            <thead style="display: none">
+                                <tr>
+                                    <th>Icon</th>  <th>Room_no</th> <th>Issues</th>  <th>Buttons</th>
+                                </tr>
                             </thead>
 
                             <tbody>                    
