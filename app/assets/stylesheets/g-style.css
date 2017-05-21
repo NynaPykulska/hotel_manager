@@ -568,12 +568,12 @@ label {
   fill: #03a9f4; }
 
 .g-issue-icon-red {
-  -webkit-filter: hue-rotate(225deg);
-          filter: hue-rotate(225deg); }
+  -webkit-filter: hue-rotate(160deg);
+          filter: hue-rotate(160deg); }
 
-.g-issue-icon-blue {
-  -webkit-filter: hue-rotate(52deg);
-          filter: hue-rotate(52deg); }
+.g-issue-icon-green {
+  -webkit-filter: hue-rotate(300deg);
+          filter: hue-rotate(300deg); }
 
 .g-issue-icon-white {
   -webkit-filter: grayscale(100%) contrast(90000%);
