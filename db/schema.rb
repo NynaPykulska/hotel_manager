@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170307215632) do
+ActiveRecord::Schema.define(version: 20170604133738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20170307215632) do
     t.string   "nok_icon_content_type"
     t.integer  "nok_icon_file_size"
     t.datetime "nok_icon_updated_at"
+    t.text     "icon_path"
   end
 
   create_table "issues", force: :cascade do |t|

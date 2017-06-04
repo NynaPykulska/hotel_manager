@@ -82,7 +82,7 @@ class RoomsController < ApplicationController
       type = IssueType.where("id = ?", issue.issue_type_id).first
       issueEntity.issue_type = issue.issue_type_id
       issueEntity.room_id = room
-      issueEntity.ok_icon = type.ok_icon
+      issueEntity.icon_path = type.icon_path
       issueEntity.is_done = issue.is_done
       issueEntity.issue_description = type.issue_description
 
@@ -108,5 +108,5 @@ class IssueEntity
   class_attribute :room_id
   class_attribute :is_done
   class_attribute :issue_description
-  class_attribute :ok_icon
+  class_attribute :icon_path
 end

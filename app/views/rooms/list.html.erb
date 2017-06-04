@@ -111,7 +111,7 @@
                                         <td  class="g-vertical-top">
                                             <label>Usterki</label>
                                             <% Issue.where("room_id = ? AND is_done = ?", c.room_id, false).each do |issue| %>
-                                                <%= image_tag  IssueType.where("id = ?", issue.issue_type_id).first.nok_icon.url, :class => "g-issue-icon-mini"%>
+                                                <%= image_tag  IssueType.where("id = ?", issue.issue_type_id).first.icon_path, :class => "g-issue-icon-mini"%>
                                             <% end %>
                                         </td>
 

@@ -101,8 +101,8 @@
                                         
                                         <!-- Status Icon -->
                                         <td class="text-center g-table-card-icon-td">
-                                            <%= image_tag IssueType.where("id = ?", c.issue_type_id).first.ok_icon.url, :class => "g-issue-icon issue-ok-icon",  :style => c.is_done ? '' : 'display: none;'%>
-                                            <%= image_tag IssueType.where("id = ?", c.issue_type_id).first.nok_icon.url, :class => "g-issue-icon issue-nok-icon",  :style => c.is_done ? 'display: none;' : ''%>
+                                            <%= image_tag IssueType.where("id = ?", c.issue_type_id).first.icon_path, :class => "g-issue-icon issue-ok-icon",  :style => c.is_done ? '' : 'display: none;'%>
+                                            <%= image_tag IssueType.where("id = ?", c.issue_type_id).first.icon_path, :class => "g-issue-icon issue-nok-icon",  :style => c.is_done ? 'display: none;' : ''%>
                                         </td>
                                         
                                         <!-- Name -->

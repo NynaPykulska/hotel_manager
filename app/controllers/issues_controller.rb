@@ -50,7 +50,7 @@ class IssuesController < ApplicationController
 	end
 
 	def new
-    @images = Dir.glob("app/assets/images/icons/*.svg")
+    @images = Dir.glob("app/assets/images/icons/issue/*.svg")
   end
 
 	def create

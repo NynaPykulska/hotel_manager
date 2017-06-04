@@ -35,7 +35,7 @@
                                     <tr class="g-table-card-header">
 
                                         <td>
-                                            <%= image_tag  c.ok_icon.url, :class => c.is_done ? "g-issue-icon g-issue-icon-red " : "g-issue-icon g-issue-icon-green g-issue-icon-white" %>
+                                            <%= image_tag  c.icon_path %>
                                         </td>
                                     </tr>  
                                     <tr>
@@ -61,10 +61,12 @@
                                 <table>
                                     <tbody><tr>
                                         <td>
-                                            <img class="g-issue-icon g-issue-icon-red" src="assets/img/icons/issues/Broom.png">
+                                            <!-- TODO: ikona wybranej usterki -->
                                         </td>
                                         <td>
-                                            <h4>Clean the Room</h4>
+                                            <h4>
+                                                <!-- TODO: opis wybranej usterki -->
+                                            </h4>
                                         </td>
                                     </tr>
                                 </tbody></table>  
