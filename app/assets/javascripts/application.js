@@ -101,7 +101,6 @@
             $('.ready-button').click(function(e){
             if($(this).closest('tr').hasClass("tr-not_done"))
             {
-                console.log("ready");
                 $(this).closest('tr').find('.strike-out').addClass('td-done');
                 $(this).closest('tr').removeClass('tr-not_done');
                 $(this).closest('tr').addClass('tr-done');

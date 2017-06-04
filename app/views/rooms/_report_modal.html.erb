@@ -11,35 +11,85 @@
                         location.reload();
                     });
                 });
+
+                $(function() {
+                    $("#report-tiles-row").on("click", function (event) {
+                        console.log("row clicked");
+                        console.log( event);
+                        $('#report-tiles-row').hide();
+                        $('#report-issue-modal-selected-issue').show();
+                    });
+                });
             </script>
         </div>
-
         <div class="modal-body">
-            <div class="row" style="display: flex; flex-wrap: wrap;">
+        <%= bootstrap_form_for :room, remote: true, html: { style: "display:inline;", id: "report" } do |f| %>
+            <div class="row" style="display: flex; flex-wrap: wrap;" id = "report-tiles-row">
                 <% @issues.each do |c| %>
                     <div class="col-xs-4">  
-                            <%= link_to "report?room=#{c.room_id}&issueType=#{c.issue_type}", remote: true do %>
+                         <!-- <%= link_to "report?room=#{c.room_id}&issueType=#{c.issue_type}", remote: true do %> -->
 
-                        <table class = "<%= c.is_done ? "g-table-card g-table-card-grid g-report-issue-card" : "g-table-card g-table-card-grid g-report-issue-card  g-report-issue-card-selected--red" %>" >
-                            <tbody>
-                                <tr class="g-table-card-header">
+                            <table class = "<%= c.is_done ? "g-table-card g-table-card-grid g-report-issue-card" : "g-table-card g-table-card-grid g-report-issue-card  g-report-issue-card-selected--red" %>" 
+                                    class = "tile-tab" >
+                                <tbody>
+                                    <tr class="g-table-card-header">
 
-                                    <td>
-                                        <%= image_tag  c.ok_icon.url, :class => c.is_done ? "g-issue-icon g-issue-icon-red " : "g-issue-icon g-issue-icon-green g-issue-icon-white" %>
-                                    </td>
-                                </tr>  
-                                <tr>
-                                    <td class="g-report-issue-card-description text-center">
-                                        <h4> <%= c.issue_description %> </h4>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>    
-                            <% end %>
+                                        <td>
+                                            <%= image_tag  c.ok_icon.url, :class => c.is_done ? "g-issue-icon g-issue-icon-red " : "g-issue-icon g-issue-icon-green g-issue-icon-white" %>
+                                        </td>
+                                    </tr>  
+                                    <tr>
+                                        <td class="g-report-issue-card-description text-center">
+                                            <h4> <%= c.issue_description %> </h4>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>    
+                        <!-- <% end %> -->
                     </div>
                 <% end %>
             </div>  
 
+
+                <div id="report-issue-modal-selected-issue" hidden="true">
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <div class="form-group">
+                                <label>Wybrana usterka</label>
+
+                                <table>
+                                    <tbody><tr>
+                                        <td>
+                                            <img class="g-issue-icon g-issue-icon-red" src="assets/img/icons/issues/Broom.png">
+                                        </td>
+                                        <td>
+                                            <h4>Clean the Room</h4>
+                                        </td>
+                                    </tr>
+                                </tbody></table>  
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <%= f.text_field :comment, label: "Komentarz" %>
+                                <%= f.submit "Zgłoś", :class => 'btn btn-primary' %>
+                                <!-- <label>Komentarz</label>
+                                <div class="">
+                                     <textarea class="form-control" rows="3" id="comment"></textarea>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>                  
+                </div>
+
+
+            <% end %>
             
         </div>
         

@@ -14,7 +14,20 @@
                     </div>
 
                     <div class="col-xs-4">
-                        <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Ikona" %>
+                        <div class="btn-group">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width: 100%">
+                                   Ikona
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <% @images.each do |image| %>
+                                        <li> <!-- class="g-issue-icon-dropdown" -->
+                                        <%= image_tag "icons/#{image.split('/').last}" %>
+                                        </li>
+                                    <% end %>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -136,7 +149,6 @@
                         </div>
                     </div>
                 </div> -->
-
            
         </div>
              <div class="modal-footer">

@@ -7,6 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+
+# https://stackoverflow.com/questions/31056942/how-do-i-seed-my-database-with-only-part-of-my-seed-code
+
 if ENV["old_seeds"]
 	lamp = IssueType.create(	id: 1,
 					    issue_description: "Broken lamp",
