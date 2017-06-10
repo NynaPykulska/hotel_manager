@@ -26,6 +26,7 @@ Rails.application.routes.draw do
    post 'memos/create'
    post 'rooms/create'
    post 'issues/create'
+   post 'issues/create_issue_type'
    patch 'memos/update'
    get 'memos/show'
    get 'memos/edit'

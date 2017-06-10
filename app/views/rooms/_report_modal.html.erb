@@ -14,10 +14,14 @@
 
                 $(function() {
                     $("#report-tiles-row").on("click", function (event) {
-                        console.log("row clicked");
-                        console.log( event);
                         $('#report-tiles-row').hide();
                         $('#report-issue-modal-selected-issue').show();
+                    });
+                });
+
+                $(function() {
+                    $(".g-table-card-header").on("click", function (event) {
+                        console.log(event);
                     });
                 });
             </script>
@@ -35,12 +39,12 @@
                                     <tr class="g-table-card-header">
 
                                         <td>
-                                            <%= image_tag  c.icon_path %>
+                                            <%= image_tag  c.icon_path, :class => "issue_type_icon" %>
                                         </td>
                                     </tr>  
                                     <tr>
                                         <td class="g-report-issue-card-description text-center">
-                                            <h4> <%= c.issue_description %> </h4>
+                                            <h4 class = "issue_type_description"> <%= c.issue_description %> </h4>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -61,7 +65,7 @@
                                 <table>
                                     <tbody><tr>
                                         <td>
-                                            <!-- TODO: ikona wybranej usterki -->
+                                            <%= image_tag "icons/icon_ok.svg", :class => "g-issue-icon", :id => "chosen-issue-type-icon"%>
                                         </td>
                                         <td>
                                             <h4>

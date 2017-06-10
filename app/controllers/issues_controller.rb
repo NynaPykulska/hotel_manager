@@ -52,6 +52,14 @@ class IssuesController < ApplicationController
 	def new
     @images = Dir.glob("app/assets/images/icons/issue/*.svg")
     @chosen_image = @images[0]
+
+
+  end
+
+  def create_issue_type
+    id = IssueType.maximum(:id).next
+    IssueType.create(id: id, issue_description: params[:description], default_priority: params[:priority], icon_path: params[:icon_path])
+
   end
 
 	def create
