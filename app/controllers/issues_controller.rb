@@ -51,6 +51,7 @@ class IssuesController < ApplicationController
 
 	def new
     @images = Dir.glob("app/assets/images/icons/issue/*.svg")
+    @chosen_image = @images[0]
   end
 
 	def create

@@ -16,17 +16,25 @@
                     <div class="col-xs-4">
                         <div class="btn-group">
                             <div class="dropdown">
+                                <%= image_tag "icons/issue/#{@chosen_image.split('/').last}", :id => "issue-choosen-icon"%>
                                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width: 100%">
                                    Ikona
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <% @images.each do |image| %>
-                                        <li> <!-- class="g-issue-icon-dropdown" -->
-                                        <%= image_tag "icons/issue/#{image.split('/').last}" %>
-                                        </li>
+                                        <li > <!-- class="g-issue-icon-dropdown" -->
+                                            <%= image_tag "icons/issue/#{image.split('/').last}", :class => "issue-choose-icon" %>
+                                        </li >
                                     <% end %>
+                                    
                                 </ul>
                             </div>
+                            <script type="text/javascript">
+                                $('.issue-choose-icon').click(function (event) {
+                                    $('#issue-choosen-icon').attr('src', $(this).attr('src'));
+                                    console.log($(this).attr('src'));
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>
