@@ -1,55 +1,55 @@
 $("#modal-add-issue").html("<%= escape_javascript(render 'new') %>")
 $("#modal-add-issue").modal("show")
 
-$("#recurring_check_box").change(function() {
-    if(this.checked)
-    {
-        $("#new_issue_date_field").hide()
-        $("#new_issue_recurring_options").show()
-        $("#new_issue_recurring_date_pickers").show()
-    }
-    else
-    {
-        $("#new_issue_date_field").show()
-        $("#new_issue_recurring_options").hide()
-        $("#new_issue_recurring_date_pickers").hide()
-    }
-});
+// $("#recurring_check_box").change(function() {
+//     if(this.checked)
+//     {
+//         $("#new_issue_date_field").hide()
+//         $("#new_issue_recurring_options").show()
+//         $("#new_issue_recurring_date_pickers").show()
+//     }
+//     else
+//     {
+//         $("#new_issue_date_field").show()
+//         $("#new_issue_recurring_options").hide()
+//         $("#new_issue_recurring_date_pickers").hide()
+//     }
+// });
 
-$("#issue_recurrence").change(function() {
-    if($(this).val() == 4){
-        $("#new_issue_recurring_additional").show()
-    } else {
-        $("#new_issue_recurring_additional").hide()
-    }
-});
+// $("#issue_recurrence").change(function() {
+//     if($(this).val() == 4){
+//         $("#new_issue_recurring_additional").show()
+//     } else {
+//         $("#new_issue_recurring_additional").hide()
+//     }
+// });
 
-$('#new_issue_date_field .input-group.date').datepicker({
-    format: 'yyyy-mm-dd',
-    language: "pl",
-    autoclose: true,
-    todayHighlight: true,
-    todayBtn: "linked"
-}).on('changeDate', function (a) {
+// $('#new_issue_date_field .input-group.date').datepicker({
+//     format: 'yyyy-mm-dd',
+//     language: "pl",
+//     autoclose: true,
+//     todayHighlight: true,
+//     todayBtn: "linked"
+// }).on('changeDate', function (a) {
     
-});
+// });
 
-$('#new_issue_start_date_field .input-group.date').datepicker({
-    format: 'yyyy-mm-dd',
-    language: "pl",
-    autoclose: true,
-    todayHighlight: true,
-    todayBtn: "linked"
-}).on('changeDate', function (a) {
+// $('#new_issue_start_date_field .input-group.date').datepicker({
+//     format: 'yyyy-mm-dd',
+//     language: "pl",
+//     autoclose: true,
+//     todayHighlight: true,
+//     todayBtn: "linked"
+// }).on('changeDate', function (a) {
     
-});
+// });
 
-$('#new_issue_end_date_field .input-group.date').datepicker({
-    format: 'yyyy-mm-dd',
-    language: "pl",
-    autoclose: true,
-    todayHighlight: true,
-    todayBtn: "linked"
-}).on('changeDate', function (a) {
+// $('#new_issue_end_date_field .input-group.date').datepicker({
+//     format: 'yyyy-mm-dd',
+//     language: "pl",
+//     autoclose: true,
+//     todayHighlight: true,
+//     todayBtn: "linked"
+// }).on('changeDate', function (a) {
     
-});
+// });

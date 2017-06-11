@@ -1,20 +1,2 @@
 $("#modal-report-issue").html("<%= escape_javascript(render 'report_modal') %>")
 $("#modal-report-issue").modal("show")
-
-$('.g-report-issue-card').click(function(e){   
-	// If it's red - the issue is marked as active
-	if($(this).hasClass("g-report-issue-card-selected--red")){
-		$(this).removeClass("g-report-issue-card-selected--red");
-		$(this).find('.g-issue-icon').removeClass("g-issue-icon-green");
-		$(this).find('.g-issue-icon').removeClass("g-issue-icon-white");
-		$(this).find('.g-issue-icon').addClass("g-issue-icon-red");
- 		console.log("Issue active, removing");
-	}
-	else {
-		$(this).addClass("g-report-issue-card-selected--red");
-		$(this).find('.g-issue-icon').removeClass("g-issue-icon-red");
-		$(this).find('.g-issue-icon').addClass("g-issue-icon-green");
-		$(this).find('.g-issue-icon').addClass("g-issue-icon-white");
-		console.log("Issue not active, adding");
-	}
-});

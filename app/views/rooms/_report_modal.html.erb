@@ -13,9 +13,15 @@
                 });
 
                 $(function() {
-                    $("#report-tiles-row").on("click", function (event) {
+                    $(".report-issue-tile").on("click", function (event) {
                         $('#report-tiles-row').hide();
                         $('#report-issue-modal-selected-issue').show();
+                        var src = $(this).find('.issue_type_icon').attr('src');
+                        var desc = $(this).find('.issue_type_description').text();
+                        $('#chose-icon-text').text(desc);
+                        $('#chosen-issue-type-icon').attr('src', src );
+                        $('#issue-type-id-input').val($(this).find('.issue-type-id').text());
+                        console.log(src);
                     });
                 });
 
@@ -27,10 +33,10 @@
             </script>
         </div>
         <div class="modal-body">
-        <%= bootstrap_form_for :room, remote: true, html: { style: "display:inline;", id: "report" } do |f| %>
+        <%= bootstrap_form_for :room, :url => url_for(:controller => 'rooms', :action => 'report_issue') do |f| %>
             <div class="row" style="display: flex; flex-wrap: wrap;" id = "report-tiles-row">
                 <% @issues.each do |c| %>
-                    <div class="col-xs-4">  
+                    <div class="col-xs-4 report-issue-tile">  
                          <!-- <%= link_to "report?room=#{c.room_id}&issueType=#{c.issue_type}", remote: true do %> -->
 
                             <table class = "<%= c.is_done ? "g-table-card g-table-card-grid g-report-issue-card" : "g-table-card g-table-card-grid g-report-issue-card  g-report-issue-card-selected--red" %>" 
@@ -40,6 +46,7 @@
 
                                         <td>
                                             <%= image_tag  c.icon_path, :class => "issue_type_icon" %>
+                                            <h4 class="issue-type-id" style="display:none"> <%= c.issue_type %></h4>
                                         </td>
                                     </tr>  
                                     <tr>
@@ -68,7 +75,7 @@
                                             <%= image_tag "icons/icon_ok.svg", :class => "g-issue-icon", :id => "chosen-issue-type-icon"%>
                                         </td>
                                         <td>
-                                            <h4>
+                                            <h4 id="chose-icon-text">
                                                 <!-- TODO: opis wybranej usterki -->
                                             </h4>
                                         </td>
@@ -84,28 +91,25 @@
                         <div class="col-xs-12">
                             <div class="form-group">
                                 <%= f.text_field :comment, label: "Komentarz" %>
-                                <%= f.submit "Zgłoś", :class => 'btn btn-primary' %>
-                                <!-- <label>Komentarz</label>
-                                <div class="">
-                                     <textarea class="form-control" rows="3" id="comment"></textarea>
-                                </div> -->
+                                <%= f.hidden_field :room_id, :value => @room_id %>
+                                <%= f.hidden_field :issue_type, :id => "issue-type-id-input"%>
+                                <%= f.submit "Utwórz", :class => 'btn btn-primary' %>
                             </div>
                         </div>
                     </div>                  
                 </div>
 
 
-            <% end %>
+            
             
         </div>
         
             <!-- Footer -->
         <div class="modal-footer">
                 <div class="text-right">
-                    <!-- <a href="" data-dismiss="modal" class="btn btn-default">Anuluj</a> -->
-                    <a href="" class="btn btn btn-primary close-issues-modal">Gotowe</a>
+                    
                 </div>
-            </div>
-        
+        </div>
+        <% end %>
     </div>
 </div>

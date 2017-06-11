@@ -73,6 +73,7 @@ class RoomsController < ApplicationController
 
   def report_modal
     room = params[:room_id]
+    @room_id = room
     @issuesForRoom = Issue.where("room_id = ?", room)
 
     @issues = Array.new
@@ -81,7 +82,7 @@ class RoomsController < ApplicationController
       issueEntity = IssueEntity.new
       type = IssueType.where("id = ?", issue.issue_type_id).first
       issueEntity.issue_type = issue.issue_type_id
-      issueEntity.room_id = room
+      issueEntity.room_id =@room
       issueEntity.icon_path = type.icon_path
       issueEntity.is_done = issue.is_done
       issueEntity.issue_description = type.issue_description
@@ -90,16 +91,15 @@ class RoomsController < ApplicationController
     end
   end
 
-  def markIssue
-    room = params[:room]
-    issueType = params[:issueType]
-
+  def report_issue
+    room = params[:room][:room_id]
+    issueType = params[:room][:issue_type]
     @issue = Issue.where("room_id = ? AND issue_type_id = ?", room, issueType).first
-
     currentValue = @issue.is_done
     @issue.update_attribute(:is_done, !currentValue)
+    @issue.update_attribute(:fix_comment, params[:room][:comment])
 
-    render :nothing => true
+    redirect_back(fallback_location: root_path)
   end
 end
 
