@@ -58,8 +58,8 @@ class IssuesController < ApplicationController
 
   def create_issue_type
     id = IssueType.maximum(:id).next
-    IssueType.create(id: id, issue_description: params[:description], default_priority: params[:priority], icon_path: params[:icon_path])
-
+    IssueType.create(id: id, issue_description: params[:issue_type][:description], default_priority: params[:issue_type][:priority], icon_path: params[:issue_type][:icon_path])
+    redirect_back(fallback_location: root_path)
   end
 
 	def create
