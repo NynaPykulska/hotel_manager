@@ -52,7 +52,7 @@
                     </div>
                 </div>
 
-                <%= f.hidden_field :icon_path%>
+                <%= f.hidden_field :icon_path, :value => "icons/issue/#{@chosen_image.split('/').last}"%>
            
         </div>
              <div class="modal-footer">
