@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170604133738) do
+ActiveRecord::Schema.define(version: 20170623190625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "icons", force: :cascade do |t|
+    t.text   "name"
+    t.binary "icon"
+  end
 
   create_table "issue_types", force: :cascade do |t|
     t.text     "issue_description"
@@ -47,12 +52,10 @@ ActiveRecord::Schema.define(version: 20170604133738) do
   create_table "memos", force: :cascade do |t|
     t.integer  "room_id"
     t.text     "description"
-    t.datetime "deadline"
-    t.date     "completion_date"
-    t.datetime "time_stamp"
     t.boolean  "is_done"
-    t.boolean  "is_recurring",    default: false
+    t.boolean  "is_recurring", default: false
     t.bigint   "event_id"
+    t.datetime "deadline"
   end
 
   create_table "rooms", primary_key: "room_id", id: :integer, force: :cascade do |t|

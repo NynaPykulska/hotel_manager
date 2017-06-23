@@ -41,12 +41,9 @@
                                 todayHighlight: true,
                                 todayBtn: "linked"
                             }).on('changeDate', function (a) {
-                                // var form = document.getElementById("date-form");
-                                // form.submit();
                                 var date = a.date.getFullYear() + "-" + (a.date.getMonth() + 1) + "-" + a.date.getDate();
                                 var link = window.location.href.split('?')[0] + "?date=" + date;
                                 window.location.href = link;
-                                // $.get("/dayLog/list", {date});
                             });
                         </script>
 
@@ -163,7 +160,6 @@
                                                     <li><%= link_to "Edytuj", edit_memo_path(c), remote: true, :class => "edit-button" , :style => c.is_done ? 'display: none;' : ''  %></li>
                                                     <li>
                                                         <%= link_to "Otwórz", "memos/reopen?id=#{c.id}", :class =>  "btn-memo-reopen reopen", remote: true  %>
-                                                    <!-- <a href="#" class="btn-memo-reopen"> Re-Open </a> -->
                                                     </li>
                                                     <li>
                                                         <%= link_to "Usuń", "memos/delete?id=#{c.id}", :class =>  "btn-issues-remove"  %>
