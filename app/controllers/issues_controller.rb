@@ -36,7 +36,7 @@ class IssuesController < ApplicationController
 	def reopen
 		@issue = Issue.find(params[:id])
 		@issue.update_attribute(:is_done, false)
-		@issue.update_attribute(:completion_date, nil)
+		@issue.update_attribute(:completion_date, Date.today)
 		@issue.is_done = false
 		render :nothing => true
 	end

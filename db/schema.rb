@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170623190625) do
+ActiveRecord::Schema.define(version: 20170623211419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,32 +21,19 @@ ActiveRecord::Schema.define(version: 20170623190625) do
   end
 
   create_table "issue_types", force: :cascade do |t|
-    t.text     "issue_description"
-    t.text     "default_priority"
-    t.text     "when_to_resolve"
-    t.date     "icon"
-    t.string   "ok_icon_file_name"
-    t.string   "ok_icon_content_type"
-    t.integer  "ok_icon_file_size"
-    t.datetime "ok_icon_updated_at"
-    t.string   "nok_icon_file_name"
-    t.string   "nok_icon_content_type"
-    t.integer  "nok_icon_file_size"
-    t.datetime "nok_icon_updated_at"
-    t.text     "icon_path"
+    t.text "issue_description"
+    t.text "default_priority"
+    t.text "icon_path"
   end
 
   create_table "issues", force: :cascade do |t|
     t.integer "room_id"
     t.integer "issue_type_id"
-    t.date    "requested_fix_date"
     t.text    "fix_comment"
-    t.date    "timestamp"
     t.date    "completion_date"
     t.text    "priority"
-    t.boolean "is_done",            default: false
-    t.boolean "is_recurring",       default: false
-    t.bigint  "event_id"
+    t.boolean "is_done",         default: false
+    t.boolean "is_recurring",    default: false
   end
 
   create_table "memos", force: :cascade do |t|

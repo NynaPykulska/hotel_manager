@@ -98,6 +98,7 @@ class RoomsController < ApplicationController
     currentValue = @issue.is_done
     @issue.update_attribute(:is_done, !currentValue)
     @issue.update_attribute(:fix_comment, params[:room][:comment])
+    @issue.update_attribute(:completion_date, Date.today)
 
     redirect_back(fallback_location: root_path)
   end
