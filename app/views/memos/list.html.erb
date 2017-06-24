@@ -117,7 +117,7 @@
                                 <% @memos.each do |c| %>
                                 	<tr class="<%= c.is_done ? 'g-table-card-header tr-done' : 'g-table-card-header tr-not_done' =%>" >
                                         <td class="text-center g-vertical-middle g-table-card-icon-td">
-                                            	<%= image_tag "icons/icon_ok.svg", :class => "g-issue-icon is-complete-icon-ok", :style => c.is_done ? '' : 'display: none;'%>   
+                                            	<%= image_tag "icons/icon_ok.svg", :class => "g-issue-icon is-complete-icon-ok g-issue-icon-green", :style => c.is_done ? '' : 'display: none;'%>   
                                             	<%= image_tag "icons/icon_circle.svg", :class => "g-issue-icon is-complete-icon-circle", :style => c.is_done ? 'display: none;' : ''%>                  
                                             </td>
                                         
@@ -159,7 +159,7 @@
                                                 <ul class="dropdown-menu">
                                                     <li><%= link_to "Edytuj", edit_memo_path(c), remote: true, :class => "edit-button" , :style => c.is_done ? 'display: none;' : ''  %></li>
                                                     <li>
-                                                        <%= link_to "Otwórz", "memos/reopen?id=#{c.id}", :class =>  "btn-memo-reopen reopen", remote: true  %>
+                                                        <%= link_to "Otwórz", "memos/reopen?id=#{c.id}", :class =>  "btn-memo-reopen memo-reopen-button", remote: true  %>
                                                     </li>
                                                     <li>
                                                         <%= link_to "Usuń", "memos/delete?id=#{c.id}", :class =>  "btn-issues-remove"  %>
@@ -181,10 +181,8 @@
                                             </script> 
 
 
-                                            <%= button_to "Gotowe", "memos/mark_ready" , params: {id: c.id}, class: "btn btn-link btn-memo-done ready-button enabled", remote: true, method: :get, form: {style: 'display:inline-block;',  autocomplete: "off"}, :style => c.is_done ? 'display: none;' : ''%>
-
-                                            <%= button_to "Gotowe", "", class: "btn btn-link btn-memo-done ready-button disabled", disabled: "true", form: {style: 'display:inline-block;',  autocomplete: "off"}, :style => c.is_done ? '' : 'display: none;'%>
-                                        
+                                            <%= button_to "Gotowe", "memos/mark_ready" , params: {id: c.id}, class: "btn btn-link btn-memo-done memo-ready-button enabled", remote: true, method: :get, form: {style: 'display:inline-block;',  autocomplete: "off"}, :style => c.is_done ? 'display: none;' : ''%>
+                                            <%= button_to "Gotowe", "", class: "btn btn-link btn-memo-done memo-ready-button disabled", disabled: "true", form: {style: 'display:inline-block;',  autocomplete: "off"}, :style => c.is_done ? '' : 'display: none;'%>
                                         </td>                                        
 
                                 	</tr>
