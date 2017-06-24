@@ -29,7 +29,13 @@ class IssuesController < ApplicationController
 		@issue = Issue.find(params[:id])
 		@issue.update_attribute(:is_done, true)
 		@issue.update_attribute(:completion_date, Date.today)
-		@issue.is_done = true
+
+    @all_room_issues = Issue.where("room_id = ? AND is_done = ?", @issue.room_id, false)
+    if(@all_room_issues.count == 0)
+      @room = Room.where("room_id = ?", @issue.room_id).first
+      @room.update_attribute(:is_clean, true)
+    end
+
 		render :nothing => true
 	end
 
@@ -37,7 +43,10 @@ class IssuesController < ApplicationController
 		@issue = Issue.find(params[:id])
 		@issue.update_attribute(:is_done, false)
 		@issue.update_attribute(:completion_date, Date.today)
-		@issue.is_done = false
+		
+    @room = Room.where("room_id = ?", @issue.room_id).first
+    @room.update_attribute(:is_clean, false)
+
 		render :nothing => true
 	end
 

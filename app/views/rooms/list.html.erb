@@ -90,11 +90,11 @@
                             <tbody>                    
                                 
                                 <% @rooms.each do |c| %>
-                                    <tr class="g-table-card-header ">
+                                    <tr class="<%= c.is_clean ? 'g-table-card-header tr-done' : 'g-table-card-header tr-not_done' =%>">
 
                                         <!-- Status Icon -->
                                         <td class="text-center g-table-card-icon-td">   
-                                            <% if Issue.where("room_id = ? AND is_done = ?", c.room_id, false).count == 0 %>
+                                            <% if c.is_clean == true %>
                                                 <%= image_tag "icons/icon_ok.svg", :class => "g-issue-icon g-issue-icon-green"%>   
                                             <% else  %>
                                                 <%= image_tag "icons/icon_warning.svg", :class => "g-issue-icon g-issue-icon-red"%> 
