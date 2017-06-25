@@ -45,7 +45,11 @@
                                     <tr class="g-table-card-header">
 
                                         <td>
-                                            <%= image_tag  c.icon_path, :class => "issue_type_icon" %>
+                                            <% if c.is_done %>
+                                                <%= image_tag  c.icon_path, :class => "g-issue-icon g-issue-icon-red" %>
+                                            <% else %>
+                                                <%= image_tag  c.icon_path, :class => "g-issue-icon g-issue-icon-white" %>
+                                            <% end %>
                                             <h4 class="issue-type-id" style="display:none"> <%= c.issue_type %></h4>
                                         </td>
                                     </tr>  
