@@ -92,12 +92,15 @@ class RoomsController < ApplicationController
   end
 
   def report_issue
-    room = params[:room][:room_id]
+    room_id = params[:room][:room_id]
     issueType = params[:room][:issue_type]
-    @issue = Issue.where("room_id = ? AND issue_type_id = ?", room, issueType).first
+    @issue = Issue.where("room_id = ? AND issue_type_id = ?", room_id, issueType).first
+    @room = Room.where("room_id = ?", room_id).first
     currentValue = @issue.is_done
     @issue.update_attribute(:is_done, !currentValue)
     @issue.update_attribute(:fix_comment, params[:room][:comment])
+    @issue.update_attribute(:completion_date, Date.today)
+    @room.update_attribute(:is_clean, false)
 
     redirect_back(fallback_location: root_path)
   end

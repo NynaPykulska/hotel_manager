@@ -7,10 +7,8 @@
     <div class="modal-body">
       <%= bootstrap_form_for @c, remote: true, html: { style: "display:inline;" } do |f| %>
         <%= f.collection_select :issue_type_id, IssueType.all, :id, :issue_description, label: "Rodzaj Usterki" %>
-        <%= f.date_select :requested_fix_date, label: "Data naprawy" %>
         <%= f.text_field :fix_comment, label: "Komentarz" %>
-        <%= f.hidden_field :timestamp, :value => Date.today %>
-        <%= f.hidden_field :completion_date, :value => nil %>
+        <%= f.hidden_field :deadline, :value => Date.today %>
         <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Pokój" %>
         <%= f.select :priority, options_for_select([['Niski' ,'Low'], ['Średni', 'Medium'], ['Wysoki', 'High']])%>
         

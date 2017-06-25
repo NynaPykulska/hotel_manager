@@ -15,7 +15,7 @@
                     </div>
 
                     <div class="col-xs-6">
-                        <%= f.time_select :completion_date, label: "Godzina", :ignore_date => true %>
+                        <%= f.time_select :deadline, label: "Godzina", :ignore_date => true %>
                     </div>
                 </div>
 
@@ -97,7 +97,7 @@
                         <div class="btn-group">
                             <label>Data wykonania</label>
                             <div class="input-group date" data-provide='datepicker'>
-                                <%= f.text_field :completion_date, class: 'form-control' , :value => Date.today(), 
+                                <%= f.text_field :deadline, class: 'form-control' , :value => Date.today(), 
                                     hide_label: true  %>
                                 <span class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
@@ -106,13 +106,7 @@
                         </div>
                     </div>
                 </div>
-
-                <%= f.hidden_field :time_stamp, :value => Date.today %>
                 <%= f.hidden_field :is_done, :value => false %>
-
-                
-
-
         </div>  
         <!-- Footer -->
                 <div class="modal-footer">

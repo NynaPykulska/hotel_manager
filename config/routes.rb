@@ -29,7 +29,6 @@ Rails.application.routes.draw do
    post 'issues/create_issue_type'
    post 'roomStatus/report_issue', to: 'rooms#report_issue'
    patch 'memos/update'
-   get 'memos/show'
    get 'memos/edit'
    get 'memos/delete'
    get 'memos/delete_recurrence'

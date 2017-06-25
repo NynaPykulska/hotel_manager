@@ -13,3 +13,8 @@ Rails.application.config.assets.version = '1.0'
 
 Rails.application.config.assets.precompile += %w( ripple-effect.js )
 Rails.application.config.assets.precompile += %w( g-aside-expand.js )
+Rails.application.config.assets.precompile += %w( sitewide/app.js )
+Rails.application.config.assets.precompile += %w( memo_list.js )
+Rails.application.config.assets.precompile += %w( room_list.js )
+Rails.application.config.assets.precompile += %w( issue_list.js )
+
