@@ -1,0 +1,15 @@
+$("#modal-edit-room").html("<%= escape_javascript(render 'edit') %>")
+$("#modal-edit-room").modal("show")
+
+$('#submitEditRoom').click(function(e){        
+	// $('#selectedIssues option').prop('selected', true);
+	$( "#editRoomForm" ).submit();
+});
+
+// $('#modal-edit-room').on('shown.bs.modal', function (e) {
+// 	var operator_id = 1;
+//   for (var i = 0; i < $('select#selectedIssues option').length; i++) {
+//     $('select#selectedIssues option')[i].selected = 'selected';    
+//     console.log('penis');
+//   }
+// });
