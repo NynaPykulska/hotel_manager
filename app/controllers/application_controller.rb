@@ -1,21 +1,23 @@
+# Top class for all controlers in the application
+# to inherit from. User authentication is required
+# and after logging in the user is redirected to his
+# role-specific path.
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  def authenticate_user!(options={})
+  def authenticate_user!(options = {})
     if user_signed_in?
       super(options)
     else
       redirect_to new_user_session_path
-      ## if you want render 404 page
-      ## render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
     end
   end
 
   def after_sign_in_path_for(resource)
-    if resource.admin? or resource.receptionist?
+    if resource.admin? || resource.receptionist?
       '/dayLog/list'
     elsif resource.maid?
-      '/roomStatus/list' 
+      '/roomStatus/list'
     elsif resource.maitenance?
       '/issueLog/list'
     end
