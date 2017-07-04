@@ -1,0 +1,19 @@
+dist: trusty
+
+sudo: required
+
+language: ruby
+
+rvm:
+	- 2.3.1
+
+addons:
+  sonarqube:
+    organization: "tschesky-github" # the key of the org you chose at step #3
+
+script:
+ - sonar-scanner
+
+cache:
+  directories:
+    - '$HOME/.sonar/cache'
