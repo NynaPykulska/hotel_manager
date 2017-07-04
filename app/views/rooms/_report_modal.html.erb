@@ -4,33 +4,6 @@
         <div class="modal-header">
             <button type="button" class="close close-issues-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">Zgłoś usterkę</h4>
-
-            <script type="text/javascript">
-                $(function() {
-                    $('.close-issues-modal').on("click", function() {
-                        location.reload();
-                    });
-                });
-
-                $(function() {
-                    $(".report-issue-tile").on("click", function (event) {
-                        $('#report-tiles-row').hide();
-                        $('#report-issue-modal-selected-issue').show();
-                        var src = $(this).find('.issue_type_icon').attr('src');
-                        var desc = $(this).find('.issue_type_description').text();
-                        $('#chose-icon-text').text(desc);
-                        $('#chosen-issue-type-icon').attr('src', src );
-                        $('#issue-type-id-input').val($(this).find('.issue-type-id').text());
-                        console.log(src);
-                    });
-                });
-
-                $(function() {
-                    $(".g-table-card-header").on("click", function (event) {
-                        console.log(event);
-                    });
-                });
-            </script>
         </div>
         <div class="modal-body">
         <%= bootstrap_form_for :room, :url => url_for(:controller => 'rooms', :action => 'report_issue') do |f| %>
@@ -46,9 +19,9 @@
 
                                         <td>
                                             <% if c.is_done %>
-                                                <%= image_tag  c.icon_path, :class => "g-issue-icon g-issue-icon-red" %>
+                                                <%= image_tag  c.icon_path, :class => "g-issue-icon g-issue-icon-red issue_type_icon" %>
                                             <% else %>
-                                                <%= image_tag  c.icon_path, :class => "g-issue-icon g-issue-icon-white" %>
+                                                <%= image_tag  c.icon_path, :class => "g-issue-icon g-issue-icon-white issue_type_icon" %>
                                             <% end %>
                                             <h4 class="issue-type-id" style="display:none"> <%= c.issue_type %></h4>
                                         </td>

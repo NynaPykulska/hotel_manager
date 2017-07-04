@@ -1,2 +1,29 @@
 $("#modal-report-issue").html("<%= escape_javascript(render 'report_modal') %>")
 $("#modal-report-issue").modal("show")
+
+$(function() {
+    $('.close-issues-modal').on("click", function() {
+        location.reload();
+    });
+});
+
+$(function() {
+    $(".report-issue-tile").on("click", function (event) {
+        $('#report-tiles-row').hide();
+        $('#report-issue-modal-selected-issue').show();
+        var src = $(this).find('.issue_type_icon').attr('src');
+
+        
+        var desc = $(this).find('.issue_type_description').text();
+        $('#chose-icon-text').text(desc);
+        $('#chosen-issue-type-icon').attr('src', src );
+        $('#issue-type-id-input').val($(this).find('.issue-type-id').text());
+        console.log(src);
+    });
+});
+
+$(function() {
+    $(".g-table-card-header").on("click", function (event) {
+        console.log(event);
+    });
+});

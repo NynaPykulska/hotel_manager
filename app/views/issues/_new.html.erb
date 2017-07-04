@@ -29,18 +29,6 @@
                                     
                                 </ul>
                             </div>
-                            <script type="text/javascript">
-                                $('.issue-choose-icon').click(function (event) {
-                                    var new_image_scr = $(this).attr('src');
-                                    $('#issue-choosen-icon').attr('src', new_image_scr );
-                                    new_image_scr = new_image_scr.replace(new RegExp("\/assets", 'g'), "");
-                                    var split = new_image_scr.split("-");
-                                    split.splice(-1,1);
-                                    new_image_scr = split.join("-") + ".svg";
-                                    $('#issue_type_icon_path').val(new_image_scr);
-                                    console.log(new_image_scr);
-                                });
-                            </script>
                         </div>
                     </div>
                 </div>
