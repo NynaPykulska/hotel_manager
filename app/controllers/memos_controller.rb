@@ -1,3 +1,12 @@
+# Controller for managing memos for the receptioninst. 
+# A memo is a simple task concerning guests in a certain
+# room. It may be a wake-up call, calling them a taxi etc.
+# Therefore very memo is associated with a single room and
+# has a due date. 
+#
+# The receptionist can list all the memos, view them for a 
+# certain date, create new memos and delete them, mark
+# memos as ready and re-open them, also edit and delete.
 class MemosController < ApplicationController
    	
   protect_from_forgery with: :null_session

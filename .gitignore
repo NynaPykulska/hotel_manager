@@ -21,3 +21,9 @@
 .byebug_history
 
 public/assets/
+
+# Ingore images, bacause why would you VC them...
+*.png
+*.jpg
+*.jpeg
+*.gif

@@ -26,21 +26,21 @@
                 <!-- List -->
                 <div class="row">
                     <div class="col-xs-12">
-                        <select id='selectedIssues' class='form-control' name='room[selectedIssues][]' multiple='multiple'>
+                        <select id='selected_issues' class='form-control' name='room[selected_issues][]' multiple='multiple'>
                           <% @issues.each do |c| %>
                             <option value='<%= c.id %>' <%= (@chuj.include? c.id) ? selected='selected' : "" %> > <%= c.issue_description %> </option>
                           <%end%>
                         </select>
                     </div>
                     <script type="text/javascript">
-                        $('#selectedIssues').multiSelect();
+                        $('#selected_issues').multiSelect();
                     </script>
                     <!-- <div class="col-xs-2">
                         <a class="btn g-ripple-effect" id="addIssue"> -> </a>
                         <a class="btn g-ripple-effect" id="removeIssue"> <- </a>
                     </div>
                     <div class="col-xs-5">
-                        <%= f.collection_select :selectedIssues, IssueType.none, :id, :issue_description, {label: "Wybrane usterki"}, {multiple: true, id: "selectedIssues"} %>
+                        <%= f.collection_select :selected_issues, IssueType.none, :id, :issue_description, {label: "Wybrane usterki"}, {multiple: true, id: "selected_issues"} %>
                     </div> -->
                 </div>
 

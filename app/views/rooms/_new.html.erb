@@ -26,10 +26,10 @@
                 <!-- List -->
                 <div class="row">
                     <div class="col-xs-12">
-                        <%= f.collection_select :selectedIssues, IssueType.all, :id, :issue_description, {label: "Dostępne usterki"}, {multiple: true, id: "selectedIssues"} %>
+                        <%= f.collection_select :selected_issues, IssueType.all, :id, :issue_description, {label: "Dostępne usterki"}, {multiple: true, id: "selected_issues"} %>
                     </div>
                     <script type="text/javascript">
-                        $('#selectedIssues').multiSelect();
+                        $('#selected_issues').multiSelect();
                     </script>
 
                     <!-- <div class="col-xs-2">
@@ -37,7 +37,7 @@
                         <a class="btn g-ripple-effect" id="removeIssue"> <- </a>
                     </div>
                     <div class="col-xs-5">
-                        <%= f.collection_select :selectedIssues, IssueType.none, :id, :issue_description, {label: "Wybrane usterki"}, {multiple: true, id: "selectedIssues"} %>
+                        <%= f.collection_select :selected_issues, IssueType.none, :id, :issue_description, {label: "Wybrane usterki"}, {multiple: true, id: "selected_issues"} %>
                     </div> -->
                 </div>
 

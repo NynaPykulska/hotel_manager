@@ -1,0 +1,7 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'test/**/**'
+    - 'app/helpers/**'

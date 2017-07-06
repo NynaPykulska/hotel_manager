@@ -1,3 +1,12 @@
+# Controller for managing the rooms available in the
+# hotel. The rooms themselves are very simple - they are
+# are identified by room number and can contain a description.
+#
+# New rooms can be created if needed, the existing ones can
+# be edited and deleted. All the rooms can be viewed on a list
+# containing all unresolved issues. The rooms are categorized as
+# "clean" and "not clean" - respectively it means rooms that have
+# no issues and those that have some unresolved issues assigned.
 class RoomsController < ApplicationController
   include Rails.application.routes.url_helpers
   before_filter :init_items_size_list
@@ -7,9 +16,9 @@ class RoomsController < ApplicationController
     @c = Room.find(params[:id])
     @chuj = []
     @issues = IssueType.all
-    @selectedIssues = Issue.where(room_id: params[:id]);
+    @selected_issues = Issue.where(room_id: params[:id]);
 
-    @selectedIssues.each do |penis| 
+    @selected_issues.each do |penis| 
       @chuj.push(penis.issue_type_id)
     end
 
@@ -20,12 +29,12 @@ class RoomsController < ApplicationController
 
     id = room_params[:room_id]
     description = room_params[:description]
-    selectedIssues = room_params[:selectedIssues]
+    selected_issues = room_params[:selected_issues]
 
     @room.update(room_id: id, description: description)
     Issue.where(room_id: id).delete_all
     
-    selectedIssues.each do |d|
+    selected_issues.each do |d|
       if not d.blank?
         Issue.create(room_id: id.to_i, issue_type_id: d.to_i, priority: "Medium", is_done: true, is_recurring: false)
       end
@@ -38,12 +47,12 @@ class RoomsController < ApplicationController
     # @room = Room.new(room_params)
     @issues = IssueType.all
 
-    @selectedIssues = room_params[:selectedIssues]
+    @selected_issues = room_params[:selected_issues]
     @room_id = room_params[:room_id]
     @description = room_params[:description]
 
     @room = Room.create(room_id: @room_id.to_i, description: @description, is_clean: true)
-    @selectedIssues.each do |d|
+    @selected_issues.each do |d|
       if not d.blank?
         Issue.create(room_id: @room_id.to_i, issue_type_id: d.to_i, priority: "Medium", is_done: true, is_recurring: false)
       end
@@ -63,7 +72,7 @@ class RoomsController < ApplicationController
   end
 
   def room_params
-    params.require(:room).permit(:room_id, :description, :selectedIssues => [])
+    params.require(:room).permit(:room_id, :description, :selected_issues => [])
   end
 
   def init_items_size_list
