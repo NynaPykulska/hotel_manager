@@ -12,26 +12,34 @@ class RoomsController < ApplicationController
   before_filter :init_items_size_list
   before_filter :authenticate_user!
 
-  def edit
-    @c = Room.find(params[:id])
-    @chuj = []
+  before_action :fetch_selected_issues, only: [:edit]
+  before_action :fetch_all_issues, only: [:edit]
+  before_action :fetch_room_by_id, only: [:edit]
+
+  def fetch_selected_issues
+    @selected_issues = Issue.where(room_id: params[:id])
+  end
+
+  def fetch_all_issues
     @issues = IssueType.all
-    @selected_issues = Issue.where(room_id: params[:id]);
+  end
 
-    @selected_issues.each do |penis| 
-      @chuj.push(penis.issue_type_id)
+  def fetch_room_by_id
+    @room = Room.find(params[:id])
+  end
+
+  def edit 
+    @selected_issue_types = []
+    @selected_issues.each do |i|
+      @selected_issue_types.push(i.issue_type_id)
     end
-
   end
    
   def update
     @room = Room.find(params[:id])
-
     id = room_params[:room_id]
-    description = room_params[:description]
     selected_issues = room_params[:selected_issues]
-
-    @room.update(room_id: id, description: description)
+    @room.update(room_id: id, description: room_params[:description])
     Issue.where(room_id: id).delete_all
     
     selected_issues.each do |d|
@@ -39,6 +47,7 @@ class RoomsController < ApplicationController
         Issue.create(room_id: id.to_i, issue_type_id: d.to_i, priority: "Medium", is_done: true, is_recurring: false)
       end
     end
+
     redirect_back(fallback_location: root_path)
   end
 

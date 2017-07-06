@@ -7,7 +7,7 @@
     </div>
 
     <div class="modal-body">
-      <%= bootstrap_form_for @c, remote: true, html: { style: "display:inline;", id: "editRoomForm" } do |f| %>
+      <%= bootstrap_form_for @room, remote: true, html: { style: "display:inline;", id: "editRoomForm" } do |f| %>
 
                 <!-- Room ID -->
                 <div class="row">
@@ -28,7 +28,7 @@
                     <div class="col-xs-12">
                         <select id='selected_issues' class='form-control' name='room[selected_issues][]' multiple='multiple'>
                           <% @issues.each do |c| %>
-                            <option value='<%= c.id %>' <%= (@chuj.include? c.id) ? selected='selected' : "" %> > <%= c.issue_description %> </option>
+                            <option value='<%= c.id %>' <%= (@selected_issue_types.include? c.id) ? selected='selected' : "" %> > <%= c.issue_description %> </option>
                           <%end%>
                         </select>
                     </div>
