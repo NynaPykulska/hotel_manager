@@ -27,3 +27,6 @@ public/assets/
 *.jpg
 *.jpeg
 *.gif
+
+# Ignore .txt files with results and comments
+*.txt
