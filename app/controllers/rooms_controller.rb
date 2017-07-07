@@ -18,6 +18,82 @@ class RoomsController < ApplicationController
   before_action :fetch_all_rooms, only: %i[list]
   before_action :fetch_issues_by_room_id, only: %i[report_modal]
 
+  def edit
+    @selected_issue_types = []
+    @selected_issues.each do |i|
+      @selected_issue_types.push(i.issue_type_id)
+    end
+  end
+
+  def update
+    selected_issues = room_params[:selected_issues]
+    room_id = room_params[:room_id]
+    add_new_issues_to_room(selected_issues,
+                           room_id)
+    remove_old_issues_from_room(selected_issues,
+                                room_id)
+    check_if_room_clean_and_update(room_id,
+                                   room_params[:description])
+    redirect_back(fallback_location: root_path)
+  end
+
+  def create
+    room_id = room_params[:room_id]
+    room = Room.create(room_id: room_id.to_i,
+                       description: room_params[:description],
+                       is_clean: true)
+    add_new_issues_to_room(room_params[:selected_issues], room_id)
+    if room.save
+      redirect_back(fallback_location: root_path)
+    else
+      render action: 'new'
+    end
+  end
+
+  def list; end
+
+  def room_params
+    params.require(:room).permit(:room_id, :description, selected_issues: [])
+  end
+
+  def init_items_size_list
+    @items_size_list ||= [Room.all.size, Room.where('is_clean = ?', false).size,
+                          Room.where('is_clean = ?', true).size]
+  end
+
+  def report_modal
+    @room_id = params[:room_id]
+    @issues = create_issue_entities(@issues_for_room)
+  end
+
+  def create_issue_entities(issues_for_room)
+    issues = []
+    issues_for_room.each do |issue|
+      type = IssueType.where('id = ?', issue.issue_type_id).first
+      issue_entity = IssueEntity.new(issue.issue_type_id, params[:room_id],
+                                     issue.is_done, type.issue_description,
+                                     type.icon_path)
+      issues.push(issue_entity)
+    end
+    return issues
+  end
+
+  def report_issue
+    room_id = params[:room][:room_id]
+    issue_type = params[:room][:issue_type]
+    issue = Issue.where('room_id = ? AND issue_type_id = ?',
+                        room_id, issue_type).first
+    room = Room.where('room_id = ?', room_id).first
+    current_value = issue.is_done
+    issue.update_attributes(is_done: !current_value,
+                            fix_comment: params[:room][:comment],
+                            completion_date: Date.today)
+    room.update_attribute(:is_clean, false)
+    redirect_back(fallback_location: root_path)
+  end
+
+  # Helper methods
+
   def fetch_issues_by_room_id
     @issues_for_room = Issue.where('room_id = ?', params[:room_id])
   end
@@ -38,20 +114,7 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
   end
 
-  def edit
-    @selected_issue_types = []
-    @selected_issues.each do |i|
-      @selected_issue_types.push(i.issue_type_id)
-    end
-  end
-
-  # This method could use a refactor - perhaps something with less
-  # iterations. Can't think of a better way right now
-  def update
-    id = room_params[:room_id]
-    selected_issues = room_params[:selected_issues]
-
-    # Add all new issues that have been selected
+  def add_new_issues_to_room(selected_issues, id)
     selected_issues.each do |issue|
       unless Issue.exists?(room_id: id, issue_type_id: issue.to_i)
         Issue.create(room_id: id.to_i, issue_type_id: issue.to_i,
@@ -59,87 +122,46 @@ class RoomsController < ApplicationController
                      is_recurring: false)
       end
     end
+  end
 
+  def remove_old_issues_from_room(selected_issues, id)
     @issues_for_room = Issue.where('room_id = ?', id)
 
-    # Remove de-selected issues
     @issues_for_room.each do |issue|
-      if not (selected_issues.include? issue.issue_type_id.to_s)
-        Issue.where('room_id = ? AND issue_type_id = ?', id, issue.issue_type_id).destroy_all
+      unless selected_issues.include? issue.issue_type_id.to_s
+        Issue.where('room_id = ? AND issue_type_id = ?',
+                    id, issue.issue_type_id).destroy_all
       end
     end
+  end
 
-    # Check if room didn't "become" clean
-    if not Issue.exists?(room_id: id, is_done: false)
-      @room.update(room_id: id, description: room_params[:description], is_clean: true)
+  def check_if_room_clean_and_update(id, description)
+    if Issue.exists?(room_id: id, is_done: false)
+      @room.update(room_id: id,
+                   description: description,
+                   is_clean: false)
     else
-      @room.update(room_id: id, description: room_params[:description], is_clean: false)
+      @room.update(room_id: id,
+                   description: description,
+                   is_clean: true)
     end
-
-    redirect_back(fallback_location: root_path)
-  end
-
-  def create
-    selected_issues = room_params[:selected_issues]
-    room_id = room_params[:room_id]
-    room = Room.create(room_id: room_id.to_i, description: room_params[:description], is_clean: true)
-    selected_issues.each do |d|
-      if not d.blank?
-        Issue.create(room_id: room_id.to_i, issue_type_id: d.to_i, priority: 'Medium', is_done: true, is_recurring: false)
-      end
-    end
-    if room.save
-      redirect_back(fallback_location: root_path)
-    else
-      render :action => 'new'
-    end
-  end
-
-  def list
-  end
-
-  def room_params
-    params.require(:room).permit(:room_id, :description, :selected_issues => [])
-  end
-
-  def init_items_size_list
-    @items_size_list ||= [Room.all.size, Room.where("is_clean = ?", false).size, Room.where("is_clean = ?", true).size]
-    #                             0                           1                                       2
-  end 
-
-  def report_modal
-    @room_id = params[:room_id]
-    @issues = Array.new
-    @issues_for_room.each do |issue| 
-      issueEntity = IssueEntity.new
-      type = IssueType.where("id = ?", issue.issue_type_id).first
-      issueEntity.issue_type = issue.issue_type_id
-      issueEntity.room_id = params[:room_id]
-      issueEntity.icon_path = type.icon_path
-      issueEntity.is_done = issue.is_done
-      issueEntity.issue_description = type.issue_description
-      @issues.push(issueEntity)
-    end
-  end
-
-  def report_issue
-    room_id = params[:room][:room_id]
-    issueType = params[:room][:issue_type]
-    issue = Issue.where("room_id = ? AND issue_type_id = ?", room_id, issueType).first
-    room = Room.where("room_id = ?", room_id).first
-    currentValue = issue.is_done
-    issue.update_attribute(:is_done, !currentValue)
-    issue.update_attribute(:fix_comment, params[:room][:comment])
-    issue.update_attribute(:completion_date, Date.today)
-    room.update_attribute(:is_clean, false)
-    redirect_back(fallback_location: root_path)
   end
 end
 
+# Helper class that aggregates parameters from different tables
+# (rooms, issues) to easy access them in a view
 class IssueEntity
   class_attribute :issue_type
   class_attribute :room_id
   class_attribute :is_done
   class_attribute :issue_description
   class_attribute :icon_path
+
+  def initialize(issue_type, room_id, is_done, issue_description, icon_path)
+    self.issue_type = issue_type
+    self.room_id = room_id
+    self.is_done = is_done
+    self.issue_description = issue_description
+    self.icon_path = icon_path
+  end
 end
