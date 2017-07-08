@@ -1,3 +1,7 @@
+# Controller for managing the issue that may arise
+# in any room in the hotel. The user can list all
+# unresolved issues, report new issue in a chosen room,
+# mark them as resolved, re-open, delete and edit them.
 class IssuesController < ApplicationController
 	protect_from_forgery with: :null_session
 	before_action :authenticate_user!
