@@ -116,10 +116,9 @@ class RoomsController < ApplicationController
 
   def add_new_issues_to_room(selected_issues, id)
     selected_issues.each do |issue|
-      unless Issue.exists?(room_id: id, issue_type_id: issue.to_i)
+      unless Issue.exists?(room_id: id, issue_type_id: issue.to_i) || issue.blank?
         Issue.create(room_id: id.to_i, issue_type_id: issue.to_i,
-                     priority: 'Medium', is_done: true,
-                     is_recurring: false)
+                     priority: 'Medium', is_done: true)
       end
     end
   end

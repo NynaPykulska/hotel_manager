@@ -9,15 +9,7 @@ default: &default
   timeout: 5000
 
 development:
-  adapter: postgresql
-  host: "localhost"
-  database: "hotel_manager"
-  port: 5432
-  username: "admin"
-  password: "admin"
-  pool: 5
-  timeout: 5000
-
+  <<: *default
 test:
   <<: *default
 production:
