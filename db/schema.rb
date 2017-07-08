@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170623211419) do
+ActiveRecord::Schema.define(version: 20170708153614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 20170623211419) do
     t.date    "completion_date"
     t.text    "priority"
     t.boolean "is_done",         default: false
-    t.boolean "is_recurring",    default: false
   end
 
   create_table "memos", force: :cascade do |t|
