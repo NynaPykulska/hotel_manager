@@ -51,14 +51,12 @@ class MemosController < ApplicationController
 
     if(memo_params[:is_recurring] == "0")
       @date = DateTime.strptime(memo_params["deadline"], '%Y-%m-%d').change({ hour: memo_params["deadline(4i)"].to_i, min: memo_params["deadline(5i)"].to_i})  
-      puts @date
-      puts memo_params[:deadline]
       @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: @date, is_done: memo_params[:is_done], is_recurring: false )
       redirect_back(fallback_location: root_path)
 
     else
-      start_date = DateTime.strptime(memo_params["start_date"], '%Y-%m-%d')
-      end_date = DateTime.strptime(memo_params["end_date"], '%Y-%m-%d')
+      start_date = DateTime.strptime(memo_params["start_date"], '%Y-%m-%d').change({ hour: memo_params["deadline(4i)"].to_i, min: memo_params["deadline(5i)"].to_i})
+      end_date = DateTime.strptime(memo_params["end_date"], '%Y-%m-%d').change({ hour: memo_params["deadline(4i)"].to_i, min: memo_params["deadline(5i)"].to_i})
 
       # Generate a unique ID for an event
       id = DateTime.now.strftime("%Y%m%d%k%M%S%L")
