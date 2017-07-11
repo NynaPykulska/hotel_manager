@@ -13,7 +13,7 @@ class MemosController < ApplicationController
   before_action :authenticate_user!
 
   include MemoHelper       
-  @stored_date = nil
+  $stored_date = nil
 
  	def list
     if params[:date].blank?
@@ -23,7 +23,7 @@ class MemosController < ApplicationController
     end
 
     @memos = Memo.where('deadline BETWEEN ? AND ?', @date.beginning_of_day, @date.end_of_day).all
-    @stored_date = @date
+    $stored_date = @date
     @done = 0
     @not_done = 0
 

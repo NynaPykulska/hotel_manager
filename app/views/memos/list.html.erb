@@ -26,26 +26,13 @@
                         <div id="memo-calendar" class="btn-group" style="max-width: 140px;">
                             <div class="input-group date" data-provide='datepicker'>
                             <%= form_for :memo, :url => url_for(:action => 'list'), :html=> {:id => 'date-form'}  do |f| %>
-                                <%= f.text_field :date, class: 'form-control' , :value => @stored_date %>
+                                <%= f.text_field :date, class: 'form-control' , :value => $stored_date %>
                             <% end %>
                                 <span class="input-group-addon">
                                     <div data-icon="M" class="icon"></div>
                                 </span>
                             </div>
                         </div>  
-                        <script>
-                            $('#memo-calendar .input-group.date').datepicker({
-                                format: 'yyyy-mm-dd',
-                                language: "pl",
-                                autoclose: true,
-                                todayHighlight: true,
-                                todayBtn: "linked"
-                            }).on('changeDate', function (a) {
-                                var date = a.date.getFullYear() + "-" + (a.date.getMonth() + 1) + "-" + a.date.getDate();
-                                var link = window.location.href.split('?')[0] + "?date=" + date;
-                                window.location.href = link;
-                            });
-                        </script>
 
                         <!-- Primary Action Button -->
                         <div class="btn-group">

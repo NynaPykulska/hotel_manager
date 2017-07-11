@@ -1,5 +1,17 @@
 $(document).on('turbolinks:load',function() {
 
+  $('#memo-calendar .input-group.date').datepicker({
+      format: 'yyyy-mm-dd',
+      language: "pl",
+      autoclose: true,
+      todayHighlight: true,
+      todayBtn: "linked"
+  }).on('changeDate', function (a) {
+      var date = a.date.getFullYear() + "-" + (a.date.getMonth() + 1) + "-" + a.date.getDate();
+      var link = window.location.href.split('?')[0] + "?date=" + date;
+      window.location.href = link;
+  });
+
   $(function(){
     $('#sort_room_memo').click(function() {
       $("table thead").find("th:eq(3)").trigger("sort");

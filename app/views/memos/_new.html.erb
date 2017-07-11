@@ -70,7 +70,7 @@
                         <div id="new_memo_start_date_field" class="btn-group">
                             <label>Data rozpoczęcia</label>
                             <div class="input-group date" data-provide='datepicker'>
-                                <%= f.text_field :start_date, class: 'form-control', hide_label: true%>
+                                <%= f.text_field :start_date, class: 'form-control', hide_label: true, :value => $stored_date%>
                                 <span class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </span>
@@ -82,7 +82,7 @@
                         <div id="new_memo_end_date_field" class="btn-group">
                             <label>Data zakończenia</label>
                             <div class="input-group date" data-provide='datepicker'>
-                                <%= f.text_field :end_date, class: 'form-control', hide_label: true%>
+                                <%= f.text_field :end_date, class: 'form-control', hide_label: true, :value => $stored_date + 7.days%>
                                 <span class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </span>
@@ -97,7 +97,7 @@
                         <div class="btn-group">
                             <label>Data wykonania</label>
                             <div class="input-group date" data-provide='datepicker'>
-                                <%= f.text_field :deadline, class: 'form-control' , :value => Date.today(), 
+                                <%= f.text_field :deadline, class: 'form-control' , :value => $stored_date, 
                                     hide_label: true  %>
                                 <span class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
