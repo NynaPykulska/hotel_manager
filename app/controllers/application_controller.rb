@@ -22,5 +22,4 @@ class ApplicationController < ActionController::Base
       '/issueLog/list'
     end
   end
-
 end

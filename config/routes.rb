@@ -33,4 +33,5 @@ Rails.application.routes.draw do
   get 'memos/show_subjects'
   get 'memos/mark_ready'
   get 'memos/reopen'
+  get '*path', to: 'errors#match_all'
 end
