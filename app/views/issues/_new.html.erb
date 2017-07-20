@@ -22,13 +22,13 @@
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <% @images.each do |image| %>
-                                        <li > <!-- class="g-issue-icon-dropdown" -->
-                                            <%= image_tag "icons/issue/#{image.split('/').last}", :class => "issue-choose-icon" %>
-                                        </li >
+                                        <!-- <li > class="g-issue-icon-dropdown" -->
+                                            <%= image_tag "icons/issue/#{image.split('/').last}", :class => "issue-choose-icon g-issue-icon" %>
+                                        <!-- </li > -->
                                     <% end %>
                                     
-                                </ul>
                             </div>
+                                </ul>
                         </div>
                     </div>
                 </div>
