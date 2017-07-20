@@ -118,8 +118,7 @@ class RoomsController < ApplicationController
     selected_issues.each do |issue|
       unless Issue.exists?(room_id: id, issue_type_id: issue.to_i)
         Issue.create(room_id: id.to_i, issue_type_id: issue.to_i,
-                     priority: 'Medium', is_done: true,
-                     is_recurring: false)
+                     priority: 'Medium', is_done: true)
       end
     end
   end
