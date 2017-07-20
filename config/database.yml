@@ -10,11 +10,11 @@ default: &default
 
 development:
   adapter: postgresql
-  host: "localhost"
-  database: "hotel_manager"
+  host: "ec2-54-75-233-106.eu-west-1.compute.amazonaws.com"
+  database: "d9ndb5elejmegl"
   port: 5432
-  username: "admin"
-  password: "admin"
+  username: "flpywsvzvejspd"
+  password: "gGMJzo6QgzAL51WUoUp5W0el2R"
   pool: 5
   timeout: 5000
 
