@@ -5,6 +5,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  rescue_from ActiveRecord::RecordNotFound do |e|
+    render :template => "errors/record_not_found"
+  end
+
+  rescue_from StandardError do |e|
+    render :template => "errors/internal_error"
+  end
+
   def authenticate_user!(options = {})
     if user_signed_in?
       super(options)
@@ -22,5 +30,4 @@ class ApplicationController < ActionController::Base
       '/issueLog/list'
     end
   end
-
 end
