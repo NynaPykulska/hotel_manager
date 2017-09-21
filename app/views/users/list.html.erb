@@ -111,6 +111,31 @@
                                             <label>Adres e-mail</label>
                                             <h4><%= c.email -%></h4>
                                         </td>
+
+                                        <td class="g-vertical-top">
+                                            <label>Rola</label>
+                                        <h4><%= @roles_pl[c.role] -%></h4>    
+                                        </td>
+
+                                        <td class="text-right g-vertical-middle g-stay-in-one-line g-buttons-in-line"> 
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-link btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <div data-icon="/" class="icon"></div>
+                                                </button>
+                                            
+                                                <ul class="dropdown-menu">
+                                                    <li><%= link_to "Edytuj", edit_user_path(c), remote: true, :class => "edit-button" %></li>
+                                                    <li><%= link_to "Usuń", "user/delete?id=#{c.id}", :class =>  "btn-issues-remove"  %></li>                                                                                 
+                                                    <li role="separator" class="divider"></li>
+                                                    <li><a>Anuluj</a></li>
+                                                </ul>
+                                            </div> 
+                                            <script>
+                                                $(document).on('click', '.dropdown-menu', function (e) {
+                                                    e.stopPropagation();
+                                                });
+                                            </script> 
+                                        </td>  
                                 	</tr>
                					<% end %>                   
                             </tbody>
@@ -123,7 +148,8 @@
 
     <!-- Modal Window -->
     <div id="modal-add-user" class="modal fade"></div>
-    
+    <div id="edit-user-modal" class="modal fade"></div>
+
     </body>
 
     <%= javascript_include_tag "ripple-effect.js" %>

@@ -8,6 +8,31 @@
             <%= bootstrap_form_for :room, remote: true, html: { style: "display:inline;", id: "newRoomForm" } do |f| %>
         <div class="modal-body">
 
+                <!-- Room / sth else -->
+                <div class="row">
+                    <div class="col-xs-6">
+
+                        <label class="control-label">Pokój / inne</label>                    
+                        <div id="room_other_wrapper">
+                            <%= f.form_group :is_room do %>
+                                <div class="checkbox-slider--c">
+                                    <label> 
+                                        <%= f.check_box :is_room, id: "room_other_checkbox" do %>
+                                            <span id="room_other_label">Pokój</span>
+                                        <% end %>
+                                    </label>
+                                </div>
+                            <% end %>
+                        </div>
+                        <script type="text/javascript">
+                            $('#room_other_wrapper').click(function() {
+                                document.getElementById('room_other_checkbox').click();
+                                document.getElementById('room_other_label').text();
+                            })
+                        </script>
+
+                    </div>
+                </div>
 
                 <!-- Room ID -->
                 <div class="row">
