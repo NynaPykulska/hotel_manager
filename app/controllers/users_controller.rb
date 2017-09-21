@@ -6,10 +6,6 @@ class UsersController < ApplicationController
   def list
     @roles_pl = Hash["admin" => "Administracja", "receptionist" => "Recepcja", "maid" => "Sprzątanie", "maitenance" => "Utrzymanie"]
     @users = User.all
-    # Add tabs for user types
-    #@users.each do |m|
-    #  m.is_done ? @done+=1 : @not_done+=1
-    #end
   end
 
   def create_new_user
