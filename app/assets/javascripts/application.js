@@ -19,3 +19,4 @@
 //= require memo_list
 //= require room_list
 //= require issue_list
+//= require user_list

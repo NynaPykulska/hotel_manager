@@ -54,6 +54,16 @@
             <div class="row g-subnavigation">
                 <div class="col-md-12 g-tabs">
  
+                   <!-- Tabs with user groups -->
+                    <ul class="nav nav-pills pull-left" role="tablist">
+                        <li class="showall active">   <a> Wszystkie </a></li>
+                        
+                        <% @roles_pl.each do |key, value| %>
+                            <li class="show<%= key -%>" >  <a> <%= value -%> </a></li>
+                        <% end %>
+
+                    </ul>
+
                     <!-- Sortowanie --> 
                     <div class="pull-right g-mobile-hide">
                         <div class="btn-group">
@@ -87,7 +97,7 @@
                             <tbody>                    
                                 
                                 <% @users.each do |c| %>
-                                	<tr class="g-table-card-header">
+                                	<tr class= "g-table-card-header tr-<%=c.role=%>" >
                                         <td class="text-center g-vertical-middle g-table-card-icon-td">
                                             	<%= image_tag "avatars/user-avatar-1.png", :class => "g-header-avatar "%>              
                                         </td>
