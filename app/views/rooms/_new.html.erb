@@ -8,36 +8,41 @@
             <%= bootstrap_form_for :room, remote: true, html: { style: "display:inline;", id: "newRoomForm" } do |f| %>
         <div class="modal-body">
 
-                <!-- Room / sth else -->
+                <!-- Room/other switch -->
                 <div class="row">
-                    <div class="col-xs-6">
+                    <div class="col-xs-12">
 
                         <label class="control-label">Pokój / inne</label>                    
-                        <div id="room_other_wrapper">
-                            <%= f.form_group :is_room do %>
+                        <div id="room_other_check_box_wrapper">
+                            <%= f.form_group :is_other do %>
                                 <div class="checkbox-slider--c">
                                     <label> 
-                                        <%= f.check_box :is_room, id: "room_other_checkbox" do %>
-                                            <span id="room_other_label">Pokój</span>
+                                        <%= f.check_box :is_other, id: "room_other_check_box" do %>
+                                            <span id="room_other_desc">Pokój</span>
                                         <% end %>
                                     </label>
                                 </div>
                             <% end %>
                         </div>
                         <script type="text/javascript">
-                            $('#room_other_wrapper').click(function() {
-                                document.getElementById('room_other_checkbox').click();
-                                document.getElementById('room_other_label').text();
+                            $('#room_other_check_box_wrapper').click(function() {
+                                var check_box = document.getElementById('room_other_check_box');
+                                var check_span = $('#room_other_check_box_wrapper span');
+                                check_box.click();
+                                if( check_box.checked ){
+                                    check_span.html("Inne");
+                                } else {
+                                    check_span.html("Pokój");
+                                }
                             })
                         </script>
-
                     </div>
                 </div>
 
                 <!-- Room ID -->
                 <div class="row">
                     <div class="col-xs-12">
-                        <%= f.number_field :room_id, label: "Numer pokoju" %>
+                        <%= f.text_field :room_id, label: "Numer pokoju" %>
                     </div>
                 </div>
 

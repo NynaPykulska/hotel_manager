@@ -103,7 +103,7 @@
 
                                         <!-- Room Number -->
                                         <td class="g-vertical-top">
-                                            <label>Pokoj</label>
+                                            <label><%= c.is_other ? "Inne" : "Pokój" -%></label>
                                             <h4><%= c.room_id -%></h4>
                                         </td>
 
