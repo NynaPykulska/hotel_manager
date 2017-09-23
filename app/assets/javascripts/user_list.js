@@ -4,7 +4,7 @@ $(document).on('turbolinks:load',function() {
 
   $('.showall').click(function(e){        
     $('.tr-admin').show();
-    $('.tr-reception').show();
+    $('.tr-receptionist').show();
     $('.tr-maid').show();
     $('.tr-maitenance').show();
     $('.showadmin').removeClass('active');
@@ -16,7 +16,7 @@ $(document).on('turbolinks:load',function() {
 
   $('.showadmin').click(function(e){        
     $('.tr-admin').show();
-    $('.tr-reception').hide();
+    $('.tr-receptionist').hide();
     $('.tr-maid').hide();
     $('.tr-maitenance').hide();
     $('.showadmin').addClass('active');
@@ -27,7 +27,7 @@ $(document).on('turbolinks:load',function() {
 
   $('.showreceptionist').click(function(e){
     $('.tr-admin').hide();
-    $('.tr-reception').show();
+    $('.tr-receptionist').show();
     $('.tr-maid').hide();
     $('.tr-maitenance').hide();
     $('.showadmin').removeClass('active');
@@ -39,7 +39,7 @@ $(document).on('turbolinks:load',function() {
 
   $('.showmaid').click(function(e){
     $('.tr-admin').hide();
-    $('.tr-reception').hide();
+    $('.tr-receptionist').hide();
     $('.tr-maid').show();
     $('.tr-maitenance').hide();
     $('.showadmin').removeClass('active');
@@ -51,7 +51,7 @@ $(document).on('turbolinks:load',function() {
 
   $('.showmaitenance').click(function(e){
     $('.tr-admin').hide();
-    $('.tr-reception').hide();
+    $('.tr-receptionist').hide();
     $('.tr-maid').hide();
     $('.tr-maitenance').show();
     $('.showadmin').removeClass('active');
