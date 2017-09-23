@@ -46,9 +46,9 @@
 
                                     <img class="g-header-avatar dropdown-toggle" src="<%= asset_path( 'avatars/user-avatar-1.png' ) %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left: -90px">
-                                        <li><%= link_to 'Profile', edit_user_registration_path %></li>
+                                        <li><%= link_to 'Profil', edit_user_registration_path %></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+                                        <li><%= link_to 'Wyloguj', destroy_user_session_path, method: :delete %></li>
                                     </ul>
                                 </div>
                             </div>
@@ -86,11 +86,28 @@
                             
                 </div>  
             </div>
+
+            <div class="row" style="padding-top: 10px">
+                    <div class="col-md-12 text-center" >
+                        <i id="prev_day_arrow" aria-hidden="true" style="color: rgb(44, 57, 70); ">
+                            <%= link_to "", "list?date=#{$stored_date.prev_day}", remote: false, :class => "fa fa-chevron-left fa-3x", :style => "padding-right: 15px"  %>
+                        </i>
+                        <a style="font-size: 30px">
+                            <%= $stored_date.to_time.strftime("%d/%m/%Y") %> 
+                        </a>
+                        <i id="next_day_arrow" aria-hidden="true">
+                            <%= link_to "", "list?date=#{$stored_date.next_day}", remote: false, :class => "fa fa-chevron-right fa-3x", :style => "padding-left: 10px" %>
+                        </i>
+                    </div>
+            </div>
             
             <!-- Application Content -->
+             
             <div class="g-application-content">    
                 <!-- Card Row -->
-                <div class="row">
+                
+                <div class="row" >
+                    
                     <div class="col-md-12">            
                         <table class="g-table-card g-table-issues tablesorter mysortable" id="memo_table">
                             <thead style="display: none">
@@ -177,9 +194,11 @@
                             </tbody>
                         </table>
                     </div>
+                    
                 </div>  
                 <!-- / Card Row -->
-           </div>        
+           </div>    
+               
         </div>
         <div id="modal-add-memo" class="modal fade"></div>
         <div id="memo-modal" class="modal fade" ></div>
