@@ -24,9 +24,12 @@
 
                     <div class="pull-right ">
 
-                        <div class="btn-group">
-                            <%= link_to "Utwórz pokój", new_room_path, remote: true, :class => "btn btn-primary g-ripple-effect" %>
-                        </div>
+                        <!-- Primary Action Button -->
+                        <% if current_user.admin? %>
+                            <div class="btn-group">
+                                <%= link_to "Utwórz pokój", new_room_path, remote: true, :class => "btn btn-primary g-ripple-effect" %>
+                            </div>
+                        <% end %>
 
                         <%if user_signed_in? %>
                             <div class="btn-group">

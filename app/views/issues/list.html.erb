@@ -23,9 +23,11 @@
                     <div class="pull-right ">      
 
                         <!-- Primary Action Button -->
-                        <div class="btn-group">
-                            <%= link_to "Nowy typ usterki", new_issue_path, remote: true, :class => "btn btn-primary g-ripple-effect" %>
-                        </div>
+                        <% if current_user.admin? %>
+                            <div class="btn-group">
+                                <%= link_to "Nowy typ usterki", new_issue_path, remote: true, :class => "btn btn-primary g-ripple-effect" %>
+                            </div>
+                        <% end %>
 
                         <!-- User Avatar / Profile -->
                         <%if user_signed_in? %>
