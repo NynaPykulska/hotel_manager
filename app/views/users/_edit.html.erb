@@ -37,7 +37,7 @@
                 
                 <div class="row">
                     <div class="col-xs-12">
-                         <%= f.select :role, options_for_select([['Administrator' ,'admin'], ['Recepcja', 'receptionist'], ['Sprzątanie', 'maid'], ['Utrzymanie', 'maitenance']])%>
+                         <%= f.select :role, options_for_select([['Administrator' ,'admin'], ['Recepcja', 'receptionist'], ['Sprzątanie', 'maid'], ['Utrzymanie', 'maitenance']], @c.role)%>
                     </div>
                 </div>
                 
