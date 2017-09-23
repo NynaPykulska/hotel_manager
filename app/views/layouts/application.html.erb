@@ -38,6 +38,13 @@
       </div>
     <% end %>  
 
+    <% if current_user && current_user.admin? %>
+      <div class="g-aside-menu-position <%= controller_name == 'users' ? ' g-aside-menu-position-active' : '' =%>"> 
+          <%= link_to image_tag("left-menu/user.png"), "/adminPanel/list", :class =>  "g-aside-icon g-ripple-effect"%>
+          <span class="btn btn-link">Użytkownicy</span>                
+      </div>
+    <% end %> 
+
       <div id="g-aside-expand" class="g-aside-menu-position g-ripple-effect">
         <%= image_tag "left-menu/expand.png", :class =>  "g-aside-icon g-ripple-effect"%>
       </div>            

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bocho</title>
+    </head>
+
+    <body>
+        <!-- Fluid Container -->
+        <div class="container-fluid g-aside-has-aside">
+
+            <!-- Header with main buttons -->
+            <div class="row g-header">
+                <div class="col-sm-12">
+
+                    <!-- Screen Name -->
+                    <div class="pull-left g-navigation-text g-mobile-hide">
+                        <h4>Użytkownicy</h4>
+                    </div>
+
+                    <div class="pull-right "> 
+
+                        <!-- Primary Action Button -->
+                        <div class="btn-group">             
+                        </div>
+
+                        <!-- Primary Action Button -->
+                        <div class="btn-group">
+                            <%= link_to "Nowy użytkownik", new_user_path, remote: true, :class => "btn btn-primary g-ripple-effect" %>
+                        </div>
+
+                        <!-- User Avatar / Profile -->
+                        <%if user_signed_in? %>
+                            <div class="btn-group">
+                                <div class="dropdown">
+
+                                    <img class="g-header-avatar dropdown-toggle" src="<%= asset_path( 'avatars/user-avatar-1.png' ) %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left: -90px">
+                                        <li><%= link_to 'Profile', edit_user_registration_path %></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        <% end %>
+
+                    </div>                        
+
+                </div>
+            </div>    <!-- Sub Navigation Tabs -->
+            
+            <div class="row g-subnavigation">
+                <div class="col-md-12 g-tabs">
+ 
+                   <!-- Tabs with user groups -->
+                    <ul class="nav nav-pills pull-left" role="tablist">
+                        <li class="showall active">   <a> Wszystkie </a></li>
+                        
+                        <% @roles_pl.each do |key, value| %>
+                            <li class="show<%= key -%>" >  <a> <%= value -%> </a></li>
+                        <% end %>
+
+                    </ul>
+
+                    <!-- Sortowanie --> 
+                    <!-- <div class="pull-right g-mobile-hide">
+                        <div class="btn-group">
+                            <div class="dropdown">
+                                <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Sortuj <div data-icon="T" class="icon"></div>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a id="sort_user_name">Po imieniu</a></li>
+                                    <li><a id="sort_user_surname">Po nazwisku</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> -->
+                            
+                </div>  
+            </div>
+            
+            <!-- Application Content -->
+            <div class="g-application-content">    
+                <!-- Card Row -->
+                <div class="row">
+                    <div class="col-md-12">            
+                        <table class="g-table-card g-table-issues tablesorter mysortable" id="memo_table">
+                            <thead style="display: none">
+                                <tr>
+                                    <th>Avatar</th> <th>Name</th> <th>Surname</th> <th>Username</th> <th>e-mail</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>                    
+                                
+                                <% @users.each do |c| %>
+                                	<tr class= "g-table-card-header tr-<%=c.role=%>" >
+                                        <td class="text-center g-vertical-middle g-table-card-icon-td">
+                                            	<%= image_tag "avatars/user-avatar-1.png", :class => "g-header-avatar "%>              
+                                        </td>
+                                        
+                                        <td class="g-vertical-top">
+                                            <label>Imię</label>
+                                            <h4><%= c.name -%></h4>
+                                        </td>
+
+                                        <td class="g-vertical-top">
+                                            <label>Nazwisko</label>
+                                            <h4><%= c.surname -%></h4>
+                                        </td>  
+
+                                        <td class="g-vertical-top">
+                                            <label>Nazwa</label>
+                                            <h4><%= c.username -%></h4>
+                                        </td>
+
+                                        <td class="g-vertical-top">
+                                            <label>Adres e-mail</label>
+                                            <h4><%= c.email -%></h4>
+                                        </td>
+
+                                        <td class="g-vertical-top">
+                                            <label>Rola</label>
+                                        <h4><%= @roles_pl[c.role] -%></h4>    
+                                        </td>
+
+                                        <td class="text-right g-vertical-middle g-stay-in-one-line g-buttons-in-line"> 
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-link btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <div data-icon="/" class="icon"></div>
+                                                </button>
+                                            
+                                                <ul class="dropdown-menu">
+                                                    <li><%= link_to "Edytuj", edit_user_path(c), remote: true, :class => "edit-button" %></li>
+                                                    <li><%= link_to "Usuń", "user/delete?id=#{c.id}", :class =>  "btn-issues-remove"  %></li>                                                                                 
+                                                    <li role="separator" class="divider"></li>
+                                                    <li><a>Anuluj</a></li>
+                                                </ul>
+                                            </div> 
+                                            <script>
+                                                $(document).on('click', '.dropdown-menu', function (e) {
+                                                    e.stopPropagation();
+                                                });
+                                            </script> 
+                                        </td>  
+                                	</tr>
+               					<% end %>                   
+                            </tbody>
+                        </table>
+                    </div>
+                </div>  
+                <!-- / Card Row -->
+           </div>        
+        </div>
+
+    <!-- Modal Window -->
+    <div id="modal-add-user" class="modal fade"></div>
+    <div id="edit-user-modal" class="modal fade"></div>
+
+    </body>
+
+    <%= javascript_include_tag "ripple-effect.js" %>
+    <%= javascript_include_tag "g-aside-expand.js" %>
+
+</html>
