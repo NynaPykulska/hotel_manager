@@ -39,9 +39,10 @@ class RoomsController < ApplicationController
 
   def create
     room_id = room_params[:room_id]
-    room = Room.create(room_id: room_id.to_i,
+    room = Room.create(room_id: room_id,
                        description: room_params[:description],
-                       is_clean: true)
+                       is_clean: true,
+                       is_other: room_params[:is_other])
     add_new_issues_to_room(room_params[:selected_issues], room_id)
     if room.save
       redirect_back(fallback_location: root_path)
@@ -53,7 +54,7 @@ class RoomsController < ApplicationController
   def list; end
 
   def room_params
-    params.require(:room).permit(:room_id, :description, selected_issues: [])
+    params.require(:room).permit(:room_id, :is_other, :description, selected_issues: [])
   end
 
   def init_items_size_list
@@ -117,7 +118,7 @@ class RoomsController < ApplicationController
   def add_new_issues_to_room(selected_issues, id)
     selected_issues.each do |issue|
       unless Issue.exists?(room_id: id, issue_type_id: issue.to_i) || issue.blank?
-        Issue.create(room_id: id.to_i, issue_type_id: issue.to_i,
+        Issue.create(room_id: id, issue_type_id: issue.to_i,
                      priority: 'Medium', is_done: true)
       end
     end

@@ -122,7 +122,7 @@
                                         </td>  
 
                                         <td class="g-vertical-top strike-out <%= c.is_done ? 'td-done' : '' =%>">
-                                            <label>Pokój</label>
+                                            <label><%= Room.find_by(room_id: c.room_id).is_other ? "Inne" : "Pokój" -%></label>
                                             <h4><%= c.room_id -%></h4>
                                         </td>  
 
