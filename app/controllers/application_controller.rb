@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from StandardError do |e|
+    puts e
     render :template => "errors/internal_error"
   end
 

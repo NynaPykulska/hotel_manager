@@ -1,0 +1,55 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Edytuj użytkownika</h4>
+        </div>
+
+        <%= bootstrap_form_for @c, remote: true, html: { style: "display:inline;" } do |f| %>
+            <div class="modal-body">
+                <!-- Name -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <%= f.text_field :name, label: "Imię" %>
+                    </div>
+                </div>
+
+                <!-- Surname -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <%= f.text_field :surname, label: "Nazwisko" %>
+                    </div>
+                </div>
+
+                <!-- Username -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <%= f.text_field :username, label: "Nazwa użytkownika" %>
+                    </div>
+                </div>
+
+                <!-- e-mail -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <%= f.text_field :email, label: "Adres e-mail" %>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xs-12">
+                         <%= f.select :role, options_for_select([['Administrator' ,'admin'], ['Recepcja', 'receptionist'], ['Sprzątanie', 'maid'], ['Utrzymanie', 'maitenance']], @c.role)%>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                    <div class="text-right">
+                        <a href="" data-dismiss="modal" class="btn btn-default">Anuluj</a>
+                        <%= f.submit "Uaktualnij", :class => 'btn btn-primary' %>
+                    </div>
+            </div>
+
+            <% end %>
+            
+    </div>
+</div>
