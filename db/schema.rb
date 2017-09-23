@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170923101026) do
+ActiveRecord::Schema.define(version: 20170923174922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,9 @@ ActiveRecord::Schema.define(version: 20170923101026) do
     t.date    "completion_date"
     t.text    "priority"
     t.boolean "is_done",         default: false
+    t.date    "report_date"
+    t.string  "reporter"
+    t.string  "resolver"
   end
 
   create_table "memos", force: :cascade do |t|
@@ -42,6 +45,7 @@ ActiveRecord::Schema.define(version: 20170923101026) do
     t.boolean  "is_recurring", default: false
     t.bigint   "event_id"
     t.datetime "deadline"
+    t.string   "author"
   end
 
   create_table "rooms", primary_key: "room_id", id: :text, force: :cascade do |t|
