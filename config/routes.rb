@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :issues
   resources :rooms
   resources :users
-  post 'dayLog/list', to: 'memos#list'
+  get 'dayLog/list', to: 'memos#list'
   get 'roomStatus/list', to: 'rooms#list'
   get 'issueLog/list', to: 'issues#list'
   get 'dayLog/memos/mark_ready', to: 'memos#mark_ready'
