@@ -91,7 +91,7 @@
                         <table class="g-table-card g-table-issues mysortable sortable" id="sortable_issues">                           
                             <thead style="display: none">
                                 <tr>
-                                    <th>Icon</th> <th>Name</th>  <th>Room</th> <th>Time</th>  <th>Priority</th> <th>Comment</th> <th>Done</th>
+                                    <th>Icon</th> <th>Name</th>  <th>Room</th> <th>Time</th>  <th>Reporter</th> <th>Resolver</th> <th>Comment</th> <th>Done</th>
                                 </tr>
                             </thead>
                             <tbody> 
@@ -118,24 +118,21 @@
 
                                         <!-- Time -->
                                         <td class="hidden-xs hidden-sm g-vertical-top strike-out <%= c.is_done ? 'td-done' : '' =%>">
-                                            <label>Data otwarcia/zamknięcia</label>
-                                            <h4> <%= c.completion_date %> </h4>
+                                            <label>Data zgłoszenia</label>
+                                            <h4> <%= c.report_date %> </h4>
                                         </td>
 
                                         <!-- Priority -->
                                         <td class="hidden-xs hidden-sm g-vertical-top strike-out <%= c.is_done ? 'td-done' : '' =%>">
-                                            <label>Priorytet</label>
-                                            <h4>
-                                            <% if c.priority.downcase == 'high' %>
-                                                Wysoki <%= image_tag "Up.png", :class => "g-issue-icon-mini g-issue-icon-red"%>
-                                            <% elsif c.priority.downcase == 'medium' %>
-                                                Średni
-                                            <% elsif c.priority.downcase == 'low' %>
-                                                Niski <%= image_tag "Down.png", :class => "g-issue-icon-mini"%>
-                                            <% end %>
-                                            <!-- <img src="assets/img/icons/application/Up.png" class="g-issue-icon-mini g-issue-icon-red"> -->
-                                            
-                                            </h4>
+                                            <label>Zgłoszone przez</label>
+                                            <h4> <%= c.reporter %> </h4>
+                                        </td>
+
+                                        <td class="hidden-xs hidden-sm g-vertical-top strike-out <%= c.is_done ? 'td-done' : '' =%>" >
+                                            <div class=" <%= c.is_done ? '' : 'hide-inactive' =%>">
+                                                <label>Rozwiązane przez</label>
+                                                <h4> <%= c.resolver %> </h4>
+                                            </div>
                                         </td>
 
                                         <!-- Comment -->
@@ -155,7 +152,6 @@
                                                     <li><%= link_to "Edytuj", edit_issue_path(c), remote: true, :class => "edit-button" , :style => c.is_done ? 'display: none;' : '' %></li>
                                                     <li>
                                                         <%= link_to "Otwórz", "issue/reopen?id=#{c.id}", :class =>  "btn-issues-reopen issue-reopen-button", remote: true  %>
-                                                    <!-- <a href="#" class="btn-memo-reopen"> Re-Open </a> -->
                                                     </li>
                                                     <li>
                                                         <%= link_to "Usuń", "issue/delete?id=#{c.id}", :class =>  "btn-issues-remove"  %>

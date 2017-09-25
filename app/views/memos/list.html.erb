@@ -114,11 +114,8 @@
                                         </td>
 
                                         <td class="hidden-xs hidden-sm g-vertical-top strike-out <%= c.is_done ? 'td-done' : '' =%>">
-                                            <label>Powtarzanie</label>
-                                            <% if c.is_recurring == true %>
-                                                <%= image_tag "Refresh.png", :class => "g-issue-icon-mini"%>
-                                            <% end %>
-                                            </h4>
+                                            <label>Autor</label>
+                                            <h4><%= c.author -%></h4>
                                         </td>  
 
                                         <td class="g-vertical-top strike-out <%= c.is_done ? 'td-done' : '' =%>">
@@ -139,6 +136,9 @@
 
                                         <td class="text-right g-vertical-middle g-stay-in-one-line g-buttons-in-line"> 
                                             <div class="btn-group">
+                                                <% if c.is_recurring == true %>
+                                                    <%= image_tag "Refresh.png", :class => "g-issue-icon-mini"%>
+                                                <% end %>
                                                 <button type="button" class="btn btn-link btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <div data-icon="/" class="icon"></div>
                                                 </button>

@@ -17,7 +17,8 @@ class IssuesController < ApplicationController
 
   def mark_ready
     @issue = Issue.find(params[:id])
-    @issue.update_attributes(is_done: true, completion_date: Date.today)
+    resolver = current_user.name + " " + current_user.surname
+    @issue.update_attributes(is_done: true, completion_date: Date.today, resolver: resolver)
     @all_room_issues = Issue.where('room_id = ? AND is_done = ?',
                                    @issue.room_id, false)
     if @all_room_issues.count.zero?
@@ -41,11 +42,11 @@ class IssuesController < ApplicationController
 
   def issue_params
     params.require(:issue).permit(:room_id, :issue_type_id,
-                                  :requested_fix_date, :fix_comment,
-                                  :timestamp, :completion_date,
-                                  :issue_type, :is_recurring,
-                                  :start_date, :end_date,
-                                  :recurrence, :pattern, :priority)
+                                  :fix_comment,
+                                  :completion_date, :report_date,
+                                  :reporter, :resolver,
+                                  :issue_type, 
+                                  :is_done, :priority)
   end
 
   def new
