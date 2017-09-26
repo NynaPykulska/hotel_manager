@@ -86,9 +86,13 @@ class RoomsController < ApplicationController
                         room_id, issue_type).first
     room = Room.where('room_id = ?', room_id).first
     current_value = issue.is_done
+    reporter = current_user.name + " " + current_user.surname
     issue.update_attributes(is_done: !current_value,
                             fix_comment: params[:room][:comment],
-                            completion_date: Date.today)
+                            report_date: Date.today,
+                            completion_date: nil,
+                            reporter: reporter,
+                            resolver: nil)
     room.update_attribute(:is_clean, false)
     redirect_back(fallback_location: root_path)
   end
