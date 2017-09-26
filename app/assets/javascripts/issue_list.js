@@ -1,12 +1,15 @@
 $(document).on('turbolinks:load',function() {
 
+  $(".current-user-resolver").hide();
+
   $('.issue-ready-button').click(function(e){
-		console.log("xaxaxa");
     if($(this).closest('tr').hasClass("tr-not_done"))
 		{
 	    $(this).closest('tr').find('.strike-out').addClass('td-done');
 	    $(this).closest('tr').removeClass('tr-not_done');
 	    $(this).closest('tr').addClass('tr-done');
+
+      $(this).closest('tr').find('.current-user-resolver').show();
 	    
 	    // Change number of ready memos
 	    var old_number = parseInt(document.getElementById('ready-number').innerHTML);
@@ -34,12 +37,14 @@ $(document).on('turbolinks:load',function() {
   });
 
 	$('.issue-reopen-button').click(function(e){
-    console.log("xaxaxa");
     if($(this).closest('tr').hasClass("tr-done"))
     {
       $(this).closest('tr').find('.strike-out').removeClass('td-done');
       $(this).closest('tr').addClass('tr-not_done');
       $(this).closest('tr').removeClass('tr-done');
+
+      $(this).closest('tr').find('.current-user-resolver').hide();
+      $(this).closest('tr').find('.c-resolver').hide();
       // Change number of ready memos
       var old_number = parseInt(document.getElementById('ready-number').innerHTML);
       old_number--;

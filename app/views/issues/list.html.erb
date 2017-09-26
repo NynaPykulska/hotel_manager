@@ -129,10 +129,11 @@
                                         </td>
 
                                         <td class="hidden-xs hidden-sm g-vertical-top strike-out <%= c.is_done ? 'td-done' : '' =%>" >
-                                            <div class=" <%= c.is_done ? '' : 'hide-inactive' =%>">
-                                                <label>Rozwiązane przez</label>
-                                                <h4> <%= c.resolver %> </h4>
-                                            </div>
+                                            <label>Rozwiązane przez</label>
+                                            <% if c.is_done? %>
+                                                <h4 class="c-resolver"> <%= c.resolver %> </h4>
+                                            <% end %>
+                                            <h4 class="current-user-resolver"> <%= current_user.name %> <%= current_user.surname %> </h4>
                                         </td>
 
                                         <!-- Comment -->
