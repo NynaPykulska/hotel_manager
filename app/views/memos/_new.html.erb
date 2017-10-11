@@ -21,7 +21,7 @@
                     <!-- Description -->
                     <div class="row">
                         <div class="col-xs-12">          
-                            <%= f.text_field :description, label: "Opis" %>
+                            <%= f.text_area :description, label: "Opis" %>
                         </div>
                     </div>
 
@@ -51,7 +51,7 @@
 
                         <div class="col-xs-6">
                             <div id="new_memo_recurring_options" style="display: none">
-                                <%= f.select :recurrence, options_for_select([['Codziennie' ,1], ['Co tydzień', 2], ['Co miesiąc', 3], ['Wybrane dni miesiaca', 4]])%>
+                                <%= f.select :recurrence, options_for_select([['Codziennie' ,1], ['Co tydzień', 2], ['Co miesiąc', 3], ['Wybrane dni miesiaca', 4]]),  { label: "Częstotliwość" }%>
                             </div>
                         </div>
                     </div>
