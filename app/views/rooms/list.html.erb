@@ -7,7 +7,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bocho</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700;800;900" rel="stylesheet">
     </head>
 
     <body>
@@ -24,9 +24,12 @@
 
                     <div class="pull-right ">
 
-                        <div class="btn-group">
-                            <%= link_to "Utwórz pokój", new_room_path, remote: true, :class => "btn btn-primary g-ripple-effect" %>
-                        </div>
+                        <!-- Primary Action Button -->
+                        <% if current_user.admin? %>
+                            <div class="btn-group">
+                                <%= link_to "Utwórz pokój", new_room_path, remote: true, :class => "btn btn-primary g-ripple-effect" %>
+                            </div>
+                        <% end %>
 
                         <%if user_signed_in? %>
                             <div class="btn-group">
