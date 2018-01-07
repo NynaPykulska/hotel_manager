@@ -5,6 +5,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  before_action :set_timezone
+
+  def set_timezone
+    Time.zone = 'Warsaw'
+  end
+
   rescue_from ActiveRecord::RecordNotFound do |e|
     render :template => "errors/record_not_found"
   end
