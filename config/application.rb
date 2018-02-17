@@ -15,5 +15,7 @@ module HotelManager
     config.assets.digest = true
     config.serve_static_assets = true
     config.exceptions_app = self.routes
+    config.time_zone = 'Europe/Warsaw'
+    config.active_record.default_timezone = :local # Or :utc
   end
 end
