@@ -51,8 +51,9 @@ class MemosController < ApplicationController
     author = current_user.name + " " + current_user.surname
 
     if(memo_params[:is_recurring] == "0")
-      @date = DateTime.strptime(memo_params["deadline"], '%Y-%m-%d').change({ hour: memo_params["deadline(4i)"].to_i, min: memo_params["deadline(5i)"].to_i})  
-      @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: @date, is_done: memo_params[:is_done], author: author, is_recurring: false )
+      @date = DateTime.strptime(memo_params["deadline"], '%Y-%m-%d')
+      @user_time = Time.zone.local(@date.year, @date.month, @date.day, memo_params["deadline(4i)"].to_i, memo_params["deadline(5i)"].to_i, 0)
+      @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: @user_time, is_done: memo_params[:is_done], author: author, is_recurring: false )
       redirect_back(fallback_location: root_path)
 
     else
