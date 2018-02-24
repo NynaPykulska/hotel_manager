@@ -1,20 +1,20 @@
 default: &default
   adapter: postgresql
-  host: "localhost"
-  database: "hotel_manager"
+  host: "ec2-54-247-95-125.eu-west-1.compute.amazonaws.com"
+  database: "d90o37rn8f3m12"
   port: 5432
-  username: "admin"
-  password: "admin"
+  username: "ifkpweekccxlys"
+  password: "40319e98f8eb9e4ed503286c9c47bc88d4280e39292533d05d04c770ef5cd4b6"
   pool: 5
   timeout: 5000
 
 test: &test
   adapter: postgresql
-  host: "localhost"
-  database: "hotel_manager_test"
+  host: "ec2-54-247-95-125.eu-west-1.compute.amazonaws.com"
+  database: "d98ll8bpebeb1c"
   port: 5432
-  username: "admin"
-  password: "admin"
+  username: "wqnixejkzkwdap"
+  password: "d676305eea65a962dbf7cd250b34cecd58799bf5486b68e2a8c121ebc4e2796e"
   pool: 5
   timeout: 5000
 
