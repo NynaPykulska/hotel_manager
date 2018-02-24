@@ -1,11 +1,31 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+  
+issue_one_room_one:
+  room: room_one
+  completion_date: DateTime.new(2020,01,10)
+  fix_comment: "No comments on this one"
+  report_date: Date.today
+  priority: "High"
+  is_done: false
+  issue_type_id : issue_types(:lampka).id
+  reporter: Administrator
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+issue_one_room_two:
+  room: room_two
+  completion_date: DateTime.new(2020,01,11)
+  fix_comment: "No comments on this one"
+  report_date: Date.today
+  priority: "Medium"
+  is_done: false
+  issue_type_id : issue_types(:kaloryfer).id
+  reporter: Administrator
+
+issue_one_room_three:
+  room: room_three
+  completion_date: DateTime.new(2020,01,12)
+  fix_comment: "No comments on this one"
+  report_date: Date.today
+  priority: "Low"
+  is_done: false
+  issue_type_id : issue_types(:kran).id
+  reporter: Administrator
