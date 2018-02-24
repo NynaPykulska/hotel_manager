@@ -1,8 +1,14 @@
-dist: trusty
-
-sudo: required
-
 language: ruby
-
-rvm:
-  - 2.3.1
+cache:
+- bundler
+before_script:
+- bundle exec rake db:create
+- bundle exec rake db:migrate
+- bundle exec rake assets:precompile
+deploy:
+  provider: heroku
+  api_key:
+    secure: I46x5q8jRu2a58tqPWbdpWuanSbh1MVtQ03fOswkFyJ40z8Bj6BzlhO3srodsjvgoqjS5TsFS3PBAqkGnbxG671fPfbJZqRou1mUIsee5bNhkFv1jVihnoBmBV2PdY18EH8PKr7cxU0Z8oHEK+0KxSsg5GRMWh9QD7OERwUIScF59tiQpYRAhWZasHr4Xc//m/3yjqk8ZcLfiAnUC1R//iRZz/oXX4038rTs/BZgAFCQ9xw6vLMKnNRXRixCci3bPwlLd71KjBZVfdvn7lq7f8GeIYPzMxkLRJDbv+BwdhQSEK8drnSn4Y/rOtR67livc18aHkIzcdZ6TwQmJ5J5qZ+TVqp9M7UwX4T5SbEDiyKGpm2N1sjy6MB5i2AsVD6GhzD1SXTPZxskRrfRdP5fSMksyc2pOnzByTaoEcL4707EPl9HC99wIFbAtdHRtN/7Mp5ec5V9M+cxsR3QdRTZbDGBLewqaj7lSlgOoA37kjdkr9ELw66abaFLjeGE621dmuTtxMyKsVf+dfPofsa0qAGOuMOMwuPxzf1TgTNLM7nv25vND4h6e9XSxidl6+0/ZXNZhrEoavq5/A97d8BGWhRlJwS2S9qgGvG9MadiyLAm5zHgwmaoWGQfM2kl5IaKisCsn/TAegFVA/PS0GO8TLq/pfRDtIqQRTr10vds6Fc=
+  app: hotel-manager-development
+  on:
+    repo: NynaPykulska/hotel_manager
