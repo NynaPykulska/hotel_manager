@@ -21,6 +21,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'airbrake', '~> 6.2'
+gem 'coveralls', require: false
 
 group :development, :test do
   gem 'byebug', platform: :mri
