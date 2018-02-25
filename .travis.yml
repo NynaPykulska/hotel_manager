@@ -3,6 +3,8 @@ cache:
 - bundler
 
 jobs:
+  allow_failures:
+    - stage: Run rubocop
   include:
     - stage: Run tests
       before_script:
