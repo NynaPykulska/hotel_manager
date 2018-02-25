@@ -10,9 +10,9 @@ jobs:
       - bundle exec rake assets:precompile
       script:
       - bundle exec rake test
-    # - stage: Run rubocop
-    #   script:
-    #   - bundle exec rubocop
+    - stage: Run rubocop
+      script:
+      - bundle exec rubocop
     - stage: Deploy to heroku
       script: skip
       deploy:

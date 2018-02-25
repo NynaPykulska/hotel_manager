@@ -5,6 +5,7 @@ AllCops:
     - 'script/**/*'
     - 'test/**/**'
     - 'app/helpers/**'
+    - 'vendor/**/*'
 
 Style/Next:
   Enabled: false
