@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 
 gem 'activerecord', require: 'active_record'
+gem 'airbrake', '~> 6.2'
 gem 'autoprefixer-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-sass', '3.3.7'
 gem 'bootstrap_form'
 gem 'coffee-rails', '~> 4.2'
+gem 'coveralls', require: false
 gem 'devise', '~> 4.2'
 gem 'font-awesome-rails'
 gem 'jbuilder', '~> 2.5'
@@ -17,11 +19,10 @@ gem 'pg', '~> 0.18.4'
 gem 'puma', '~> 3.0'
 gem 'rails', '~> 5.0.0'
 gem 'rails_12factor', group: :production
+gem 'rubocop', '~> 0.39.0'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
-gem 'airbrake', '~> 6.2'
-gem 'coveralls', require: false
 
 group :development, :test do
   gem 'byebug', platform: :mri
