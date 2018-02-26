@@ -10,7 +10,9 @@
 class MemosController < ApplicationController
    	
   protect_from_forgery with: :null_session
-  before_action :authenticate_user!
+  before_action do
+    require_login("receptionist")
+  end
 
   include MemoHelper       
   $stored_date = nil

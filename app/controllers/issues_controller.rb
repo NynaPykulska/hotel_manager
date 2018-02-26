@@ -4,7 +4,9 @@
 # mark them as resolved, re-open, delete and edit them.
 class IssuesController < ApplicationController
   protect_from_forgery with: :null_session
-  before_action :authenticate_user!
+  before_action do
+    require_login("maitenance")
+  end
 
   def list
     @issues = Issue.where('is_done = false or completion_date = ?', Date.today)

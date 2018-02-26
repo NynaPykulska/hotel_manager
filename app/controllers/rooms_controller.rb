@@ -10,7 +10,10 @@
 class RoomsController < ApplicationController
   include Rails.application.routes.url_helpers
   before_filter :init_items_size_list
-  before_filter :authenticate_user!
+  
+  before_action do
+    require_login("maid")
+  end
 
   before_action :fetch_selected_issues, only: %i[edit]
   before_action :fetch_all_issue_types, only: %i[edit create]

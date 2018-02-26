@@ -4,3 +4,30 @@ admin:
   username: admin
   email: admin@admin.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'admin123') %>
+  role: :admin
+  name: admin
+  surname: admin
+
+receptionist:
+  username: receptionist
+  email: receptionist@receptionist.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'receptionist123') %>
+  role: :receptionist
+  name: receptionist
+  surname: receptionist
+
+maid:
+  username: maid
+  email: maid@maid.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'maid123') %>
+  role: :maid
+  name: maid
+  surname: maid
+
+maitenance:
+  username: maitenance
+  email: maitenance@maitenance.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'maitenance123') %>
+  role: :maitenance
+  name: maitenance
+  surname: maitenance

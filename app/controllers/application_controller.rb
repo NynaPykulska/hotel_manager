@@ -14,6 +14,27 @@ class ApplicationController < ActionController::Base
     render :template => "errors/internal_error"
   end
 
+  def require_login(required_role)
+    if not user_signed_in?
+      redirect_to "/users/sign_in"
+    elsif (current_user.role != required_role) and (current_user.role != "admin")
+      redirect_to get_user_home(current_user.role)
+    end
+  end
+
+  def get_user_home(user_role)
+    return case user_role
+    when "admin"
+      "/dayLog/list"
+    when "receptionist"
+      "/dayLog/list"
+    when "maid"
+      "/roomStatus/list"
+    when "maitenance"
+      "/issueLog/list"
+    end
+  end
+
   def authenticate_user!(options = {})
     if user_signed_in?
       super(options)

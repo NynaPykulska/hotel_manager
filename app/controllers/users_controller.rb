@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
 	  
   protect_from_forgery with: :null_session
-  before_action :authenticate_user!
+  
+  before_action do
+    require_login("admin")
+  end
 
   def list
     @roles_pl = Hash["admin" => "Administracja", "receptionist" => "Recepcja", "maid" => "Sprzątanie", "maitenance" => "Utrzymanie"]
