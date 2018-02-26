@@ -30,3 +30,6 @@ public/assets/
 
 # Ignore .txt files with results and comments
 *.txt
+
+# Ingonre coverage
+/coverage/*
