@@ -11,7 +11,7 @@ jobs:
       - bundle exec rake db:migrate
       - bundle exec rake assets:precompile
       script:
-      - xvfb-run rails test
+      - xvfb-run exec rake test
     - stage: Run rubocop
       script:
       - bundle exec rubocop
