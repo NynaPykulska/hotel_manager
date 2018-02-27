@@ -1,9 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 memo_one:
-  room: room_one
-  description: "TEST MEMO ONE"
+  room_id: 100
+  description: TEST MEMO ONE
   is_done: false
   is_recurring: false
-  deadline: <% DateTime.new(2017,01,10) %>
+  deadline: <%= Date.today %>
+  author: admin
+
+delete_memo:
+  room_id: 101
+  description: del_memo_test
+  is_done: false
+  is_recurring: false
+  deadline: <%= Date.today %>
   author: admin

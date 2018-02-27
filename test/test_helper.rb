@@ -14,6 +14,10 @@ class ActionDispatch::IntegrationTest
   # Include helpers from Devise to sub logged in users
   include Devise::Test::IntegrationHelpers
 
+  Capybara::Webkit.configure do |config|
+    config.allow_url("fonts.googleapis.com")
+  end
+
   # Reset sessions and driver between tests
   # Use super wherever this method is redefined in your individual test classes
   def teardown
