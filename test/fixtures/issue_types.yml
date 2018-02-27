@@ -1,16 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 lampka:
-  issue_desctiption: lampka
+  issue_description: lampka
   default_priority: 1
   icon_path: ""
 
 kaloryfer:
-  issue_desctiption: kaloryfer
+  issue_description: kaloryfer
   default_priority: 2
   icon_path: ""
 
 kran:
-  issue_desctiption: kran
+  issue_description: kran
   default_priority: 3
   icon_path: ""

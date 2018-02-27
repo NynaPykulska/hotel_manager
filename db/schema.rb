@@ -15,11 +15,15 @@ ActiveRecord::Schema.define(version: 20170923174922) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "icons", force: :cascade do |t|
+    t.text   "name"
+    t.binary "icon"
+  end
+
   create_table "issue_types", force: :cascade do |t|
-    t.integer "issue_type_id"
-    t.text    "issue_desctiption"
-    t.text    "default_priority"
-    t.text    "icon_path"
+    t.text "issue_description"
+    t.text "default_priority"
+    t.text "icon_path"
   end
 
   create_table "issues", force: :cascade do |t|
@@ -37,15 +41,14 @@ ActiveRecord::Schema.define(version: 20170923174922) do
   create_table "memos", force: :cascade do |t|
     t.text     "room_id"
     t.text     "description"
-    t.datetime "deadline"
     t.boolean  "is_done"
     t.boolean  "is_recurring", default: false
     t.bigint   "event_id"
+    t.datetime "deadline"
     t.string   "author"
   end
 
-  create_table "rooms", force: :cascade do |t|
-    t.text    "room_id"
+  create_table "rooms", primary_key: "room_id", id: :text, force: :cascade do |t|
     t.text    "description"
     t.boolean "is_clean"
     t.boolean "is_other",    default: false
