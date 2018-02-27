@@ -6,8 +6,6 @@ gem 'autoprefixer-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-sass', '3.3.7'
 gem 'bootstrap_form'
-gem 'capybara'
-gem 'capybara-webkit'
 gem 'coffee-rails', '~> 4.2'
 gem 'coveralls', require: false
 gem 'devise', '~> 4.2'
@@ -29,6 +27,8 @@ gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'capybara'
+  gem 'capybara-webkit'
   gem 'sqlite3', '1.3.11'
 end
 
