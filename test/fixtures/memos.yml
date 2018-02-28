@@ -8,9 +8,17 @@ memo_one:
   deadline: <%= Date.today %>
   author: admin
 
-delete_memo:
+delete_memo_user:
   room_id: 101
-  description: del_memo_test
+  description: del_memo_by_user_test
+  is_done: false
+  is_recurring: false
+  deadline: <%= Date.today %>
+  author: admin
+
+delete_memo_request:
+  room_id: 101
+  description: del_memo_by_request_test
   is_done: false
   is_recurring: false
   deadline: <%= Date.today %>
