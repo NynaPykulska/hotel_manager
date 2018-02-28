@@ -8,7 +8,7 @@ class MemoControllerTest < ActionDispatch::IntegrationTest
  
   teardown do
     DatabaseCleaner.clean
-    Rails.cache.clear
+    #  Rails.cache.clear
   end
 
   test "authenticated admin should see memo list" do
