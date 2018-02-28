@@ -17,3 +17,9 @@ room_three:
   description: ROOM 102 DESCRIPTION
   is_clean: false
   is_other: false
+
+room_delete:
+  room_id: 666
+  description: room_to_delete
+  is_clean: false
+  is_other: false

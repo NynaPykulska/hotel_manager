@@ -23,3 +23,11 @@ delete_memo_request:
   is_recurring: false
   deadline: <%= Date.today %>
   author: admin
+
+memo_to_update:
+  room_id: 101
+  description: memo_NOT_updated_yet
+  is_done: false
+  is_recurring: false
+  deadline: <%= Date.today %>
+  author: admin

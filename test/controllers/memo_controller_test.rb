@@ -72,4 +72,21 @@ class MemoControllerTest < ActionDispatch::IntegrationTest
     assert_select "del_memo_by_request_test", false, "This memo should have been deleted!"
   end
 
+  test "patch should update a memo" do
+    sign_in users(:receptionist)
+    get "/dayLog/list"
+    assert_response :success
+    patch "/memos/" + memos(:memo_to_update).id.to_s, 
+                       :memo => { :room_id => memos(:memo_to_update).room_id,
+                                  :description => "memo_WAS_updated",
+                                  :deadline => memos(:memo_to_update).deadline,
+                                  :is_done => memos(:memo_to_update).is_done,
+                                  :is_recurring => memos(:memo_to_update).is_recurring}
+    assert_response :redirect
+    follow_redirect!
+    follow_redirect!
+
+    assert_select "h4", "memo_WAS_updated"
+  end
+
 end
