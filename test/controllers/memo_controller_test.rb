@@ -2,14 +2,14 @@ require 'test_helper'
 
 class MemoControllerTest < ActionDispatch::IntegrationTest
 
-  # setup do
-  #   DatabaseCleaner.start
-  # end
+  setup do
+    DatabaseCleaner.start
+  end
  
-  # teardown do
-  #   DatabaseCleaner.clean
-  #   #  Rails.cache.clear
-  # end
+  teardown do
+    DatabaseCleaner.clean
+    Rails.cache.clear
+  end
 
   test "authenticated admin should see memo list" do
     sign_in users(:admin)

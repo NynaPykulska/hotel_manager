@@ -2,14 +2,14 @@ require 'test_helper'
 
 class RoomControllerTest < ActionDispatch::IntegrationTest
   
-  # setup do
-  #   DatabaseCleaner.start
-  # end
+  setup do
+    DatabaseCleaner.start
+  end
  
-  # teardown do
-  #   DatabaseCleaner.clean
-  #   # Rails.cache.clear
-  # end
+  teardown do
+    DatabaseCleaner.clean
+    Rails.cache.clear
+  end
 
   test "authenticated admin should see room list" do
     sign_in users(:admin)
