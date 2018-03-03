@@ -3,19 +3,19 @@
 room_one:
   room_id: 100
   description: ROOM 100 DESCRIPTION
-  is_clean: false
+  is_clean: true
   is_other: false
 
 room_two:
   room_id: 101
   description: ROOM 101 DESCRIPTION
-  is_clean: false
+  is_clean: true
   is_other: false
 
 room_three:
   room_id: 102
   description: ROOM 102 DESCRIPTION
-  is_clean: false
+  is_clean: true
   is_other: false
 
 room_delete:

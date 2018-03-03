@@ -31,3 +31,19 @@ maitenance:
   role: :maitenance
   name: maitenance
   surname: maitenance
+
+user_to_delete:
+  username: delete
+  email: delete@delete.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'maid123') %>
+  role: :maid
+  name: delete
+  surname: delete
+
+user_to_update:
+  username: update
+  email: update@update.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'maid123') %>
+  role: :maid
+  name: update
+  surname: update

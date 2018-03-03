@@ -57,4 +57,32 @@ class UserControllerTest < ActionDispatch::IntegrationTest
     assert_select "h4", "newly_created_user"
   end
 
+  test "patch should update a user" do
+    sign_in users(:admin)
+    patch "/users/" + users(:user_to_update).id.to_s, :user => {:name => "Derpy",
+                                                                :surname => "McDerpface",
+                                                                :username => "updated_user_name",
+                                                                :email => "new@user.com",
+                                                                :role => "maid"}
+
+    assert_response :redirect
+
+    get "/adminPanel/list"
+    assert_response :success
+
+    assert_select "h4", "updated_user_name"
+  end
+
+  test "get should delete a user" do
+    sign_in users(:admin)
+    get "/adminPanel/user/delete", :id => users(:user_to_delete).id
+
+    assert_response :redirect
+
+    get "/adminPanel/list"
+    assert_response :success
+
+    assert_select "updated_user_name", false, "This user should have been deleted!"
+  end
+
 end

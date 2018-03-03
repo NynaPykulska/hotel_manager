@@ -27,9 +27,7 @@ class UsersController < ApplicationController
   end
    
   def update
-    puts "xaxa1"
     @user = User.find(params[:id])
-    puts "xaxa"
     @user.update_attributes(user_params)
     redirect_back(fallback_location: root_path)
   end

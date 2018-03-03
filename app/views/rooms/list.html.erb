@@ -132,7 +132,7 @@
                                                 </ul>
                                             </div> 
 
-                                            <%= link_to "Zgłoś", "report_modal?room_id=#{c.id}", :remote => true, :class =>  "btn btn-link"%>
+                                            <%= link_to "Zgłoś", "report_modal?room_id=#{c.id}", :remote => true, :class =>  "btn btn-link", :id => "report_issue_button_" + c.room_id.to_s %>
 
                                         </td>
                                     </tr>
