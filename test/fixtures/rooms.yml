@@ -23,3 +23,9 @@ room_delete:
   description: room_to_delete
   is_clean: true
   is_other: false
+
+room_update:
+  room_id: 777
+  description: room_to_update
+  is_clean: true
+  is_other: false

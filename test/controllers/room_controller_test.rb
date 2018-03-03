@@ -71,5 +71,20 @@ class RoomControllerTest < ActionDispatch::IntegrationTest
 
   end
 
+  test "patch should update a room" do
+    sign_in users(:maid)
+    old_id = rooms(:room_update).room_id.to_s
+    new_id = "90000"
+    patch "/rooms/" + old_id, :room => { :room_id => new_id,
+                                         :description => "updated_room_description",
+                                         :selected_issues => ["", issue_types(:lampka).id]}
+
+    assert_response :redirect
+
+    get "/roomStatus/list"
+    assert_response :success
+
+    assert_select "h4", new_id
+  end
 
 end
