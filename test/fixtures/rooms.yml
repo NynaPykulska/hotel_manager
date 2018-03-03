@@ -21,5 +21,5 @@ room_three:
 room_delete:
   room_id: 666
   description: room_to_delete
-  is_clean: false
+  is_clean: true
   is_other: false

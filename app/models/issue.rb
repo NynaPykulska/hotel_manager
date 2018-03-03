@@ -7,7 +7,7 @@ class Issue < ApplicationRecord
   # one-to-many relationship with Room objects
   belongs_to :room
   # one-to many relationship with Issue_Types
-  has_one :issue_type
+  belongs_to :issue_type
   attr_accessor :start_date
   attr_accessor :end_date
   attr_accessor :recurrence

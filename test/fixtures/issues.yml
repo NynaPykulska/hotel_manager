@@ -1,31 +1,28 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
   
 issue_one_room_one:
-  room: room_one
-  completion_date: <%= DateTime.new(2020,01,10) %>
-  fix_comment: No comments on this one
+  room_id: 100
+  fix_comment: No comments on this on
   report_date: <%= Date.today %>
   priority: High
-  is_done: false
-  issue_type_id : issue_types(:lampka).id
-  reporter: Administrator
+  is_done: true
+  issue_type : lampka
+  reporter: admin
 
 issue_one_room_two:
-  room: room_two
-  completion_date: <%= DateTime.new(2020,01,11) %>
+  room_id: 101
   fix_comment: No comments on this one
   report_date: <%= Date.today %>
   priority: Medium
-  is_done: false
-  issue_type_id : issue_types(:kaloryfer).id
-  reporter: Administrator
+  is_done: true
+  issue_type: kaloryfer
+  reporter: admin
 
 issue_one_room_three:
-  room: room_three
-  completion_date: <%= DateTime.new(2020,01,12) %>
+  room_id: 102
   fix_comment: No comments on this one
   report_date: <%= Date.today %>
   priority: Low
-  is_done: false
-  issue_type_id : issue_types(:kran).id
-  reporter: Administrator
+  is_done: true
+  issue_type: kran
+  reporter: admin

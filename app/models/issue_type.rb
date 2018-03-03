@@ -4,5 +4,5 @@
 # one datatype. IssueTypes are not aware of Issues
 # that address them.
 class IssueType < ApplicationRecord
-
+  has_many :issue
 end

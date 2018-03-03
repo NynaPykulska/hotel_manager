@@ -55,4 +55,21 @@ class RoomControllerTest < ActionDispatch::IntegrationTest
     assert_select "h4", "654123"
   end
 
+  test "post should report a new issue" do
+
+    sign_in users(:maid)
+    post "/roomStatus/report_issue", :room => { :room_id => rooms(:room_one).room_id,
+                                                :issue_type => issue_types(:lampka).id,
+                                                :comment => "test_issue_creation"}
+    assert_response :redirect
+    sign_out :user
+
+    sign_in users(:maitenance)
+    get "/issueLog/list"
+    assert_response :success
+    assert_select "h4", "test_issue_creation"
+
+  end
+
+
 end
