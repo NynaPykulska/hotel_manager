@@ -5,7 +5,7 @@
 class IssuesController < ApplicationController
   protect_from_forgery with: :null_session
   before_action do
-    require_login("maitenance")
+    require_login('maitenance')
   end
 
   def list
@@ -19,8 +19,10 @@ class IssuesController < ApplicationController
 
   def mark_ready
     @issue = Issue.find(params[:id])
-    resolver = current_user.name + " " + current_user.surname
-    @issue.update_attributes(is_done: true, completion_date: Date.today, resolver: resolver)
+    resolver = current_user.name + ' ' + current_user.surname
+    @issue.update_attributes(is_done: true,
+                             completion_date: Date.today,
+                             resolver: resolver)
     @all_room_issues = Issue.where('room_id = ? AND is_done = ?',
                                    @issue.room_id, false)
     if @all_room_issues.count.zero?
@@ -47,7 +49,7 @@ class IssuesController < ApplicationController
                                   :fix_comment,
                                   :completion_date, :report_date,
                                   :reporter, :resolver,
-                                  :issue_type, 
+                                  :issue_type,
                                   :is_done, :priority)
   end
 
@@ -65,7 +67,6 @@ class IssuesController < ApplicationController
 
   def delete
     Issue.find(params[:id]).destroy
-    redirect_back fallback_location: root_path 
+    redirect_back fallback_location: root_path
   end
-
 end

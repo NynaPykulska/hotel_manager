@@ -6,7 +6,8 @@ class ErrorsController < ApplicationController
       message: 'Where did the 403 errors go'
     }, status: 404
   end
+
   def match_all
-    puts "NO SUCH ROUTE"
+    puts 'NO SUCH ROUTE'
   end
 end

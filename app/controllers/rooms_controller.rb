@@ -12,7 +12,7 @@ class RoomsController < ApplicationController
   before_action :init_items_size_list
   
   before_action do
-    require_login("maid")
+    require_login('maid')
   end
 
   before_action :fetch_selected_issues, only: %i[edit]
@@ -57,7 +57,10 @@ class RoomsController < ApplicationController
   def list; end
 
   def room_params
-    params.require(:room).permit(:room_id, :is_other, :description, selected_issues: [])
+    params.require(:room).permit(:room_id,
+                                 :is_other,
+                                 :description,
+                                 selected_issues: [])
   end
 
   def init_items_size_list
@@ -89,7 +92,7 @@ class RoomsController < ApplicationController
                         room_id, issue_type).first
     room = Room.where('room_id = ?', room_id).first
     current_value = issue.is_done
-    reporter = current_user.name + " " + current_user.surname
+    reporter = current_user.name + ' ' + current_user.surname
     issue.update_attributes(is_done: !current_value,
                             fix_comment: params[:room][:comment],
                             report_date: Date.today,
