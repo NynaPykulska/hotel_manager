@@ -1,0 +1,11 @@
+exclude_patterns:
+- "app/assets/javascripts/aside.coffee"
+- "app/assets/javascripts/g-side-expand.js"
+- "app/assets/javascripts/issue.coffee"
+- "app/assets/javascripts/issues.coffee"
+- "app/assets/javascripts/manager.coffee"
+- "app/assets/javascripts/memo.coffee"
+- "app/assets/javascripts/ripple-effect.js"
+- "app/assets/javascripts/room.coffee"
+- "app/assets/javascripts/tablesorter.jquery.json"
+- "app/assets/javascripts/user.coffee"
