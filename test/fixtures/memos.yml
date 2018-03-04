@@ -31,3 +31,11 @@ memo_to_update:
   is_recurring: false
   deadline: <%= Date.today %>
   author: admin
+
+memo_to_mark_ready:
+  room_id: 100
+  description: please mark me ready senpai
+  is_done: false
+  is_recurring: false
+  deadline: <%= Date.today %>
+  author: admin

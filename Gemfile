@@ -17,7 +17,7 @@ gem 'mysql2', '~> 0.4.2'
 gem 'paperclip', '~> 4.3', '>= 4.3.6'
 gem 'pg', '~> 0.18.4'
 gem 'puma', '~> 3.0'
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.1.0'
 gem 'rails_12factor', group: :production
 gem 'rubocop', '~> 0.39.0'
 gem 'sass-rails', '~> 5.0'

@@ -119,7 +119,7 @@
                             <tbody>                    
                                 
                                 <% @memos.each do |c| %>
-                                	<tr class="<%= c.is_done ? 'g-table-card-header tr-done' : 'g-table-card-header tr-not_done' =%>" >
+                                	<tr class="<%= c.is_done ? 'g-table-card-header tr-done' : 'g-table-card-header tr-not_done' =%>" id="<%= 'memo-' + c.id.to_s %>" >
                                         <td class="text-center g-vertical-middle g-table-card-icon-td">
                                             	<%= image_tag "icons/icon_ok.svg", :class => "g-issue-icon is-complete-icon-ok g-issue-icon-green", :style => c.is_done ? '' : 'display: none;'%>   
                                             	<%= image_tag "icons/icon_circle.svg", :class => "g-issue-icon is-complete-icon-circle", :style => c.is_done ? 'display: none;' : ''%>                  

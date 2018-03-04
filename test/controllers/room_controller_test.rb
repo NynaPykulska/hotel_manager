@@ -42,10 +42,11 @@ class RoomControllerTest < ActionDispatch::IntegrationTest
 
   test "post should create a new room" do
     sign_in users(:maid)
-    post "/rooms/new", :room => { :room_id => "654123",
-                                  :description => "newly_created_room#11223344",
-                                  :is_other => "0",
-                                  :selected_issues => ["", issue_types(:lampka).id]}
+    post "/rooms/new",
+         params: { room: { room_id: "654123",
+                           description: "newly_created_room#11223344",
+                           is_other: "0",
+                           selected_issues: ["", issue_types(:lampka).id] }}
 
     assert_response :redirect
 
@@ -58,9 +59,10 @@ class RoomControllerTest < ActionDispatch::IntegrationTest
   test "post should report a new issue" do
 
     sign_in users(:maid)
-    post "/roomStatus/report_issue", :room => { :room_id => rooms(:room_one).room_id,
-                                                :issue_type => issue_types(:lampka).id,
-                                                :comment => "test_issue_creation"}
+    post "/roomStatus/report_issue",
+         params: { room: { room_id: rooms(:room_one).room_id,
+                           issue_type: issue_types(:lampka).id,
+                           comment: "test_issue_creation" }}
     assert_response :redirect
     sign_out :user
 
@@ -75,9 +77,10 @@ class RoomControllerTest < ActionDispatch::IntegrationTest
     sign_in users(:maid)
     old_id = rooms(:room_update).room_id.to_s
     new_id = "90000"
-    patch "/rooms/" + old_id, :room => { :room_id => new_id,
-                                         :description => "updated_room_description",
-                                         :selected_issues => ["", issue_types(:lampka).id]}
+    patch "/rooms/" + old_id,
+          params: { room: { room_id: new_id,
+                            description: "updated_room_description",
+                            selected_issues: ["", issue_types(:lampka).id] }}
 
     assert_response :redirect
 

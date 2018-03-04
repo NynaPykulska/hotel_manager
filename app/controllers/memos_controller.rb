@@ -38,14 +38,14 @@ class MemosController < ApplicationController
     @memo = Memo.find(params[:id])
     @memo.update_attribute(:is_done, true)
     @memo.is_done = true
-    render :nothing => true
+    render body: nil
   end
 
   def reopen
     @memo = Memo.find(params[:id])
     @memo.update_attribute(:is_done, false)
     @memo.is_done = false
-    render :nothing => true
+    render body: nil
   end
 
  	def create
@@ -70,13 +70,11 @@ class MemosController < ApplicationController
       case memo_params[:recurrence]
       when "1"
         (start_date.to_i .. end_date.to_i).step(1.day) do |f|
-          puts Time.at(f)
           @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: Time.at(f), is_done: memo_params[:is_done], author: author, is_recurring: true, event_id: id )
         end
         redirect_back(fallback_location: root_path)
       when "2"
         (start_date.to_i .. end_date.to_i).step(7.day) do |f|
-          puts Time.at(f)
           @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: Time.at(f), is_done: memo_params[:is_done], author: author, is_recurring: true, event_id: id )
         end
         redirect_back(fallback_location: root_path)
@@ -104,9 +102,9 @@ class MemosController < ApplicationController
           max_days = Time.days_in_month(start_date.month, start_date.year)
           pattern.each do |day|
             if(day <= max_days)
-              @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: start_date.change(day: day), is_done: memo_params[:is_done], time_stamp: memo_params[:time_stamp], author: author, is_recurring: true, event_id: id )
+              @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: start_date.change(day: day), is_done: memo_params[:is_done], author: author, is_recurring: true, event_id: id )
             else
-              @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: start_date.change(day: max_days), is_done: memo_params[:is_done], time_stamp: memo_params[:time_stamp], author: author, is_recurring: true, event_id: id )
+              @memo = @room.memos.create(room_id: memo_params[:room_id], description: memo_params[:description], deadline: start_date.change(day: max_days), is_done: memo_params[:is_done], author: author, is_recurring: true, event_id: id )
             end
           end
           start_date = start_date + 1.month
@@ -128,16 +126,16 @@ class MemosController < ApplicationController
  	def update
     @memo = Memo.find(params[:id])
     @memo.update_attributes(memo_params)
-    redirect_back(fallback_location: root_path)
+    redirect_back fallback_location: root_path 
   end
    
  	def delete
  		Memo.find(params[:id]).destroy
- 		redirect_to :back
+ 		redirect_back fallback_location: root_path
  	end
 
   def delete_recurrence
     Memo.where(:event_id => params[:event_id]).destroy_all
-    redirect_to :back
+    redirect_back fallback_location: root_path
   end								
 end

@@ -9,7 +9,7 @@
 # no issues and those that have some unresolved issues assigned.
 class RoomsController < ApplicationController
   include Rails.application.routes.url_helpers
-  before_filter :init_items_size_list
+  before_action :init_items_size_list
   
   before_action do
     require_login("maid")

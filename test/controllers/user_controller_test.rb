@@ -42,12 +42,13 @@ class UserControllerTest < ActionDispatch::IntegrationTest
 
   test "post should create a new user" do
     sign_in users(:admin)
-    post "/users/create_new_user", :user => {:name => "Derpy",
-                                             :surname => "McDerpface",
-                                             :username => "newly_created_user",
-                                             :email => "new@user.com",
-                                             :password => "dummy_password",
-                                             :role => "maid"}
+    post "/users/create_new_user",
+         params: { user: { name: "Derpy",
+                           surname: "McDerpface",
+                           username: "newly_created_user",
+                           email: "new@user.com",
+                           password: "dummy_password",
+                           role: "maid" }}
 
     assert_response :redirect
 
@@ -59,11 +60,12 @@ class UserControllerTest < ActionDispatch::IntegrationTest
 
   test "patch should update a user" do
     sign_in users(:admin)
-    patch "/users/" + users(:user_to_update).id.to_s, :user => {:name => "Derpy",
-                                                                :surname => "McDerpface",
-                                                                :username => "updated_user_name",
-                                                                :email => "new@user.com",
-                                                                :role => "maid"}
+    patch "/users/" + users(:user_to_update).id.to_s,
+          params: { user: { name: "Derpy",
+                            surname: "McDerpface",
+                            username: "updated_user_name",
+                            email: "new@user.com",
+                            role: "maid" }}
 
     assert_response :redirect
 
@@ -75,7 +77,8 @@ class UserControllerTest < ActionDispatch::IntegrationTest
 
   test "get should delete a user" do
     sign_in users(:admin)
-    get "/adminPanel/user/delete", :id => users(:user_to_delete).id
+    get "/adminPanel/user/delete",
+        params: { id: users(:user_to_delete).id }
 
     assert_response :redirect
 
