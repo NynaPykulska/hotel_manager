@@ -9,3 +9,5 @@ exclude_patterns:
 - "app/assets/javascripts/room.coffee"
 - "app/assets/javascripts/tablesorter.jquery.json"
 - "app/assets/javascripts/user.coffee"
+- "app/assets/javascripts/jquery.tablesorter.js"
+- "app/assets/js/bootstrap.js"
