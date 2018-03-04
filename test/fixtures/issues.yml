@@ -18,11 +18,20 @@ issue_one_room_two:
   issue_type: kaloryfer
   reporter: admin
 
-issue_one_room_three:
+issue_to_update:
   room_id: 102
   fix_comment: No comments on this one
   report_date: <%= Date.today %>
   priority: Low
-  is_done: true
+  is_done: false
+  issue_type: kran
+  reporter: admin
+
+issue_to_delete:
+  room_id: 102
+  fix_comment: delete_memo_desc
+  report_date: <%= Date.today %>
+  priority: Low
+  is_done: false
   issue_type: kran
   reporter: admin

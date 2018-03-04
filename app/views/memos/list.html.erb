@@ -163,7 +163,7 @@
                                                 <ul class="dropdown-menu">
                                                     <li><%= link_to "Edytuj", edit_memo_path(c), remote: true, :class => "edit-button" , :style => c.is_done ? 'display: none;' : ''  %></li>
                                                     <li>
-                                                        <%= link_to "Otwórz", "memos/reopen?id=#{c.id}", :class =>  "btn-memo-reopen memo-reopen-button", remote: true  %>
+                                                        <%= link_to "Otwórz", "memos/reopen?id=#{c.id}", :class =>  "btn-memo-reopen memo-reopen-button", remote: true, method: :post %>
                                                     </li>
                                                     <li>
                                                         <%= link_to "Usuń", "memos/delete?id=#{c.id}", :class =>  "btn-issues-remove"  %>
@@ -185,7 +185,7 @@
                                             </script> 
 
 
-                                            <%= button_to "Gotowe", "memos/mark_ready" , params: {id: c.id}, class: "btn btn-link btn-memo-done memo-ready-button enabled", remote: true, method: :get, form: {style: 'display:inline-block;',  autocomplete: "off"}, :style => c.is_done ? 'display: none;' : ''%>
+                                            <%= button_to "Gotowe", "memos/mark_ready" , params: {id: c.id}, class: "btn btn-link btn-memo-done memo-ready-button enabled", remote: true, method: :post, form: {style: 'display:inline-block;',  autocomplete: "off"}, :style => c.is_done ? 'display: none;' : ''%>
                                             <%= button_to "Gotowe", "", class: "btn btn-link btn-memo-done memo-ready-button disabled", disabled: "true", form: {style: 'display:inline-block;',  autocomplete: "off"}, :style => c.is_done ? '' : 'display: none;'%>
                                         </td>                                        
 

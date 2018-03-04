@@ -27,7 +27,7 @@ class IssuesController < ApplicationController
       @room = Room.where('room_id = ?', @issue.room_id).first
       @room.update_attribute(:is_clean, true)
     end
-    render nothing: true
+    render body: nil
   end
 
   def reopen
@@ -37,7 +37,7 @@ class IssuesController < ApplicationController
     @room = Room.where('room_id = ?', @issue.room_id).first
     @room.update_attribute(:is_clean, false)
 
-    render nothing: true
+    render body: nil
   end
 
   def show; end
@@ -60,21 +60,12 @@ class IssuesController < ApplicationController
     IssueType.create(issue_description: params[:issue_type][:description],
                      default_priority: params[:issue_type][:priority],
                      icon_path: params[:issue_type][:icon_path])
-    redirect_back(fallback_location: root_path)
+    redirect_back fallback_location: root_path
   end
 
   def delete
     Issue.find(params[:id]).destroy
-    redirect_back(fallback_location: root_path)
+    redirect_back fallback_location: root_path 
   end
 
-  def edit
-    @c = Issue.find(params[:id])
-  end
-
-  def update
-    @issue = Issue.find(params[:id])
-    @issue.update_attributes(issue_params)
-    redirect_back(fallback_location: root_path)
-  end
 end
