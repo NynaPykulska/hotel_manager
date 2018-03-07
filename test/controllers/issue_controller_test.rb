@@ -55,4 +55,16 @@ class IssueControllerTest < ActionDispatch::IntegrationTest
     assert_select "delete_memo_desc", false, "This issue should have been deleted!"
   end
 
+  test "post should create a new issue type" do
+    sign_in users(:maitenance)
+    get "/issueLog/list"
+    assert_response :success
+    post "/issues/create_issue_type",
+         params: { issue_type: {description: "new issue type",
+                                icon_path: "/icons/issue/icon_safe.svg" }}
+    assert_response :redirect
+    IssueType.exists?(issue_description: "new issue type",
+                      icon_path: "/icons/issue/icon_safe.svg")
+  end
+
 end

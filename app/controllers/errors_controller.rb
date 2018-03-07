@@ -1,3 +1,4 @@
+# Basic error handling for the application
 class ErrorsController < ApplicationController
   def not_found
     render json: {

@@ -49,116 +49,69 @@ class MemosController < ApplicationController
     render body: nil
   end
 
+  def get_formatted_date(date_name)
+    date = DateTime.strptime(memo_params[date_name], '%Y-%m-%d')
+    return Time.zone.local(date.year,
+                           date.month,
+                           date.day,
+                           memo_params['deadline(4i)'].to_i,
+                           memo_params['deadline(5i)'].to_i,
+                           0)
+  end
+
+  def create_memo_object(date, is_recurring = false, event_id = nil)
+    room = Room.where('room_id = ?', memo_params[:room_id]).first
+    room.memos.create(room_id: memo_params[:room_id],
+                      description: memo_params[:description],
+                      deadline: date,
+                      is_done: memo_params[:is_done],
+                      author: current_user.name + ' ' + current_user.surname,
+                      is_recurring: is_recurring,
+                      event_id: event_id)
+  end
+
+  def create_pattern
+    schedule = IceCube::Schedule.new(Time.now)
+    case memo_params[:recurrence]
+    when '1'
+      schedule.add_recurrence_rule IceCube::Rule.daily
+    when '2'
+      schedule.add_recurrence_rule IceCube::Rule.weekly
+    when '3'
+      schedule.add_recurrence_rule IceCube::Rule.monthly
+    when '4'
+      pattern = memo_params[:pattern].delete(' ').split(',').map(&:to_i)
+      pattern.each do |day|
+        schedule.add_recurrence_rule IceCube::Rule.monthly.day_of_month(day)
+      end
+    end
+    return schedule
+  end
+
+  def get_all_recurences(start_date, end_date)
+    schedule = create_pattern
+    return schedule.occurrences_between(start_date.beginning_of_day, end_date.end_of_day)
+  end
+
   def create
-    @room = Room.where('room_id = ?', memo_params[:room_id]).first
-    author = current_user.name + ' ' + current_user.surname
-
     if memo_params[:is_recurring] == '0'
-      @date = DateTime.strptime(memo_params['deadline'], '%Y-%m-%d')
-      @user_time = Time.zone.local(@date.year,
-                                   @date.month,
-                                   @date.day,
-                                   memo_params['deadline(4i)'].to_i,
-                                   memo_params['deadline(5i)'].to_i,
-                                   0)
-      @memo = @room.memos.create(room_id: memo_params[:room_id],
-                                 description: memo_params[:description],
-                                 deadline: @user_time,
-                                 is_done: memo_params[:is_done],
-                                 author: author,
-                                 is_recurring: false)
-      redirect_back fallback_location: root_path
-
+      date = get_formatted_date('deadline')
+      create_memo_object(date)
     else
-      start_date = DateTime.strptime(memo_params['start_date'], '%Y-%m-%d').change( hour: memo_params['deadline(4i)'].to_i, min: memo_params['deadline(5i)'].to_i)
-      end_date = DateTime.strptime(memo_params['end_date'], '%Y-%m-%d').change(hour: memo_params['deadline(4i)'].to_i, min: memo_params['deadline(5i)'].to_i)
+      start_date = get_formatted_date('start_date')
+      end_date = get_formatted_date('end_date')
 
       # Generate a unique ID for an event
       id = DateTime.now.strftime('%Y%m%d%k%M%S%L')
       id = id.to_i.to_s(36)
       id = id.to_i(36)
+      all_recurences = get_all_recurences(start_date, end_date)
 
-      case memo_params[:recurrence]
-      when '1'
-        (start_date.to_i..end_date.to_i).step(1.day) do |f|
-          @memo = @room.memos.create(room_id: memo_params[:room_id],
-                                     description: memo_params[:description],
-                                     deadline: Time.at(f),
-                                     is_done: memo_params[:is_done],
-                                     author: author,
-                                     is_recurring: true,
-                                     event_id: id)
-        end
-        redirect_back fallback_location: root_path
-      when '2'
-        (start_date.to_i..end_date.to_i).step(7.day) do |f|
-          @memo = @room.memos.create(room_id: memo_params[:room_id],
-                                     description: memo_params[:description],
-                                     deadline: Time.at(f),
-                                     is_done: memo_params[:is_done],
-                                     author: author,
-                                     is_recurring: true,
-                                     event_id: id)
-        end
-        redirect_back fallback_location: root_path
-      when '3'
-        requested_day = start_date.day
-        start_date = start_date.change(day: 1)
-        max_days = 0
-        while start_date < end_date
-          max_days = Time.days_in_month(start_date.month, start_date.year)
-          if requested_day <= max_days
-            @memo = @room.memos.create(room_id: memo_params[:room_id],
-                                       description: memo_params[:description],
-                                       deadline: start_date.change(day: requested_day),
-                                       is_done: memo_params[:is_done],
-                                       author: author,
-                                       is_recurring: true,
-                                       event_id: id)
-          else
-            @memo = @room.memos.create(room_id: memo_params[:room_id],
-                                       description: memo_params[:description],
-                                       deadline: start_date.change(day: max_days),
-                                       is_done: memo_params[:is_done],
-                                       author: author,
-                                       is_recurring: true,
-                                       event_id: id)
-          end
-          start_date += 1.month
-        end
-        redirect_back fallback_location: root_path
-      when '4'
-        pattern = memo_params[:pattern].delete(' ').split(',').map(&:to_i)
-        start_date = start_date.change(day: 1)
-        max_days = 0
-
-        while start_date < end_date
-          max_days = Time.days_in_month(start_date.month, start_date.year)
-          pattern.each do |day|
-            if day <= max_days
-              @memo = @room.memos.create(room_id: memo_params[:room_id],
-                                         description: memo_params[:description],
-                                         deadline: start_date.change(day: day),
-                                         is_done: memo_params[:is_done],
-                                         author: author,
-                                         is_recurring: true,
-                                         event_id: id)
-            else
-              @memo = @room.memos.create(room_id: memo_params[:room_id],
-                                         description: memo_params[:description],
-                                         deadline: start_date.change(day: max_days),
-                                         is_done: memo_params[:is_done],
-                                         author: author,
-                                         is_recurring: true,
-                                         event_id: id)
-            end
-          end
-          start_date += 1.month
-        end
-
-        redirect_back fallback_location: root_path
+      all_recurences.each do |recurrence|
+        create_memo_object(recurrence, true, id)
       end
     end
+    redirect_back fallback_location: root_path
   end
 
   def memo_params
@@ -192,6 +145,5 @@ class MemosController < ApplicationController
   def delete_recurrence
     Memo.where(event_id: params[:event_id]).destroy_all
     redirect_back fallback_location: root_path
-  end					
+  end
 end
-

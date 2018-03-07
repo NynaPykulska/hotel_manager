@@ -44,15 +44,6 @@ class IssuesController < ApplicationController
 
   def show; end
 
-  def issue_params
-    params.require(:issue).permit(:room_id, :issue_type_id,
-                                  :fix_comment,
-                                  :completion_date, :report_date,
-                                  :reporter, :resolver,
-                                  :issue_type,
-                                  :is_done, :priority)
-  end
-
   def new
     @images = Dir.glob('app/assets/images/icons/issue/*.svg')
     @chosen_image = @images[0]

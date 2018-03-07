@@ -10,6 +10,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'coveralls', require: false
 gem 'devise', '~> 4.2'
 gem 'font-awesome-rails'
+gem 'ice_cube', '~> 0.14.0'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'multi-select-rails'
