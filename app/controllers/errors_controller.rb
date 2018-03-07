@@ -9,6 +9,6 @@ class ErrorsController < ApplicationController
   end
 
   def match_all
-    puts 'NO SUCH ROUTE'
+    render template: 'errors/match_all', status: 404
   end
 end
