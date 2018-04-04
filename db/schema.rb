@@ -10,70 +10,71 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170923174922) do
+ActiveRecord::Schema.define(version: 20180310064026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "icons", force: :cascade do |t|
-    t.text   "name"
+  create_table "icons", id: :serial, force: :cascade do |t|
+    t.text "name"
     t.binary "icon"
   end
 
-  create_table "issue_types", force: :cascade do |t|
+  create_table "issue_types", id: :serial, force: :cascade do |t|
     t.text "issue_description"
     t.text "default_priority"
     t.text "icon_path"
   end
 
-  create_table "issues", force: :cascade do |t|
-    t.text    "room_id"
+  create_table "issues", id: :serial, force: :cascade do |t|
+    t.text "room_id"
     t.integer "issue_type_id"
-    t.text    "fix_comment"
-    t.date    "completion_date"
-    t.text    "priority"
-    t.boolean "is_done",         default: false
-    t.date    "report_date"
-    t.string  "reporter"
-    t.string  "resolver"
+    t.text "fix_comment"
+    t.date "completion_date"
+    t.text "priority"
+    t.boolean "is_done", default: false
+    t.date "report_date"
+    t.string "reporter"
+    t.string "resolver"
   end
 
-  create_table "memos", force: :cascade do |t|
-    t.text     "room_id"
-    t.text     "description"
-    t.boolean  "is_done"
-    t.boolean  "is_recurring", default: false
-    t.bigint   "event_id"
+  create_table "memos", id: :serial, force: :cascade do |t|
+    t.text "room_id"
+    t.text "description"
+    t.boolean "is_done"
+    t.boolean "is_recurring", default: false
+    t.bigint "event_id"
     t.datetime "deadline"
-    t.string   "author"
+    t.string "author"
+    t.boolean "is_pinned", default: false
   end
 
   create_table "rooms", primary_key: "room_id", id: :text, force: :cascade do |t|
-    t.text    "description"
+    t.text "description"
     t.boolean "is_clean"
-    t.boolean "is_other",    default: false
+    t.boolean "is_other", default: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "username"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.integer  "role",                   default: 0
-    t.text     "name"
-    t.text     "surname"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-    t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "role", default: 0
+    t.text "name"
+    t.text "surname"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end

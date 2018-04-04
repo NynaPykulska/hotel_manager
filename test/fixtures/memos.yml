@@ -7,6 +7,7 @@ memo_one:
   is_recurring: false
   deadline: <%= Date.today %>
   author: admin
+  is_pinned: false
 
 delete_memo_user:
   room_id: 101
@@ -15,6 +16,7 @@ delete_memo_user:
   is_recurring: false
   deadline: <%= Date.today %>
   author: admin
+  is_pinned: false
 
 delete_memo_request:
   room_id: 101
@@ -23,6 +25,7 @@ delete_memo_request:
   is_recurring: false
   deadline: <%= Date.today %>
   author: admin
+  is_pinned: false
 
 memo_to_update:
   room_id: 101
@@ -31,6 +34,7 @@ memo_to_update:
   is_recurring: false
   deadline: <%= Date.today %>
   author: admin
+  is_pinned: false
 
 memo_to_mark_ready:
   room_id: 100
@@ -39,3 +43,22 @@ memo_to_mark_ready:
   is_recurring: false
   deadline: <%= Date.today %>
   author: admin
+  is_pinned: false
+
+memo_to_pin:
+  room_id: 100
+  description: please mark me ready senpai
+  is_done: false
+  is_recurring: false
+  deadline: <%= Date.today %>
+  author: admin
+  is_pinned: false
+
+memo_pinned:
+  room_id: 100
+  description: pinned_memo
+  is_done: false
+  is_recurring: false
+  deadline: <%= Date.today %>
+  author: admin
+  is_pinned: true

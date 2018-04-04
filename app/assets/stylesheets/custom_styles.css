@@ -1,0 +1,22 @@
+.memos-separator {
+  margin-top: 1px;
+  margin-bottom: 1px; 
+}
+
+.unpinned-memo-icon {
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+}
+
+.unpinned-memo-icon:hover {
+  -webkit-filter: grayscale(0%);
+          filter: grayscale(0%);
+}
+
+.pinned-memo-icon {
+
+}
+
+.pinned-memo-icon:hover {
+  opacity: .5;
+}

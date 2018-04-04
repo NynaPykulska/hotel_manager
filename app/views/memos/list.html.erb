@@ -92,7 +92,7 @@
                         <i id="prev_day_arrow" aria-hidden="true" style="color: rgb(44, 57, 70); ">
                             <%= link_to "", "list?date=#{$stored_date.prev_day}", remote: false, :class => "fa fa-chevron-left fa-3x", :style => "padding-right: 15px"  %>
                         </i>
-                        <a style="font-size: 30px">
+                        <a style="font-size: 30px" id="memo-current_day">
                             <%= $stored_date.to_time.strftime("%d/%m/%Y") %> 
                         </a>
                         <i id="next_day_arrow" aria-hidden="true">
@@ -117,8 +117,7 @@
                             </thead>
 
                             <tbody>                    
-                                
-                                <% @memos.each do |c| %>
+                                <% (@pinned_memos | @memos).each do |c| %>
                                 	<tr class="<%= c.is_done ? 'g-table-card-header tr-done' : 'g-table-card-header tr-not_done' =%>" id="<%= 'memo-' + c.id.to_s %>" >
                                         <td class="text-center g-vertical-middle g-table-card-icon-td">
                                             	<%= image_tag "icons/icon_ok.svg", :class => "g-issue-icon is-complete-icon-ok g-issue-icon-green", :style => c.is_done ? '' : 'display: none;'%>   
@@ -140,7 +139,7 @@
                                             <h4><%= c.room_id -%></h4>
                                         </td>  
 
-                                        <td class="hidden-xs hidden-sm g-vertical-top strike-out <%= c.is_done ? 'td-done' : '' =%>">
+                                        <td class="hidden-xs hidden-sm g-vertical-top memo-date strike-out <%= c.is_done ? 'td-done' : '' =%>">
                                             <label>Data</label>
                                             <h4><%= c.deadline.strftime("%Y-%m-%d") -%></h4>
                                         </td>  
@@ -153,6 +152,12 @@
 
                                         <td class="text-right g-vertical-middle g-stay-in-one-line g-buttons-in-line"> 
                                             <div class="btn-group">
+                                                <% if c.is_pinned == true %>
+                                                    <%= link_to image_tag("icons/icon_pin.png"), "memos/pin?id=#{c.id}" , :class => "g-issue-icon-mini memo-pin-button pinned-memo-icon", remote: true, method: :post%>
+                                                <% else %>
+                                                    <%= link_to image_tag("icons/icon_pin.png"), "memos/pin?id=#{c.id}" , :class => "g-issue-icon-mini memo-pin-button unpinned-memo-icon", remote: true, method: :post%>
+                                                <% end %>
+
                                                 <% if c.is_recurring == true %>
                                                     <%= image_tag "Refresh.png", :class => "g-issue-icon-mini"%>
                                                 <% end %>

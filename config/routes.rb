@@ -37,5 +37,7 @@ Rails.application.routes.draw do
   get 'memos/show_subjects'
   post 'memos/mark_ready'
   post 'memos/reopen'
+  post 'dayLog/memos/pin', to: 'memos#pin'
+  post 'dayLog/memos/unpin', to: 'memos#unpin'
   get '*path', to: 'errors#match_all'
 end

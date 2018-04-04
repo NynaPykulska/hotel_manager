@@ -53,7 +53,8 @@ class MemoControllerTest < ActionDispatch::IntegrationTest
                            description: "newly_created_memo#11223344",
                            deadline: Date.today.to_s,
                            is_done: "false",
-                           is_recurring: "0"}}
+                           is_recurring: "0",
+                           is_pinned: "false"}}
     assert_response :redirect
     follow_redirect!
     follow_redirect!
@@ -188,4 +189,22 @@ class MemoControllerTest < ActionDispatch::IntegrationTest
     assert (Memo.find(up_id).is_done == false)
   end
 
+  test "post should pin and unpin memo" do
+    sign_in users(:receptionist)
+    up_id = memos(:memo_to_pin).id
+    post "/dayLog/memos/pin",
+         params: { id: up_id.to_s }
+    assert (Memo.find(up_id).is_pinned == true)
+    post "/dayLog/memos/pin",
+         params: { id: up_id.to_s }
+    assert (Memo.find(up_id).is_pinned == false)
+  end
+
+  test "pinned memo should always be visible" do
+    sign_in users(:receptionist)
+    for i in 1..5 do
+      get "/dayLog/list?date=" + (Date.today + i.days).to_s
+      assert_select "h4", "pinned_memo"
+    end
+  end
 end

@@ -13,8 +13,30 @@
                             <%= f.collection_select :room_id, Room.all, :room_id, :room_id, label: "Pokój" %>
                         </div>
 
-                        <div class="col-xs-6">
+                        <div class="col-xs-3">
                             <%= f.time_select :deadline, label: "Godzina", :ignore_date => true %>
+                        </div>
+
+                        <div class="col-xs-1"> </div>
+
+                        <div class="col-xs-2">
+                            <label class="control-label">Przypnij</label>                    
+                            <div id="pinned_check_box_wrapper">
+                                <%= f.form_group :is_pinned do %>
+                                    <div class="checkbox-slider--c">
+                                        <label> 
+                                            <%= f.check_box :is_pinned, id: "pinned_check_box" do %>
+                                                <span></span>
+                                            <% end %>
+                                        </label>
+                                    </div>
+                                <% end %>
+                            </div>
+                            <script type="text/javascript">
+                                $('#pinned_check_box_wrapper').click(function() {
+                                    document.getElementById('pinned_check_box').click();
+                                })
+                            </script>
                         </div>
                     </div>
 

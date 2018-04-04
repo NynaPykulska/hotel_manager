@@ -23,14 +23,17 @@ class MemosController < ApplicationController
               Date.strptime(params[:date], '%Y-%m-%d')
             end
 
-    @memos = Memo.where('deadline BETWEEN ? AND ?',
+    @memos = Memo.where('deadline BETWEEN ? AND ? AND is_pinned = ?',
                         @date.beginning_of_day,
-                        @date.end_of_day).all
+                        @date.end_of_day,
+                        false).all
+    @pinned_memos = Memo.where("is_pinned = ?", true)
+
     $stored_date = @date
     @done = 0
     @not_done = 0
 
-    @memos.each do |m|
+    (@memos | @pinned_memos).each do |m|
       m.is_done ? @done += 1 : @not_done += 1
     end
   end
@@ -65,6 +68,7 @@ class MemosController < ApplicationController
                       description: memo_params[:description],
                       deadline: date,
                       is_done: memo_params[:is_done],
+                      is_pinned: memo_params[:is_pinned],
                       author: current_user.name + ' ' + current_user.surname,
                       is_recurring: is_recurring,
                       event_id: event_id)
@@ -124,7 +128,8 @@ class MemosController < ApplicationController
                                  :start_date,
                                  :end_date,
                                  :recurrence,
-                                 :pattern)
+                                 :pattern,
+                                 :is_pinned)
   end
 
   def edit
@@ -145,5 +150,11 @@ class MemosController < ApplicationController
   def delete_recurrence
     Memo.where(event_id: params[:event_id]).destroy_all
     redirect_back fallback_location: root_path
+  end
+
+  def pin
+    @memo = Memo.find(params[:id])
+    @memo.toggle!(:is_pinned)
+    render body: nil
   end
 end

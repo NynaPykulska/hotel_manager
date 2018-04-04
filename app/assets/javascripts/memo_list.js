@@ -88,5 +88,36 @@ $(document).on('turbolinks:load',function() {
       }
     }
 	});
+});
 
+$( document). on('click', ".unpinned-memo-icon" ,function() {
+  console.log('chuj');
+  var row = $(this).closest('tr');
+  $(this).removeClass('unpinned-memo-icon');
+  $(this).addClass('pinned-memo-icon');
+  row.remove();
+  row.prependTo('#memo_table');
+});
+
+$( document). on('click',".pinned-memo-icon" ,function() {
+  var row = $(this).closest('tr');
+  $(this).removeClass('pinned-memo-icon');
+  $(this).addClass('unpinned-memo-icon');
+  row.remove();
+  var last_pinned_row = $('.pinned-memo-icon').last().closest('tr');
+  var memo_date = new Date(row.children('.memo-date').first().find('h4').text());
+  var dateparts = $('#memo_current_day').text().trim().split('/');
+  var current_date = new Date(dateparts[2] + "-" + dateparts[1] + "-" + dateparts[0]);
+  if(memo_date.setHours(0,0,0,0) != current_date.setHours(0,0,0,0))
+  {
+    return;
+  }
+  if(last_pinned_row.length != 0)
+  {
+    last_pinned_row.after(row)
+  }
+  else
+  {
+    row.prependTo('#memo_table');
+  }
 });
