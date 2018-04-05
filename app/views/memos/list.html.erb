@@ -92,7 +92,7 @@
                         <i id="prev_day_arrow" aria-hidden="true" style="color: rgb(44, 57, 70); ">
                             <%= link_to "", "list?date=#{$stored_date.prev_day}", remote: false, :class => "fa fa-chevron-left fa-3x", :style => "padding-right: 15px"  %>
                         </i>
-                        <a style="font-size: 30px" id="memo-current_day">
+                        <a style="font-size: 30px" id="memo_current_day">
                             <%= $stored_date.to_time.strftime("%d/%m/%Y") %> 
                         </a>
                         <i id="next_day_arrow" aria-hidden="true">
