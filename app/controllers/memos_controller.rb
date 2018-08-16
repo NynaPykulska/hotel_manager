@@ -136,6 +136,11 @@ class MemosController < ApplicationController
     @c = Memo.find(params[:id])
   end
 
+  def show
+    @c = Memo.find(params[:id])
+    @comments = Comment.where(memo_id: params[:id])
+  end
+
   def update
     @memo = Memo.find(params[:id])
     @memo.update_attributes(memo_params)

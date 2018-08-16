@@ -1,0 +1,14 @@
+$("#memo-modal").html("<%= escape_javascript(render 'show') %>")
+$("#memo-modal").modal("show")
+
+$("#new_comment").on('ajax:success', function(e, data, status, xhr) {
+  console.log('ajax:success!');
+  console.log(data);
+
+  $("#show-memo-comments-list").append("<li> \
+                                          <div class=\"commentText\"> \
+                                            <p class=\"\">" + data["comment_text"] + "</p> \
+                                            <span class=\"date sub-text\">" + data["date"] + "</span> \
+                                          </div> \
+                                        </li>");
+});

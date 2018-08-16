@@ -126,7 +126,7 @@
                                         
                                         <td class="g-vertical-middle strike-out <%= c.is_done ? 'td-done' : '' =%>">
                                             <label>Memo</label>
-                                            <h4><%= c.description -%></h4>
+                                            <h4><%= link_to c.description , memo_path(c) , remote: true, method: :get-%></h4>
                                         </td>
 
                                         <td class="hidden-xs hidden-sm g-vertical-top strike-out <%= c.is_done ? 'td-done' : '' =%>">
@@ -206,6 +206,7 @@
                
         </div>
         <div id="modal-add-memo" class="modal fade"></div>
+        <div id="modal-show-memo" class="modal fade"></div>
         <div id="memo-modal" class="modal fade" ></div>
     </body>
 

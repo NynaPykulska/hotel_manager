@@ -1,0 +1,61 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Podgląd memo</h4>
+    </div>
+
+      <div class="modal-body">
+        <label> Pokój </label>
+        <h4> <%= @c.room_id %> </h4>
+
+        <label> Opis </label>
+        <h4> <%= @c.description %> </h4>
+
+        <label> Data wykonania </label>
+        <h4> <%= @c.deadline.to_date %> </h4>
+
+        <label> Godzina </label>
+        <h4> <%= @c.deadline.to_s(:time) %> </h4>
+
+        <label> Przypięte? </label>
+        <h4> <%= @c.is_pinned ? 'Tak' : 'Nie' %> </h4>
+
+        <label> Powtarzanie? </label>
+        <h4> <%= @c.is_recurring ? 'Tak' : 'Nie' %> </h4>
+
+        <hr>
+        <label> Komentarze </label>
+
+        <div class="actionBox">
+            <ul class="commentList" id="show-memo-comments-list">
+                <% @comments.each do |c| %>
+                <li>
+                    <div class="commentText">
+                        <p class=""> <%= c.comment_text %> </p> 
+                        <span class="date sub-text"> <%= c.date %> </span>
+                    </div>
+                </li>
+                <% end %>
+            </ul>
+        </div>
+      
+
+    <%= bootstrap_form_for :comment, url: '/comments', remote: true, html: { id: "new_comment", style: "display:inline;" }, data: { type: :json } do |f| %>
+        <%= f.text_field :comment_text, label: "Opis" %>
+        <%= f.submit "Dodaj komentarz", :class => 'btn btn-primary' %>
+        <%= f.hidden_field :memo_id, :value => @c.id %>
+        <%= f.hidden_field :username, :value => current_user.name + ' ' + current_user.surname %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :date, :value => Time.now %>
+    <% end %>
+
+    </div>
+      <div class="modal-footer">
+        <div class="text-right">
+            <a href="" data-dismiss="modal" class="btn btn-default">Anuluj</a>
+        </div>
+      </div>
+  </div>
+</div>
