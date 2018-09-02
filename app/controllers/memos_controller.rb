@@ -27,6 +27,8 @@ class MemosController < ApplicationController
                         @date.beginning_of_day,
                         @date.end_of_day,
                         false).all
+
+
     @pinned_memos = Memo.where("is_pinned = ?", true)
 
     $stored_date = @date
@@ -35,6 +37,7 @@ class MemosController < ApplicationController
 
     (@memos | @pinned_memos).each do |m|
       m.is_done ? @done += 1 : @not_done += 1
+      m.comments = Comment.where('memo_id = ?', m.id)
     end
   end
 

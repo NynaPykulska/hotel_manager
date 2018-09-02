@@ -195,6 +195,21 @@
                                         </td>                                        
 
                                 	</tr>
+                                    <div style="background-color: #fff;">
+                                        <div>
+                                            Komentarze
+                                        </div>
+                                        <% c.comments.each do |comment| %>
+                                            <li>
+                                                <div>
+                                                    <span> <%= comment.comment_text %> </span> 
+                                                    <span> <%= comment.username %> </span> 
+                                                    <span> <%= comment.date %> </span>
+                                                </div>
+                                            </li>
+                                        <% end %>
+                                            
+                                    </div>
                					<% end %>                   
                             </tbody>
                         </table>
